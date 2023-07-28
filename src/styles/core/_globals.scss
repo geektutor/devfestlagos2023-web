@@ -1,0 +1,39 @@
+html {
+    box-sizing: border-box;
+    font-size: calc(100vw / 1440 * 10);
+    overscroll-behavior: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+// resets
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.3;
+    letter-spacing: calc(-0.025 * 16px);
+    color: $grey-0;
+    height: 100dvh;
+
+    &.no-scroll {
+        overflow: hidden;
+        touch-action: none;
+    }
+}
+
+button {
+    cursor: pointer;
+    color: inherit;
+}
+
+
+svg {
+    width: 100%;
+}
