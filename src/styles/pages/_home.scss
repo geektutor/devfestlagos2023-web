@@ -3,6 +3,14 @@
   background: $bg-shade-1;
 
   &__title {
-    @extend %heading-1;
+    @include heading-1;
+
+    @include media("<=tablet") {
+      @include heading-4;
+    }
+
+    @include media("<=phone") {
+      @include heading-3;
+    }
   }
 }
