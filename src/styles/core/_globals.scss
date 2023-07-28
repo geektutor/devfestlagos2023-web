@@ -6,11 +6,17 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
+body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
 // resets
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 body {
@@ -33,6 +39,20 @@ button {
   color: inherit;
 }
 
-svg {
-  width: 100%;
+[data-marquee] {
+  width: fit-content;
+  position: relative;
+  will-change: transform;
+  display: flex;
+  //animation: marquee 25s linear infinite;
+
+  [data-marquee-item] {
+    white-space: nowrap;
+  }
+
+  @keyframes marquee {
+    100% {
+      transform: translateX(-50%);
+    }
+  }
 }

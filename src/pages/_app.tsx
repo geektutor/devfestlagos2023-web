@@ -10,6 +10,11 @@ export const googleSans = localFont({
       style: "normal",
     },
     {
+      path: "./fonts/GoogleSansDisplay-Medium.woff",
+      weight: "500",
+      style: "normal",
+    },
+    {
       path: "./fonts/GoogleSansDisplay-Bold.ttf",
       weight: "700",
       style: "normal",

@@ -87,11 +87,16 @@
   @supports (gap: $row-gap $column-gap) {
     --row-gap: #{$row-gap};
     --column-gap: #{$column-gap};
-    margin: calc(-1 * var(--row-gap)) 0 0 calc(-1 * var(--column-gap));
-    width: calc(100% + var(--column-gap));
+    //margin: calc(-1 * var(--row-gap)) 0 0 calc(-1 * var(--column-gap));
+    //width: calc(100% + var(--column-gap));
 
     > * {
       margin: var(--row-gap) 0 0 var(--column-gap);
+    }
+
+    > :first-child {
+      margin-left: 0;
+      margin-top: 0;
     }
   }
 }
