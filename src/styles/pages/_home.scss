@@ -1,8 +1,8 @@
-.c-home{
+.c-home {
   height: 100vh;
   background: $bg-shade-1;
 
-  &__title{
+  &__title {
     @extend %heading-1;
   }
 }
