@@ -9,5 +9,6 @@ export default {
 export const Default = {
   args: {
     variant: "primary",
+    children: "Button",
   },
 };
