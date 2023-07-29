@@ -8,6 +8,21 @@ import peopleDoodle from "@/images/people-doodle.png";
 import videoDoodle from "@/images/cup-code.png";
 import arrowDoodle from "@/images/arrow-doodle.png";
 import { TertiaryButton } from "@/component/button";
+import recap1 from "@/images/home/recap/recap-1.png";
+import recap2 from "@/images/home/recap/recap-2.png";
+import recap3 from "@/images/home/recap/recap-3.png";
+import recap4 from "@/images/home/recap/recap-4.png";
+import recap5 from "@/images/home/recap/recap-5.png";
+import recap6 from "@/images/home/recap/recap-6.png";
+import topTweet1 from "@/images/home/tweets/t-1.png";
+import topTweet2 from "@/images/home/tweets/t-2.png";
+import topTweet3 from "@/images/home/tweets/t-3.png";
+import topTweet4 from "@/images/home/tweets/t-4.png";
+import bottomTweet1 from "@/images/home/tweets/b-1.png";
+import bottomTweet2 from "@/images/home/tweets/b-2.png";
+import bottomTweet3 from "@/images/home/tweets/b-3.png";
+import bottomTweet4 from "@/images/home/tweets/b-4.png";
+import { YoutubePlayer } from "@/component/youtube-player";
 
 export default function Home() {
   return (
@@ -57,6 +72,77 @@ export default function Home() {
             <figure className='c-home__recap__arrow'>
               <Image src={arrowDoodle} alt='Recap' fill />
             </figure>
+          </div>
+          <figure className='c-home__recap__image-1'>
+            <Image src={recap1} alt='Recap Image' fill quality={100} />
+          </figure>
+          <figure className='c-home__recap__image-2'>
+            <Image src={recap2} alt='Recap Image' fill quality={100} />
+          </figure>
+          <figure className='c-home__recap__image-3'>
+            <Image src={recap3} alt='Recap Image' fill quality={100} />
+          </figure>
+          <figure className='c-home__recap__image-4'>
+            <Image src={recap4} alt='Recap Image' fill quality={100} />
+          </figure>
+          <figure className='c-home__recap__image-5'>
+            <Image src={recap5} alt='Recap Image' fill quality={100} />
+          </figure>
+          <figure className='c-home__recap__image-6'>
+            <Image src={recap6} alt='Recap Image' fill quality={100} />
+          </figure>
+        </section>
+        <section className='c-home__feedback'>
+          <div className='c-home__feedback__body'>
+            <div className='c-home__feedback__body-content'>
+              <div className='c-home__feedback__body__quotes-row' data-marquee>
+                {Array.from({ length: 4 }).map(() => (
+                  <>
+                    <div className='c-home__feedback__body__feedback-t-1'>
+                      <Image src={topTweet1} alt='Devfest Feedback' fill />
+                    </div>
+                    <div className='c-home__feedback__body__feedback-t-2'>
+                      <Image src={topTweet2} alt='Devfest Feedback' fill />
+                    </div>
+                    <div className='c-home__feedback__body__feedback-t-3'>
+                      <Image src={topTweet3} alt='Devfest Feedback' fill />
+                    </div>
+                    <div className='c-home__feedback__body__feedback-t-4'>
+                      <Image src={topTweet4} alt='Devfest Feedback' fill />
+                    </div>
+                  </>
+                ))}
+              </div>
+              <div className='c-home__feedback__body__quotes-row' data-marquee>
+                {Array.from({ length: 4 }).map(() => (
+                  <>
+                    <div className='c-home__feedback__body__feedback-b-1'>
+                      <Image src={bottomTweet1} alt='Devfest Feedback' fill />
+                    </div>
+                    <div className='c-home__feedback__body__feedback-b-2'>
+                      <Image src={bottomTweet2} alt='Devfest Feedback' />
+                    </div>
+                    <div className='c-home__feedback__body__feedback-b-3'>
+                      <Image src={bottomTweet3} alt='Devfest Feedback' />
+                    </div>
+                    <div className='c-home__feedback__body__feedback-b-4'>
+                      <Image src={bottomTweet4} alt='Devfest Feedback' />
+                    </div>
+                  </>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className='c-home__highlights'>
+          <div className='c-home__highlights__body'>
+            <p className='c-home__highlights__title'>Watch the highlight of DevFest2022 😎</p>
+            <div className='c-home__highlights__youtube'>
+              <YoutubePlayer videoId='7kat5HlPtzU' />
+            </div>
+            <div className='c-home__highlights__youtube__tease'>
+              P.s : You don’t want to miss this year 🤭
+            </div>
           </div>
         </section>
       </main>

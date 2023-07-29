@@ -117,6 +117,7 @@
 
   &__recap {
     padding: 134px 8.4% 558px;
+    position: relative;
 
     &__title {
       height: 116px;
@@ -139,6 +140,197 @@
       width: 216px;
       height: 109px;
       transform: rotate(26.766deg);
+    }
+
+    %recap-image {
+      position: absolute;
+      overflow: hidden;
+
+      img {
+        object-fit: cover;
+      }
+    }
+
+    &__image-1 {
+      @extend %recap-image;
+      left: 8.4%;
+      bottom: -60px;
+      @include ratio(735, 932);
+      width: 27.6vw;
+      transform: rotate(9.816deg);
+      z-index: 2;
+    }
+
+    &__image-2 {
+      @extend %recap-image;
+      left: 16.18%;
+      bottom: 100px;
+      @include ratio(3, 4);
+      width: 29.3vw;
+      transform: rotate(-8.738deg);
+      z-index: 1;
+    }
+
+    &__image-3 {
+      @extend %recap-image;
+      left: 34.3%;
+      bottom: -30px;
+      @include ratio(319, 659);
+      width: 28.68vw;
+      transform: rotate(-8.433deg);
+      z-index: 5;
+    }
+
+    &__image-4 {
+      @extend %recap-image;
+      left: 43.3%;
+      bottom: 90px;
+      @include ratio(73, 115);
+      width: 27.78vw;
+      transform: rotate(15.248deg);
+    }
+
+    &__image-5 {
+      @extend %recap-image;
+      left: 61.25%;
+      bottom: -66px;
+      @include ratio(394, 523);
+      width: 24.8vw;
+      transform: rotate(7.82deg);
+      z-index: 4;
+    }
+
+    &__image-6 {
+      @extend %recap-image;
+      left: 68%;
+      bottom: 60px;
+      @include ratio(276, 327);
+      width: 22.708vw;
+      transform: rotate(-14.061deg);
+      z-index: 3;
+    }
+  }
+
+  &__feedback {
+    padding: 86px 8.4% 97px;
+    background-color: $primary-blue;
+    position: relative;
+    z-index: 10;
+
+    &__body {
+      padding: 63px 0 44px;
+      background-color: $secondary-blue;
+      border-radius: 20px;
+      overflow: hidden;
+
+      &-content {
+        display: flex;
+        flex-direction: column;
+        @include flex-gap(32px, 0);
+      }
+
+      &__quotes-row {
+        display: flex;
+        column-gap: 24px;
+        padding-right: 24px;
+        align-items: center;
+        flex-wrap: nowrap;
+
+        > * {
+          flex-shrink: 0;
+        }
+      }
+
+      &__feedback-t-1 {
+        @include ratio(182, 397);
+        width: 397px;
+        position: relative;
+      }
+
+      &__feedback-t-2 {
+        @include ratio(191, 486.182);
+        width: 486.182px;
+        position: relative;
+      }
+
+      &__feedback-t-3 {
+        @include ratio(232, 389.65);
+        width: 389.65px;
+        position: relative;
+      }
+
+      &__feedback-t-4 {
+        @include ratio(193, 433.571);
+        width: 433.571px;
+        position: relative;
+      }
+
+      &__feedback-b-1 {
+        @include ratio(210, 442);
+        width: 442px;
+        position: relative;
+      }
+
+      &__feedback-b-2 {
+        @include ratio(214, 523);
+        width: 523px;
+        position: relative;
+      }
+
+      &__feedback-b-3 {
+        @include ratio(197, 418);
+        width: 418px;
+        position: relative;
+      }
+
+      &__feedback-b-4 {
+        @include ratio(210, 448);
+        width: 448px;
+        position: relative;
+      }
+    }
+  }
+
+  &__highlights {
+    padding: 136px 8.4%;
+    background-color: $grey-0;
+
+    &__body {
+      padding: 70px 148px 28px;
+      background-color: $primary-red;
+      border-radius: 24px;
+    }
+
+    &__title {
+      @include heading-4;
+      color: $grey-100;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    &__youtube {
+      @include ratio(1, 1.75);
+      display: flex;
+      flex-direction: column;
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        border-radius: 32px;
+        overflow: hidden;
+      }
+
+      &__tease {
+        padding: 10px;
+        background-color: $primary-green;
+        border-radius: 24px;
+        align-self: flex-end;
+        @include body-1;
+        width: fit-content;
+        margin-top: 32px;
+        color: $grey-100;
+        margin-left: auto;
+      }
     }
   }
 }
