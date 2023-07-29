@@ -22,3 +22,10 @@ $secondary-red: #f28b82;
 $secondary-grey: #0d0d0d;
 
 $bg-shade-1: #fffaeb;
+
+%page {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

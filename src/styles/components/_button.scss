@@ -1,0 +1,44 @@
+.c-button {
+  @include flex-gap(0, 8px);
+  width: 204px;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 48px;
+  @include button-text;
+  border: none;
+  outline: none;
+
+  &--primary {
+    background: $grey-0;
+    color: $grey-100;
+  }
+
+  &--secondary {
+    border: 2px solid $grey-0;
+    background: $bg-shade-1;
+    color: $grey-0;
+  }
+
+  &--tertiary {
+    background: $secondary-blue;
+    color: $grey-0;
+    width: 234px;
+
+    @include media("<=tablet") {
+      height: 60px;
+    }
+  }
+
+  @include media("<=phone") {
+    width: 350px;
+
+    &--tertiary {
+      background: $secondary-blue;
+      color: $grey-0;
+      width: 200px;
+      height: 54px;
+    }
+  }
+}
