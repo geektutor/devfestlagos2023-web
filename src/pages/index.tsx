@@ -24,6 +24,8 @@ import bottomTweet3 from "@/images/home/tweets/b-3.png";
 import bottomTweet4 from "@/images/home/tweets/b-4.png";
 import { YoutubePlayer } from "@/components/youtube-player";
 import { ComingSoonCountdown } from "@/components/coming-soon-countdown";
+import LogoWithGDG from "@/images/logo-with-gdg.svg";
+import { socialMediaLinks } from "@/utils/social-media";
 
 export default function Home() {
   return (
@@ -147,6 +149,33 @@ export default function Home() {
           </div>
         </section>
         <ComingSoonCountdown />
+        <section className='c-home__footer'>
+          <ul className='c-home__footer__links'>
+            <li className='c-home__footer__links__link'>
+              <a href='https://gdg.community.dev/gdg-lagos/' target='_blank'>
+                Join the community
+              </a>
+            </li>
+            <li className='c-home__footer__links__link'>
+              <a href='https://policies.google.com/privacy' target='_blank'>
+                Privacy policy
+              </a>
+            </li>
+          </ul>
+          <LogoWithGDG className='c-home__footer__logo' />
+          <div className='c-home__footer__social-media'>
+            <p className='c-home__footer__social-media__title'>Follow us on:</p>
+            <ul className='c-home__footer__social-media__icons'>
+              {socialMediaLinks.map((link) => (
+                <li key={link.link}>
+                  <a href={link.link} target='_blank'>
+                    {link.icon}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
       </main>
     </>
   );

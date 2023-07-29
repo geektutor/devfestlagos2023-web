@@ -12,13 +12,15 @@ const devFestDate = new Date("2023-11-25");
 
 export const ComingSoonCountdown = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, setCurrentTime] = React.useState(Date.now());
+  const [_, setCurrentTime] = React.useState<number | null>(null);
 
   useEffect(() => {
     setInterval(() => {
       setCurrentTime(Date.now());
     }, 1000);
   }, []);
+
+  if (!_) return null;
 
   return (
     <section className='c-countdown'>

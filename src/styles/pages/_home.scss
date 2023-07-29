@@ -24,6 +24,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    min-height: min(960px, 90vh);
 
     &__globe-doodle {
       position: absolute;
@@ -118,6 +119,10 @@
   &__recap {
     padding: 134px 8.4% 558px;
     position: relative;
+
+    @include media(">=LGdesktop") {
+      padding: 20vh 8.4% 60vh;
+    }
 
     &__title {
       height: 116px;
@@ -330,6 +335,55 @@
         margin-top: 32px;
         color: $grey-100;
         margin-left: auto;
+      }
+    }
+  }
+
+  &__footer {
+    height: 230px;
+    display: flex;
+    align-items: center;
+    padding: 0 13.47% 0 19.09%;
+
+    &__links {
+      display: flex;
+      flex-direction: column;
+      list-style-type: none;
+
+      &__link {
+        @include body-3;
+        text-decoration: underline;
+
+        a {
+          color: $grey-0;
+        }
+
+        & + & {
+          margin-top: 16px;
+        }
+      }
+    }
+
+    &__logo {
+      display: inline-block;
+      margin: 0 auto;
+    }
+
+    &__social-media {
+      display: flex;
+      flex-direction: column;
+
+      &__title {
+        @include body-3;
+        margin-bottom: 16px;
+        color: $grey-0;
+      }
+
+      &__icons {
+        display: grid;
+        grid-template-columns: repeat(5, 24px);
+        column-gap: 24px;
+        list-style-type: none;
       }
     }
   }
