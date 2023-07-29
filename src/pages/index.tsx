@@ -7,7 +7,7 @@ import repeatDoodle from "@/images/repeat-doodle.png";
 import peopleDoodle from "@/images/people-doodle.png";
 import videoDoodle from "@/images/cup-code.png";
 import arrowDoodle from "@/images/arrow-doodle.png";
-import { TertiaryButton } from "@/component/button";
+import { TertiaryButton } from "@/components/button";
 import recap1 from "@/images/home/recap/recap-1.png";
 import recap2 from "@/images/home/recap/recap-2.png";
 import recap3 from "@/images/home/recap/recap-3.png";
@@ -22,7 +22,8 @@ import bottomTweet1 from "@/images/home/tweets/b-1.png";
 import bottomTweet2 from "@/images/home/tweets/b-2.png";
 import bottomTweet3 from "@/images/home/tweets/b-3.png";
 import bottomTweet4 from "@/images/home/tweets/b-4.png";
-import { YoutubePlayer } from "@/component/youtube-player";
+import { YoutubePlayer } from "@/components/youtube-player";
+import { ComingSoonCountdown } from "@/components/coming-soon-countdown";
 
 export default function Home() {
   return (
@@ -145,6 +146,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <ComingSoonCountdown />
       </main>
     </>
   );
