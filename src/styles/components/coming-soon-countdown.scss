@@ -5,6 +5,10 @@
   align-items: center;
   background-color: $grey-0;
 
+  @include media("<=tablet") {
+    padding: 0 24px 94px;
+  }
+
   &__dates {
     width: fit-content;
     padding: 15px 36px;
@@ -18,12 +22,20 @@
     .strikethrough {
       text-decoration: line-through;
     }
+
+    @include media("<=tablet") {
+      @include body-2;
+    }
   }
 
   &__title {
     @include heading-3;
     color: $grey-100;
     margin-bottom: 48px;
+
+    @include media("<=tablet") {
+      @include heading-5;
+    }
   }
 
   &__clock {
@@ -34,7 +46,7 @@
       color: $grey-100;
 
       &__value {
-        height: 140px;
+        @include ratio(1, 1);
         width: 140px;
         border-radius: 20px;
         background: $primary-green;
@@ -42,6 +54,11 @@
         justify-content: center;
         display: flex;
         @include heading-3;
+
+        @include media("<=tablet") {
+          @include heading-5;
+          width: 84px;
+        }
       }
 
       &__label {
@@ -50,6 +67,10 @@
         display: inline-block;
         text-align: center;
         width: 100%;
+
+        @include media("<=tablet") {
+          @include body-4;
+        }
       }
     }
 
@@ -58,6 +79,18 @@
       display: flex;
       align-items: center;
       margin: 0 23px;
+
+      @include media("<=tablet") {
+        height: 84px;
+      }
+
+      svg {
+        width: 21px;
+
+        @include media("<=tablet") {
+          width: 12px;
+        }
+      }
     }
 
     & .first-child {

@@ -24,46 +24,70 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    min-height: min(960px, 90vh);
+
+    @include media(">=LGdesktop") {
+      min-height: min(960px, 90vh);
+    }
+
+    @include media("<=tablet") {
+      padding-top: 247px;
+    }
 
     &__globe-doodle {
+      @include ratio(109, 118);
       position: absolute;
       top: 0;
       left: 7.2%;
       width: 118px;
-      height: 109px;
       transform: rotate(26.766deg);
+
+      @include media("<=tablet") {
+        width: 94.984px;
+      }
     }
 
     &__people-doodle {
+      @include ratio(134, 235.005);
       position: absolute;
       top: 40px;
       right: 14%;
       width: 235.005px;
-      height: 134px;
       transform: rotate(26.766deg);
+
+      @include media("<=tablet") {
+        width: 164.504px;
+      }
     }
 
     &__repeat-doodle {
+      @include ratio(109, 130.623);
       position: absolute;
       bottom: 87px;
       left: 19.9%;
       width: 130.623px;
-      height: 109px;
       transform: rotate(26.766deg);
+
+      @include media("<=tablet") {
+        width: 104.499px;
+      }
     }
 
     &__video-doodle {
+      @include ratio(109, 148.116);
       position: absolute;
       bottom: 50px;
       right: 18%;
       width: 148.116px;
-      height: 109px;
       transform: rotate(26.766deg);
+
+      @include media("<=tablet") {
+        width: 118.493px;
+      }
     }
 
     &__title {
       @include heading-1;
+      color: $grey-0;
 
       @include media("<=tablet") {
         @include heading-4;
@@ -79,6 +103,11 @@
       text-align: center;
       color: rgba(0, 0, 0, 0.59);
       margin: 24px 0 30px;
+
+      @include media("<=tablet") {
+        @include body-2;
+        margin: 16px 0;
+      }
 
       & .red {
         color: $primary-red;
@@ -103,16 +132,38 @@
     display: flex;
     align-items: center;
 
+    @include media("<=tablet") {
+      height: 56px;
+    }
+
     &__item {
       padding-right: 20px;
       display: flex;
       align-items: center;
+
+      svg {
+        height: 36px;
+      }
+    }
+
+    &__icon {
+      @include ratio(1, 1);
+      width: 40px;
+      display: inline-block;
+
+      @include media("<=tablet") {
+        width: 26px;
+      }
     }
 
     &__text {
       @include title-2;
       color: $grey-0;
       margin-left: 12px;
+
+      @include media("<=tablet") {
+        @include body-3;
+      }
     }
   }
 
@@ -122,6 +173,10 @@
 
     @include media(">=LGdesktop") {
       padding: 20vh 8.4% 60vh;
+    }
+
+    @include media("<=tablet") {
+      padding: 71px 0 425px;
     }
 
     &__title {
@@ -136,15 +191,30 @@
       background: $primary-green;
       width: 811px;
       border-radius: 64px;
+
+      @include media("<=tablet") {
+        min-width: 415px;
+        width: fit-content;
+        height: 60px;
+        margin-left: 16px;
+
+        @include title-1;
+      }
     }
 
     &__arrow {
+      @include ratio(109, 216);
       position: absolute;
       top: 35%;
       left: calc(100% - 81px);
       width: 216px;
-      height: 109px;
       transform: rotate(26.766deg);
+
+      @include media("<=tablet") {
+        width: 136.4px;
+        left: calc(100% - 54px);
+        transform: rotate(42.266deg);
+      }
     }
 
     %recap-image {
@@ -164,6 +234,11 @@
       width: 27.6vw;
       transform: rotate(9.816deg);
       z-index: 2;
+
+      @include media("<=tablet") {
+        left: -10px;
+        width: 238px;
+      }
     }
 
     &__image-2 {
@@ -174,6 +249,12 @@
       width: 29.3vw;
       transform: rotate(-8.738deg);
       z-index: 1;
+
+      @include media("<=tablet") {
+        left: 8.46vw;
+        width: 253.6px;
+        bottom: 90px;
+      }
     }
 
     &__image-3 {
@@ -184,6 +265,11 @@
       width: 28.68vw;
       transform: rotate(-8.433deg);
       z-index: 5;
+
+      @include media("<=tablet") {
+        left: 24.34vw;
+        width: 380px;
+      }
     }
 
     &__image-4 {
@@ -193,6 +279,12 @@
       @include ratio(73, 115);
       width: 27.78vw;
       transform: rotate(15.248deg);
+
+      @include media("<=tablet") {
+        left: 42.06vw;
+        width: 240px;
+        bottom: 108px;
+      }
     }
 
     &__image-5 {
@@ -203,6 +295,12 @@
       width: 24.8vw;
       transform: rotate(7.82deg);
       z-index: 4;
+
+      @include media("<=tablet") {
+        left: 59.11vw;
+        width: 267px;
+        bottom: -37px;
+      }
     }
 
     &__image-6 {
@@ -213,6 +311,12 @@
       width: 22.708vw;
       transform: rotate(-14.061deg);
       z-index: 3;
+
+      @include media("<=tablet") {
+        left: 69.27vw;
+        width: 196.2px;
+        bottom: 108px;
+      }
     }
   }
 
@@ -222,11 +326,26 @@
     position: relative;
     z-index: 10;
 
+    &__title {
+      @include heading-4;
+      color: $grey-100;
+      margin-bottom: 18px;
+      text-align: center;
+
+      @include media("<=tablet") {
+        @include heading-5;
+      }
+    }
+
     &__body {
       padding: 63px 0 44px;
       background-color: $secondary-blue;
       border-radius: 20px;
       overflow: hidden;
+
+      @include media("<=tablet") {
+        padding: 24px 0 29px;
+      }
 
       &-content {
         display: flex;
@@ -250,48 +369,80 @@
         @include ratio(182, 397);
         width: 397px;
         position: relative;
+
+        @include media("<=tablet") {
+          width: 234px;
+        }
       }
 
       &__feedback-t-2 {
         @include ratio(191, 486.182);
         width: 486.182px;
         position: relative;
+
+        @include media("<=tablet") {
+          width: 280px;
+        }
       }
 
       &__feedback-t-3 {
         @include ratio(232, 389.65);
         width: 389.65px;
         position: relative;
+
+        @include media("<=tablet") {
+          width: 224px;
+        }
       }
 
       &__feedback-t-4 {
         @include ratio(193, 433.571);
         width: 433.571px;
         position: relative;
+
+        @include media("<=tablet") {
+          width: 250px;
+        }
       }
 
       &__feedback-b-1 {
         @include ratio(210, 442);
         width: 442px;
         position: relative;
+
+        @include media("<=tablet") {
+          width: 254.6px;
+        }
       }
 
       &__feedback-b-2 {
         @include ratio(214, 523);
         width: 523px;
         position: relative;
+
+        @include media("<=tablet") {
+          width: 301.25px;
+        }
       }
 
       &__feedback-b-3 {
         @include ratio(197, 418);
         width: 418px;
         position: relative;
+
+        @include media("<=tablet") {
+          width: 240.768px;
+        }
       }
 
       &__feedback-b-4 {
         @include ratio(210, 448);
         width: 448px;
         position: relative;
+
+        @include media("<=tablet") {
+          width: 258px;
+        }
       }
     }
   }
@@ -300,10 +451,18 @@
     padding: 136px 8.4%;
     background-color: $grey-0;
 
+    @include media("<=tablet") {
+      padding: 24px 24px 120px;
+    }
+
     &__body {
       padding: 70px 148px 28px;
       background-color: $primary-red;
       border-radius: 24px;
+
+      @include media("<=tablet") {
+        padding: 56px 66px 20px;
+      }
     }
 
     &__title {
@@ -311,6 +470,10 @@
       color: $grey-100;
       margin-bottom: 32px;
       text-align: center;
+
+      @include media("<=tablet") {
+        @include heading-5;
+      }
     }
 
     &__youtube {
@@ -335,6 +498,10 @@
         margin-top: 32px;
         color: $grey-100;
         margin-left: auto;
+
+        @include media("<=tablet") {
+          @include body-5;
+        }
       }
     }
   }
@@ -345,6 +512,11 @@
     align-items: center;
     padding: 0 13.47% 0 19.09%;
 
+    @include media("<=tablet") {
+      height: 153px;
+      padding: 0 8.45% 0 11.85%;
+    }
+
     &__links {
       display: flex;
       flex-direction: column;
@@ -353,6 +525,10 @@
       &__link {
         @include body-3;
         text-decoration: underline;
+
+        @include media("<=tablet") {
+          @include body-5;
+        }
 
         a {
           color: $grey-0;
@@ -367,6 +543,12 @@
     &__logo {
       display: inline-block;
       margin: 0 auto;
+      @include ratio(97, 220);
+      width: 220px;
+
+      @include media("<=tablet") {
+        width: 131px;
+      }
     }
 
     &__social-media {
@@ -377,13 +559,31 @@
         @include body-3;
         margin-bottom: 16px;
         color: $grey-0;
+
+        @include media("<=tablet") {
+          @include body-5;
+        }
       }
 
-      &__icons {
+      &__links {
         display: grid;
         grid-template-columns: repeat(5, 24px);
         column-gap: 24px;
         list-style-type: none;
+
+        @include media("<=tablet") {
+          grid-template-columns: repeat(5, 16px);
+        }
+      }
+
+      &__link {
+        display: flex;
+        height: fit-content;
+
+        svg {
+          @include ratio(1, 1);
+          width: 100%;
+        }
       }
     }
   }

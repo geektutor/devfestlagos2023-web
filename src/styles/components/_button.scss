@@ -25,6 +25,10 @@
     background: $secondary-blue;
     color: $grey-0;
     width: 234px;
+
+    @include media("<=tablet") {
+      height: 60px;
+    }
   }
 
   @include media("<=phone") {

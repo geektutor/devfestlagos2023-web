@@ -63,7 +63,7 @@ export default function Home() {
           <div className='c-home__marquee' data-marquee>
             {Array.from({ length: 32 }).map((_, index) => (
               <div className='c-home__marquee__item' key={index} data-marquee-item>
-                <StarIcon />
+                <StarIcon className='c-home__marquee__icon' />
                 <p className='c-home__marquee__text'>Watch this space for more information soon</p>
               </div>
             ))}
@@ -96,6 +96,7 @@ export default function Home() {
           </figure>
         </section>
         <section className='c-home__feedback'>
+          <p className='c-home__feedback__title'>We do not make empty promises ✋🏾😌🤚🏾</p>
           <div className='c-home__feedback__body'>
             <div className='c-home__feedback__body-content'>
               <div className='c-home__feedback__body__quotes-row' data-marquee>
@@ -165,10 +166,14 @@ export default function Home() {
           <LogoWithGDG className='c-home__footer__logo' />
           <div className='c-home__footer__social-media'>
             <p className='c-home__footer__social-media__title'>Follow us on:</p>
-            <ul className='c-home__footer__social-media__icons'>
+            <ul className='c-home__footer__social-media__links'>
               {socialMediaLinks.map((link) => (
                 <li key={link.link}>
-                  <a href={link.link} target='_blank'>
+                  <a
+                    href={link.link}
+                    target='_blank'
+                    className='c-home__footer__social-media__link'
+                  >
                     {link.icon}
                   </a>
                 </li>
