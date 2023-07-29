@@ -25,6 +25,12 @@
 
     @include media("<=tablet") {
       @include body-2;
+      margin-bottom: 24px;
+    }
+
+    @include media("<=phone") {
+      @include body-4;
+      margin-bottom: 16px;
     }
   }
 
@@ -35,12 +41,26 @@
 
     @include media("<=tablet") {
       @include heading-5;
+      margin-bottom: 24px;
+    }
+
+    @include media("<=phone") {
+      @include heading-5;
+      margin-bottom: 16px;
     }
   }
 
   &__clock {
     display: flex;
     margin-bottom: 48px;
+
+    @include media("<=tablet") {
+      margin-bottom: 24px;
+    }
+
+    @include media("<=phone") {
+      margin-bottom: 16px;
+    }
 
     &__slot {
       color: $grey-100;
@@ -58,6 +78,11 @@
         @include media("<=tablet") {
           @include heading-5;
           width: 84px;
+        }
+
+        @include media("<=tablet") {
+          @include title-2;
+          width: 80px;
         }
       }
 
@@ -82,6 +107,12 @@
 
       @include media("<=tablet") {
         height: 84px;
+        margin: 0 13px;
+      }
+
+      @include media("<=phone") {
+        margin: 0 16px;
+        height: 80px;
       }
 
       svg {
@@ -93,12 +124,22 @@
       }
     }
 
+    --margin: 50px;
+
+    @include media("<=tablet") {
+      --margin: 30px;
+    }
+
+    @include media("<=tablet") {
+      --margin: 10px;
+    }
+
     & .first-child {
-      margin-right: 50px;
+      margin-right: var(--margin);
     }
 
     & .last-child {
-      margin-left: 50px;
+      margin-left: var(--margin);
     }
   }
 }
