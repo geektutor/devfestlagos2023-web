@@ -30,3 +30,5 @@ export const TertiaryButton: FC<PropsWithChildren<Omit<Props, "variant">>> = (pr
     </Button>
   );
 };
+
+export default Button;
