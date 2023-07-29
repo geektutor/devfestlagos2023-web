@@ -44,7 +44,7 @@ button {
   position: relative;
   will-change: transform;
   display: flex;
-  //animation: marquee 25s linear infinite;
+  animation: marquee 25s linear infinite;
 
   [data-marquee-item] {
     white-space: nowrap;
