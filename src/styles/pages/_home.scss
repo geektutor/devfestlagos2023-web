@@ -138,6 +138,7 @@
 
     &__subtext {
       @include title-2;
+      line-height: 41.5px;
       text-align: center;
       color: rgba(0, 0, 0, 0.59);
       margin: 24px 0 30px;
@@ -640,8 +641,9 @@
     &__title {
       @include heading-4;
       color: $grey-100;
-      margin-bottom: 32px;
       text-align: center;
+      max-width: 809px;
+      margin: 0 auto 32px;
 
       @include media("<=tablet") {
         @include heading-5;

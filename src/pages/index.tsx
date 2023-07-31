@@ -62,10 +62,11 @@ export default function Home() {
           </figure>
           <h1 className='c-home__intro__title'>Are you ready for 23x?</h1>
           <p className='c-home__intro__subtext'>
-            We’re back! And it’s going to be the biggest, fantastic tech festival 🥳 of the year.
+            We&apos;re back! and it&apos;s about to be the biggest and most unforgettable tech
+            festival yet.
             <br />
-            Get ready 😎 for <span className='red'>DevFest</span>{" "}
-            <span className='blue'>Lagos</span> <span className='yellow'>2023</span>.
+            Get ready for <span className='red'>DevFest</span> <span className='blue'>Lagos</span>{" "}
+            <span className='yellow'>2023</span>.
           </p>
           <TertiaryButton>Register Your Interest</TertiaryButton>
         </section>
@@ -150,12 +151,11 @@ export default function Home() {
         </section>
         <section className='c-home__highlights'>
           <div className='c-home__highlights__body'>
-            <p className='c-home__highlights__title'>Watch the highlight of DevFest2022 😎</p>
+            <p className='c-home__highlights__title'>
+              Check out the highlights of DevFest Lagos 2022😎
+            </p>
             <div className='c-home__highlights__youtube'>
               <YoutubePlayer videoId='7kat5HlPtzU' />
-            </div>
-            <div className='c-home__highlights__youtube__tease'>
-              P.s : You don’t want to miss this year 🤭
             </div>
           </div>
         </section>
