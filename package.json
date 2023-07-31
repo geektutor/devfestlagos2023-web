@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "prettierrc": "prettier --write ."
+    "prettierrc": "prettier --write .",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@types/node": "20.4.5",
@@ -26,12 +28,24 @@
     "youtube-player": "^5.6.0"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.1.1",
+    "@storybook/addon-interactions": "^7.1.1",
+    "@storybook/addon-links": "^7.1.1",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/addon-styling": "^1.3.5",
+    "@storybook/blocks": "^7.1.1",
+    "@storybook/nextjs": "^7.1.1",
+    "@storybook/react": "^7.1.1",
+    "@storybook/testing-library": "^0.2.0",
     "@svgr/webpack": "^8.0.1",
     "@typescript-eslint/parser": "^6.2.0",
     "eslint-config-prettier": "^8.9.0",
+    "eslint-plugin-storybook": "^0.6.13",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
     "prettier": "^3.0.0",
-    "sass": "^1.64.1"
+    "sass": "^1.64.1",
+    "storybook": "^7.1.1",
+    "tsconfig-paths-webpack-plugin": "^4.1.0"
   }
 }
