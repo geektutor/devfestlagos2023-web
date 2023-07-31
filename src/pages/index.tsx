@@ -26,8 +26,19 @@ import { YoutubePlayer } from "@/components/youtube-player";
 import { ComingSoonCountdown } from "@/components/coming-soon-countdown";
 import LogoWithGDG from "@/images/logo-with-gdg.svg";
 import { socialMediaLinks } from "@/utils/social-media";
+import { useEffect, useRef } from "react";
+import Homepage from "@/animations/components/Homepage";
 
 export default function Home() {
+  const hasInitializedAnimation = useRef(false);
+
+  useEffect(() => {
+    if (hasInitializedAnimation.current) return;
+
+    hasInitializedAnimation.current = true;
+    new Homepage();
+  }, []);
+
   return (
     <>
       <Head>
@@ -57,7 +68,7 @@ export default function Home() {
             Get ready 😎 for <span className='red'>DevFest</span>{" "}
             <span className='blue'>Lagos</span> <span className='yellow'>2023</span>.
           </p>
-          <TertiaryButton>Claim Your Ticket</TertiaryButton>
+          <TertiaryButton>Register Your Interest</TertiaryButton>
         </section>
         <section className='c-home__marquee-wrapper'>
           <div className='c-home__marquee' data-marquee>

@@ -131,6 +131,10 @@
         text-align: center;
         max-width: 379px;
       }
+
+      span {
+        display: inline-block;
+      }
     }
 
     &__subtext {
@@ -175,6 +179,7 @@
     height: 86px;
     display: flex;
     align-items: center;
+    animation-duration: 40s;
 
     @include media("<=tablet") {
       height: 56px;
