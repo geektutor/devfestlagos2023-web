@@ -24,7 +24,6 @@ import bottomTweet3 from "@/images/home/tweets/b-3.png";
 import bottomTweet4 from "@/images/home/tweets/b-4.png";
 import { YoutubePlayer } from "@/components/youtube-player";
 import { ComingSoonCountdown } from "@/components/coming-soon-countdown";
-import LogoWithGDG from "@/images/logo-with-gdg.svg";
 import { socialMediaLinks } from "@/utils/social-media";
 import { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
@@ -174,7 +173,7 @@ export default function Home() {
               </a>
             </li>
           </ul>
-          <LogoWithGDG className='c-home__footer__logo' />
+          <Logo className='c-home__footer__logo' />
           <div className='c-home__footer__social-media'>
             <p className='c-home__footer__social-media__title'>Follow us on:</p>
             <ul className='c-home__footer__social-media__links'>

@@ -5,13 +5,12 @@
   &__nav {
     display: flex;
     justify-content: center;
-    padding: 30px 0;
 
     &__logo {
       @include ratio(180, 40px);
       position: relative;
-      width: 180px;
-      height: 40px;
+      width: 177.778px;
+      height: 100px;
 
       @include media("<=phone") {
         width: 124px;
@@ -696,10 +695,11 @@
   }
 
   &__footer {
-    height: 230px;
+    height: 194px;
     display: flex;
     align-items: center;
-    padding: 0 13.47% 0 19.09%;
+    justify-content: space-evenly;
+    width: 100vw;
 
     @include media("<=tablet") {
       height: 153px;
@@ -747,9 +747,8 @@
 
     &__logo {
       display: inline-block;
-      margin: 0 auto;
-      @include ratio(97, 220);
-      width: 220px;
+      @include ratio(100, 213.333);
+      width: 213.333px;
 
       @include media("<=tablet") {
         width: 131px;
