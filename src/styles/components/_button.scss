@@ -24,7 +24,7 @@
   &--tertiary {
     background: $secondary-blue;
     color: $grey-0;
-    width: 234px;
+    min-width: 234px;
 
     @include media("<=tablet") {
       height: 60px;
