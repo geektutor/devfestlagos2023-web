@@ -99,6 +99,8 @@ export default class Homepage extends Component {
       "doodle",
     );
 
+    tl.set(title, { opacity: 1 }, "doodle");
+
     tl.fromTo(
       title.querySelectorAll("span"),
       {
