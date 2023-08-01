@@ -99,11 +99,15 @@ export default class Homepage extends Component {
       "doodle",
     );
 
-    tl.from(
+    tl.fromTo(
       title.querySelectorAll("span"),
       {
         y: -90,
         opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
         stagger: 0.2,
         duration: 0.3,
         delay: 0.2,
