@@ -1,0 +1,38 @@
+.c-speaker {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  height: 350px;
+  border: 1px solid black;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 8px 4px rgb(0, 0, 0);
+
+  .speaker_image_container {
+    overflow: hidden;
+
+    .speaker_image {
+      object-fit: cover;
+    }
+  }
+
+  .text_container {
+    //   background-color: random($secondary-blue, $secondary-green, $secondary-yellow, $secondary-red);
+    background-color: $secondary-green;
+    padding: 2rem;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100px;
+    text-transform: capitalize;
+    h3 {
+      margin: 0;
+    }
+
+    p {
+      margin-top: 2rem;
+    }
+  }
+}
