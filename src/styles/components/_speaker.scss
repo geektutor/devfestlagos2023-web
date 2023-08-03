@@ -1,38 +1,57 @@
 .c-speaker {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  @include ratio(351, 284);
   width: 300px;
+  position: relative;
   height: 350px;
-  border: 1px solid black;
-  border-radius: 2rem;
+  font-family: inherit;
+  border: 1px solid #211212;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 8px 4px rgb(0, 0, 0);
+  box-shadow: 10px 4px 0 4px rgb(0, 0, 0);
 
-  .speaker_image_container {
+  @include media("<=phone") {
+    @include ratio(424, 382);
+  }
+
+  .speaker__image__container {
     overflow: hidden;
 
-    .speaker_image {
+    .speaker__image {
       object-fit: cover;
     }
   }
 
-  .text_container {
-    //   background-color: random($secondary-blue, $secondary-green, $secondary-yellow, $secondary-red);
-    background-color: $secondary-green;
+  .text__container {
+    background-color: $grey-90;
     padding: 2rem;
-    color: black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    align-content: flex-start;
     height: 100px;
     text-transform: capitalize;
-    h3 {
-      margin: 0;
+
+    .fullname {
+      @include title-2;
+      padding: 3rem;
+      color: $grey-0;
+
+      @include media("<=phone") {
+        @include title-1;
+      }
     }
 
-    p {
-      margin-top: 2rem;
+    .company {
+      @include body-3;
+      padding: 3rem;
+      color: $grey-30;
+
+      @include media("<=phone") {
+        @include body-2;
+      }
     }
   }
 }

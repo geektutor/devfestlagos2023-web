@@ -6,14 +6,15 @@ interface SpeakerCardProps {
   fullname: string;
   role: string;
   company: string;
+  variant: "web" | "mobile";
 }
 
 export default function SpeakerCard(props: SpeakerCardProps) {
   return (
     <div className={"c-speaker"}>
-      <div className='speaker_image_container'>
+      <div className='speaker__image__container'>
         <Image
-          className='speaker_image'
+          className='speaker__image'
           width={300}
           height={250}
           src={props.imageSrc}
@@ -21,9 +22,11 @@ export default function SpeakerCard(props: SpeakerCardProps) {
           quality={100}
         />
       </div>
-      <div className='text_container'>
-        <h3>{props.fullname}</h3>
-        <p className='body-5'>
+      <div className='text__container'>
+        <h3 className='fullname'>
+          <strong>{props.fullname}</strong>
+        </h3>
+        <p className='company'>
           {props.role}, <span>{props.company}</span>
         </p>
       </div>
