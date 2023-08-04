@@ -224,9 +224,10 @@
   &__recap {
     padding: 134px 8.4% 558px;
     position: relative;
+    overflow: hidden;
 
     @include media(">=LGdesktop") {
-      padding: 20vh 8.4% 60vh;
+      padding: 20vh 8.4% 80vh;
     }
 
     @include media("<=tablet") {

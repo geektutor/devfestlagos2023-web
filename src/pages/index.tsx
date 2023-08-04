@@ -87,22 +87,22 @@ export default function Home() {
               <Image src={arrowDoodle} alt='Recap' fill />
             </figure>
           </div>
-          <figure className='c-home__recap__image-1'>
+          <figure className='c-home__recap__image-1' data-recap-image>
             <Image src={recap1} alt='Recap Image' fill quality={100} />
           </figure>
-          <figure className='c-home__recap__image-2'>
+          <figure className='c-home__recap__image-2' data-recap-image>
             <Image src={recap2} alt='Recap Image' fill quality={100} />
           </figure>
-          <figure className='c-home__recap__image-3'>
+          <figure className='c-home__recap__image-3' data-recap-image>
             <Image src={recap3} alt='Recap Image' fill quality={100} />
           </figure>
-          <figure className='c-home__recap__image-4'>
+          <figure className='c-home__recap__image-4' data-recap-image>
             <Image src={recap4} alt='Recap Image' fill quality={100} />
           </figure>
-          <figure className='c-home__recap__image-5'>
+          <figure className='c-home__recap__image-5' data-recap-image>
             <Image src={recap5} alt='Recap Image' fill quality={100} />
           </figure>
-          <figure className='c-home__recap__image-6'>
+          <figure className='c-home__recap__image-6' data-recap-image>
             <Image src={recap6} alt='Recap Image' fill quality={100} />
           </figure>
         </section>

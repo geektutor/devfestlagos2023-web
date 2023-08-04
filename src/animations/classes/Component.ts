@@ -46,6 +46,8 @@ export default class Component {
             this.elements[key] = null;
           } else if (elements.length === 1) {
             this.elements[key] = this.element.querySelector(entry);
+          } else {
+            this.elements[key] = elements;
           }
         }
       }
