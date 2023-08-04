@@ -1,5 +1,4 @@
 export function split({ element, expression = " ", append = true }) {
-  console.log("lsmdkns");
   const words = splitText(element.innerHTML.toString().trim(), expression);
 
   let innerHTML = "";
