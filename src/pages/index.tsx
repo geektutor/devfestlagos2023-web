@@ -63,10 +63,9 @@ export default function Home() {
           <h1 className='c-home__intro__title'>Are you ready for 23x?</h1>
           <p className='c-home__intro__subtext'>
             We&apos;re back! and it&apos;s about to be the biggest and most unforgettable tech
-            festival yet.
-            <br />
-            Get ready for <span className='red'>DevFest</span> <span className='blue'>Lagos</span>{" "}
-            <span className='yellow'>2023</span>.
+            festival <br />
+            yet. Get ready for <span className='red'>DevFest</span>{" "}
+            <span className='blue'>Lagos</span> <span className='yellow'>2023</span>.
           </p>
           <TertiaryButton>Register Your Interest</TertiaryButton>
         </section>
