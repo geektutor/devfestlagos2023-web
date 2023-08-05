@@ -7,10 +7,9 @@
     justify-content: center;
 
     &__logo {
-      @include ratio(180, 40px);
+      @include ratio(80, 213);
       position: relative;
-      width: 177.778px;
-      height: 100px;
+      width: 213px;
 
       @include media("<=phone") {
         width: 124px;
@@ -751,7 +750,7 @@
 
     &__logo {
       display: inline-block;
-      @include ratio(100, 213.333);
+      @include ratio(80, 213.333);
       width: 213.333px;
 
       @include media("<=tablet") {
