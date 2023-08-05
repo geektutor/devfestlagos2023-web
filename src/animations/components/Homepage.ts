@@ -59,6 +59,7 @@ export default class Homepage extends Component {
     const isMobile = window.innerWidth <= 430;
 
     const tl = gsap.timeline();
+    tl.set([globeDoodle, peopleDoodle, repeatDoodle, videoDoodle], { opacity: 1 });
 
     tl.from(
       globeDoodle,

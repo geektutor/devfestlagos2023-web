@@ -42,13 +42,18 @@
       padding: 87px 0 137px;
     }
 
+    %doodle {
+      transform: rotate(26.766deg);
+      opacity: 0;
+      position: absolute;
+    }
+
     &__globe-doodle {
       @include ratio(109, 118);
-      position: absolute;
       top: 0;
       left: 7.2%;
       width: 118px;
-      transform: rotate(26.766deg);
+      @extend %doodle;
 
       @include media("<=tablet") {
         width: 94.984px;
@@ -63,11 +68,10 @@
 
     &__people-doodle {
       @include ratio(134, 235.005);
-      position: absolute;
       top: 40px;
       right: 14%;
       width: 235.005px;
-      transform: rotate(26.766deg);
+      @extend %doodle;
 
       @include media("<=tablet") {
         width: 164.504px;
@@ -82,11 +86,10 @@
 
     &__repeat-doodle {
       @include ratio(109, 130.623);
-      position: absolute;
       bottom: 87px;
       left: 19.9%;
       width: 130.623px;
-      transform: rotate(26.766deg);
+      @extend %doodle;
 
       @include media("<=tablet") {
         width: 104.499px;
@@ -101,11 +104,10 @@
 
     &__video-doodle {
       @include ratio(109, 148.116);
-      position: absolute;
       bottom: 50px;
       right: 18%;
       width: 148.116px;
-      transform: rotate(26.766deg);
+      @extend %doodle;
 
       @include media("<=tablet") {
         width: 118.493px;
