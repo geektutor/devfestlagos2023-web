@@ -143,3 +143,21 @@
     padding-left: 1.5em;
   }
 }
+
+@mixin transformed-position($positions, $screen-width: 1440, $screen-height: 1024) {
+  @if map-get($positions, left) {
+    left: calc((#{map-get($positions, left)} / 1440) * 100%);
+  }
+
+  @if map-get($positions, top) {
+    top: calc((#{map-get($positions, top)} / 1024) * 100%);
+  }
+
+  @if map-get($positions, right) {
+    right: calc((#{map-get($positions, right)} / 1024) * 100%);
+  }
+
+  @if map-get($positions, bottom) {
+    bottom: calc((#{map-get($positions, bottom)} / 1024) * 100%);
+  }
+}

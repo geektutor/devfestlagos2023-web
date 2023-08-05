@@ -1,0 +1,122 @@
+.c-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  background-color: $bg-shade-1;
+
+  @supports (height: 100dvh) {
+    height: 100dvh;
+  }
+
+  &__top-logo {
+    @include ratio(24, 49.651);
+    width: 49.651px;
+    position: absolute;
+    @include transformed-position(
+      (
+        left: 124,
+        top: 48,
+      )
+    );
+
+    &__svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__bami {
+    @include ratio(1, 1);
+    width: 200px;
+    position: absolute;
+    @include transformed-position(
+      (
+        left: 160,
+        top: 313,
+      )
+    );
+  }
+
+  &__akin {
+    @include ratio(1, 1);
+    width: 200px;
+    position: absolute;
+    @include transformed-position(
+      (
+        left: 1031,
+        top: 462,
+      )
+    );
+  }
+
+  &__middle-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__gdg {
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+
+    &__logo {
+      @include ratio(24, 49.651);
+      display: inline-block;
+      height: 26.53px;
+      margin-right: 12px;
+    }
+
+    &__developer {
+      margin: 0 7px 0 9px;
+      display: inline-block;
+    }
+  }
+
+  &__devfest {
+    display: flex;
+
+    &__text {
+      padding-top: 10px;
+    }
+
+    &__side-content {
+      display: flex;
+      flex-direction: column;
+      margin-left: 13px;
+    }
+
+    &__twennythree {
+      display: inline-block;
+      margin-bottom: 103px;
+    }
+  }
+
+  &__loading {
+    position: absolute;
+    @include transformed-position(
+      (
+        left: 124,
+        bottom: 48,
+      )
+    );
+    @include heading-4;
+    color: $grey-0;
+  }
+
+  &__progress {
+    position: absolute;
+    @include transformed-position(
+      (
+        right: 124,
+        bottom: 48,
+      )
+    );
+    @include heading-4;
+    color: $grey-0;
+  }
+}
