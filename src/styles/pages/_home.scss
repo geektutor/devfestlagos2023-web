@@ -666,6 +666,10 @@
       flex-direction: column;
 
       @include media("<=tablet") {
+        @include ratio(331.246, 538);
+      }
+
+      @include media("<=tablet") {
         @include ratio(1, 1.436);
       }
 
