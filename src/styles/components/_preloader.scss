@@ -28,10 +28,52 @@
     }
   }
 
+  %eye-animation {
+    @keyframes moveEyeBrows {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(2.5px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleEyes {
+      0% {
+        transform: scaleY(1);
+      }
+
+      50% {
+        transform: scaleY(0.2);
+      }
+
+      100% {
+        transform: scaleY(1);
+      }
+    }
+
+    &.play-animation {
+      [data-eye] {
+        animation: scaleEyes 700ms linear infinite;
+      }
+
+      [data-eyebrow] {
+        animation: moveEyeBrows 700ms cubic-bezier(0.33, 0, 0.67, 1) infinite;
+      }
+    }
+  }
+
   &__bami {
+    @extend %eye-animation;
     @include ratio(1, 1);
     width: 200px;
     position: absolute;
+    opacity: 0;
     @include transformed-position(
       (
         left: 160,
@@ -41,9 +83,11 @@
   }
 
   &__akin {
+    @extend %eye-animation;
     @include ratio(1, 1);
     width: 200px;
     position: absolute;
+    opacity: 0;
     @include transformed-position(
       (
         left: 1031,
@@ -63,6 +107,7 @@
     margin-bottom: 32px;
     display: flex;
     align-items: center;
+    overflow: hidden;
 
     &__logo {
       @include ratio(24, 49.651);
@@ -82,6 +127,8 @@
 
     &__text {
       padding-top: 10px;
+      height: 116px;
+      overflow: hidden;
     }
 
     &__side-content {
@@ -93,6 +140,12 @@
     &__twennythree {
       display: inline-block;
       margin-bottom: 103px;
+      overflow: hidden;
+    }
+
+    &__lagos {
+      overflow: hidden;
+      height: 37px;
     }
   }
 
@@ -106,6 +159,11 @@
     );
     @include heading-4;
     color: $grey-0;
+    overflow: hidden;
+
+    span {
+      display: inline-block;
+    }
   }
 
   &__progress {

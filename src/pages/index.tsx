@@ -27,6 +27,7 @@ import { ComingSoonCountdown } from "@/components/coming-soon-countdown";
 import { socialMediaLinks } from "@/utils/social-media";
 import { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
+import { Preloader } from "@/components/preloader";
 
 export default function Home() {
   const hasInitializedAnimation = useRef(false);
@@ -43,6 +44,7 @@ export default function Home() {
       <Head>
         <title>Devfest 2023 Lagos | Coming Soon</title>
       </Head>
+      <Preloader />
       <main className='c-home'>
         <nav className='c-home__nav'>
           <Logo className='c-home__nav__logo' />
