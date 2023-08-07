@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   webpack(config) {
     config.module.rules.push({
-      test: /\.with-paths\.svg$/,
+      test: /\.svg$/,
       use: [
         {
           loader: "@svgr/webpack",
@@ -13,7 +13,6 @@ const nextConfig = {
                 {
                   name: "preset-default",
                   params: {
-                    mergePaths: false,
                     overrides: {
                       mergePaths: false,
                     },
@@ -24,12 +23,6 @@ const nextConfig = {
           },
         },
       ],
-    });
-
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ["@svgr/webpack"],
-      exclude: /\.with-paths\.svg$/,
     });
 
     return config;

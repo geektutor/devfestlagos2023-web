@@ -18,8 +18,7 @@ export default class PreloaderAnimation extends Component {
         twennyThreeLetters: ".c-preloader__devfest__twennythree path",
         lagosText: ".c-preloader__devfest__lagos svg",
         loadingText: ".c-preloader__loading span",
-        eyes: "[data-eye]",
-        eyeBrows: "[data-eyebrow]",
+        eyes: ".eye",
       },
     });
 
@@ -67,7 +66,7 @@ export default class PreloaderAnimation extends Component {
 
     gsap.from([gdgLogo, gdgGoogle, gdgDeveloper, gdgGroups], {
       y: 0,
-      yPercent: 100,
+      yPercent: 105,
       easing: gdgEase,
       stagger: 0.2,
       duration: 0.917,
@@ -116,12 +115,6 @@ export default class PreloaderAnimation extends Component {
 
         akin.classList.add("play-animation");
         bami.classList.add("play-animation");
-
-        // gsap.from(eyes, {
-        //   yoyo: true,
-        //   repeat: -1,
-        //   scaleY: 0,
-        // })
       });
 
     gsap.from(loadingText, {
