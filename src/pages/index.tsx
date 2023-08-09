@@ -7,7 +7,7 @@ import repeatDoodle from "@/images/repeat-doodle.png";
 import peopleDoodle from "@/images/people-doodle.png";
 import videoDoodle from "@/images/cup-code.png";
 import arrowDoodle from "@/images/arrow-doodle.png";
-import { TertiaryButton } from "@/components/button";
+import { PrimaryButton } from "@/components/button";
 import recap1 from "@/images/home/recap/recap-1.png";
 import recap2 from "@/images/home/recap/recap-2.png";
 import recap3 from "@/images/home/recap/recap-3.png";
@@ -27,6 +27,7 @@ import { ComingSoonCountdown } from "@/components/coming-soon-countdown";
 import { socialMediaLinks } from "@/utils/social-media";
 import { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
+import ArrowRight from "@/images/arrow-right-bg-light.svg";
 
 export default function Home() {
   const hasInitializedAnimation = useRef(false);
@@ -67,7 +68,9 @@ export default function Home() {
             yet. Get ready for <span className='red'>DevFest</span>{" "}
             <span className='blue'>Lagos</span> <span className='yellow'>2023</span>.
           </p>
-          <TertiaryButton>Register Your Interest</TertiaryButton>
+          <PrimaryButton>
+            <span>Register Your Interest</span> <ArrowRight />
+          </PrimaryButton>
         </section>
         <section className='c-home__marquee-wrapper'>
           <div className='c-home__marquee' data-marquee>
@@ -113,16 +116,16 @@ export default function Home() {
                 {Array.from({ length: 4 }).map(() => (
                   <>
                     <div className='c-home__feedback__body__feedback-t-1'>
-                      <Image src={topTweet1} alt='Devfest Feedback' fill />
+                      <Image src={topTweet1} alt='Devfest Feedback' fill priority />
                     </div>
                     <div className='c-home__feedback__body__feedback-t-2'>
-                      <Image src={topTweet2} alt='Devfest Feedback' fill />
+                      <Image src={topTweet2} alt='Devfest Feedback' fill priority />
                     </div>
                     <div className='c-home__feedback__body__feedback-t-3'>
-                      <Image src={topTweet3} alt='Devfest Feedback' fill />
+                      <Image src={topTweet3} alt='Devfest Feedback' fill priority />
                     </div>
                     <div className='c-home__feedback__body__feedback-t-4'>
-                      <Image src={topTweet4} alt='Devfest Feedback' fill />
+                      <Image src={topTweet4} alt='Devfest Feedback' fill priority />
                     </div>
                   </>
                 ))}
