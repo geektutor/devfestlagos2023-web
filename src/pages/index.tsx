@@ -65,8 +65,7 @@ export default function Home() {
           <p className='c-home__intro__subtext'>
             We&apos;re back! and it&apos;s about to be the biggest and most unforgettable tech
             festival <br />
-            yet. Get ready for <span className='red'>DevFest</span>{" "}
-            <span className='blue'>Lagos</span> <span className='yellow'>2023</span>.
+            yet. Get ready for DevFest Lagos 2023.
           </p>
           <TertiaryButton>Register Your Interest</TertiaryButton>
         </section>
