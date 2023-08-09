@@ -18,6 +18,6 @@ export const socialMediaLinks = [
   },
   {
     icon: <EmailIcon />,
-    link: "mailto:gdg@lagos.com",
+    link: "mailto:team@gdglagos.com",
   },
 ];
