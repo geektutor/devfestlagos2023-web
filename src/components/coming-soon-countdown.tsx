@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import ClockDots from "@/images/home/clock-dots.svg";
 import {
   differenceInDays,
   differenceInHours,
@@ -42,9 +41,6 @@ export const ComingSoonCountdown = () => {
           </div>
           <span className='c-countdown__clock__slot__label'>Hours</span>
         </div>
-        <div className='c-countdown__clock__dots'>
-          <ClockDots />
-        </div>
         <div className='c-countdown__clock__slot'>
           <div className='c-countdown__clock__slot__value'>
             {differenceInMinutes(devFestDate, Date.now()) % 60}
@@ -58,7 +54,7 @@ export const ComingSoonCountdown = () => {
           <span className='c-countdown__clock__slot__label'>Seconds</span>
         </div>
       </div>
-      <TertiaryButton>Save my slot</TertiaryButton>
+      <TertiaryButton>Register Your Interest</TertiaryButton>
     </section>
   );
 };
