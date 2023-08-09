@@ -28,6 +28,7 @@ import { socialMediaLinks } from "@/utils/social-media";
 import { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
+import HighlightIcon from "@/images/home/highlight.svg";
 
 export default function Home() {
   const hasInitializedAnimation = useRef(false);
@@ -157,6 +158,7 @@ export default function Home() {
               Check out the highlights of DevFest Lagos 2022😎
             </p>
             <div className='c-home__highlights__youtube'>
+              <HighlightIcon className='c-home__highlights__youtube__highlight-icon' />
               <YoutubePlayer videoId='7kat5HlPtzU' />
             </div>
           </div>
