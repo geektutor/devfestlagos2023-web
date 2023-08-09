@@ -1,6 +1,6 @@
-import { FC, PropsWithChildren, DetailedHTMLProps, ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, DetailedHTMLProps, FC, PropsWithChildren } from "react";
 import { classNames } from "@/utils/classNames";
-import ArrowRight from "@/images/arrow-right-green-bg.svg";
+import ArrowRight from "@/images/arrow-right-bg-light.svg";
 
 type Props = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
   variant: "primary" | "secondary" | "tertiary";
