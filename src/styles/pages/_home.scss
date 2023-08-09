@@ -297,6 +297,7 @@
     %recap-image {
       position: absolute;
       overflow: hidden;
+      opacity: 0;
 
       img {
         object-fit: cover;

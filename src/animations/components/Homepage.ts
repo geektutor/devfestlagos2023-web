@@ -141,6 +141,8 @@ export default class Homepage extends Component {
       },
     });
 
+    tl.set(recapImages, { opacity: 1 });
+
     const windowHeight = window.innerHeight;
     const imageDistances = [76, 189, 126, 306, 80, 82];
 
