@@ -1,6 +1,7 @@
 .c-button {
   @include flex-gap(0, 8px);
-  width: 204px;
+  min-width: 204px;
+  width: fit-content;
   height: 66px;
   display: flex;
   align-items: center;
@@ -9,6 +10,7 @@
   @include button-text;
   border: none;
   outline: none;
+  padding: 0 24px;
 
   &--primary {
     background: $grey-0;
@@ -22,9 +24,10 @@
   }
 
   &--tertiary {
-    background: $secondary-blue;
-    color: $grey-0;
+    background: $primary-blue;
+    color: $grey-100;
     min-width: 234px;
+    width: fit-content;
 
     @include media("<=tablet") {
       height: 60px;
@@ -32,12 +35,12 @@
   }
 
   @include media("<=phone") {
-    width: 350px;
+    min-width: 350px;
 
     &--tertiary {
       background: $secondary-blue;
       color: $grey-0;
-      width: 200px;
+      min-width: 200px;
       height: 54px;
     }
   }

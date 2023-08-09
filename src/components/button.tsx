@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren, DetailedHTMLProps, ButtonHTMLAttributes } from "react";
 import { classNames } from "@/utils/classNames";
-import ArrowRight from "@/images/arrow-right-dark-bg.svg";
+import ArrowRight from "@/images/arrow-right-green-bg.svg";
 
 type Props = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
   variant: "primary" | "secondary" | "tertiary";
@@ -8,7 +8,7 @@ type Props = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButt
 
 const Button: FC<PropsWithChildren<Props>> = ({ children, variant, ...props }) => {
   return (
-    <button className={classNames("c-button", `c-button--${variant}`, props.className)} {...props}>
+    <button {...props} className={classNames("c-button", `c-button--${variant}`, props.className)}>
       {children}
     </button>
   );
