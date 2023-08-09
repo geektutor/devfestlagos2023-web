@@ -9,13 +9,9 @@
     height: 100px;
 
     &__logo {
-      @include ratio(80, 213);
+      @include ratio(120, 213);
       position: relative;
-      width: 213px;
-
-      @include media("<=phone") {
-        width: 124px;
-      }
+      width: 160px;
     }
 
     @include media("<=phone") {
@@ -778,16 +774,16 @@
 
     &__logo {
       display: inline-block;
-      @include ratio(80, 213.333);
+      @include ratio(120, 213.333);
       width: 213.333px;
 
       @include media("<=tablet") {
-        width: 131px;
+        width: 103.47px;
       }
 
       @include media("<=phone") {
         order: -1;
-        width: 220px;
+        width: 142.222px;
       }
     }
 
