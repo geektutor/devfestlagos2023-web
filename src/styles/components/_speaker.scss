@@ -13,15 +13,14 @@
     @include ratio(424, 382);
   }
 
-  .speaker__image__container {
+  &__image__container {
     overflow: hidden;
-
-    .speaker__image {
-      object-fit: cover;
-    }
+  }
+  &__image {
+    object-fit: cover;
   }
 
-  .text__container {
+  &__text__container {
     background-color: $grey-90;
     padding: 2rem;
     position: absolute;
@@ -33,25 +32,24 @@
     align-content: flex-start;
     height: 100px;
     text-transform: capitalize;
+  }
+  &__fullname {
+    @include title-2;
+    padding: 3rem;
+    color: $grey-0;
 
-    .fullname {
-      @include title-2;
-      padding: 3rem;
-      color: $grey-0;
-
-      @include media("<=phone") {
-        @include title-1;
-      }
+    @include media("<=phone") {
+      @include title-1;
     }
+  }
 
-    .company {
-      @include body-3;
-      padding: 3rem;
-      color: $grey-30;
+  &__company {
+    @include body-3;
+    padding: 3rem;
+    color: $grey-30;
 
-      @include media("<=phone") {
-        @include body-2;
-      }
+    @include media("<=phone") {
+      @include body-2;
     }
   }
 }

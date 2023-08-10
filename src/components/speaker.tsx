@@ -12,9 +12,9 @@ interface SpeakerCardProps {
 export default function SpeakerCard(props: SpeakerCardProps) {
   return (
     <div className={"c-speaker"}>
-      <div className='speaker__image__container'>
+      <div className='c-speaker__image__container'>
         <Image
-          className='speaker__image'
+          className='c-speaker__image'
           width={300}
           height={250}
           src={props.imageSrc}
@@ -22,13 +22,13 @@ export default function SpeakerCard(props: SpeakerCardProps) {
           quality={100}
         />
       </div>
-      <div className='text__container'>
-        <h3 className='fullname'>
+      <div className='c-speaker__text__container'>
+        <h3 className='c-speaker__fullname'>
           <strong>{props.fullname}</strong>
         </h3>
-        <p className='company'>
+        <h4 className='c-speaker__company'>
           {props.role}, <span>{props.company}</span>
-        </p>
+        </h4>
       </div>
     </div>
   );
