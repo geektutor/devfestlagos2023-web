@@ -9,9 +9,9 @@
     height: 100px;
 
     &__logo {
-      @include ratio(120, 213);
+      @include ratio(84, 165);
       position: relative;
-      width: 160px;
+      width: 165px;
     }
 
     @include media("<=phone") {
@@ -238,40 +238,43 @@
     }
 
     &__title {
-      height: 116px;
+      min-height: 116px;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0 70px;
       @include heading-3;
       color: $grey-100;
       position: relative;
       background: $primary-green;
-      width: 811px;
+      max-width: 900px;
+      width: 90%;
+      padding: 16px;
       border-radius: 64px;
 
       @include media("<=tablet") {
         min-width: 415px;
         width: fit-content;
-        height: 60px;
+        min-height: 60px;
         margin-left: 16px;
-        padding: 0 56px;
+        padding: 0 26px;
 
         @include title-1;
       }
 
       @include media("<=phone") {
         @include title-2;
-        width: 300px;
+        width: 90%;
+        max-width: 372px;
         min-width: unset;
-        padding: 0 10px;
+        padding: 10px 16px;
+        min-height: unset;
       }
     }
 
     &__arrow {
       @include ratio(109, 216);
       position: absolute;
-      top: 35%;
+      top: 60%;
       left: calc(100% - 81px);
       width: 216px;
       transform: rotate(26.766deg);
@@ -285,7 +288,7 @@
       @include media("<=phone") {
         width: 143.1px;
         top: 50%;
-        left: calc(100% - 54px);
+        left: 65%;
         transform: rotate(21.343deg);
       }
     }
@@ -774,8 +777,8 @@
 
     &__logo {
       display: inline-block;
-      @include ratio(120, 213.333);
-      width: 213.333px;
+      @include ratio(84, 165);
+      width: 230px;
 
       @include media("<=tablet") {
         width: 103.47px;

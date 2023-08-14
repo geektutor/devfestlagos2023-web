@@ -81,7 +81,7 @@ export default function Home() {
         </section>
         <section className='c-home__recap'>
           <div className='c-home__recap__title'>
-            Let’s recap DevFest 2022
+            Let&apos;s recap DevFest Lagos 2022
             <figure className='c-home__recap__arrow'>
               <Image src={arrowDoodle} alt='Recap' fill />
             </figure>
