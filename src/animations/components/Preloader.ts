@@ -58,8 +58,7 @@ export default class PreloaderAnimation extends Component {
       y: 0,
       yPercent: 100,
       easing: CustomEase.create("top-logo", "0.19, 0.00, 0.00, 1.00"),
-      delay: 0.815,
-      duration: 1.2,
+      duration: 1.75,
     });
 
     const gdgEase = CustomEase.create("gdg", "0.38, 0.00, 0.00, 1.00");
@@ -68,32 +67,32 @@ export default class PreloaderAnimation extends Component {
       y: 0,
       yPercent: 105,
       easing: gdgEase,
-      stagger: 0.2,
+      stagger: 0.083,
       duration: 0.917,
-      delay: 0.3,
+      delay: 0.083,
     });
 
     const staggerEase = CustomEase.create("", "0.44, 0.00, 0.00, 1.00");
 
     gsap.from(devfestLetters, {
       y: 106,
-      stagger: 0.08,
-      delay: 0.3,
+      stagger: 0.083,
+      delay: 0.417,
       duration: 0.917,
       ease: staggerEase,
     });
 
     gsap.from(twennyThreeLetters, {
       y: 34,
-      stagger: 0.08,
-      delay: 0.3,
+      stagger: 0.083,
+      delay: 0.667,
       duration: 0.917,
       ease: staggerEase,
     });
 
     gsap.from(lagosText, {
       y: 37,
-      delay: 1,
+      delay: 1.05,
       duration: 0.917,
       ease: staggerEase,
     });
@@ -101,8 +100,8 @@ export default class PreloaderAnimation extends Component {
     gsap
       .to([akin, bami], {
         opacity: 1,
-        duration: 1.3,
-        ease: staggerEase,
+        duration: 0.667,
+        ease: CustomEase.create("gdg", "0.33, 0.00, 0.01, 1.00"),
       })
       .then(() => {
         eyes.forEach((eye) => {
@@ -122,7 +121,7 @@ export default class PreloaderAnimation extends Component {
       yPercent: 100,
       ease: staggerEase,
       duration: 0.917,
-      delay: 0.3,
+      delay: 0.667,
     });
   }
 }
