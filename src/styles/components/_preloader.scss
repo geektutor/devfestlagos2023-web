@@ -25,6 +25,7 @@
     &__svg {
       width: 100%;
       height: 100%;
+      transform: translateY(100%);
     }
   }
 
@@ -120,6 +121,10 @@
       margin: 0 7px 0 9px;
       display: inline-block;
     }
+
+    svg {
+      transform: translateY(105%);
+    }
   }
 
   &__devfest {
@@ -129,6 +134,10 @@
       padding-top: 10px;
       height: 116px;
       overflow: hidden;
+
+      svg path {
+        transform: translateY(106px);
+      }
     }
 
     &__side-content {
@@ -141,11 +150,19 @@
       display: inline-block;
       margin-bottom: 103px;
       overflow: hidden;
+
+      svg path {
+        transform: translateY(34px);
+      }
     }
 
     &__lagos {
       overflow: hidden;
       height: 37px;
+
+      svg {
+        transform: translateY(37px);
+      }
     }
   }
 
@@ -163,6 +180,7 @@
 
     span {
       display: inline-block;
+      transform: translateY(100%);
     }
   }
 

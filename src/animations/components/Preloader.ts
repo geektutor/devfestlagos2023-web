@@ -2,6 +2,8 @@ import Component from "@/animations/classes/Component";
 import { CustomEase } from "@/animations/utils/CustomEase";
 import gsap from "gsap";
 
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export default class PreloaderAnimation extends Component {
   constructor() {
     super({
@@ -27,7 +29,7 @@ export default class PreloaderAnimation extends Component {
     this.onMount();
   }
 
-  onMount() {
+  async onMount() {
     const {
       topLogo: _topLogo,
       gdgLogo: _gdgLogo,
@@ -60,18 +62,20 @@ export default class PreloaderAnimation extends Component {
       counterColumns = _counterColumns as NodeListOf<HTMLElement>,
       counterWrapper = _counterWrapper as HTMLElement;
 
-    gsap.from(topLogo, {
+    await sleep(500);
+
+    //todo: idea maybe set all elements to opacity 0 and then animate them in after setting back to prevent the flash of the elements
+
+    gsap.to(topLogo, {
       y: 0,
-      yPercent: 100,
       easing: CustomEase.create("top-logo", "0.19, 0.00, 0.00, 1.00"),
       duration: 1.75,
     });
 
     const gdgEase = CustomEase.create("gdg", "0.38, 0.00, 0.00, 1.00");
 
-    gsap.from([gdgLogo, gdgGoogle, gdgDeveloper, gdgGroups], {
+    gsap.to([gdgLogo, gdgGoogle, gdgDeveloper, gdgGroups], {
       y: 0,
-      yPercent: 105,
       easing: gdgEase,
       stagger: 0.083,
       duration: 0.917,
@@ -80,24 +84,24 @@ export default class PreloaderAnimation extends Component {
 
     const staggerEase = CustomEase.create("", "0.44, 0.00, 0.00, 1.00");
 
-    gsap.from(devfestLetters, {
-      y: 106,
+    gsap.to(devfestLetters, {
+      y: 0,
       stagger: 0.083,
       delay: 0.417,
       duration: 0.917,
       ease: staggerEase,
     });
 
-    gsap.from(twennyThreeLetters, {
-      y: 34,
+    gsap.to(twennyThreeLetters, {
+      y: 0,
       stagger: 0.083,
       delay: 0.667,
       duration: 0.917,
       ease: staggerEase,
     });
 
-    gsap.from(lagosText, {
-      y: 37,
+    gsap.to(lagosText, {
+      y: 0,
       delay: 1.05,
       duration: 0.917,
       ease: staggerEase,
@@ -122,9 +126,9 @@ export default class PreloaderAnimation extends Component {
         bami.classList.add("play-animation");
       });
 
-    gsap.from(loadingText, {
+    gsap.to(loadingText, {
       y: 0,
-      yPercent: 100,
+      // yPercent: 100,
       ease: staggerEase,
       duration: 0.917,
       delay: 0.667,
