@@ -63,7 +63,7 @@ export default function Home() {
           </figure>
           <h1 className='c-home__intro__title'>Are you ready for 23x?</h1>
           <p className='c-home__intro__subtext'>
-            We&apos;re back! and it&apos;s about to be the biggest and most unforgettable tech
+            We&apos;re back! and it&apos;s about to be the most memorable tech
             festival <br />
             yet. Get ready for DevFest Lagos 2023.
           </p>
