@@ -176,5 +176,19 @@
     );
     @include heading-4;
     color: $grey-0;
+    overflow: hidden;
+
+    &__inner {
+      display: flex;
+      max-height: 48.5px;
+      overflow: hidden;
+      transform: translateY(100%);
+    }
+
+    &__column {
+      display: grid;
+      grid-template-rows: repeat(10, 1fr);
+      transform: translateY(-900%);
+    }
   }
 }

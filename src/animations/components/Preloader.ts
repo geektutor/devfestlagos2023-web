@@ -19,6 +19,8 @@ export default class PreloaderAnimation extends Component {
         lagosText: ".c-preloader__devfest__lagos svg",
         loadingText: ".c-preloader__loading span",
         eyes: ".eye",
+        counterWrapper: ".c-preloader__progress__inner",
+        counterColumns: ".c-preloader__progress [data-column]",
       },
     });
 
@@ -39,6 +41,8 @@ export default class PreloaderAnimation extends Component {
       akin: _akin,
       loadingText: _loadingText,
       eyes: _eyes,
+      counterColumns: _counterColumns,
+      counterWrapper: _counterWrapper,
     } = this.elements;
 
     const topLogo = _topLogo as SVGElement,
@@ -52,7 +56,9 @@ export default class PreloaderAnimation extends Component {
       bami = _bami as SVGElement,
       akin = _akin as SVGElement,
       loadingText = _loadingText as HTMLElement,
-      eyes = _eyes as NodeListOf<SVGPathElement>;
+      eyes = _eyes as NodeListOf<SVGPathElement>,
+      counterColumns = _counterColumns as NodeListOf<HTMLElement>,
+      counterWrapper = _counterWrapper as HTMLElement;
 
     gsap.from(topLogo, {
       y: 0,
@@ -122,6 +128,33 @@ export default class PreloaderAnimation extends Component {
       ease: staggerEase,
       duration: 0.917,
       delay: 0.667,
+    });
+
+    gsap
+      .to(counterWrapper, {
+        y: 0,
+        ease: staggerEase,
+        duration: 0.917,
+      })
+      .then(() => {
+        const columnTwo = counterColumns[1];
+        const columnThree = counterColumns[2];
+
+        this.scrollColumnToNumber(columnTwo, 2);
+
+        this.scrollColumnToNumber(columnThree, 3, 0.25);
+      });
+  }
+
+  scrollColumnToNumber(column: HTMLElement, number: number, delay = 0) {
+    const numberElement = column.querySelectorAll("span")[9 - number];
+    const ease = CustomEase.create("counter", "0.33, 0.00, 0.67, 1.00");
+
+    return gsap.to(column, {
+      ease,
+      y: -numberElement.offsetTop,
+      duration: (0.45 * number) / 1.75,
+      delay,
     });
   }
 }

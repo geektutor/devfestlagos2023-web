@@ -56,11 +56,17 @@ export const Preloader: FC<PropsWithChildren<object>> = ({ children }) => {
       <p className='c-preloader__loading'>
         <span>Loading</span>
       </p>
-      <p className='c-preloader__progress'>
-        <span>0</span>
-        <span>0</span>
-        <span>0</span>
-      </p>
+      <div className='c-preloader__progress'>
+        <div className='c-preloader__progress__inner'>
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div className='c-preloader__progress__column' key={i} data-column>
+              {Array.from({ length: 10 }).map((_, i) => (
+                <span key={i}>{9 - i}</span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
