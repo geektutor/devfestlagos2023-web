@@ -50,16 +50,16 @@ export default function Home() {
         </nav>
         <section className='c-home__intro'>
           <figure className='c-home__intro__globe-doodle'>
-            <Image src={globeDoodle} alt='People Doodle' fill />
+            <Image src={globeDoodle} alt='People Doodle' fill quality={100} />
           </figure>
           <figure className='c-home__intro__people-doodle'>
-            <Image quality={100} src={peopleDoodle} alt='People Doodle' fill />
+            <Image src={peopleDoodle} alt='People Doodle' fill quality={100} />
           </figure>
           <figure className='c-home__intro__repeat-doodle'>
-            <Image src={repeatDoodle} alt='Repeat Doodle' fill />
+            <Image src={repeatDoodle} alt='Repeat Doodle' fill quality={100} />
           </figure>
           <figure className='c-home__intro__video-doodle'>
-            <Image src={videoDoodle} alt='Video Doodle' fill />
+            <Image src={videoDoodle} alt='Video Doodle' fill quality={100} />
           </figure>
           <h1 className='c-home__intro__title'>Are you ready for 23x?</h1>
           <p className='c-home__intro__subtext'>
