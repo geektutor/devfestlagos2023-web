@@ -28,6 +28,7 @@ import { socialMediaLinks } from "@/utils/social-media";
 import React, { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
 import HighlightIcon from "@/images/home/highlight.svg";
+import { ticketsUrl } from "@/utils/urls";
 
 export default function Home() {
   const hasInitializedAnimation = useRef(false);
@@ -63,11 +64,12 @@ export default function Home() {
           </figure>
           <h1 className='c-home__intro__title'>Are you ready for 23x?</h1>
           <p className='c-home__intro__subtext'>
-            We&apos;re back! and it&apos;s about to be the most memorable tech
-            festival <br />
+            We&apos;re back! and it&apos;s about to be the most memorable tech festival <br />
             yet. Get ready for DevFest Lagos 2023.
           </p>
-          <TertiaryButton>Register Your Interest</TertiaryButton>
+          <TertiaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
+            Grab Your Early Bird Tickets
+          </TertiaryButton>
         </section>
         <section className='c-home__marquee-wrapper'>
           <div className='c-home__marquee' data-marquee>

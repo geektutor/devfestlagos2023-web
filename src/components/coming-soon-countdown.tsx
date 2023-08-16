@@ -6,6 +6,7 @@ import {
   differenceInSeconds,
 } from "date-fns";
 import { TertiaryButton } from "@/components/button";
+import { ticketsUrl } from "@/utils/urls";
 
 const devFestDate = new Date("2023-11-25");
 
@@ -54,7 +55,9 @@ export const ComingSoonCountdown = () => {
           <span className='c-countdown__clock__slot__label'>Seconds</span>
         </div>
       </div>
-      <TertiaryButton>Register Your Interest</TertiaryButton>
+      <TertiaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
+        Grab Your Early Bird Tickets
+      </TertiaryButton>
     </section>
   );
 };
