@@ -1,7 +1,5 @@
 import Head from "next/head";
 import Logo from "@/images/logo.svg";
-import React, { useEffect, useRef } from "react";
-import Homepage from "@/animations/components/Homepage";
 
 export default function Home() {
   return (
