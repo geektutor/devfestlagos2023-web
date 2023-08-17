@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Logo from "@/images/logo.svg";
 import StarIcon from "@/images/home/star.svg";
 import Image from "next/image";
@@ -29,6 +28,7 @@ import React, { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
 import HighlightIcon from "@/images/home/highlight.svg";
 import { ticketsUrl } from "@/utils/urls";
+import { SEO } from "@/components/seo";
 
 export default function Home() {
   const hasInitializedAnimation = useRef(false);
@@ -42,9 +42,12 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>Devfest 2023 Lagos | Coming Soon</title>
-      </Head>
+      <SEO
+        title='Devfest 2023 Lagos | Early Bird Tickets'
+        description='Welcome to the official Coming Soon website for DevFest Lagos 2023. DevFest Lagos is an annual  tech conference hosted by Google Developer Groups Lagos. Be there 🫵🏾'
+        keywords='gdg lagos, devfest, devfest lagos, devfest lagos 2023'
+        image='/og-images/coming-soon.png'
+      />
       <main className='c-home'>
         <nav className='c-home__nav'>
           <Logo className='c-home__nav__logo' />

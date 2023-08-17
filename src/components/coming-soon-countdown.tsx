@@ -8,7 +8,7 @@ import {
 import { TertiaryButton } from "@/components/button";
 import { ticketsUrl } from "@/utils/urls";
 
-const devFestDate = new Date("2023-11-25");
+const devFestDate = new Date("2023-11-24");
 
 export const ComingSoonCountdown = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -25,8 +25,8 @@ export const ComingSoonCountdown = () => {
   return (
     <section className='c-countdown'>
       <div className='c-countdown__dates'>
-        DevFest <span className='strikethrough'>Laygurzz</span> Lagos 2023 is coming on the 25th and
-        26th of November 🥰
+        DevFest <span className='strikethrough'>Laygurzz</span> Lagos 2023 is coming on the 24th and
+        25th of November 🥰
       </div>
       <p className='c-countdown__title'>Are you ready?</p>
       <div className='c-countdown__clock'>
