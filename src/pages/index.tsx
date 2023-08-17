@@ -6,8 +6,6 @@ import globeDoodle from "@/images/globe-doodle.png";
 import repeatDoodle from "@/images/repeat-doodle.png";
 import peopleDoodle from "@/images/people-doodle.png";
 import videoDoodle from "@/images/cup-code.png";
-import arrowDoodle from "@/images/arrow-doodle.png";
-import { ComingSoonCountdown } from "@/components/coming-soon-countdown";
 import { socialMediaLinks } from "@/utils/social-media";
 import React, { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
