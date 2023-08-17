@@ -24,10 +24,22 @@ import bottomTweet3 from "@/images/home/tweets/b-3.png";
 import bottomTweet4 from "@/images/home/tweets/b-4.png";
 import { YoutubePlayer } from "@/components/youtube-player";
 import { ComingSoonCountdown } from "@/components/coming-soon-countdown";
-import LogoWithGDG from "@/images/logo-with-gdg.svg";
 import { socialMediaLinks } from "@/utils/social-media";
+import React, { useEffect, useRef } from "react";
+import Homepage from "@/animations/components/Homepage";
+import HighlightIcon from "@/images/home/highlight.svg";
+import { ticketsUrl } from "@/utils/urls";
 
 export default function Home() {
+  const hasInitializedAnimation = useRef(false);
+
+  useEffect(() => {
+    if (hasInitializedAnimation.current) return;
+
+    hasInitializedAnimation.current = true;
+    new Homepage();
+  }, []);
+
   return (
     <>
       <Head>
@@ -39,25 +51,25 @@ export default function Home() {
         </nav>
         <section className='c-home__intro'>
           <figure className='c-home__intro__globe-doodle'>
-            <Image src={globeDoodle} alt='People Doodle' fill />
+            <Image src={globeDoodle} alt='People Doodle' fill quality={100} />
           </figure>
           <figure className='c-home__intro__people-doodle'>
-            <Image quality={100} src={peopleDoodle} alt='People Doodle' fill />
+            <Image src={peopleDoodle} alt='People Doodle' fill quality={100} />
           </figure>
           <figure className='c-home__intro__repeat-doodle'>
-            <Image src={repeatDoodle} alt='Repeat Doodle' fill />
+            <Image src={repeatDoodle} alt='Repeat Doodle' fill quality={100} />
           </figure>
           <figure className='c-home__intro__video-doodle'>
-            <Image src={videoDoodle} alt='Video Doodle' fill />
+            <Image src={videoDoodle} alt='Video Doodle' fill quality={100} />
           </figure>
           <h1 className='c-home__intro__title'>Are you ready for 23x?</h1>
           <p className='c-home__intro__subtext'>
-            We’re back! And it’s going to be the biggest, fantastic tech festival 🥳 of the year.
-            <br />
-            Get ready 😎 for <span className='red'>DevFest</span>{" "}
-            <span className='blue'>Lagos</span> <span className='yellow'>2023</span>.
+            We&apos;re back! and it&apos;s about to be the most memorable tech festival <br />
+            yet. Get ready for DevFest Lagos 2023.
           </p>
-          <TertiaryButton>Claim Your Ticket</TertiaryButton>
+          <TertiaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
+            Grab Your Early Bird Tickets
+          </TertiaryButton>
         </section>
         <section className='c-home__marquee-wrapper'>
           <div className='c-home__marquee' data-marquee>
@@ -71,27 +83,27 @@ export default function Home() {
         </section>
         <section className='c-home__recap'>
           <div className='c-home__recap__title'>
-            Let’s recap DevFest 2022
+            Let&apos;s recap DevFest Lagos 2022
             <figure className='c-home__recap__arrow'>
               <Image src={arrowDoodle} alt='Recap' fill />
             </figure>
           </div>
-          <figure className='c-home__recap__image-1'>
+          <figure className='c-home__recap__image-1' data-recap-image>
             <Image src={recap1} alt='Recap Image' fill quality={100} />
           </figure>
-          <figure className='c-home__recap__image-2'>
+          <figure className='c-home__recap__image-2' data-recap-image>
             <Image src={recap2} alt='Recap Image' fill quality={100} />
           </figure>
-          <figure className='c-home__recap__image-3'>
+          <figure className='c-home__recap__image-3' data-recap-image>
             <Image src={recap3} alt='Recap Image' fill quality={100} />
           </figure>
-          <figure className='c-home__recap__image-4'>
+          <figure className='c-home__recap__image-4' data-recap-image>
             <Image src={recap4} alt='Recap Image' fill quality={100} />
           </figure>
-          <figure className='c-home__recap__image-5'>
+          <figure className='c-home__recap__image-5' data-recap-image>
             <Image src={recap5} alt='Recap Image' fill quality={100} />
           </figure>
-          <figure className='c-home__recap__image-6'>
+          <figure className='c-home__recap__image-6' data-recap-image>
             <Image src={recap6} alt='Recap Image' fill quality={100} />
           </figure>
         </section>
@@ -103,16 +115,16 @@ export default function Home() {
                 {Array.from({ length: 4 }).map(() => (
                   <>
                     <div className='c-home__feedback__body__feedback-t-1'>
-                      <Image src={topTweet1} alt='Devfest Feedback' fill />
+                      <Image src={topTweet1} alt='Devfest Feedback' fill priority />
                     </div>
                     <div className='c-home__feedback__body__feedback-t-2'>
-                      <Image src={topTweet2} alt='Devfest Feedback' fill />
+                      <Image src={topTweet2} alt='Devfest Feedback' fill priority />
                     </div>
                     <div className='c-home__feedback__body__feedback-t-3'>
-                      <Image src={topTweet3} alt='Devfest Feedback' fill />
+                      <Image src={topTweet3} alt='Devfest Feedback' fill priority />
                     </div>
                     <div className='c-home__feedback__body__feedback-t-4'>
-                      <Image src={topTweet4} alt='Devfest Feedback' fill />
+                      <Image src={topTweet4} alt='Devfest Feedback' fill priority />
                     </div>
                   </>
                 ))}
@@ -140,12 +152,12 @@ export default function Home() {
         </section>
         <section className='c-home__highlights'>
           <div className='c-home__highlights__body'>
-            <p className='c-home__highlights__title'>Watch the highlight of DevFest2022 😎</p>
+            <p className='c-home__highlights__title'>
+              Check out the highlights of DevFest Lagos 2022😎
+            </p>
             <div className='c-home__highlights__youtube'>
+              <HighlightIcon className='c-home__highlights__youtube__highlight-icon' />
               <YoutubePlayer videoId='7kat5HlPtzU' />
-            </div>
-            <div className='c-home__highlights__youtube__tease'>
-              P.s : You don’t want to miss this year 🤭
             </div>
           </div>
         </section>
@@ -163,7 +175,7 @@ export default function Home() {
               </a>
             </li>
           </ul>
-          <LogoWithGDG className='c-home__footer__logo' />
+          <Logo className='c-home__footer__logo' />
           <div className='c-home__footer__social-media'>
             <p className='c-home__footer__social-media__title'>Follow us on:</p>
             <ul className='c-home__footer__social-media__links'>

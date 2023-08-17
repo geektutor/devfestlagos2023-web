@@ -1,7 +1,6 @@
 import TwitterIcon from "@/images/social-media/twitter.svg";
 import InstagramIcon from "@/images/social-media/instagram.svg";
-import FacebookIcon from "@/images/social-media/facebook.svg";
-import LinkedinIcon from "@/images/social-media/linkedin.svg";
+import YoutubeIcon from "@/images/social-media/youtube.svg";
 import EmailIcon from "@/images/social-media/email.svg";
 
 export const socialMediaLinks = [
@@ -14,15 +13,11 @@ export const socialMediaLinks = [
     link: "https://instagram.com/gdglagos",
   },
   {
-    icon: <FacebookIcon />,
-    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  },
-  {
-    icon: <LinkedinIcon />,
-    link: "https://linkedin.com/company/gdglagos",
+    icon: <YoutubeIcon />,
+    link: "https://www.youtube.com/@GDGLagos",
   },
   {
     icon: <EmailIcon />,
-    link: "mailto:gdg@lagos.com",
+    link: "mailto:team@gdglagos.com",
   },
 ];

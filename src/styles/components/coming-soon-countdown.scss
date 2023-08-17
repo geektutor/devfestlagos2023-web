@@ -53,17 +53,27 @@
   &__clock {
     display: flex;
     margin-bottom: 48px;
+    @include flex-gap(0, 55px);
 
     @include media("<=tablet") {
       margin-bottom: 24px;
+      @include flex-gap(0, 30px);
     }
 
     @include media("<=phone") {
       margin-bottom: 16px;
+      @include flex-gap(0, 0);
+      width: 100%;
+      justify-content: space-between;
     }
 
     &__slot {
       color: $grey-100;
+
+      @include media("<=phone") {
+        flex-basis: 23.5%;
+        flex-shrink: 0;
+      }
 
       &__value {
         @include ratio(1, 1);
@@ -80,9 +90,9 @@
           width: 84px;
         }
 
-        @include media("<=tablet") {
+        @include media("<=phone") {
           @include title-2;
-          width: 80px;
+          width: 100%;
         }
       }
 
@@ -97,49 +107,6 @@
           @include body-4;
         }
       }
-    }
-
-    &__dots {
-      height: 140px;
-      display: flex;
-      align-items: center;
-      margin: 0 23px;
-
-      @include media("<=tablet") {
-        height: 84px;
-        margin: 0 13px;
-      }
-
-      @include media("<=phone") {
-        margin: 0 16px;
-        height: 80px;
-      }
-
-      svg {
-        width: 21px;
-
-        @include media("<=tablet") {
-          width: 12px;
-        }
-      }
-    }
-
-    --margin: 50px;
-
-    @include media("<=tablet") {
-      --margin: 30px;
-    }
-
-    @include media("<=tablet") {
-      --margin: 10px;
-    }
-
-    & .first-child {
-      margin-right: var(--margin);
-    }
-
-    & .last-child {
-      margin-left: var(--margin);
     }
   }
 }

@@ -9,6 +9,7 @@ const nextConfig = {
 
     return config;
   },
+  transpilePackages: ["gsap"],
 };
 
 module.exports = nextConfig;

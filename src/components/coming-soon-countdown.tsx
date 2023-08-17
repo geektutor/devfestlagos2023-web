@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import ClockDots from "@/images/home/clock-dots.svg";
 import {
   differenceInDays,
   differenceInHours,
@@ -7,6 +6,7 @@ import {
   differenceInSeconds,
 } from "date-fns";
 import { TertiaryButton } from "@/components/button";
+import { ticketsUrl } from "@/utils/urls";
 
 const devFestDate = new Date("2023-11-25");
 
@@ -42,9 +42,6 @@ export const ComingSoonCountdown = () => {
           </div>
           <span className='c-countdown__clock__slot__label'>Hours</span>
         </div>
-        <div className='c-countdown__clock__dots'>
-          <ClockDots />
-        </div>
         <div className='c-countdown__clock__slot'>
           <div className='c-countdown__clock__slot__value'>
             {differenceInMinutes(devFestDate, Date.now()) % 60}
@@ -58,7 +55,9 @@ export const ComingSoonCountdown = () => {
           <span className='c-countdown__clock__slot__label'>Seconds</span>
         </div>
       </div>
-      <TertiaryButton>Save my slot</TertiaryButton>
+      <TertiaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
+        Grab Your Early Bird Tickets
+      </TertiaryButton>
     </section>
   );
 };

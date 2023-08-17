@@ -5,17 +5,13 @@
   &__nav {
     display: flex;
     justify-content: center;
-    padding: 30px 0;
+    align-items: flex-end;
+    height: 100px;
 
     &__logo {
-      @include ratio(180, 40px);
+      @include ratio(84, 165);
       position: relative;
-      width: 180px;
-      height: 40px;
-
-      @include media("<=phone") {
-        width: 124px;
-      }
+      width: 165px;
     }
 
     @include media("<=phone") {
@@ -42,13 +38,18 @@
       padding: 87px 0 137px;
     }
 
+    %doodle {
+      transform: rotate(26.766deg);
+      opacity: 0;
+      position: absolute;
+    }
+
     &__globe-doodle {
       @include ratio(109, 118);
-      position: absolute;
       top: 0;
       left: 7.2%;
       width: 118px;
-      transform: rotate(26.766deg);
+      @extend %doodle;
 
       @include media("<=tablet") {
         width: 94.984px;
@@ -63,11 +64,10 @@
 
     &__people-doodle {
       @include ratio(134, 235.005);
-      position: absolute;
       top: 40px;
       right: 14%;
       width: 235.005px;
-      transform: rotate(26.766deg);
+      @extend %doodle;
 
       @include media("<=tablet") {
         width: 164.504px;
@@ -82,11 +82,10 @@
 
     &__repeat-doodle {
       @include ratio(109, 130.623);
-      position: absolute;
       bottom: 87px;
       left: 19.9%;
       width: 130.623px;
-      transform: rotate(26.766deg);
+      @extend %doodle;
 
       @include media("<=tablet") {
         width: 104.499px;
@@ -94,18 +93,17 @@
 
       @include media("<=phone") {
         width: 50.332px;
-        left: 26px;
+        left: 4px;
         top: 294px;
       }
     }
 
     &__video-doodle {
       @include ratio(109, 148.116);
-      position: absolute;
       bottom: 50px;
       right: 18%;
       width: 148.116px;
-      transform: rotate(26.766deg);
+      @extend %doodle;
 
       @include media("<=tablet") {
         width: 118.493px;
@@ -121,6 +119,7 @@
     &__title {
       @include heading-1;
       color: $grey-0;
+      opacity: 0;
 
       @include media("<=tablet") {
         @include heading-4;
@@ -131,10 +130,15 @@
         text-align: center;
         max-width: 379px;
       }
+
+      span {
+        display: inline-block;
+      }
     }
 
     &__subtext {
       @include title-2;
+      line-height: 41.5px;
       text-align: center;
       color: rgba(0, 0, 0, 0.59);
       margin: 24px 0 30px;
@@ -175,6 +179,7 @@
     height: 86px;
     display: flex;
     align-items: center;
+    animation-duration: 40s;
 
     @include media("<=tablet") {
       height: 56px;
@@ -218,9 +223,10 @@
   &__recap {
     padding: 134px 8.4% 558px;
     position: relative;
+    overflow: hidden;
 
     @include media(">=LGdesktop") {
-      padding: 20vh 8.4% 60vh;
+      padding: 20vh 8.4% 80vh;
     }
 
     @include media("<=tablet") {
@@ -232,40 +238,43 @@
     }
 
     &__title {
-      height: 116px;
+      min-height: 116px;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0 70px;
       @include heading-3;
       color: $grey-100;
       position: relative;
       background: $primary-green;
-      width: 811px;
+      max-width: 900px;
+      width: 90%;
+      padding: 16px;
       border-radius: 64px;
 
       @include media("<=tablet") {
         min-width: 415px;
         width: fit-content;
-        height: 60px;
+        min-height: 60px;
         margin-left: 16px;
-        padding: 0 56px;
+        padding: 0 26px;
 
         @include title-1;
       }
 
       @include media("<=phone") {
         @include title-2;
-        width: 300px;
+        width: 90%;
+        max-width: 372px;
         min-width: unset;
-        padding: 0 10px;
+        padding: 10px 16px;
+        min-height: unset;
       }
     }
 
     &__arrow {
       @include ratio(109, 216);
       position: absolute;
-      top: 35%;
+      top: 60%;
       left: calc(100% - 81px);
       width: 216px;
       transform: rotate(26.766deg);
@@ -279,7 +288,7 @@
       @include media("<=phone") {
         width: 143.1px;
         top: 50%;
-        left: calc(100% - 54px);
+        left: 65%;
         transform: rotate(21.343deg);
       }
     }
@@ -287,6 +296,7 @@
     %recap-image {
       position: absolute;
       overflow: hidden;
+      opacity: 0;
 
       img {
         object-fit: cover;
@@ -619,12 +629,12 @@
     }
 
     &__body {
-      padding: 70px 148px 28px;
+      padding: 70px min(10.27%, 148px) 28px;
       background-color: $primary-red;
       border-radius: 24px;
 
       @include media("<=tablet") {
-        padding: 56px 66px 20px;
+        padding: 22px 90px 70px;
       }
 
       @include media("<=phone") {
@@ -636,8 +646,9 @@
     &__title {
       @include heading-4;
       color: $grey-100;
-      margin-bottom: 32px;
       text-align: center;
+      max-width: 809px;
+      margin: 0 auto 32px;
 
       @include media("<=tablet") {
         @include heading-5;
@@ -645,7 +656,6 @@
 
       @include media("<=phone") {
         @include title-2;
-        max-width: 230px;
         margin: 0 auto 28px;
       }
     }
@@ -654,9 +664,33 @@
       @include ratio(1, 1.75);
       display: flex;
       flex-direction: column;
+      position: relative;
+      overflow: visible !important;
 
-      @include media("<=phone") {
+      @include media("<=tablet") {
+        @include ratio(331.246, 538);
+      }
+
+      @include media("<=tablet") {
         @include ratio(1, 1.436);
+      }
+
+      &__highlight-icon {
+        @include ratio(52, 44.62);
+        position: absolute;
+        left: 100%;
+        top: -48px;
+        width: 44.62px;
+
+        @include media("<=tablet") {
+          top: -10px;
+          width: 26.67px;
+        }
+
+        @include media("<=phone") {
+          top: -16px;
+          width: 30.89px;
+        }
       }
 
       iframe {
@@ -691,10 +725,11 @@
   }
 
   &__footer {
-    height: 230px;
+    height: 194px;
     display: flex;
     align-items: center;
-    padding: 0 13.47% 0 19.09%;
+    justify-content: space-evenly;
+    width: 100vw;
 
     @include media("<=tablet") {
       height: 153px;
@@ -704,7 +739,7 @@
     @include media("<=phone") {
       height: unset;
       flex-direction: column;
-      padding: 72px 0 96px;
+      padding: 16px;
     }
 
     &__links {
@@ -715,7 +750,7 @@
       @include media("<=phone") {
         flex-direction: row;
         column-gap: 32px;
-        margin: 60px 0;
+        margin: 16px 0;
       }
 
       &__link {
@@ -742,17 +777,16 @@
 
     &__logo {
       display: inline-block;
-      margin: 0 auto;
-      @include ratio(97, 220);
-      width: 220px;
+      @include ratio(84, 165);
+      width: 230px;
 
       @include media("<=tablet") {
-        width: 131px;
+        width: 103.47px;
       }
 
       @include media("<=phone") {
         order: -1;
-        width: 220px;
+        width: 142.222px;
       }
     }
 
