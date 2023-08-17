@@ -7,28 +7,10 @@ import repeatDoodle from "@/images/repeat-doodle.png";
 import peopleDoodle from "@/images/people-doodle.png";
 import videoDoodle from "@/images/cup-code.png";
 import arrowDoodle from "@/images/arrow-doodle.png";
-import { TertiaryButton } from "@/components/button";
-import recap1 from "@/images/home/recap/recap-1.png";
-import recap2 from "@/images/home/recap/recap-2.png";
-import recap3 from "@/images/home/recap/recap-3.png";
-import recap4 from "@/images/home/recap/recap-4.png";
-import recap5 from "@/images/home/recap/recap-5.png";
-import recap6 from "@/images/home/recap/recap-6.png";
-import topTweet1 from "@/images/home/tweets/t-1.png";
-import topTweet2 from "@/images/home/tweets/t-2.png";
-import topTweet3 from "@/images/home/tweets/t-3.png";
-import topTweet4 from "@/images/home/tweets/t-4.png";
-import bottomTweet1 from "@/images/home/tweets/b-1.png";
-import bottomTweet2 from "@/images/home/tweets/b-2.png";
-import bottomTweet3 from "@/images/home/tweets/b-3.png";
-import bottomTweet4 from "@/images/home/tweets/b-4.png";
-import { YoutubePlayer } from "@/components/youtube-player";
 import { ComingSoonCountdown } from "@/components/coming-soon-countdown";
 import { socialMediaLinks } from "@/utils/social-media";
 import React, { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
-import HighlightIcon from "@/images/home/highlight.svg";
-import { ticketsUrl } from "@/utils/urls";
 
 export default function Home() {
   const hasInitializedAnimation = useRef(false);
@@ -75,6 +57,37 @@ export default function Home() {
                 <p className='c-home__marquee__text'>Watch this space for more information soon</p>
               </div>
             ))}
+          </div>
+        </section>
+        <section className='c-home__footer'>
+          <ul className='c-home__footer__links'>
+            <li className='c-home__footer__links__link'>
+              <a href='https://gdg.community.dev/gdg-lagos/' target='_blank'>
+                Join the community
+              </a>
+            </li>
+            <li className='c-home__footer__links__link'>
+              <a href='https://policies.google.com/privacy' target='_blank'>
+                Privacy policy
+              </a>
+            </li>
+          </ul>
+          <Logo className='c-home__footer__logo' />
+          <div className='c-home__footer__social-media'>
+            <p className='c-home__footer__social-media__title'>Follow us on:</p>
+            <ul className='c-home__footer__social-media__links'>
+              {socialMediaLinks.map((link) => (
+                <li key={link.link}>
+                  <a
+                    href={link.link}
+                    target='_blank'
+                    className='c-home__footer__social-media__link'
+                  >
+                    {link.icon}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
       </main>
