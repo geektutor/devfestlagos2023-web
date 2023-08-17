@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Logo from "@/images/logo.svg";
 import StarIcon from "@/images/home/star.svg";
-import Image from "next/image";
 import { socialMediaLinks } from "@/utils/social-media";
 import React, { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
