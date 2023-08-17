@@ -2,10 +2,6 @@ import Head from "next/head";
 import Logo from "@/images/logo.svg";
 import StarIcon from "@/images/home/star.svg";
 import Image from "next/image";
-import globeDoodle from "@/images/globe-doodle.png";
-import repeatDoodle from "@/images/repeat-doodle.png";
-import peopleDoodle from "@/images/people-doodle.png";
-import videoDoodle from "@/images/cup-code.png";
 import { socialMediaLinks } from "@/utils/social-media";
 import React, { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
@@ -30,18 +26,6 @@ export default function Home() {
           <Logo className='c-home__nav__logo' />
         </nav>
         <section className='c-home__intro'>
-          <figure className='c-home__intro__globe-doodle'>
-            <Image src={globeDoodle} alt='People Doodle' fill quality={100} />
-          </figure>
-          <figure className='c-home__intro__people-doodle'>
-            <Image src={peopleDoodle} alt='People Doodle' fill quality={100} />
-          </figure>
-          <figure className='c-home__intro__repeat-doodle'>
-            <Image src={repeatDoodle} alt='Repeat Doodle' fill quality={100} />
-          </figure>
-          <figure className='c-home__intro__video-doodle'>
-            <Image src={videoDoodle} alt='Video Doodle' fill quality={100} />
-          </figure>
           <h1 className='c-home__intro__title'>Are you ready for 23x?</h1>
           <p className='c-home__intro__subtext'>
            Wetin you dey find? We never launch.
