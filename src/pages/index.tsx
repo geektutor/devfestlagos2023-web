@@ -4,15 +4,6 @@ import React, { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
 
 export default function Home() {
-  const hasInitializedAnimation = useRef(false);
-
-  useEffect(() => {
-    if (hasInitializedAnimation.current) return;
-
-    hasInitializedAnimation.current = true;
-    new Homepage();
-  }, []);
-
   return (
     <>
       <Head>
