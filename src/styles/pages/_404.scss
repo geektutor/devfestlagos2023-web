@@ -1,0 +1,13 @@
+.c-404 {
+  @extend %page;
+  background-color: $bg-shade-1;
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__fisherman {
+    width: 900px;
+  }
+}
