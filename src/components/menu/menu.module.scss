@@ -1,0 +1,43 @@
+@use "../../styles/core/variables" as v;
+
+.menu {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: v.$bg-shade-1;
+  padding: 0 124px;
+}
+
+.logo {
+  height: 64px;
+}
+
+.items,
+.navItems {
+  display: flex;
+  align-items: center;
+  column-gap: 32px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.navItem {
+  list-style: none;
+}
+
+.link {
+  color: v.$grey-50;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 8px;
+}
+
+.cta {
+  display: flex;
+  column-gap: 8px;
+}
