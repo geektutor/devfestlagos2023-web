@@ -5,6 +5,7 @@ import styles from "./menu.module.scss";
 
 import Logo from "@/images/logo.svg";
 import Button from "@/components/button";
+import Hamburger from "@/images/hamburger-menu.svg";
 import RightArrow from "@/images/arrow-right-bg-light.svg";
 
 const Menu = () => {
@@ -33,9 +34,12 @@ const Menu = () => {
         </nav>
         <Button variant='primary' className={styles.cta}>
           Register Now
-          <RightArrow />
+          <RightArrow className={styles.ctaIcon} />
         </Button>
       </div>
+      <button className={styles.hamburger}>
+        <Hamburger />
+      </button>
     </header>
   );
 };
