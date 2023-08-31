@@ -1,20 +1,17 @@
 import Logo from "@/images/logo-white-bg.svg";
-import Image from "next/image";
-import {
-  XLightIcon,
-  InstagramLightIcon,
-  FacebookLightIcon,
-  LinkedInLightIcon,
-  EmailLightIcon,
-  YouTubeLightIcon,
-} from "@/images/svg/index";
+import XLightIcon from "@/images/social-media/twitter-light.svg";
+import InstagramLightIcon from "@/images/social-media/instagram-light.svg";
+import FacebookLightIcon from "@/images/social-media/facebook-light.svg";
+import LinkedInLightIcon from "@/images/social-media/linkedin-light.svg";
+import EmailLightIcon from "@/images/social-media/email-light.svg";
+import YouTubeLightIcon from "@/images/social-media/youtube-light.svg";
 
 const Footer = () => {
   return (
     <footer className='c-footer'>
       <div className='container'>
         <div className='c-footer__container'>
-          <Image src={Logo} alt='DevFest Lagos 2023 Logo' className='c-footer__logo' />
+          <Logo className='c-footer__logo' alt='DevFest Lagos 2023 Logo' />
 
           <ul className='c-footer__list__group'>
             <li className='c-footer__list__group__item'>Agenda</li>
