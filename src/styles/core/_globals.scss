@@ -60,3 +60,19 @@ button {
     }
   }
 }
+
+.container {
+  width: 100%;
+  padding: 0 24px;
+  margin: 0 auto;
+
+  @include media("<=desktop") {
+    max-width: 1320px;
+  }
+  @include media("<=desktop-sm") {
+    max-width: 900px;
+  }
+  @include media("<=tablet") {
+    max-width: 720px;
+  }
+}

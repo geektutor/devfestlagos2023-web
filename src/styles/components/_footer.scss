@@ -1,0 +1,87 @@
+.c-footer {
+  background-color: $grey-0;
+  padding: 3rem 0;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    @include media("<=phone") {
+      flex-direction: column;
+      padding: 40px 0;
+      gap: 48px 0;
+    }
+  }
+
+  &__logo {
+    @include ratio(84, 165);
+    position: relative;
+    width: 165px;
+  }
+
+  &__list__group {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px 0;
+
+    @include media("<=phone") {
+      gap: 20px 0;
+    }
+
+    &__item {
+      color: $grey-100;
+      font-weight: 500;
+      text-decoration: underline;
+      cursor: pointer;
+      @include body-3;
+
+      @include media("<=tablet") {
+        @include body-5;
+      }
+
+      @include media("<=phone") {
+        @include body-4;
+      }
+    }
+  }
+
+  &__follow__container {
+    text-decoration: none !important;
+
+    &__title {
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    &__icons {
+      display: flex;
+      align-items: center;
+      gap: 0 12px;
+
+      svg {
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__note {
+    color: $grey-100;
+    text-align: center;
+    margin-top: 48px;
+    @include body-3;
+
+    @include media("<=tablet") {
+      @include body-5;
+    }
+
+    @include media("<=phone") {
+      @include body-4;
+      text-align: start;
+    }
+  }
+}
