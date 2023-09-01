@@ -1,0 +1,51 @@
+@import "core/variables";
+@import "core/typography";
+@import "utils/breakpoints";
+@import "utils/mixins";
+
+.talk {
+  display: flex;
+  align-items: flex-start;
+}
+
+.portrait {
+  @include ratio(212, 167);
+  width: 167px;
+  margin-right: 24px;
+}
+
+.category {
+  border-radius: 48px;
+  border: 2px solid $grey-40;
+  background: $grey-0;
+  padding: 12px 16px;
+  color: $grey-40;
+  @include body-2;
+  margin-bottom: 16px;
+  width: fit-content;
+}
+
+.title {
+  max-width: 810px;
+  @include heading-4;
+  color: $grey-100;
+  margin-bottom: 16px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  @include flex-gap(0, 8px);
+
+  @include body-1;
+  color: $grey-70;
+}
+
+.ellipse {
+  @include ratio(1, 1);
+  width: 8px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}

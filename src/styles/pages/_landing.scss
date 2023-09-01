@@ -1,0 +1,458 @@
+.landing-page {
+  &__menu {
+    height: 100px;
+    width: 100%;
+    background-color: $bg-shade-1;
+  }
+
+  &__intro {
+    background-color: $bg-shade-1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-top: 82px;
+    position: relative;
+
+    &__title {
+      position: relative;
+      width: fit-content;
+      margin-bottom: 8px;
+
+      &__text {
+        @include heading-1;
+        line-height: 64px;
+        color: $grey-0;
+        text-align: center;
+      }
+
+      &__presents {
+        padding: 8px 16px;
+        border-radius: 8px;
+        background: $primary-green;
+        color: $grey-100;
+        @include title-1;
+        position: absolute;
+        bottom: calc(100% - 8px);
+        transform: translateX(-50%) rotate(-10deg);
+        width: max-content;
+      }
+    }
+
+    &__description {
+      color: $grey-40;
+      @include title-2;
+      margin-bottom: 32px;
+      max-width: 452px;
+      text-align: center;
+    }
+
+    &__sponsor-cta {
+      @include ratio(1, 1);
+      width: 132px;
+      position: absolute;
+      bottom: 38px;
+      right: 124px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  &__better {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 0;
+
+    &__title {
+      color: $grey-0;
+      @include heading-4;
+      max-width: 540px;
+      text-align: center;
+      margin-bottom: 8px;
+
+      .green {
+        color: $primary-green;
+      }
+    }
+
+    &__subtext {
+      color: $grey-40;
+      @include title-2;
+      margin-bottom: 62px;
+    }
+
+    &__sponsors {
+      display: flex;
+      @include flex-gap(0, 48px);
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__hype {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 48px 8.6%;
+    align-items: center;
+    background-color: $grey-0;
+
+    &__yarns {
+      padding: 40px 32px;
+      background-color: $secondary-grey;
+      border-radius: 32px;
+
+      &__lyric {
+        padding: 24px 26px;
+        background: #c72f3e;
+        border-radius: 24px;
+        margin-bottom: 32px;
+
+        &__song-deets {
+          display: flex;
+          align-items: center;
+          @include flex-gap(0, 8px);
+          margin-bottom: 24px;
+        }
+
+        &__cover-image {
+          @include ratio(1, 1);
+          width: 64px;
+        }
+
+        &__title {
+          color: $grey-100;
+          @include title-2;
+        }
+
+        &__artist {
+          color: $grey-100;
+          @include body-2;
+        }
+
+        &__line {
+          color: $grey-100;
+          @include title-1;
+          margin-bottom: 24px;
+
+          .twennyone {
+            position: relative;
+            display: inline-block;
+
+            .scribble {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              width: 14.741px;
+              height: 40px;
+              transform: translate(-50%, -50%) rotate(-90deg);
+            }
+
+            &::after {
+              content: "23";
+              position: absolute;
+              top: 0;
+              left: 50%;
+              transform: translate(-50%, -80%);
+            }
+          }
+        }
+      }
+
+      &__intro {
+        color: $grey-100;
+        @include heading-4;
+        margin-bottom: 16px;
+      }
+
+      &__subtext {
+        color: $grey-70;
+        @include title-2;
+        margin-bottom: 24px;
+      }
+
+      .c-button {
+        background-color: $bg-shade-1;
+        color: $grey-20;
+        svg {
+          color: $bg-shade-1;
+        }
+      }
+    }
+
+    &__categories {
+      padding: 40px 0 40px 32px;
+      max-height: 637px;
+      overflow-y: hidden;
+      background-color: $bg-shade-1;
+      border-radius: 32px;
+
+      &__title {
+        max-width: 450px;
+        color: $grey-0;
+        @include heading-4;
+        margin-bottom: 16px;
+      }
+
+      &__subtext {
+        max-width: 414px;
+        color: $grey-30;
+        @include title-2;
+        margin-bottom: 24px;
+      }
+
+      .c-button {
+        margin-bottom: 48px;
+      }
+
+      &__topics-row {
+        display: flex;
+        align-items: center;
+        @include flex-gap(0, 16px);
+        flex-wrap: nowrap;
+        overflow: hidden;
+        width: 100%;
+
+        & + & {
+          margin-top: 16px;
+        }
+      }
+
+      &__topic {
+        display: flex;
+        padding: 12px 16px;
+        border-radius: 48px;
+        @include flex-gap(0, 8px);
+        color: $grey-10;
+        @include title-2;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  &__recap {
+    padding: 48px 8.6%;
+    background-color: $bg-shade-1;
+
+    &__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    &__title {
+      @include heading-4;
+      color: $grey-0;
+      max-width: 550px;
+    }
+
+    &__subtext {
+      @include title-2;
+      color: $grey-40;
+      max-width: 452px;
+    }
+
+    &__video {
+      @include ratio(669, 1191);
+      width: 100%;
+    }
+  }
+
+  &__speakers {
+    padding: 101px 0 46px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__count {
+      @include heading-2;
+      color: $grey-0;
+    }
+
+    &__speakers-text {
+      @include heading-4;
+      color: $grey-0;
+      margin-bottom: 16px;
+    }
+
+    &__subtext {
+      color: $grey-40;
+      @include title-2;
+      margin-bottom: 80px;
+    }
+
+    &__speakers {
+      padding-left: 8.7vw;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      @include flex-gap(0, 16px);
+      overflow: hidden;
+      flex-wrap: nowrap;
+      margin-bottom: 48px;
+    }
+
+    &__hype-banner {
+      margin-top: 81px;
+      height: 44px;
+      position: relative;
+      width: 100%;
+
+      &__item {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: $grey-0;
+        display: flex;
+        height: 100%;
+        @include flex-gap(0, 32px);
+        flex-wrap: nowrap;
+        align-items: center;
+        @include button-text;
+        color: $grey-100;
+
+        &.visible {
+          transform: rotate(4.05deg);
+          z-index: 2;
+        }
+
+        &.faded {
+          transform: rotate(-4.05deg);
+          opacity: 0.2;
+        }
+
+        span {
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
+
+  &__talks {
+    padding: 48px 0 48px 8.6vw;
+    background-color: $grey-0;
+
+    &__top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      padding-right: 8.6vw;
+    }
+
+    &__title {
+      color: $grey-100;
+      @include heading-4;
+      max-width: 470px;
+      margin-bottom: 16px;
+    }
+
+    &__description {
+      color: $grey-80;
+      @include title-2;
+    }
+
+    &__cta-button {
+      background-color: $bg-shade-1;
+      color: $grey-20;
+
+      svg {
+        color: $bg-shade-1;
+      }
+    }
+
+    &__tags {
+      display: flex;
+      flex-wrap: nowrap;
+      @include flex-gap(0, 16px);
+      margin-bottom: 48px;
+    }
+
+    &__tag {
+      padding: 12px 16px;
+      border-radius: 48px;
+      border: 1.5px solid $grey-40;
+      color: $grey-40;
+      @include title-2;
+      cursor: pointer;
+      transition: 300ms;
+
+      &--active {
+        color: $grey-10;
+        border-color: $bg-shade-1;
+        background-color: $bg-shade-1;
+      }
+    }
+
+    &__talks {
+      padding-right: 8.6vw;
+    }
+
+    &__divider {
+      display: block;
+      width: 100%;
+      height: 4px;
+      border-radius: 8px;
+      background-color: $secondary-grey;
+      margin: 32px 0;
+      border: none;
+    }
+  }
+
+  &__faq {
+    padding: 48px 0;
+    background-color: $bg-shade-2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__title {
+      max-width: 540px;
+      color: $grey-0;
+      @include heading-4;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    &__subtext {
+      max-width: 452px;
+      color: $grey-40;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    &__questions {
+      @include flex-gap(16px, 0);
+      max-width: 706px;
+    }
+  }
+
+  &__no-matter-what {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $secondary-grey;
+    padding: 48px 0;
+
+    &__title {
+      @include heading-4;
+      color: $grey-100;
+      max-width: 540px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    &__question {
+      margin: 16px 0 32px;
+      color: $grey-80;
+      @include title-2;
+    }
+
+    &__button {
+      height: 84px;
+    }
+  }
+}

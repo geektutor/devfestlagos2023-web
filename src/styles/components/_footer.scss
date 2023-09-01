@@ -1,11 +1,12 @@
 .c-footer {
   background-color: $grey-0;
-  padding: 3rem 0;
+  padding: 48px 0;
 
   &__container {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding: 0 8.6%;
 
     @include media("<=phone") {
       flex-direction: column;

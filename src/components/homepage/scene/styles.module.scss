@@ -1,0 +1,13 @@
+@import "utils/mixins";
+
+.scene {
+  margin: -62px auto 0;
+  @include ratio(576, 834);
+  width: 58%;
+  max-width: 834px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
