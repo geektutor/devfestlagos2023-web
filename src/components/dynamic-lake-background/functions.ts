@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DRAW_IMAGE_FRAGMENT_SHADER, DRAW_IMAGE_VERTEX_SHADER } from "./shaders";
 
 export const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
@@ -92,10 +91,57 @@ export const initWebGL = async (canvas: HTMLCanvasElement) => {
 
   if (!drawImageProgram) throw new Error("Failed to create 'draw image' program");
 
+  const projectionMatrixUniformLocation = gl.getUniformLocation(
+    drawImageProgram,
+    "u_projection_matrix",
+  );
+
+  gl.useProgram(drawImageProgram);
+
+  // This is the matrix that converts values to clipspace
+  // prettier-ignore
+  const projectionMatrix = [
+      2 / canvas.width, 0, 0,
+      0, (-2 / canvas.height), 0,
+      -1, 1, 1
+    ]
+
+  gl.uniformMatrix3fv(projectionMatrixUniformLocation, false, projectionMatrix);
+
   return {
     gl,
     drawImageProgram,
   };
+};
+
+const convertAssetToTexture = (gl: WebGLRenderingContext, image: HTMLImageElement) => {
+  const texture = gl.createTexture();
+  if (!texture) throw new Error("Failed to create texture");
+
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+
+  // Fill the texture with a 1x1 blue pixel.
+  gl.texImage2D(
+    gl.TEXTURE_2D,
+    0,
+    gl.RGBA,
+    1,
+    1,
+    0,
+    gl.RGBA,
+    gl.UNSIGNED_BYTE,
+    new Uint8Array([0, 0, 255, 255]),
+  );
+
+  // let's assume all images are not a power of 2
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+
+  return texture;
 };
 
 export const initImageLayerDraw = async (gl: WebGLRenderingContext, program: WebGLProgram) => {
@@ -125,47 +171,82 @@ export const initImageLayerDraw = async (gl: WebGLRenderingContext, program: Web
 
   const assets = await loadAssets();
 
-  /* These will be responsible for correctly scaling and positioning the assets/textures.
-  The idea is to make everything relative to the boat */
   // prettier-ignore
-  const staticAssetsTransMatrix = {
-    boatShadowImage: [
-      1, 1, 1,
-      1, 1, 1,
-      1, 1, 1
-    ],
-    bigWaveImage: [
-      1, 1, 1,
-      1, 1, 1,
-      1, 1, 1
-    ],
-    smallWaveImage: [
-      1, 1, 1,
-      1, 1, 1,
-      1, 1, 1
-    ],
-
-
+  const staticAssets = {
+    boatShadowImage: {
+      texture: convertAssetToTexture(gl, assets.boatShadowImage),
+      matrix: [
+        100, 1, 1,
+        1, 100, 1,
+        50, 50, 1
+      ]
+    },
+    bigWaveImage: {
+      texture: convertAssetToTexture(gl, assets.bigWaveImage),
+      matrix: [
+        10, 1, 1,
+        1, 10, 1,
+        1, 1, 1
+      ]
+    },
+    smallWaveImage: {
+      texture: convertAssetToTexture(gl, assets.smallWaveImage),
+      matrix: [
+        1000, 1, 1,
+        1, 1000, 1,
+        100, 100, 1
+      ]
+    }
   }
 
-  const convertAssetToTexture = () => {
-    //
-  };
-
   return {
-    assets,
     positionLocation,
     texcoordLocation,
     matrixLocation,
     textureLocation,
-    staticAssetsTransMatrix,
+    staticAssets,
+    positionBuffer,
+    texcoordBuffer,
   };
 };
 
-const drawAssets = (
+export const drawAssets = (
   gl: WebGLRenderingContext,
   program: WebGLProgram,
-  assetsInfo: ReturnType<typeof initImageLayerDraw>,
+  assetsInfo: Awaited<ReturnType<typeof initImageLayerDraw>>,
 ) => {
   //
+
+  const {
+    staticAssets,
+    positionLocation,
+    positionBuffer,
+    texcoordBuffer,
+    texcoordLocation,
+    matrixLocation,
+    textureLocation,
+  } = assetsInfo;
+
+  Object.values(staticAssets).forEach(({ texture, matrix }) => {
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+
+    gl.useProgram(program);
+
+    // Setup the attributes to pull data from our buffers
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    gl.enableVertexAttribArray(positionLocation);
+    gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, texcoordBuffer);
+    gl.enableVertexAttribArray(texcoordLocation);
+    gl.vertexAttribPointer(texcoordLocation, 2, gl.FLOAT, false, 0, 0);
+
+    // Set the matrix.
+    gl.uniformMatrix3fv(matrixLocation, false, matrix);
+
+    // Tell the shader to get the texture from texture unit 0
+    gl.uniform1i(textureLocation, 0);
+
+    // draw the quad (2 triangles, 6 vertices)
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+  });
 };

@@ -1,13 +1,14 @@
 export const DRAW_IMAGE_VERTEX_SHADER = `
-    attribute vec4 a_position;
+    attribute vec2 a_position;
     attribute vec2 a_texcoord;
     
-    uniform mat4 u_matrix;
+    uniform mat3 u_matrix;
+    uniform mat3 u_projection_matrix;
     
     varying vec2 v_texcoord;
 
     void main() {
-        gl_Position = u_matrix * a_position;
+        gl_Position = vec4((u_projection_matrix * u_matrix * vec3(a_position, 1)).xy, 0, 1);
         v_texcoord = a_texcoord;
     }
 `;

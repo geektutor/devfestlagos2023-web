@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { initImageLayerDraw, initWebGL } from "./functions";
+import { drawAssets, initImageLayerDraw, initWebGL } from "./functions";
 
 const useDynamicLakeBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -11,8 +11,8 @@ const useDynamicLakeBackground = () => {
         // render boat shadow and big wave shadow to a texture
         // render that texture to the canvas
         const { gl, drawImageProgram } = await initWebGL(canvasRef.current);
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const imageLayerDrawData = await initImageLayerDraw(gl, drawImageProgram);
+        drawAssets(gl, drawImageProgram, imageLayerDrawData);
       }
     })();
   }, []);
