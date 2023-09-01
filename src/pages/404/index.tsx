@@ -1,4 +1,4 @@
-import Fisherman from "@/components/fisherman";
+import DynamicLakeBackground from "@/components/dynamic-lake-background";
 import { SEO } from "@/components/seo";
 
 export default function Custom404() {
@@ -10,8 +10,9 @@ export default function Custom404() {
         keywords='404, page not found'
       />
       <main className='c-404'>
-        <div className='c-404__fisherman'>
-          <Fisherman />
+        <DynamicLakeBackground />
+        <div className='c-404__content'>
+          <h1>I ❤️ Geek Tutor</h1>
         </div>
       </main>
     </>

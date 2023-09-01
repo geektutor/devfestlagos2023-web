@@ -1,0 +1,14 @@
+.container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+}
+
+.fishermanIllustration {
+  height: calc(100vh / 2.2);
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  bottom: 15%;
+}
