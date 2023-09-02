@@ -6,7 +6,7 @@ export default function ApplyToSpeak() {
   return (
     <>
       <Head>
-        <title>Apply to Speak | Devfest 2023 Lagos</title>
+        <title>Apply to Speak | Devfest Lagos 2023</title>
       </Head>
       <main className='c-home'>
         <nav className='c-home__nav'>
