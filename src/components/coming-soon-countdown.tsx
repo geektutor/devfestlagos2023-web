@@ -56,7 +56,7 @@ export const ComingSoonCountdown = () => {
         </div>
       </div>
       <TertiaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
-        Grab Your Early Bird Tickets
+        Apply To Speak
       </TertiaryButton>
     </section>
   );
