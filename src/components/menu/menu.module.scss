@@ -57,6 +57,12 @@
   @include b.media("<=desktop-sm") {
     column-gap: 2px;
   }
+  @include b.media("<=phone") {
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+    align-items: flex-start;
+  }
 }
 
 .nav {
@@ -95,8 +101,25 @@
 
 .hamburger {
   border: none;
+  background-color: transparent;
 
   @include b.media(">phone") {
     display: none;
   }
+}
+
+.mobileNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: v.$bg-shade-1;
+}
+
+.mobileItems {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  padding: 48px 24px;
 }
