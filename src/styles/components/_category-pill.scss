@@ -1,0 +1,18 @@
+.c-category {
+  padding: 10px;
+  text-align: center;
+  border: 1.5px solid $grey-40;
+  color: $grey-60;
+  width: fit-content;
+  border-radius: 99999px;
+}
+
+.c-category.active {
+  text-align: center;
+  border: none;
+  background-color: $bg-shade-1;
+  color: $grey-10;
+  padding: 10px;
+  width: fit-content;
+  border-radius: 99999px;
+}
