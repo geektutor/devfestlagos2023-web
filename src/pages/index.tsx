@@ -71,7 +71,7 @@ export default function Home() {
             yet. Get ready for DevFest Lagos 2023.
           </p>
           <TertiaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
-            Grab Your Early Bird Tickets
+            Apply To Speak
           </TertiaryButton>
         </section>
         <section className='c-home__marquee-wrapper'>

@@ -1,1 +1,1 @@
-export const ticketsUrl = "https://bit.ly/devfestlagos-tickets";
+export const ticketsUrl = "/cfp-2023";
