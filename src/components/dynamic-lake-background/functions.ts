@@ -173,8 +173,9 @@ export const initImageLayerDraw = async (
         let matrix = new Float32Array(9);
         matrix = project(matrix, gl.canvas.width, gl.canvas.height);
 
-        const boatHeight = clientHeight + 200; // I am adding this value because the exact width of the element doesnt perfectly match the boat
-        /* Boat ratio is 150.83 / 347.7. Therefore we calculate the boat width
+        const boatHeight = clientHeight + 200; // I am adding this value because the exact width of the element doesnt perfectly match the boat.
+
+        /* The Boat ratio is 150.83 / 347.7. Therefore we calculate the boat width
         relative to the boat height. */
         const boatWidth = (150.83 * boatHeight) / 347.7;
 
