@@ -1,4 +1,4 @@
-import { project, scale, translate } from "./m3";
+import { identity, project, scale, translate } from "./m3";
 import { DRAW_IMAGE_FRAGMENT_SHADER, DRAW_IMAGE_VERTEX_SHADER } from "./shaders";
 
 export const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
@@ -165,12 +165,13 @@ export const initImageLayerDraw = async (
 
   const { clientHeight } = fishermanWrapper;
   const { x, y } = fishermanWrapper.getBoundingClientRect();
+  console.log(x, y);
 
   const staticAssets = [
     {
       texture: convertAssetToTexture(gl, assets.boatShadowImage),
       matrix: (() => {
-        let matrix = new Float32Array(9);
+        let matrix = identity();
         matrix = project(matrix, gl.canvas.width, gl.canvas.height);
 
         const boatHeight = clientHeight + 200; // I am adding this value because the exact width of the element doesnt perfectly match the boat.
