@@ -11,7 +11,11 @@ const useDynamicLakeBackground = () => {
         // render boat shadow and big wave shadow to a texture
         // render that texture to the canvas
         const { gl, drawImageProgram } = await initWebGL(canvasRef.current);
-        const imageLayerDrawData = await initImageLayerDraw(gl, drawImageProgram);
+        const imageLayerDrawData = await initImageLayerDraw(
+          gl,
+          drawImageProgram,
+          fishermanWrapperRef.current,
+        );
         drawAssets(gl, drawImageProgram, imageLayerDrawData);
       }
     })();

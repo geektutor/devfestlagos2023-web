@@ -1,3 +1,4 @@
+import { project, scale, translate } from "./m3";
 import { DRAW_IMAGE_FRAGMENT_SHADER, DRAW_IMAGE_VERTEX_SHADER } from "./shaders";
 
 export const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
@@ -91,22 +92,24 @@ export const initWebGL = async (canvas: HTMLCanvasElement) => {
 
   if (!drawImageProgram) throw new Error("Failed to create 'draw image' program");
 
-  const projectionMatrixUniformLocation = gl.getUniformLocation(
-    drawImageProgram,
-    "u_projection_matrix",
-  );
+  resizeCanvasToDisplaySize(canvas);
+
+  // const projectionMatrixUniformLocation = gl.getUniformLocation(
+  //   drawImageProgram,
+  //   "u_projection_matrix",
+  // );
 
   gl.useProgram(drawImageProgram);
 
-  // This is the matrix that converts values to clipspace
-  // prettier-ignore
-  const projectionMatrix = [
-      2 / canvas.width, 0, 0,
-      0, (-2 / canvas.height), 0,
-      -1, 1, 1
-    ]
+  // // This is the matrix that converts values to clipspace
+  // // prettier-ignore
+  // const projectionMatrix = [
+  //   2 / canvas.width, 0, 0,
+  //   0, (-2 / canvas.height), 0,
+  //   -1, 1, 1
+  // ]
 
-  gl.uniformMatrix3fv(projectionMatrixUniformLocation, false, projectionMatrix);
+  // gl.uniformMatrix3fv(projectionMatrixUniformLocation, false, projectionMatrix);
 
   return {
     gl,
@@ -144,7 +147,11 @@ const convertAssetToTexture = (gl: WebGLRenderingContext, image: HTMLImageElemen
   return texture;
 };
 
-export const initImageLayerDraw = async (gl: WebGLRenderingContext, program: WebGLProgram) => {
+export const initImageLayerDraw = async (
+  gl: WebGLRenderingContext,
+  program: WebGLProgram,
+  fishermanWrapper: HTMLDivElement,
+) => {
   // look up where the vertex data needs to go.
   const positionLocation = gl.getAttribLocation(program, "a_position");
   const texcoordLocation = gl.getAttribLocation(program, "a_texcoord");
@@ -171,33 +178,30 @@ export const initImageLayerDraw = async (gl: WebGLRenderingContext, program: Web
 
   const assets = await loadAssets();
 
-  // prettier-ignore
-  const staticAssets = {
-    boatShadowImage: {
+  const { clientWidth, clientHeight } = fishermanWrapper;
+  const { x, y } = fishermanWrapper.getBoundingClientRect();
+
+  const staticAssets = [
+    {
       texture: convertAssetToTexture(gl, assets.boatShadowImage),
-      matrix: [
-        100, 1, 1,
-        1, 100, 1,
-        50, 50, 1
-      ]
+      matrix: (() => {
+        let matrix = new Float32Array(9);
+        matrix = project(matrix, gl.canvas.width, gl.canvas.height);
+        /* NOTE: The following translate and scale can be hardcoded into a single matrix
+        and then multiplied by the projection in shader. However, this is much easier to,
+        read, debug and understand. That said, the following 2 lines is the same as:
+
+        | clientWidth, 0,            0 |
+        | 1,           clientHeight, 0 |
+        | x,           y,            1 |
+        
+        */
+        matrix = translate(matrix, x, y);
+        matrix = scale(matrix, clientWidth, clientHeight);
+        return matrix;
+      })(),
     },
-    bigWaveImage: {
-      texture: convertAssetToTexture(gl, assets.bigWaveImage),
-      matrix: [
-        10, 1, 1,
-        1, 10, 1,
-        1, 1, 1
-      ]
-    },
-    smallWaveImage: {
-      texture: convertAssetToTexture(gl, assets.smallWaveImage),
-      matrix: [
-        1000, 1, 1,
-        1, 1000, 1,
-        100, 100, 1
-      ]
-    }
-  }
+  ];
 
   return {
     positionLocation,
@@ -227,7 +231,14 @@ export const drawAssets = (
     textureLocation,
   } = assetsInfo;
 
-  Object.values(staticAssets).forEach(({ texture, matrix }) => {
+  resizeCanvasToDisplaySize(gl.canvas as HTMLCanvasElement);
+
+  // Tell WebGL how to convert from clip space to pixels
+  gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
+  gl.clear(gl.COLOR_BUFFER_BIT);
+
+  staticAssets.forEach(({ texture, matrix }) => {
     gl.bindTexture(gl.TEXTURE_2D, texture);
 
     gl.useProgram(program);
