@@ -94,22 +94,7 @@ export const initWebGL = async (canvas: HTMLCanvasElement) => {
 
   resizeCanvasToDisplaySize(canvas);
 
-  // const projectionMatrixUniformLocation = gl.getUniformLocation(
-  //   drawImageProgram,
-  //   "u_projection_matrix",
-  // );
-
   gl.useProgram(drawImageProgram);
-
-  // // This is the matrix that converts values to clipspace
-  // // prettier-ignore
-  // const projectionMatrix = [
-  //   2 / canvas.width, 0, 0,
-  //   0, (-2 / canvas.height), 0,
-  //   -1, 1, 1
-  // ]
-
-  // gl.uniformMatrix3fv(projectionMatrixUniformLocation, false, projectionMatrix);
 
   return {
     gl,
@@ -178,7 +163,7 @@ export const initImageLayerDraw = async (
 
   const assets = await loadAssets();
 
-  const { clientWidth, clientHeight } = fishermanWrapper;
+  const { clientHeight } = fishermanWrapper;
   const { x, y } = fishermanWrapper.getBoundingClientRect();
 
   const staticAssets = [
@@ -187,17 +172,24 @@ export const initImageLayerDraw = async (
       matrix: (() => {
         let matrix = new Float32Array(9);
         matrix = project(matrix, gl.canvas.width, gl.canvas.height);
+
+        const boatHeight = clientHeight + 200; // I am adding this value because the exact width of the element doesnt perfectly match the boat
+        /* Boat ratio is 150.83 / 347.7. Therefore we calculate the boat width
+        relative to the boat height. */
+        const boatWidth = (150.83 * boatHeight) / 347.7;
+
         /* NOTE: The following translate and scale can be hardcoded into a single matrix
         and then multiplied by the projection in shader. However, this is much easier to,
         read, debug and understand. That said, the following 2 lines is the same as:
 
-        | clientWidth, 0,            0 |
-        | 1,           clientHeight, 0 |
-        | x,           y,            1 |
+        | boatWidth  0            0 |
+        | 1          boatHeight   0 |
+        | x          y            1 |
         
+        Read more here: https://webglfundamentals.org/webgl/lessons/webgl-2d-matrices.html
         */
         matrix = translate(matrix, x, y);
-        matrix = scale(matrix, clientWidth, clientHeight);
+        matrix = scale(matrix, boatWidth, boatHeight);
         return matrix;
       })(),
     },
@@ -219,8 +211,6 @@ export const drawAssets = (
   program: WebGLProgram,
   assetsInfo: Awaited<ReturnType<typeof initImageLayerDraw>>,
 ) => {
-  //
-
   const {
     staticAssets,
     positionLocation,

@@ -69,7 +69,7 @@ const multiply = (a: Float32Array, b: Float32Array) => {
 
 /**
  * Multiplies by a 2D translation matrix
- * @param {module:webgl-2d-math.Matrix3} the matrix to be multiplied
+ * @param {module:webgl-2d-math.Matrix3} m the matrix to be multiplied
  * @param {number} tx amount to translate in x
  * @param {number} ty amount to translate in y
  * @return {module:webgl-2d-math.Matrix3} the result
@@ -104,7 +104,7 @@ const scaling = (sx: number, sy: number) => {
 
 /**
  * Multiplies by a 2D scaling matrix
- * @param {module:webgl-2d-math.Matrix3} the matrix to be multiplied
+ * @param {module:webgl-2d-math.Matrix3} m the matrix to be multiplied
  * @param {number} sx amount to scale in x
  * @param {number} sy amount to scale in y
  * @return {module:webgl-2d-math.Matrix3} the result
