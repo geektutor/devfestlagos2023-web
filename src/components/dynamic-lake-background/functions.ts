@@ -1,4 +1,4 @@
-import { identity, project, scale, translate } from "./m3";
+import { identity, scale, translate } from "./m3";
 import { DRAW_IMAGE_FRAGMENT_SHADER, DRAW_IMAGE_VERTEX_SHADER } from "./shaders";
 
 export const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
@@ -96,6 +96,20 @@ export const initWebGL = async (canvas: HTMLCanvasElement) => {
 
   gl.useProgram(drawImageProgram);
 
+  const projectionUniformLocation = gl.getUniformLocation(
+    drawImageProgram,
+    "u_canvas_projection_matrix",
+  );
+
+  // prettier-ignore
+  const projectionMatrix = [
+    2 / canvas.width, 0, 0,
+    0, (-2 / canvas.height), 0,
+    -1, 1, 1
+  ];
+
+  gl.uniformMatrix3fv(projectionUniformLocation, false, projectionMatrix);
+
   return {
     gl,
     drawImageProgram,
@@ -137,6 +151,7 @@ export const initImageLayerDraw = async (
   program: WebGLProgram,
   fishermanWrapper: HTMLDivElement,
 ) => {
+  const dpr = window.devicePixelRatio;
   // look up where the vertex data needs to go.
   const positionLocation = gl.getAttribLocation(program, "a_position");
   const texcoordLocation = gl.getAttribLocation(program, "a_texcoord");
@@ -165,16 +180,15 @@ export const initImageLayerDraw = async (
 
   const { clientHeight } = fishermanWrapper;
   const { x, y } = fishermanWrapper.getBoundingClientRect();
-  console.log(x, y);
 
   const staticAssets = [
     {
       texture: convertAssetToTexture(gl, assets.boatShadowImage),
       matrix: (() => {
         let matrix = identity();
-        matrix = project(matrix, gl.canvas.width, gl.canvas.height);
-
-        const boatHeight = clientHeight + 200; // I am adding this value because the exact width of the element doesnt perfectly match the boat.
+        const xOffset = x * dpr;
+        const yOffset = y * dpr;
+        const boatHeight = clientHeight * dpr;
 
         /* The Boat ratio is 150.83 / 347.7. Therefore we calculate the boat width
         relative to the boat height. */
@@ -188,9 +202,11 @@ export const initImageLayerDraw = async (
         | 1          boatHeight   0 |
         | x          y            1 |
         
-        Read more here: https://webglfundamentals.org/webgl/lessons/webgl-2d-matrices.html
+        Read more here:
+        https://webglfundamentals.org/webgl/lessons/webgl-2d-matrices.html
         */
-        matrix = translate(matrix, x, y);
+
+        matrix = translate(matrix, xOffset, yOffset);
         matrix = scale(matrix, boatWidth, boatHeight);
         return matrix;
       })(),

@@ -115,40 +115,6 @@ export const scale = (m: Float32Array, sx: number, sy: number) => {
 };
 
 /**
- * Creates a 2D projection matrix
- * @param {number} width width in pixels
- * @param {number} height height in pixels
- * @return {module:webgl-2d-math.Matrix3} a projection matrix that converts from pixels to clipspace with Y = 0 at the top.
- * @memberOf module:webgl-2d-math
- */
-const projection = (width: number, height: number) => {
-  const dst = new MatType(9);
-  // Note: This matrix flips the Y axis so 0 is at the top.
-
-  dst[0] = 2 / width;
-  dst[1] = 0;
-  dst[2] = 0;
-  dst[3] = 0;
-  dst[4] = -2 / height;
-  dst[5] = 0;
-  dst[6] = -1;
-  dst[7] = 1;
-  dst[8] = 1;
-
-  return dst;
-};
-
-/**
- * @param {number} width width in pixels
- * @param {number} height height in pixels
- * @return {module:webgl-2d-math.Matrix3} the result
- * @memberOf module:webgl-2d-math
- */
-export const project = (m: Float32Array, width: number, height: number) => {
-  return multiply(m, projection(width, height));
-};
-
-/**
  * Creates a 3x3 identity matrix
  * @return {module:webgl2-2d-math.Matrix3} an identity matrix
  */
