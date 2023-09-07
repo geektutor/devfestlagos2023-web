@@ -46,7 +46,7 @@ export default function Home() {
         title='Devfest Lagos 202'
         description='DevFest Lagos 2023 is an annual developer festival organized by GDG Lagos. It will take place on Friday November 24, 2023 and Saturday, November 25, 2023 at the Landmark Event Centre, Lagos. DevFest Lagos will feature speaker-led sessions, workshops, code-labs, and more on a variety of topics such as Web, Flutter, AI & ML, blockchain, design and many others. Join us! 🫵🏾'
         keywords='gdg lagos, devfest, devfest lagos, devfest lagos 2023'
-        image='/og-images/coming-soon.png'
+        image='/og-images/home-page.png'
       />
       <main className='c-home'>
         <nav className='c-home__nav'>
