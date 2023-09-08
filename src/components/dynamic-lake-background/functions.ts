@@ -189,7 +189,7 @@ export const initImageLayerDraw = async (
 
         const xOffset = x * dpr;
         const yOffset = y * dpr;
-        const boatHeight = clientHeight * 0.78 * dpr; // I multiple by 0.78 because the actual bot is 78% the height of the bounding box
+        const boatHeight = clientHeight * 0.78 * dpr * 1.02; // I multiple by 0.78 because the actual bot is 78% the height of the bounding box
 
         /* The Boat ratio is 150.83 / 347.7. Therefore we calculate the boat width
         relative to the boat height. */
@@ -207,7 +207,11 @@ export const initImageLayerDraw = async (
         https://webglfundamentals.org/webgl/lessons/webgl-2d-matrices.html
         */
 
-        matrix = translate(matrix, xOffset, yOffset);
+        matrix = translate(
+          matrix,
+          xOffset + boatWidth - boatWidth / 50,
+          yOffset + boatHeight / 6.3,
+        );
         matrix = scale(matrix, boatWidth, boatHeight);
         return matrix;
       })(),
