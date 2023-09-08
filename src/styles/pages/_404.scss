@@ -2,6 +2,7 @@
   @extend %page;
   background-color: $bg-shade-1;
   position: relative;
+  overflow-x: unset;
 
   &__content {
     position: relative;

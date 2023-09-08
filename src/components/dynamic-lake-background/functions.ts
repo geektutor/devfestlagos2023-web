@@ -186,9 +186,10 @@ export const initImageLayerDraw = async (
       texture: convertAssetToTexture(gl, assets.boatShadowImage),
       matrix: (() => {
         let matrix = identity();
+
         const xOffset = x * dpr;
         const yOffset = y * dpr;
-        const boatHeight = clientHeight * dpr;
+        const boatHeight = clientHeight * 0.78 * dpr; // I multiple by 0.78 because the actual bot is 78% the height of the bounding box
 
         /* The Boat ratio is 150.83 / 347.7. Therefore we calculate the boat width
         relative to the boat height. */
