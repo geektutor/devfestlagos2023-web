@@ -76,9 +76,12 @@ const loadAssets = async () => {
 };
 
 export const initWebGL = async (canvas: HTMLCanvasElement) => {
-  const gl = canvas.getContext("webgl");
+  const gl = canvas.getContext("webgl", { alpha: false });
 
   if (!gl) throw new Error("Failed to inistialise WebGL");
+
+  gl.enable(gl.BLEND);
+  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
   const drawImageVertexShader = createShader(gl, gl.VERTEX_SHADER, DRAW_IMAGE_VERTEX_SHADER);
 
@@ -180,20 +183,49 @@ export const initImageLayerDraw = async (
 
   const { clientHeight } = fishermanWrapper;
   const { x, y } = fishermanWrapper.getBoundingClientRect();
+  const xOffset = x * dpr;
+  const yOffset = y * dpr;
+
+  const boatHeight = clientHeight * 0.78 * dpr * 1.02; // I multiple by 0.78 because the actual bot is 78% the height of the bounding box
+
+  /* The Boat ratio is 150.83 / 347.7. Therefore we calculate the boat width
+  relative to the boat height. */
+  const boatWidth = (150.83 * boatHeight) / 347.7;
 
   const staticAssets = [
+    {
+      texture: convertAssetToTexture(gl, assets.bigWaveImage),
+      matrix: (() => {
+        const waveWidth = 1.83 * boatWidth;
+        const waveHeight = 1.9 * boatHeight;
+
+        let matrix = identity();
+        matrix = translate(matrix, xOffset + boatWidth * 0.75, gl.canvas.height - waveHeight);
+        matrix = scale(matrix, waveWidth, waveHeight);
+        return matrix;
+      })(),
+    },
+    {
+      texture: convertAssetToTexture(gl, assets.smallWaveImage),
+      matrix: (() => {
+        const waveWidth = 0.97 * boatWidth;
+        const waveHeight = 0.75 * boatHeight;
+
+        let matrix = identity();
+        matrix = translate(
+          matrix,
+          xOffset + boatWidth + 0.08 * boatWidth,
+          gl.canvas.height - waveHeight,
+        );
+        matrix = scale(matrix, waveWidth, waveHeight);
+        return matrix;
+      })(),
+    },
+
     {
       texture: convertAssetToTexture(gl, assets.boatShadowImage),
       matrix: (() => {
         let matrix = identity();
-
-        const xOffset = x * dpr;
-        const yOffset = y * dpr;
-        const boatHeight = clientHeight * 0.78 * dpr * 1.02; // I multiple by 0.78 because the actual bot is 78% the height of the bounding box
-
-        /* The Boat ratio is 150.83 / 347.7. Therefore we calculate the boat width
-        relative to the boat height. */
-        const boatWidth = (150.83 * boatHeight) / 347.7;
 
         /* NOTE: The following translate and scale can be hardcoded into a single matrix
         and then multiplied by the projection in shader. However, this is much easier to,
