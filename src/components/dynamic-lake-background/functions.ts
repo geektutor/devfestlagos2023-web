@@ -283,6 +283,8 @@ export const drawAssets = (
 
   gl.clear(gl.COLOR_BUFFER_BIT);
 
+  gl.clearColor(1, 0.9804, 0.9216, 1);
+
   staticAssets.forEach(({ texture, matrix }) => {
     gl.bindTexture(gl.TEXTURE_2D, texture);
 
