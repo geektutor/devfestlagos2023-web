@@ -191,7 +191,17 @@ export const initImageLayerDraw = async (
   /* The Boat ratio is 150.83 / 347.7. Therefore we calculate the boat width
   relative to the boat height. */
   const boatWidth = (150.83 * boatHeight) / 347.7;
+  /* NOTE: The following translations and scaling used on each item can be hardcoded into a single matrix
+    and then multiplied by the projection in shader. However, this is much easier to,
+    read, debug and understand. An example of what it could look like is:
 
+    | boatWidth  0            0 |
+    | 1          boatHeight   0 |
+    | x          y            1 |
+    
+    Read more here:
+    https://webglfundamentals.org/webgl/lessons/webgl-2d-matrices.html
+  */
   const staticAssets = [
     {
       texture: convertAssetToTexture(gl, assets.bigWaveImage),
@@ -226,18 +236,6 @@ export const initImageLayerDraw = async (
       texture: convertAssetToTexture(gl, assets.boatShadowImage),
       matrix: (() => {
         let matrix = identity();
-
-        /* NOTE: The following translate and scale can be hardcoded into a single matrix
-        and then multiplied by the projection in shader. However, this is much easier to,
-        read, debug and understand. That said, the following 2 lines is the same as:
-
-        | boatWidth  0            0 |
-        | 1          boatHeight   0 |
-        | x          y            1 |
-        
-        Read more here:
-        https://webglfundamentals.org/webgl/lessons/webgl-2d-matrices.html
-        */
 
         matrix = translate(
           matrix,
