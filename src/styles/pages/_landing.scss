@@ -164,11 +164,22 @@
     padding: 48px 8.6%;
     align-items: center;
     background-color: $grey-0;
+    grid-column-gap: 16px;
+
+    @include media("<=tablet") {
+      padding: 24px 32px;
+      column-gap: 15%;
+    }
 
     &__yarns {
       padding: 40px 32px;
       background-color: $secondary-grey;
       border-radius: 32px;
+
+      @include media("<=tablet") {
+        padding: 20px 16px;
+        border-radius: 16px;
+      }
 
       &__lyric {
         padding: 24px 26px;
@@ -176,26 +187,61 @@
         border-radius: 24px;
         margin-bottom: 32px;
 
+        @include media("<=tablet") {
+          margin-bottom: 24px;
+          border-radius: 12px;
+        }
+
         &__song-deets {
           display: flex;
           align-items: center;
           @include flex-gap(0, 8px);
           margin-bottom: 24px;
+
+          @include media("<=tablet") {
+            @include flex-gap(0, 4px);
+            margin-bottom: 12px;
+          }
         }
 
         &__cover-image {
           @include ratio(1, 1);
           width: 64px;
+
+          @include media("<=tablet") {
+            width: 32px;
+          }
+        }
+
+        &__spotify {
+          @include ratio(32, 103);
+          width: 103px;
+
+          @include media("<=tablet") {
+            width: 51px;
+          }
         }
 
         &__title {
           color: $grey-100;
           @include title-2;
+
+          @include media("<=tablet") {
+            font-size: 12px;
+            font-weight: 500;
+            line-height: normal;
+          }
         }
 
         &__artist {
           color: $grey-100;
           @include body-2;
+
+          @include media("<=tablet") {
+            font-size: 9px;
+            font-weight: 500;
+            line-height: normal;
+          }
         }
 
         &__line {
@@ -214,6 +260,10 @@
               width: 14.741px;
               height: 40px;
               transform: translate(-50%, -50%) rotate(-90deg);
+
+              @include media("<=tablet") {
+                width: 7.31px;
+              }
             }
 
             &::after {
@@ -224,6 +274,12 @@
               transform: translate(-50%, -80%);
             }
           }
+
+          @include media("<=tablet") {
+            font-size: 13px;
+            font-weight: 500;
+            line-height: normal;
+          }
         }
       }
 
@@ -231,17 +287,27 @@
         color: $grey-100;
         @include heading-4;
         margin-bottom: 16px;
+
+        @include media("<=tablet") {
+          @include title-2;
+          margin-bottom: 4px;
+        }
       }
 
       &__subtext {
         color: $grey-70;
         @include title-2;
         margin-bottom: 24px;
+
+        @include media("<=tablet") {
+          @include body-5;
+        }
       }
 
       .c-button {
         background-color: $bg-shade-1;
         color: $grey-20;
+
         svg {
           color: $bg-shade-1;
         }
@@ -255,11 +321,22 @@
       background-color: $bg-shade-1;
       border-radius: 32px;
 
+      @include media("<=tablet") {
+        padding: 20px 0 20px 16px;
+        border-radius: 16px;
+      }
+
       &__title {
         max-width: 450px;
         color: $grey-0;
         @include heading-4;
         margin-bottom: 16px;
+
+        @include media("<=tablet") {
+          @include title-2;
+          margin-bottom: 12px;
+          max-width: 260px;
+        }
       }
 
       &__subtext {
@@ -267,10 +344,18 @@
         color: $grey-30;
         @include title-2;
         margin-bottom: 24px;
+
+        @include media("<=tablet") {
+          @include body-5;
+        }
       }
 
       .c-button {
         margin-bottom: 48px;
+
+        @include media("<=tablet") {
+          margin-bottom: 27px;
+        }
       }
 
       &__topics-row {
@@ -294,6 +379,11 @@
         color: $grey-10;
         @include title-2;
         flex-shrink: 0;
+
+        @include media("<=tablet") {
+          padding: 6px 8px;
+          @include body-5;
+        }
       }
     }
   }
@@ -313,12 +403,22 @@
       @include heading-4;
       color: $grey-0;
       max-width: 550px;
+
+      @include media("<=tablet") {
+        max-width: 353px;
+        @include title-2;
+      }
     }
 
     &__subtext {
       @include title-2;
       color: $grey-40;
       max-width: 452px;
+
+      @include media("<=tablet") {
+        max-width: 248px;
+        @include body-4;
+      }
     }
 
     &__video {
@@ -333,21 +433,39 @@
     flex-direction: column;
     align-items: center;
 
+    @include media("<=tablet") {
+      padding: 51px 0 37px;
+    }
+
     &__count {
       @include heading-2;
       color: $grey-0;
+
+      @include media("<=tablet") {
+        @include heading-5;
+      }
     }
 
     &__speakers-text {
       @include heading-4;
       color: $grey-0;
       margin-bottom: 16px;
+
+      @include media("<=tablet") {
+        @include body-2;
+        margin-bottom: 10px;
+      }
     }
 
     &__subtext {
       color: $grey-40;
       @include title-2;
       margin-bottom: 80px;
+
+      @include media("<=tablet") {
+        @include body-5;
+        margin-bottom: 40px;
+      }
     }
 
     &__speakers {
@@ -367,6 +485,11 @@
       position: relative;
       width: 100%;
 
+      @include media("<=tablet") {
+        margin-top: 44px;
+        height: 22px;
+      }
+
       &__item {
         position: absolute;
         left: 0;
@@ -380,6 +503,13 @@
         @include button-text;
         color: $grey-100;
         width: 100%;
+
+        @include media("<=tablet") {
+          font-size: 8px;
+          font-style: normal;
+          font-weight: 700;
+          width: 101%;
+        }
 
         &.visible {
           transform: rotate(4.05deg);
@@ -402,6 +532,10 @@
     padding: 48px 0 48px 8.6vw;
     background-color: $grey-0;
 
+    @include media("<=tablet") {
+      padding: 32px 0 24px 32px;
+    }
+
     &__top {
       display: flex;
       align-items: flex-end;
@@ -415,11 +549,21 @@
       @include heading-4;
       max-width: 470px;
       margin-bottom: 16px;
+
+      @include media("<=tablet") {
+        @include title-2;
+        max-width: 237px;
+      }
     }
 
     &__description {
       color: $grey-80;
       @include title-2;
+
+      @include media("<=tablet") {
+        @include body-5;
+        max-width: 207px;
+      }
     }
 
     &__cta-button {
@@ -447,6 +591,12 @@
       cursor: pointer;
       transition: 300ms;
 
+      @include media("<=tablet") {
+        padding: 6px 8px;
+        border-radius: 24px;
+        @include body-5;
+      }
+
       &--active {
         color: $grey-10;
         border-color: $bg-shade-1;
@@ -466,6 +616,10 @@
       background-color: $secondary-grey;
       margin: 32px 0;
       border: none;
+
+      @include media("<=tablet") {
+        margin: 16px 0;
+      }
     }
   }
 
@@ -476,12 +630,22 @@
     flex-direction: column;
     align-items: center;
 
+    @include media("<=tablet") {
+      padding: 24px 0 16px;
+    }
+
     &__title {
       max-width: 540px;
       color: $grey-0;
       @include heading-4;
       margin-bottom: 16px;
       text-align: center;
+
+      @include media("<=tablet") {
+        max-width: 270px;
+        @include title-2;
+        margin-bottom: 0;
+      }
     }
 
     &__subtext {
@@ -489,11 +653,21 @@
       color: $grey-40;
       margin-bottom: 16px;
       text-align: center;
+
+      @include media("<=tablet") {
+        max-width: 226px;
+        @include body-5;
+      }
     }
 
     &__questions {
       @include flex-gap(16px, 0);
       max-width: 706px;
+
+      @include media("<=tablet") {
+        max-width: 353px;
+        @include flex-gap(8px, 0);
+      }
     }
   }
 
@@ -510,16 +684,37 @@
       max-width: 540px;
       text-align: center;
       margin-bottom: 16px;
+
+      @include media("<=tablet") {
+        @include title-2;
+      }
+    }
+
+    &__logo {
+      @include ratio(73, 323);
+      width: 323px;
+
+      @include media("<=tablet") {
+        width: 162px;
+      }
     }
 
     &__question {
       margin: 16px 0 32px;
       color: $grey-80;
       @include title-2;
+
+      @include media("<=tablet") {
+        @include body-5;
+      }
     }
 
     &__button {
       height: 84px;
+
+      @include media("<=tablet") {
+        height: 60px;
+      }
     }
   }
 }

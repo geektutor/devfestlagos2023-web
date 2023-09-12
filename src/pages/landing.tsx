@@ -255,7 +255,7 @@ export default function Landing() {
                   (21)
                 </div>
               </div>
-              <SpotifyLyricIcon />
+              <SpotifyLyricIcon className='landing-page__hype__yarns__lyric__spotify' />
             </div>
             <p className='landing-page__hype__yarns__intro'>After an amazing event last year,</p>
             <p className='landing-page__hype__yarns__subtext'>
@@ -416,7 +416,7 @@ export default function Landing() {
           <h4 className='landing-page__no-matter-what__title'>
             We are looking forward to hosting you again at
           </h4>
-          <InviteLogo />
+          <InviteLogo className='landing-page__no-matter-what__logo' />
           <p className='landing-page__no-matter-what__question'>Will you be there?</p>
           <TertiaryButton className='landing-page__no-matter-what__button'>
             I will be there no matter what

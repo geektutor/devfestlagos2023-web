@@ -10,6 +10,10 @@
   border-left: 1px solid #211212;
   flex-shrink: 0;
 
+  @include media("<=tablet") {
+    width: 157px;
+  }
+
   &__image {
     object-fit: cover;
     @include ratio(242, 284);
@@ -30,11 +34,19 @@
     display: flex;
     flex-direction: column;
     align-content: flex-start;
+
+    @include media("<=tablet") {
+      padding: 12px 12px 20px 8px;
+    }
   }
 
   &__fullname {
     @include title-2;
     color: $grey-0;
+
+    @include media("<=tablet") {
+      @include body-4;
+    }
 
     @include media("<=phone") {
       @include title-1;
@@ -44,6 +56,13 @@
   &__company {
     @include body-3;
     color: $grey-30;
+
+    @include media("<=tablet") {
+      font-size: 8px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 11px;
+    }
 
     @include media("<=phone") {
       @include body-2;

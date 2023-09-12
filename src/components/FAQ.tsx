@@ -14,7 +14,7 @@ export default function FAQ(props: FAQProps) {
     <div className='c-faq'>
       <div onClick={() => setShow(!show)} className='c-faq__question'>
         <h4>{props.question}</h4>
-        {show ? <UpArrow /> : <DownArrow />}
+        {show ? <UpArrow className='c-faq__svg' /> : <DownArrow className='c-faq__svg' />}
       </div>
       {show ? (
         <div className='c-faq__answer'>

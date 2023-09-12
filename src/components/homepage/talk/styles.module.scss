@@ -12,6 +12,11 @@
   @include ratio(212, 167);
   width: 167px;
   margin-right: 24px;
+
+  @include media("<=tablet") {
+    width: 83px;
+    margin-right: 12px;
+  }
 }
 
 .category {
@@ -23,6 +28,12 @@
   @include body-2;
   margin-bottom: 16px;
   width: fit-content;
+
+  @include media("<=tablet") {
+    padding: 6px 8px;
+    font-size: 9px;
+    margin-bottom: 8px;
+  }
 }
 
 .title {
@@ -30,6 +41,11 @@
   @include heading-4;
   color: $grey-100;
   margin-bottom: 16px;
+
+  @include media("<=tablet") {
+    @include body-2;
+    margin-bottom: 8px;
+  }
 }
 
 .footer {
@@ -39,6 +55,11 @@
 
   @include body-1;
   color: $grey-70;
+
+  @include media("<=tablet") {
+    @include body-5;
+    @include flex-gap(0, 4px);
+  }
 }
 
 .ellipse {
@@ -48,4 +69,8 @@
   border-radius: 50%;
   display: inline-block;
   flex-shrink: 0;
+
+  @include media("<=tablet") {
+    width: 4px;
+  }
 }

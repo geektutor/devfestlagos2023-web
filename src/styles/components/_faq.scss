@@ -13,12 +13,34 @@
     border-radius: 24px;
     align-items: center;
     justify-content: space-between;
+
+    @include media("<=tablet") {
+      padding: 12px;
+      @include body-5;
+      border-radius: 12px;
+    }
   }
+
   &__answer {
     @include title-2;
     background-color: $grey-0;
     color: $grey-100;
     padding: 25px 24px;
     border-radius: 24px;
+
+    @include media("<=tablet") {
+      padding: 12px;
+      @include body-5;
+
+      border-radius: 12px;
+    }
+  }
+
+  &__svg {
+    width: 32px;
+
+    @include media("<=tablet") {
+      width: 16px;
+    }
   }
 }
