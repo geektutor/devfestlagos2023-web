@@ -35,7 +35,8 @@
   }
 
   @include media("<=phone") {
-    min-width: 350px;
+    max-width: 350px;
+    width: 100%;
 
     &--tertiary {
       background: $secondary-blue;

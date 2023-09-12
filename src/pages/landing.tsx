@@ -250,7 +250,7 @@ export default function Landing() {
                   21
                 </div>
                 , can you do some’ for me?{" "}
-                <div className='twennyone'>
+                <div className='twennyone second'>
                   <Image src={scribbleImage} alt='Scribble' className='scribble' />
                   (21)
                 </div>
@@ -274,10 +274,12 @@ export default function Landing() {
               We have prepared a host of topics and speakers for you! Lots of food and we are not
               talking groceries 🌚
             </p>
-            <PrimaryButton>
-              <span>Register Now</span>
-              <ArrowRight />
-            </PrimaryButton>
+            <div className='landing-page__hype__categories__button-wrapper'>
+              <PrimaryButton>
+                <span>Register Now</span>
+                <ArrowRight />
+              </PrimaryButton>
+            </div>
             {topics.map((topicRow, i) => (
               <div key={i} className='landing-page__hype__categories__topics-row'>
                 {topicRow.map((topic) => (

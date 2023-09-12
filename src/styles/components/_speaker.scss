@@ -14,6 +14,10 @@
     width: 157px;
   }
 
+  @include media("<=phone") {
+    width: 284px;
+  }
+
   &__image {
     object-fit: cover;
     @include ratio(242, 284);
@@ -37,6 +41,10 @@
 
     @include media("<=tablet") {
       padding: 12px 12px 20px 8px;
+    }
+
+    @include media("<=phone") {
+      padding: 24px;
     }
   }
 

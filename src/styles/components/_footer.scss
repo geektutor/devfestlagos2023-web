@@ -10,7 +10,7 @@
 
     @include media("<=phone") {
       flex-direction: column;
-      padding: 40px 0;
+      padding: 40px 24px;
       gap: 48px 0;
     }
   }

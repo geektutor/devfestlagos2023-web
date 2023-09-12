@@ -17,10 +17,22 @@
     padding-top: 82px;
     position: relative;
 
+    @include media("<=phone") {
+      padding-bottom: 260px;
+    }
+
     &__title {
       position: relative;
       width: fit-content;
       margin-bottom: 8px;
+
+      @include media("<=tablet") {
+        margin-bottom: 45px;
+      }
+
+      @include media("<=phone") {
+        margin-bottom: 16px;
+      }
 
       &__text {
         @include heading-1;
@@ -30,7 +42,6 @@
 
         @include media("<=tablet") {
           @include heading-4;
-          margin-bottom: 45px;
         }
       }
 
@@ -49,6 +60,11 @@
           @include body-3;
           transform: translateX(-90%) rotate(-10deg);
         }
+
+        @include media("<=phone") {
+          @include body-2;
+          transform: translateX(-50%) rotate(-10deg);
+        }
       }
     }
 
@@ -63,6 +79,12 @@
         @include body-2;
         margin-bottom: 40px;
         max-width: 397px;
+      }
+
+      @include media("<=phone") {
+        @include body-1;
+        max-width: 382px;
+        margin-bottom: 24px;
       }
     }
 
@@ -80,6 +102,15 @@
       @include media("<=tablet") {
         display: none;
       }
+
+      @include media("<=phone") {
+        display: block;
+        position: relative;
+        bottom: unset;
+        right: unset;
+        width: 84px;
+        margin: 24px 24px 0 auto;
+      }
     }
   }
 
@@ -88,6 +119,9 @@
     flex-direction: column;
     align-items: center;
     padding: 48px 0;
+    position: relative;
+    z-index: 3;
+    background: white;
 
     @include media("<=tablet") {
       padding: 32px 0;
@@ -108,6 +142,12 @@
         @include body-1;
         margin-bottom: 0;
       }
+
+      @include media("<=phone") {
+        @include heading-5;
+        margin-bottom: 8px;
+        max-width: 382px;
+      }
     }
 
     &__subtext {
@@ -120,17 +160,10 @@
         margin-bottom: 16px;
       }
 
-      //.google{
-      //  width: 148px;
-      //}
-      //
-      //.spotify{
-      //  width: 164px;
-      //}
-      //
-      //.spotify{
-      //  width: 164px;
-      //}
+      @include media("<=phone") {
+        @include body-1;
+        margin-bottom: 32px;
+      }
     }
 
     &__sponsors {
@@ -145,6 +178,13 @@
 
       @include media("<=tablet") {
         max-width: 415px;
+      }
+
+      @include media("<=phone") {
+        @include flex-gap(0, 20px);
+        width: 100%;
+        max-width: unset;
+        padding: 0 24px;
       }
 
       svg {
@@ -171,6 +211,14 @@
       column-gap: 15%;
     }
 
+    @media (max-width: 600px) {
+      display: block;
+    }
+
+    @include media("<=phone") {
+      padding: 32px 24px 16px;
+    }
+
     &__yarns {
       padding: 40px 32px;
       background-color: $secondary-grey;
@@ -179,6 +227,11 @@
       @include media("<=tablet") {
         padding: 20px 16px;
         border-radius: 16px;
+      }
+
+      @include media("<=phone") {
+        padding: 16px;
+        border-radius: 32px;
       }
 
       &__lyric {
@@ -192,6 +245,11 @@
           border-radius: 12px;
         }
 
+        @include media("<=phone") {
+          padding: 16px;
+          border-radius: 24px;
+        }
+
         &__song-deets {
           display: flex;
           align-items: center;
@@ -202,6 +260,11 @@
             @include flex-gap(0, 4px);
             margin-bottom: 12px;
           }
+
+          @include media("<=phone") {
+            @include flex-gap(0, 8px);
+            margin-bottom: 16px;
+          }
         }
 
         &__cover-image {
@@ -211,6 +274,10 @@
           @include media("<=tablet") {
             width: 32px;
           }
+
+          @include media("<=phone") {
+            width: 54px;
+          }
         }
 
         &__spotify {
@@ -219,6 +286,10 @@
 
           @include media("<=tablet") {
             width: 51px;
+          }
+
+          @include media("<=phone") {
+            width: 77px;
           }
         }
 
@@ -231,6 +302,10 @@
             font-weight: 500;
             line-height: normal;
           }
+
+          @include media("<=phone") {
+            @include body-2;
+          }
         }
 
         &__artist {
@@ -242,12 +317,26 @@
             font-weight: 500;
             line-height: normal;
           }
+
+          @include media("<=phone") {
+            @include body-3;
+          }
         }
 
         &__line {
           color: $grey-100;
           @include title-1;
           margin-bottom: 24px;
+
+          @include media("<=tablet") {
+            font-size: 13px;
+            font-weight: 500;
+            line-height: normal;
+          }
+
+          @include media("<=phone") {
+            @include body-1;
+          }
 
           .twennyone {
             position: relative;
@@ -273,12 +362,23 @@
               left: 50%;
               transform: translate(-50%, -80%);
             }
-          }
 
-          @include media("<=tablet") {
-            font-size: 13px;
-            font-weight: 500;
-            line-height: normal;
+            &.second {
+              @include media("<=phone") {
+                .scribble {
+                  left: 8px;
+                  transform: translate(0, -50%) rotate(-90deg);
+                }
+
+                &::after {
+                  top: 0;
+                  left: 0;
+                  transform: translate(0, 0);
+                  position: relative;
+                  content: " (23)";
+                }
+              }
+            }
           }
         }
       }
@@ -292,6 +392,11 @@
           @include title-2;
           margin-bottom: 4px;
         }
+
+        @include media("<=phone") {
+          @include heading-5;
+          margin-bottom: 8px;
+        }
       }
 
       &__subtext {
@@ -301,6 +406,12 @@
 
         @include media("<=tablet") {
           @include body-5;
+        }
+
+        @include media("<=phone") {
+          @include body-1;
+          color: $grey-40;
+          margin-bottom: 32px;
         }
       }
 
@@ -326,6 +437,12 @@
         border-radius: 16px;
       }
 
+      @include media("<=phone") {
+        margin-top: 24px;
+        padding: 16px 0 0px;
+        border-radius: 32px;
+      }
+
       &__title {
         max-width: 450px;
         color: $grey-0;
@@ -337,6 +454,13 @@
           margin-bottom: 12px;
           max-width: 260px;
         }
+
+        @include media("<=phone") {
+          padding: 0 16px;
+          max-width: unset;
+          @include heading-5;
+          margin-bottom: 8px;
+        }
       }
 
       &__subtext {
@@ -347,6 +471,18 @@
 
         @include media("<=tablet") {
           @include body-5;
+        }
+
+        @include media("<=tablet") {
+          @include body-1;
+          margin-bottom: 32px;
+          padding: 0 16px;
+        }
+      }
+
+      &__button-wrapper {
+        @include media("<=phone") {
+          padding: 0 16px;
         }
       }
 
@@ -368,6 +504,14 @@
 
         & + & {
           margin-top: 16px;
+        }
+
+        @include media("<=phone") {
+          @include flex-gap(0, 8px);
+
+          & + & {
+            margin-top: 8px;
+          }
         }
       }
 
@@ -392,11 +536,26 @@
     padding: 48px 8.6%;
     background-color: $bg-shade-1;
 
+    @include media("<=tablet") {
+      padding: 24px 44px;
+    }
+
+    @include media("<=phone") {
+      padding: 16px 24px;
+    }
+
     &__top {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 48px;
+
+      @include media("<=phone") {
+        flex-direction: column;
+        @include flex-gap(8px, 0);
+        margin-bottom: 32px;
+        align-items: flex-start;
+      }
     }
 
     &__title {
@@ -407,6 +566,11 @@
       @include media("<=tablet") {
         max-width: 353px;
         @include title-2;
+      }
+
+      @include media("<=phone") {
+        max-width: unset;
+        @include heading-5;
       }
     }
 
@@ -419,11 +583,20 @@
         max-width: 248px;
         @include body-4;
       }
+
+      @include media("<=phone") {
+        max-width: unset;
+        @include body-1;
+      }
     }
 
     &__video {
       @include ratio(669, 1191);
       width: 100%;
+
+      @include media("<=phone") {
+        @include ratio(288, 382);
+      }
     }
   }
 
@@ -437,12 +610,20 @@
       padding: 51px 0 37px;
     }
 
+    @include media("<=tablet") {
+      padding-bottom: 40px;
+    }
+
     &__count {
       @include heading-2;
       color: $grey-0;
 
       @include media("<=tablet") {
         @include heading-5;
+      }
+
+      @include media("<=phone") {
+        @include heading-4;
       }
     }
 
@@ -455,6 +636,11 @@
         @include body-2;
         margin-bottom: 10px;
       }
+
+      @include media("<=phone") {
+        @include heading-5;
+        margin-bottom: 8px;
+      }
     }
 
     &__subtext {
@@ -465,6 +651,11 @@
       @include media("<=tablet") {
         @include body-5;
         margin-bottom: 40px;
+      }
+
+      @include media("<=phone") {
+        @include body-1;
+        margin-bottom: 52px;
       }
     }
 
@@ -477,6 +668,10 @@
       overflow: hidden;
       flex-wrap: nowrap;
       margin-bottom: 48px;
+
+      @include media("<=phone") {
+        margin-bottom: 32px;
+      }
     }
 
     &__hype-banner {
@@ -488,6 +683,11 @@
       @include media("<=tablet") {
         margin-top: 44px;
         height: 22px;
+      }
+
+      @include media("<=phone") {
+        margin-top: 86px;
+        height: 44px;
       }
 
       &__item {
@@ -511,14 +711,28 @@
           width: 101%;
         }
 
+        @include media("<=phone") {
+          @include button-text;
+          width: 107%;
+          left: -15px;
+        }
+
         &.visible {
           transform: rotate(4.05deg);
           z-index: 2;
+
+          @include media("<=phone") {
+            transform: rotate(15deg);
+          }
         }
 
         &.faded {
           transform: rotate(-4.05deg);
           opacity: 0.2;
+
+          @include media("<=phone") {
+            transform: rotate(-15deg);
+          }
         }
 
         span {
@@ -536,12 +750,23 @@
       padding: 32px 0 24px 32px;
     }
 
+    @include media("<=phone") {
+      padding: 24px 0 24px 16px;
+    }
+
     &__top {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
       margin-bottom: 48px;
       padding-right: 8.6vw;
+
+      @include media("<=phone") {
+        flex-direction: column;
+        padding-right: 32px;
+        align-items: flex-start;
+        margin-bottom: 32px;
+      }
     }
 
     &__title {
@@ -554,6 +779,11 @@
         @include title-2;
         max-width: 237px;
       }
+
+      @include media("<=phone") {
+        @include heading-5;
+        max-width: unset;
+      }
     }
 
     &__description {
@@ -564,6 +794,11 @@
         @include body-5;
         max-width: 207px;
       }
+
+      @include media("<=phone") {
+        @include body-1;
+        max-width: unset;
+      }
     }
 
     &__cta-button {
@@ -573,13 +808,17 @@
       svg {
         color: $bg-shade-1;
       }
+
+      @include media("<=phone") {
+        display: none;
+      }
     }
 
     &__tags {
       display: flex;
-      flex-wrap: nowrap;
       @include flex-gap(0, 16px);
       margin-bottom: 48px;
+      flex-wrap: nowrap;
     }
 
     &__tag {
@@ -590,11 +829,18 @@
       @include title-2;
       cursor: pointer;
       transition: 300ms;
+      flex-shrink: 0;
 
       @include media("<=tablet") {
         padding: 6px 8px;
         border-radius: 24px;
         @include body-5;
+      }
+
+      @include media("<=phone") {
+        padding: 8px;
+        border-radius: 48px;
+        @include body-2;
       }
 
       &--active {
@@ -606,6 +852,10 @@
 
     &__talks {
       padding-right: 8.6vw;
+
+      @include media("<=phone") {
+        padding-right: 16px;
+      }
     }
 
     &__divider {
@@ -619,6 +869,10 @@
 
       @include media("<=tablet") {
         margin: 16px 0;
+      }
+
+      @include media("<=phone") {
+        margin: 24px 0;
       }
     }
   }
@@ -634,6 +888,10 @@
       padding: 24px 0 16px;
     }
 
+    @include media("<=phone") {
+      padding: 24px 24px 20px;
+    }
+
     &__title {
       max-width: 540px;
       color: $grey-0;
@@ -646,6 +904,13 @@
         @include title-2;
         margin-bottom: 0;
       }
+
+      @include media("<=phone") {
+        max-width: unset;
+        @include heading-5;
+        margin-bottom: 8px;
+        text-align: left;
+      }
     }
 
     &__subtext {
@@ -653,10 +918,18 @@
       color: $grey-40;
       margin-bottom: 16px;
       text-align: center;
+      @include title-2;
 
       @include media("<=tablet") {
         max-width: 226px;
         @include body-5;
+      }
+
+      @include media("<=phone") {
+        margin-bottom: 24px;
+        @include body-1;
+        max-width: unset;
+        text-align: left;
       }
     }
 
@@ -668,6 +941,11 @@
         max-width: 353px;
         @include flex-gap(8px, 0);
       }
+
+      @include media("<=tablet") {
+        max-width: unset;
+        @include flex-gap(16px, 0);
+      }
     }
   }
 
@@ -677,6 +955,10 @@
     align-items: center;
     background-color: $secondary-grey;
     padding: 48px 0;
+
+    @include media("<=phone") {
+      padding: 16px 24px;
+    }
 
     &__title {
       @include heading-4;
@@ -688,6 +970,11 @@
       @include media("<=tablet") {
         @include title-2;
       }
+
+      @include media("<=phone") {
+        @include heading-5;
+        margin-bottom: 24px;
+      }
     }
 
     &__logo {
@@ -696,6 +983,10 @@
 
       @include media("<=tablet") {
         width: 162px;
+      }
+
+      @include media("<=phone") {
+        width: 215px;
       }
     }
 
@@ -706,6 +997,10 @@
 
       @include media("<=tablet") {
         @include body-5;
+      }
+
+      @include media("<=phone") {
+        @include body-1;
       }
     }
 

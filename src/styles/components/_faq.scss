@@ -19,6 +19,12 @@
       @include body-5;
       border-radius: 12px;
     }
+
+    @include media("<=phone") {
+      padding: 16px;
+      @include body-2;
+      border-radius: 24px;
+    }
   }
 
   &__answer {
@@ -34,6 +40,12 @@
 
       border-radius: 12px;
     }
+
+    @include media("<=phone") {
+      padding: 16px;
+      @include body-2;
+      border-radius: 24px;
+    }
   }
 
   &__svg {
@@ -41,6 +53,11 @@
 
     @include media("<=tablet") {
       width: 16px;
+    }
+
+    @include media("<=phone") {
+      width: 32px;
+      margin-left: 32px;
     }
   }
 }
