@@ -1,4 +1,7 @@
 .landing-page {
+  width: 100vw;
+  overflow: hidden;
+
   &__menu {
     height: 100px;
     width: 100%;
@@ -24,6 +27,11 @@
         line-height: 64px;
         color: $grey-0;
         text-align: center;
+
+        @include media("<=tablet") {
+          @include heading-4;
+          margin-bottom: 45px;
+        }
       }
 
       &__presents {
@@ -36,6 +44,11 @@
         bottom: calc(100% - 8px);
         transform: translateX(-50%) rotate(-10deg);
         width: max-content;
+
+        @include media("<=tablet") {
+          @include body-3;
+          transform: translateX(-90%) rotate(-10deg);
+        }
       }
     }
 
@@ -45,6 +58,12 @@
       margin-bottom: 32px;
       max-width: 452px;
       text-align: center;
+
+      @include media("<=tablet") {
+        @include body-2;
+        margin-bottom: 40px;
+        max-width: 397px;
+      }
     }
 
     &__sponsor-cta {
@@ -57,6 +76,10 @@
       img {
         width: 100%;
       }
+
+      @include media("<=tablet") {
+        display: none;
+      }
     }
   }
 
@@ -65,6 +88,10 @@
     flex-direction: column;
     align-items: center;
     padding: 48px 0;
+
+    @include media("<=tablet") {
+      padding: 32px 0;
+    }
 
     &__title {
       color: $grey-0;
@@ -76,12 +103,34 @@
       .green {
         color: $primary-green;
       }
+
+      @include media("<=tablet") {
+        @include body-1;
+        margin-bottom: 0;
+      }
     }
 
     &__subtext {
       color: $grey-40;
       @include title-2;
       margin-bottom: 62px;
+
+      @include media("<=tablet") {
+        @include body-5;
+        margin-bottom: 16px;
+      }
+
+      //.google{
+      //  width: 148px;
+      //}
+      //
+      //.spotify{
+      //  width: 164px;
+      //}
+      //
+      //.spotify{
+      //  width: 164px;
+      //}
     }
 
     &__sponsors {
@@ -89,6 +138,23 @@
       @include flex-gap(0, 48px);
       align-items: center;
       justify-content: center;
+      flex-wrap: nowrap;
+      max-width: 770px;
+      margin: 0 auto;
+      width: 80%;
+
+      @include media("<=tablet") {
+        max-width: 415px;
+      }
+
+      svg {
+        flex-grow: 1;
+        height: 48px;
+
+        @include media("<=tablet") {
+          height: 26px;
+        }
+      }
     }
   }
 
@@ -313,6 +379,7 @@
         align-items: center;
         @include button-text;
         color: $grey-100;
+        width: 100%;
 
         &.visible {
           transform: rotate(4.05deg);

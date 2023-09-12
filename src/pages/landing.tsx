@@ -20,6 +20,7 @@ import { classNames } from "@/utils/classNames";
 import { HomepageTalk } from "@/components/homepage/talk/talk";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/footer";
+import Menu from "@/components/menu/menu";
 
 const topics = [
   [
@@ -199,7 +200,7 @@ export default function Landing() {
         image='/og-images/coming-soon.png'
       />
       <div className='landing-page'>
-        <nav className='landing-page__menu'></nav>
+        <Menu />
         <section className='landing-page__intro'>
           <div className='landing-page__intro__title'>
             <h1 className='landing-page__intro__title__text'>
