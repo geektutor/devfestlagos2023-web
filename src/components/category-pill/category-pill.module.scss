@@ -1,0 +1,25 @@
+@import "../../styles/utils/mixins";
+@import "../../styles/utils/breakpoints";
+@import "../../styles/core/typography";
+@import "../../styles/core/variables";
+
+.categoryPill {
+  padding: 12px 16px;
+  border: 1.5px solid $grey-40;
+  color: $grey-60;
+  border-radius: 48px;
+  background: transparent;
+  width: fit-content;
+  @include title-2;
+
+  &.active {
+    border-color: var(--active-bg-color);
+    background: var(--active-bg-color);
+    color: var(--active-text-color);
+  }
+
+  @include media("<=phone") {
+    padding: 8px;
+    @include body-2;
+  }
+}
