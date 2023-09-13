@@ -3,6 +3,8 @@ import { classNames } from "@/utils/classNames";
 import { Talk } from "@/components/homepage/talk/talk";
 import { talks } from "@/mock-data";
 import styles from "./talks.module.scss";
+import { PrimaryButton } from "@/components/button";
+import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 
 const talkCategories = ["All Talks", "Design", "Blockchain", "Mobile Development"] as const;
 
@@ -36,22 +38,27 @@ export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
           <p className={styles.talksTitle}>Talks across all areas of tech</p>
           <p className={styles.talksDescription}>There is something for everyone</p>
         </div>
-        {hasDayToggle && (
+        {hasDayToggle ? (
           <div className={classNames(styles.talksDayToggle, activeDay === 2 && styles.active)}>
             <span className={styles.talksDayLine} />
             <button
               className={classNames(styles.talksDay, activeDay === 1 && styles.active)}
               onClick={() => setActiveDay(1)}
             >
-              Day 1
+              Friday
             </button>
             <button
               className={classNames(styles.talksDay, activeDay === 2 && styles.active)}
               onClick={() => setActiveDay(2)}
             >
-              Day 2
+              Saturday
             </button>
           </div>
+        ) : (
+          <PrimaryButton className={styles.talksCtaButton} href='/schedule'>
+            <span>View All Talks</span>
+            <ArrowRightDark />
+          </PrimaryButton>
         )}
       </div>
       <div className={styles.talksTags}>

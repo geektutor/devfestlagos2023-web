@@ -7,6 +7,8 @@ type Props = {
   talk: TalkType;
 };
 
+const getDayText = (day: 1 | 2) => (day === 1 ? "24th Novemeber" : "25th November");
+
 export const Talk: FC<Props> = ({ talk }) => {
   return (
     <article className={styles.talk}>
@@ -19,7 +21,12 @@ export const Talk: FC<Props> = ({ talk }) => {
         />
       </div>
       <div>
-        <p className={styles.category}>{talk.category}</p>
+        <div className={styles.pills}>
+          <p className={styles.category}>{talk.category}</p>
+          <p className={styles.date}>
+            {getDayText(talk.speaker.day)}, {talk.date}
+          </p>
+        </div>
         <p className={styles.title}>{talk.title}</p>
         <div className={styles.footer}>
           <span>{talk.speaker.name}</span>
