@@ -1,6 +1,6 @@
 import { SEO } from "@/components/seo";
 import React, { useEffect, useState } from "react";
-import { PrimaryButton, TertiaryButton } from "@/components/button";
+import { PrimaryButton } from "@/components/button";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import { HomepageScene } from "@/components/homepage/scene/scene";
 import sponsorImage from "@/images/landing/sponsor.png";
@@ -12,7 +12,6 @@ import FacebookIcon from "@/images/landing/sponsor/facebook.svg";
 import songCoverImage from "@/images/landing/song-cover.png";
 import SpotifyLyricIcon from "@/images/landing/spotify.svg";
 import scribbleImage from "@/images/landing/scribble.png";
-import InviteLogo from "@/images/landing/logo.svg";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 import recapDoodleImage from "@/images/landing/recap-doodle.png";
 import SpeakerCard from "@/components/speaker/speaker";
@@ -24,6 +23,7 @@ import { Talks } from "@/components/talks-section/talks";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import CategoryPill from "@/components/category-pill/category-pill";
 import FaqSection from "@/components/faq-section/faq-section";
+import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
 
 const topics = [
   [
@@ -273,16 +273,7 @@ export default function Landing() {
         </section>
         <Talks />
         <FaqSection />
-        <section className='landing-page__no-matter-what'>
-          <h4 className='landing-page__no-matter-what__title'>
-            We are looking forward to hosting you again at
-          </h4>
-          <InviteLogo className='landing-page__no-matter-what__logo' />
-          <p className='landing-page__no-matter-what__question'>Will you be there?</p>
-          <TertiaryButton className='landing-page__no-matter-what__button'>
-            I will be there no matter what
-          </TertiaryButton>
-        </section>
+        <NoMatterWhat />
         <Footer />
       </div>
     </>
