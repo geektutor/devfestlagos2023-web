@@ -18,7 +18,7 @@ import recapDoodleImage from "@/images/landing/recap-doodle.png";
 import SpeakerCard from "@/components/speaker";
 import { classNames } from "@/utils/classNames";
 import { HomepageTalk } from "@/components/homepage/talk/talk";
-import FAQ from "@/components/FAQ";
+import FAQ from "@/components/faq/FAQ";
 import Footer from "@/components/footer";
 import Menu from "@/components/menu/menu";
 
