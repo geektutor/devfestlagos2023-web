@@ -79,10 +79,10 @@ export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
       </div>
       <div className={styles.talksGrid}>
         {validTalks.map((talk, index) => (
-          <>
+          <div key={index}>
             <Talk talk={talk} key={index} />
             {index < talks.length - 1 && <hr className={styles.talksDivider} />}
-          </>
+          </div>
         ))}
       </div>
     </section>
