@@ -225,7 +225,7 @@ export default function Landing() {
             </p>
           </div>
           <div className='landing-page__recap__video'>
-            <Image src={recapDoodleImage} alt='Recap' layout='fill' />
+            <Image src={recapDoodleImage} alt='Recap' fill />
           </div>
         </section>
         <section className='landing-page__speakers'>

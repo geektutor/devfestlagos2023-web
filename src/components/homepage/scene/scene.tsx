@@ -11,8 +11,8 @@ export const HomepageScene = () => {
         className={styles.image}
         src={scene}
         alt='DevFest Lagos 2023'
-        layout='fill'
-        objectFit='cover'
+        fill
+        style={{ objectFit: "cover" }}
       />
     </div>
   );
