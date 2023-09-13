@@ -13,6 +13,7 @@ import { PrimaryButton, SecondaryButton } from "@/components/button";
 import { createPortal } from "react-dom";
 import { classNames } from "@/utils/classNames";
 import { Speaker } from "@/types/Speaker";
+import CategoryPill from "@/components/category-pill/category-pill";
 
 interface SpeakerCardProps {
   modalIsOpen?: boolean;
@@ -79,10 +80,12 @@ export default function SpeakerCard({
           </div>
         </div>
         <div className={styles.modalTags}>
-          <span className={styles.modalCategory}>{speaker.talk.category}</span>
-          <span className={styles.modalDay}>
-            {getDayText(speaker.day)}, ${speaker.talk.date}
-          </span>
+          <CategoryPill className={styles.modalCategory} isSmall>
+            {speaker.talk.category}
+          </CategoryPill>
+          <CategoryPill isSmall isActive activeBgColor='#34a853' activeTextColor='#FFF'>
+            {getDayText(speaker.day)}, {speaker.talk.date}
+          </CategoryPill>
         </div>
         <h3 className={styles.modalTitle}>{speaker.talk.title}</h3>
         <p className={styles.modalDescription}>{speaker.talk.description}</p>

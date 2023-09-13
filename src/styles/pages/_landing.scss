@@ -517,12 +517,12 @@
       }
 
       &__topic {
-        display: flex;
-        padding: 12px 16px;
-        border-radius: 48px;
+        //display: flex;
+        //padding: 12px 16px;
+        //border-radius: 48px;
         @include flex-gap(0, 8px);
         color: $grey-10;
-        @include title-2;
+        //@include title-2;
         flex-shrink: 0;
 
         @include media("<=tablet") {

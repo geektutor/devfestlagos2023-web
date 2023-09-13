@@ -274,32 +274,14 @@
   }
 }
 
-%tag {
-  height: 48px;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  border-radius: 48px;
-  @include body-2;
-}
-
 .modalCategory {
-  @extend %tag;
-  color: $grey-20;
+  color: $grey-20 !important;
   margin-right: 8px;
-  border: 2px solid $grey-20;
-  background: $bg-shade-1;
 
   @include media("<=tablet") {
     margin-right: 0;
     margin-bottom: 8px;
   }
-}
-
-.modalDay {
-  @extend %tag;
-  color: $grey-100;
-  background: $primary-green;
 }
 
 .modalTitle {

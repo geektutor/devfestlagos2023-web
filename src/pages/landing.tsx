@@ -23,6 +23,7 @@ import { speakers } from "@/mock-data";
 import { Speaker } from "@/types/Speaker";
 import { Talks } from "@/components/talks-section/talks";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import CategoryPill from "@/components/category-pill/category-pill";
 
 const topics = [
   [
@@ -200,14 +201,15 @@ export default function Landing() {
             {topics.map((topicRow, i) => (
               <div key={i} className='landing-page__hype__categories__topics-row'>
                 {topicRow.map((topic) => (
-                  <div
+                  <CategoryPill
+                    isActive
+                    activeBgColor={topic.color}
                     key={topic.topic}
                     className='landing-page__hype__categories__topic'
-                    style={{ background: topic.color }}
                   >
                     <span>{topic.emoji}</span>
                     <span>{topic.topic}</span>
-                  </div>
+                  </CategoryPill>
                 ))}
               </div>
             ))}

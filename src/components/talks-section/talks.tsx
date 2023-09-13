@@ -5,6 +5,7 @@ import { talks } from "@/mock-data";
 import styles from "./talks.module.scss";
 import { PrimaryButton } from "@/components/button";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
+import CategoryPill from "@/components/category-pill/category-pill";
 
 const talkCategories = ["All Talks", "Design", "Blockchain", "Mobile Development"] as const;
 
@@ -63,16 +64,17 @@ export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
       </div>
       <div className={styles.talksTags}>
         {talkCategories.map((category) => (
-          <p
+          <CategoryPill
             key={category}
             className={classNames(
               styles.talksTag,
               activeCategory === category && styles.talksTagActive,
             )}
+            isActive={activeCategory === category}
             onClick={() => setActiveCategory(category)}
           >
             {category}
-          </p>
+          </CategoryPill>
         ))}
       </div>
       <div className={styles.talksGrid}>

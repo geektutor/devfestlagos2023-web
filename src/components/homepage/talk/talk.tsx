@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import Image from "next/image";
 import styles from "./talk.module.scss";
 import { TalkType } from "@/types/Talk";
+import CategoryPill from "@/components/category-pill/category-pill";
 
 type Props = {
   talk: TalkType;
@@ -22,10 +23,12 @@ export const Talk: FC<Props> = ({ talk }) => {
       </div>
       <div>
         <div className={styles.pills}>
-          <p className={styles.category}>{talk.category}</p>
-          <p className={styles.date}>
+          <CategoryPill isSmall className={styles.category}>
+            {talk.category}
+          </CategoryPill>
+          <CategoryPill activeBgColor='#FDE293' isActive isSmall>
             {getDayText(talk.speaker.day)}, {talk.date}
-          </p>
+          </CategoryPill>
         </div>
         <p className={styles.title}>{talk.title}</p>
         <div className={styles.footer}>
