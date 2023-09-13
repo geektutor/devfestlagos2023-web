@@ -1,5 +1,5 @@
 import { SEO } from "@/components/seo";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PrimaryButton, TertiaryButton } from "@/components/button";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import { HomepageScene } from "@/components/homepage/scene/scene";
@@ -22,6 +22,7 @@ import Menu from "@/components/menu/menu";
 import { speakers } from "@/mock-data";
 import { Speaker } from "@/types/Speaker";
 import { Talks } from "@/components/talks-section/talks";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 const topics = [
   [
@@ -101,6 +102,11 @@ export default function Landing() {
       setActiveSpeaker(speakers[index - 1]);
     }
   };
+
+  useEffect(() => {
+    if (!activeSpeaker) enableBodyScroll(document.body);
+    else disableBodyScroll(document.body);
+  }, [activeSpeaker]);
 
   return (
     <>
