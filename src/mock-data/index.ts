@@ -1,7 +1,7 @@
 import _speakers from "./speakers.json";
 import _talks from "./talks.json";
 import { Speaker } from "@/types/Speaker";
-import { Talk } from "@/types/Talk";
+import { TalkType } from "@/types/Talk";
 
 export const speakers: Array<Speaker> = _speakers.map((_speaker) => {
   const speaker = _speaker as Speaker;
@@ -9,11 +9,11 @@ export const speakers: Array<Speaker> = _speakers.map((_speaker) => {
 
   return {
     ...speaker,
-    talk: talk as Talk,
+    talk: talk as TalkType,
   };
 });
-export const talks: Array<Talk> = _talks.map((_talk) => {
-  const talk = _talk as Talk;
+export const talks: Array<TalkType> = _talks.map((_talk) => {
+  const talk = _talk as TalkType;
   const speaker = _speakers.find((speaker) => speaker.id === talk.speakerId);
 
   return {

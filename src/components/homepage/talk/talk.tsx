@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import Image from "next/image";
 import styles from "./styles.module.scss";
-import { Talk } from "@/types/Talk";
+import { TalkType } from "@/types/Talk";
 
 type Props = {
-  talk: Talk;
+  talk: TalkType;
 };
 
-export const HomepageTalk: FC<Props> = ({ talk }) => {
+export const Talk: FC<Props> = ({ talk }) => {
   return (
     <article className={styles.talk}>
       <div className={styles.portrait}>

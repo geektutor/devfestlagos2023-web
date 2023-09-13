@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { PrimaryButton } from "@/components/button";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 import { classNames } from "@/utils/classNames";
-import { HomepageTalk } from "@/components/homepage/talk/talk";
+import { Talk } from "@/components/homepage/talk/talk";
 import { talks } from "@/mock-data";
 import styles from "./talks.module.scss";
 
@@ -47,10 +47,10 @@ export const Talks = () => {
           </p>
         ))}
       </div>
-      <div className={styles.talksTalks}>
+      <div className={styles.talksGrid}>
         {validTalks.map((talk, index) => (
           <>
-            <HomepageTalk talk={talk} key={index} />
+            <Talk talk={talk} key={index} />
             {index < talks.length - 1 && <hr className={styles.talksDivider} />}
           </>
         ))}

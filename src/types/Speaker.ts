@@ -1,4 +1,4 @@
-import { Talk } from "@/types/Talk";
+import { TalkType } from "@/types/Talk";
 
 export type Speaker = {
   id: number;
@@ -13,5 +13,5 @@ export type Speaker = {
     instagram?: string | undefined;
     website?: string | undefined;
   };
-  talk: Talk;
+  talk: TalkType;
 };
