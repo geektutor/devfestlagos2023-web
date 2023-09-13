@@ -1,23 +1,72 @@
 [
   {
-    "portraitUrl": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693568774/Devfest/img_vf2tey.png",
+    "title": "Designing for the Future",
+    "description": "Explore the latest trends in design and how to create user-centric products.",
     "category": "Design",
-    "title": "Insights from Gotham: The Future of Flutter on the Web",
-    "name": "Samuel Adekunle",
-    "role": "Software Engineer"
+    "speakerId": 7,
+    "date": "10:00 AM"
   },
   {
-    "portraitUrl": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693568774/Devfest/img_2_xagds7.png",
+    "title": "Blockchain: The Next Revolution",
+    "description": "Dive deep into the world of blockchain and its potential impact on various industries.",
     "category": "Blockchain",
-    "title": "The importance of research and giving designers time",
-    "name": "Louis Paqet",
-    "role": "Senior Interaction Designer"
+    "speakerId": 9,
+    "date": "11:00 AM"
   },
   {
-    "portraitUrl": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693568774/Devfest/img_1_bhm5zz.png",
+    "title": "Mobile First: Building Responsive Apps",
+    "description": "Learn the best practices for building mobile-first applications and ensuring a seamless user experience.",
     "category": "Mobile Development",
-    "title": "Growth Mindset: How to hack product growth",
-    "name": "Sodiq Akinjobi",
-    "role": "Senior Product Manager, Google"
+    "speakerId": 6,
+    "date": "12:00 PM"
+  },
+  {
+    "title": "The Art of UI/UX",
+    "description": "Discover the principles of creating intuitive and engaging user interfaces.",
+    "category": "Design",
+    "speakerId": 10,
+    "date": "1:00 PM"
+  },
+  {
+    "title": "Decentralized Finance with Blockchain",
+    "description": "Understand the rise of DeFi and how blockchain is revolutionizing the financial sector.",
+    "category": "Blockchain",
+    "speakerId": 8,
+    "date": "2:00 PM"
+  },
+  {
+    "title": "Cross-Platform Mobile Development",
+    "description": "Explore tools and frameworks for developing apps that work seamlessly across different platforms.",
+    "category": "Mobile Development",
+    "speakerId": 5,
+    "date": "3:00 PM"
+  },
+  {
+    "title": "Design Thinking in Action",
+    "description": "A hands-on workshop on implementing design thinking in your projects for better outcomes.",
+    "category": "Design",
+    "speakerId": 4,
+    "date": "8:00 AM"
+  },
+  {
+    "title": "Smart Contracts and Blockchain",
+    "description": "An introduction to creating secure and efficient smart contracts on the blockchain.",
+    "category": "Blockchain",
+    "speakerId": 3,
+    "date": "9:00 AM"
+  },
+  {
+    "title": "Optimizing Mobile App Performance",
+    "description": "Tips and tricks to ensure your mobile apps run smoothly and efficiently.",
+    "category": "Mobile Development",
+    "speakerId": 2,
+    "date": "4:00 PM"
+  },
+  {
+    "title": "Innovative Design Solutions",
+    "description": "Showcasing groundbreaking design techniques for the modern web.",
+    "category": "Design",
+    "speakerId": 1,
+    "date": "8:30 AM"
   }
 ]

@@ -1,5 +1,5 @@
 import { SEO } from "@/components/seo";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { PrimaryButton, TertiaryButton } from "@/components/button";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import { HomepageScene } from "@/components/homepage/scene/scene";
@@ -21,8 +21,7 @@ import { HomepageTalk } from "@/components/homepage/talk/talk";
 import FAQ from "@/components/faq/FAQ";
 import Footer from "@/components/footer";
 import Menu from "@/components/menu/menu";
-import { speakers } from "@/mock-data";
-import talks from "@/mock-data/talks.json";
+import { speakers, talks } from "@/mock-data";
 import { Speaker } from "@/types/Speaker";
 
 const topics = [
@@ -118,6 +117,14 @@ export default function Landing() {
       setActiveSpeaker(speakers[index - 1]);
     }
   };
+
+  const validTalks = useMemo(() => {
+    if (activeCategory === "All Talks") {
+      return talks.slice(0, 3);
+    }
+
+    return talks.filter((talk) => talk.category === activeCategory).slice(0, 3);
+  }, [activeCategory]);
 
   return (
     <>
@@ -306,15 +313,9 @@ export default function Landing() {
             ))}
           </div>
           <div className='landing-page__talks__talks'>
-            {talks.map((talk, index) => (
+            {validTalks.map((talk, index) => (
               <>
-                <HomepageTalk
-                  portraitUrl={talk.portraitUrl}
-                  category={talk.category}
-                  title={talk.title}
-                  name={talk.name}
-                  role={talk.role}
-                />
+                <HomepageTalk talk={talk} key={index} />
                 {index < talks.length - 1 && <hr className='landing-page__talks__divider' />}
               </>
             ))}

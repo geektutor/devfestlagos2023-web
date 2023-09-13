@@ -1,3 +1,5 @@
+import { Talk } from "@/types/Talk";
+
 export type Speaker = {
   id: number;
   image: string;
@@ -11,4 +13,5 @@ export type Speaker = {
     instagram?: string | undefined;
     website?: string | undefined;
   };
+  talk: Talk;
 };
