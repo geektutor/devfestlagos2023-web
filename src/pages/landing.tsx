@@ -15,7 +15,7 @@ import scribbleImage from "@/images/landing/scribble.png";
 import InviteLogo from "@/images/landing/logo.svg";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 import recapDoodleImage from "@/images/landing/recap-doodle.png";
-import SpeakerCard from "@/components/speaker";
+import SpeakerCard from "@/components/speaker/speaker";
 import { classNames } from "@/utils/classNames";
 import { HomepageTalk } from "@/components/homepage/talk/talk";
 import FAQ from "@/components/faq/FAQ";

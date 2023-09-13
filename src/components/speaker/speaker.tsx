@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import styles from "./speaker.module.scss";
 
 interface SpeakerCardProps {
   imageSrc: string;
@@ -11,20 +12,23 @@ interface SpeakerCardProps {
 
 export default function SpeakerCard(props: SpeakerCardProps) {
   return (
-    <div className='c-speaker'>
-      <div className='c-speaker__image'>
-        <Image className='c-speaker__image__inner' src={props.imageSrc} alt={props.fullname} fill />
+    <div className={styles.speaker}>
+      <div className={styles.speakerImage}>
+        <Image
+          className={styles.speakerImageInner}
+          src={props.imageSrc}
+          alt={props.fullname}
+          fill
+        />
       </div>
       <div
-        className='c-speaker__text__container'
+        className={styles.speakerTextContainer}
         style={{
           backgroundColor: props.backgroundColor,
         }}
       >
-        <h3 className='c-speaker__fullname'>
-          <strong>{props.fullname}</strong>
-        </h3>
-        <h4 className='c-speaker__company'>
+        <h3 className={styles.speakerFullName}>{props.fullname}</h3>
+        <h4 className={styles.speakerCompany}>
           {props.role}, <span>{props.company}</span>
         </h4>
       </div>
