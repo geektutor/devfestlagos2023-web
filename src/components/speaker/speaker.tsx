@@ -24,6 +24,8 @@ interface SpeakerCardProps {
   speaker: Speaker;
 }
 
+const getDayText = (day: 1 | 2) => (day === 1 ? "24th Novemeber" : "25th November");
+
 export default function SpeakerCard({
   speaker,
   onClick,
@@ -77,17 +79,13 @@ export default function SpeakerCard({
           </div>
         </div>
         <div className={styles.modalTags}>
-          <span className={styles.modalCategory}>Product Design</span>
-          <span className={styles.modalDay}>Friday, 2:00 PM</span>
+          <span className={styles.modalCategory}>{speaker.talk.category}</span>
+          <span className={styles.modalDay}>
+            {getDayText(speaker.day)}, ${speaker.talk.date}
+          </span>
         </div>
-        <h3 className={styles.modalTitle}>The importance of research and giving designers time</h3>
-        <p className={styles.modalDescription}>
-          With more than 10 years of design experience under my belt, I’ve been fortunate enough to
-          work alongside a bunch of passionate people from around the world, always with a single
-          goal in mind: To create awesome interactive experiences. Over the last couple of years,
-          many of my projects have been featured on sites like Awwwards, Webby Awards, Applied Art
-          and FWA.
-        </p>
+        <h3 className={styles.modalTitle}>{speaker.talk.title}</h3>
+        <p className={styles.modalDescription}>{speaker.talk.description}</p>
         <div className={styles.modalButtons}>
           {hasPrevious && (
             <SecondaryButton onClick={() => onClickButton("previous")}>
