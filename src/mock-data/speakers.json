@@ -1,0 +1,50 @@
+[
+  {
+    "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527007/Devfest/img_clc5ww.png",
+    "name": "Daniele Buffa",
+    "role": "Design Lead",
+    "company": "O2 Labs",
+    "backgroundColor": "#F6EEEE",
+    "id": "1"
+  },
+  {
+    "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_1_fgdbdu.png",
+    "name": "Omo Ologo 10G",
+    "role": "Senior Product Manager",
+    "company": "Google",
+    "backgroundColor": "#EEF3F6",
+    "id": "2"
+  },
+  {
+    "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_2_jxcxt0.png",
+    "name": "Sofia Papadopulu",
+    "role": "Art Director",
+    "company": "Washerey Inc.",
+    "backgroundColor": "#FFF1CC",
+    "id": "3"
+  },
+  {
+    "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_1_fgdbdu.png",
+    "name": "Omo Ologo 10G",
+    "role": "Senior Product Manager",
+    "company": "Google",
+    "backgroundColor": "#EEF3F6",
+    "id": "4"
+  },
+  {
+    "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_2_jxcxt0.png",
+    "name": "Sofia Papadopulu",
+    "role": "Art Director",
+    "company": "Washerey Inc.",
+    "backgroundColor": "#FFF1CC",
+    "id": "5"
+  },
+  {
+    "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527033/Devfest/img_3_ywe63z.png",
+    "name": "Maryann Onuoha",
+    "role": "Chief Oppressor",
+    "company": "Tesla",
+    "backgroundColor": "#EDCCFF",
+    "id": "6"
+  }
+]

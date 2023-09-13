@@ -1,0 +1,23 @@
+[
+  {
+    "portraitUrl": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693568774/Devfest/img_vf2tey.png",
+    "category": "Design",
+    "title": "Insights from Gotham: The Future of Flutter on the Web",
+    "name": "Samuel Adekunle",
+    "role": "Software Engineer"
+  },
+  {
+    "portraitUrl": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693568774/Devfest/img_2_xagds7.png",
+    "category": "Blockchain",
+    "title": "The importance of research and giving designers time",
+    "name": "Louis Paqet",
+    "role": "Senior Interaction Designer"
+  },
+  {
+    "portraitUrl": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693568774/Devfest/img_1_bhm5zz.png",
+    "category": "Mobile Development",
+    "title": "Growth Mindset: How to hack product growth",
+    "name": "Sodiq Akinjobi",
+    "role": "Senior Product Manager, Google"
+  }
+]

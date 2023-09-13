@@ -21,6 +21,8 @@ import { HomepageTalk } from "@/components/homepage/talk/talk";
 import FAQ from "@/components/faq/FAQ";
 import Footer from "@/components/footer";
 import Menu from "@/components/menu/menu";
+import speakers from "@/mock-data/speakers.json";
+import talks from "@/mock-data/talks.json";
 
 const topics = [
   [
@@ -88,105 +90,19 @@ const topics = [
   ],
 ];
 
-const speakers = [
-  {
-    image: "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527007/Devfest/img_clc5ww.png",
-    name: "Daniele Buffa",
-    role: "Design Lead",
-    company: "O2 Labs",
-    backgroundColor: "#F6EEEE",
-  },
-  {
-    image: "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_1_fgdbdu.png",
-    name: "Omo Ologo 10G",
-    role: "Senior Product Manager",
-    company: "Google",
-    backgroundColor: "#EEF3F6",
-  },
-  {
-    image: "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_2_jxcxt0.png",
-    name: "Sofia Papadopulu",
-    role: "Art Director",
-    company: "Washerey Inc.",
-    backgroundColor: "#FFF1CC",
-  },
-  {
-    image: "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527033/Devfest/img_3_ywe63z.png",
-    name: "Maryann Onuoha",
-    role: "Chief Oppressor",
-    company: "Tesla",
-    backgroundColor: "#EDCCFF",
-  },
-  {
-    image: "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527007/Devfest/img_clc5ww.png",
-    name: "Daniele Buffa",
-    role: "Design Lead",
-    company: "O2 Labs",
-    backgroundColor: "#EBF0DB",
-  },
-  {
-    image: "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_1_fgdbdu.png",
-    name: "Omo Ologo 10G",
-    role: "Senior Product Manager",
-    company: "Google",
-    backgroundColor: "#EEF3F6",
-  },
-  {
-    image: "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_2_jxcxt0.png",
-    name: "Sofia Papadopulu",
-    role: "Art Director",
-    company: "Washerey Inc.",
-    backgroundColor: "#FFF1CC",
-  },
-  {
-    image: "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527033/Devfest/img_3_ywe63z.png",
-    name: "Maryann Onuoha",
-    role: "Chief Oppressor",
-    company: "Tesla",
-    backgroundColor: "#EDCCFF",
-  },
-];
-
 const talkCategories = ["All Talks", "Design", "Blockchain", "Mobile Development"] as const;
 
 type Category = (typeof talkCategories)[number];
 
-const talkCategoriesMap: Record<Category, string> = talkCategories.reduce(
-  (topics, topic: Category) => {
-    return {
-      ...topics,
-      [topic]: topic,
-    };
-  },
-  {} as Record<Category, string>,
-);
-
-const talks = [
-  {
-    portraitUrl:
-      "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693568774/Devfest/img_vf2tey.png",
-    category: talkCategoriesMap.Design,
-    title: "Insights from Gotham: The Future of Flutter on the Web",
-    name: "Samuel Adekunle",
-    role: "Software Engineer",
-  },
-  {
-    portraitUrl:
-      "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693568774/Devfest/img_2_xagds7.png",
-    category: talkCategoriesMap.Blockchain,
-    title: "The importance of research and giving designers time",
-    name: "Louis Paqet",
-    role: "Senior Interaction Designer",
-  },
-  {
-    portraitUrl:
-      "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693568774/Devfest/img_1_bhm5zz.png",
-    category: talkCategoriesMap["Mobile Development"],
-    title: "Growth Mindset: How to hack product growth",
-    name: "Sodiq Akinjobi",
-    role: "Senior Product Manager, Google",
-  },
-];
+// const talkCategoriesMap: Record<Category, string> = talkCategories.reduce(
+//   (topics, topic: Category) => {
+//     return {
+//       ...topics,
+//       [topic]: topic,
+//     };
+//   },
+//   {} as Record<Category, string>,
+// );
 
 export default function Landing() {
   const [activeCategory, setActiveCategory] = useState<Category>(talkCategories[0]);
