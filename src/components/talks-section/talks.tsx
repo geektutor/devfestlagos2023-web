@@ -1,6 +1,4 @@
-import React, { useMemo, useState } from "react";
-import { PrimaryButton } from "@/components/button";
-import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
+import React, { FC, useMemo, useState } from "react";
 import { classNames } from "@/utils/classNames";
 import { Talk } from "@/components/homepage/talk/talk";
 import { talks } from "@/mock-data";
@@ -10,16 +8,26 @@ const talkCategories = ["All Talks", "Design", "Blockchain", "Mobile Development
 
 type Category = (typeof talkCategories)[number];
 
-export const Talks = () => {
+type Props = {
+  hasDayToggle?: boolean;
+};
+
+export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
   const [activeCategory, setActiveCategory] = useState<Category>(talkCategories[0]);
+  const [activeDay, setActiveDay] = useState<1 | 2>(1);
 
   const validTalks = useMemo(() => {
+    let categoryTalks;
     if (activeCategory === "All Talks") {
-      return talks.slice(0, 3);
+      categoryTalks = talks.slice(0, 3);
+    } else {
+      categoryTalks = talks.filter((talk) => talk.category === activeCategory).slice(0, 3);
     }
 
-    return talks.filter((talk) => talk.category === activeCategory).slice(0, 3);
-  }, [activeCategory]);
+    if (!hasDayToggle) return categoryTalks;
+
+    return categoryTalks.filter((talk) => talk.speaker.day === activeDay);
+  }, [activeCategory, activeDay, hasDayToggle]);
 
   return (
     <section className={styles.talks}>
@@ -28,10 +36,23 @@ export const Talks = () => {
           <p className={styles.talksTitle}>Talks across all areas of tech</p>
           <p className={styles.talksDescription}>There is something for everyone</p>
         </div>
-        <PrimaryButton className={styles.talksCtaButton} href='/schedule'>
-          <span>View All Talks</span>
-          <ArrowRightDark />
-        </PrimaryButton>
+        {hasDayToggle && (
+          <div className={classNames(styles.talksDayToggle, activeDay === 2 && styles.active)}>
+            <span className={styles.talksDayLine} />
+            <button
+              className={classNames(styles.talksDay, activeDay === 1 && styles.active)}
+              onClick={() => setActiveDay(1)}
+            >
+              Day 1
+            </button>
+            <button
+              className={classNames(styles.talksDay, activeDay === 2 && styles.active)}
+              onClick={() => setActiveDay(2)}
+            >
+              Day 2
+            </button>
+          </div>
+        )}
       </div>
       <div className={styles.talksTags}>
         {talkCategories.map((category) => (

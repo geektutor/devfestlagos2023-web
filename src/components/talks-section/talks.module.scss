@@ -76,6 +76,52 @@
   }
 }
 
+.talksDayToggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+
+  @include media("<=phone") {
+    display: none;
+  }
+
+  &.active {
+    .talksDayLine {
+      transform: translateX(100%);
+    }
+  }
+}
+
+.talksDayLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  transition: 300ms;
+  height: 2px;
+  border-radius: 8px;
+  background: $grey-100;
+  display: block;
+  transform-origin: left;
+}
+
+.talksDay {
+  height: 40px;
+  width: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include body-2;
+  color: $grey-70;
+  border: none;
+  background: transparent;
+  transition: 300ms;
+
+  &.active {
+    color: $grey-100;
+  }
+}
+
 .talksTags {
   display: flex;
   @include flex-gap(0, 16px);
