@@ -20,8 +20,8 @@ export default function CategoryPill({
     "--active-text-color": `${activeTextColor}`,
   };
 
-  // @ts-ignore
   return (
+    // @ts-ignore
     <div className={classNames(styles.categoryPill, isActive && styles.active)} style={styleText}>
       {text}
     </div>
