@@ -81,3 +81,250 @@
     @include body-2;
   }
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 16;
+}
+
+.modalOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: blur(1);
+  background: $overlay-1;
+}
+
+.modalContent {
+  padding: 16px 32px;
+  border-radius: 24px;
+  background: $bg-shade-1;
+  width: 80%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow: auto;
+  position: relative;
+  z-index: 2;
+
+  @include media("<=tablet") {
+    padding: 16px;
+  }
+}
+
+.modalClose {
+  margin-left: auto;
+  margin-bottom: 32px;
+  border: none;
+  background: transparent;
+  display: block;
+
+  @include media("<=tablet") {
+    margin-bottom: 16px;
+  }
+}
+
+.modalImage {
+  @include ratio(155, 637);
+  width: 100%;
+  margin-bottom: 32px;
+
+  @include media("<=tablet") {
+    display: none;
+  }
+}
+
+.modalMobileImage {
+  @include ratio(155, 350);
+  width: 100%;
+  margin-bottom: 16px;
+
+  @include media(">tablet") {
+    display: none;
+  }
+}
+
+.modalDetails {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+
+  @include media("<=tablet") {
+    margin-bottom: 16px;
+  }
+
+  @include media("<=phone") {
+    flex-direction: column;
+    align-items: flex-start;
+    @include flex-gap(16px, 0);
+  }
+}
+
+.modalSpeakerImage {
+  @include ratio(1, 1);
+  width: 176px;
+  border-radius: 24px;
+  border-top: 1px solid $grey-10;
+  border-right: 4px solid $grey-10;
+  border-bottom: 4px solid $grey-10;
+  border-left: 1px solid $grey-10;
+  margin-right: 20px;
+
+  @include media("<=tablet") {
+    @include ratio(142, 118);
+    width: 118px;
+    margin-right: 8px;
+  }
+}
+
+.modalSpeakerName {
+  color: $grey-0;
+  @include heading-5;
+  margin-bottom: 8px;
+
+  @include media("<=tablet") {
+    @include title-2;
+    margin-bottom: 4px;
+  }
+}
+
+.modalSpeakerCredits {
+  color: $grey-20;
+  @include body-1;
+  margin-bottom: 16px;
+
+  @include media("<=tablet") {
+    @include body-4;
+    margin-bottom: 8px;
+  }
+}
+
+.modalLinksHeader {
+  color: $grey-20;
+  @include body-4;
+  margin-bottom: 8px;
+
+  @include media("<=tablet") {
+    @include body-5;
+    margin-bottom: 8px;
+  }
+}
+
+.modalLinks {
+  display: grid;
+  grid-template-columns: repeat(3, 48px);
+  grid-column-gap: 24px;
+
+  @include media("<=tablet") {
+    grid-template-columns: repeat(3, 40px);
+    grid-column-gap: 16px;
+  }
+}
+
+.modalLink {
+  background: transparent;
+  border: none;
+  width: 48px;
+  height: 48px;
+
+  svg {
+    @include ratio(1, 1);
+    width: 100%;
+  }
+
+  @include media("<=tablet") {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.modalTags {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+  @include media("<=tablet") {
+    flex-direction: column;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+}
+
+%tag {
+  height: 48px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  border-radius: 48px;
+  @include body-2;
+}
+
+.modalCategory {
+  @extend %tag;
+  color: $grey-20;
+  margin-right: 8px;
+  border: 2px solid $grey-20;
+  background: $bg-shade-1;
+
+  @include media("<=tablet") {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+}
+
+.modalDay {
+  @extend %tag;
+  color: $grey-100;
+  background: $primary-green;
+}
+
+.modalTitle {
+  @include heading-4;
+  color: $grey-0;
+  margin-bottom: 16px;
+
+  @include media("<=tablet") {
+    @include title-1;
+    margin-bottom: 8px;
+  }
+}
+
+.modalDescription {
+  color: $grey-10;
+  @include body-1;
+  margin-bottom: 32px;
+
+  @include media("<=tablet") {
+    @include body-3;
+    margin-bottom: 32px;
+  }
+}
+
+.modalButtons {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  @include media("<=tablet") {
+    flex-direction: column-reverse;
+
+    .c-button {
+      width: 100%;
+    }
+  }
+}
+
+.modalNextButton {
+  margin-left: auto;
+
+  @include media("<=tablet") {
+    margin-left: unset;
+    margin-bottom: 16px;
+  }
+}
