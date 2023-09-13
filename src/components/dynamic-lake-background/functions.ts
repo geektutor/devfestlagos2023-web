@@ -1,63 +1,18 @@
 import { identity, scale, translate } from "./m3";
-import { DRAW_IMAGE_FRAGMENT_SHADER, DRAW_IMAGE_VERTEX_SHADER } from "./shaders";
-
-export const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
-  const shader = gl.createShader(type);
-  if (shader) {
-    gl.shaderSource(shader, source);
-    gl.compileShader(shader);
-
-    const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-    if (success) {
-      return shader;
-    }
-    console.error(gl.getShaderInfoLog(shader));
-
-    gl.deleteShader(shader);
-  }
-};
-
-export const createProgram = (
-  gl: WebGLRenderingContext,
-  vertexShader: WebGLShader,
-  fragmentShader: WebGLShader,
-) => {
-  const program = gl.createProgram();
-  if (program) {
-    gl.attachShader(program, vertexShader);
-    gl.attachShader(program, fragmentShader);
-
-    gl.linkProgram(program);
-
-    const success = gl.getProgramParameter(program, gl.LINK_STATUS);
-    if (success) {
-      return program;
-    }
-
-    console.error(gl.getProgramInfoLog(program));
-
-    gl.deleteProgram(program);
-  }
-};
-
-// This ensures that the canvas rendering area matches the size of the canvas determined via CSS
-export const resizeCanvasToDisplaySize = (canvas: HTMLCanvasElement) => {
-  const dpr = window.devicePixelRatio;
-  const { width, height } = canvas.getBoundingClientRect();
-  const displayWidth = Math.round(width * dpr);
-  const displayHeight = Math.round(height * dpr);
-
-  // Check if the canvas is not the same size.
-  const needResize = canvas.width != displayWidth || canvas.height != displayHeight;
-
-  if (needResize) {
-    // Make the canvas the same size
-    canvas.width = displayWidth;
-    canvas.height = displayHeight;
-  }
-
-  return needResize;
-};
+import {
+  DRAW_DISTORTED_TEXTURE_FRAGMENT_SHADER,
+  DRAW_DISTORTED_TEXTURE_VERTEX_SHADER,
+  DRAW_IMAGE_FRAGMENT_SHADER,
+  DRAW_IMAGE_VERTEX_SHADER,
+} from "./shaders";
+import {
+  convertAssetToTexture,
+  createProgram,
+  createShader,
+  createTextureToRenderTo,
+  resizeCanvasToDisplaySize,
+  setQuadVerticesToCanvasDimension,
+} from "./webgl-utility";
 
 const loadImage = (url: string) =>
   new Promise<HTMLImageElement>((resolve, reject) => {
@@ -71,36 +26,81 @@ const loadAssets = async () => {
   const boatShadowImage = await loadImage("/404-images/boat-shadow.png");
   const bigWaveImage = await loadImage("/404-images/big-wave.png");
   const smallWaveImage = await loadImage("/404-images/small-wave.png");
+  const waterDuDvMap = await loadImage("/404-images/water-dudv-map.jpeg");
 
-  return { boatShadowImage, bigWaveImage, smallWaveImage };
+  return { boatShadowImage, bigWaveImage, smallWaveImage, waterDuDvMap };
 };
 
-export const initWebGL = async (canvas: HTMLCanvasElement) => {
+export const initialise = async (canvas: HTMLCanvasElement) => {
+  resizeCanvasToDisplaySize(canvas);
+
   const gl = canvas.getContext("webgl", { alpha: false });
 
   if (!gl) throw new Error("Failed to inistialise WebGL");
 
   gl.enable(gl.BLEND);
+
   gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
   const drawImageVertexShader = createShader(gl, gl.VERTEX_SHADER, DRAW_IMAGE_VERTEX_SHADER);
-
   if (!drawImageVertexShader) throw new Error("Failed to create 'draw image' vertex shader");
 
-  const drawImageFragmentShader = createShader(gl, gl.FRAGMENT_SHADER, DRAW_IMAGE_FRAGMENT_SHADER);
+  const drawDistortedTextureVertexShader = createShader(
+    gl,
+    gl.VERTEX_SHADER,
+    DRAW_DISTORTED_TEXTURE_VERTEX_SHADER,
+  );
+  if (!drawDistortedTextureVertexShader)
+    throw new Error("Failed to create 'draw distorted texture' vertex shader");
 
+  const drawImageFragmentShader = createShader(gl, gl.FRAGMENT_SHADER, DRAW_IMAGE_FRAGMENT_SHADER);
   if (!drawImageFragmentShader) throw new Error("Failed to create 'draw image' fragment shader");
 
-  const drawImageProgram = createProgram(gl, drawImageVertexShader, drawImageFragmentShader);
+  const drawDistortedTextureFragmentShader = createShader(
+    gl,
+    gl.FRAGMENT_SHADER,
+    DRAW_DISTORTED_TEXTURE_FRAGMENT_SHADER,
+  );
+  if (!drawDistortedTextureFragmentShader)
+    throw new Error("Failed to create 'draw distorted texture' fragment shader");
 
-  if (!drawImageProgram) throw new Error("Failed to create 'draw image' program");
+  const renderSceneToTextureProgram = createProgram(
+    gl,
+    drawImageVertexShader,
+    drawImageFragmentShader,
+  );
+  if (!renderSceneToTextureProgram) throw new Error("Failed to create 'draw image' program");
 
-  resizeCanvasToDisplaySize(canvas);
+  const distortSceneAndRenderToCanvasProgram = createProgram(
+    gl,
+    drawDistortedTextureVertexShader,
+    drawDistortedTextureFragmentShader,
+  );
+  if (!distortSceneAndRenderToCanvasProgram)
+    throw new Error("Failed to create 'draw distorted texture' program");
 
-  gl.useProgram(drawImageProgram);
+  const assets = await loadAssets();
+
+  return {
+    canvas,
+    gl,
+    renderSceneToTextureProgram,
+    distortSceneAndRenderToCanvasProgram,
+    assets,
+  };
+};
+
+export const prepareRenderSceneToTexture = (
+  fishermanWrapper: HTMLDivElement,
+  initData: Awaited<ReturnType<typeof initialise>>,
+) => {
+  const { canvas, gl, renderSceneToTextureProgram, assets } = initData;
+  const dpr = window.devicePixelRatio;
+
+  gl.useProgram(renderSceneToTextureProgram);
 
   const projectionUniformLocation = gl.getUniformLocation(
-    drawImageProgram,
+    renderSceneToTextureProgram,
     "u_canvas_projection_matrix",
   );
 
@@ -113,55 +113,13 @@ export const initWebGL = async (canvas: HTMLCanvasElement) => {
 
   gl.uniformMatrix3fv(projectionUniformLocation, false, projectionMatrix);
 
-  return {
-    gl,
-    drawImageProgram,
-  };
-};
-
-const convertAssetToTexture = (gl: WebGLRenderingContext, image: HTMLImageElement) => {
-  const texture = gl.createTexture();
-  if (!texture) throw new Error("Failed to create texture");
-
-  gl.bindTexture(gl.TEXTURE_2D, texture);
-
-  // Fill the texture with a 1x1 blue pixel.
-  gl.texImage2D(
-    gl.TEXTURE_2D,
-    0,
-    gl.RGBA,
-    1,
-    1,
-    0,
-    gl.RGBA,
-    gl.UNSIGNED_BYTE,
-    new Uint8Array([0, 0, 255, 255]),
-  );
-
-  // let's assume all images are not a power of 2
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-
-  gl.bindTexture(gl.TEXTURE_2D, texture);
-  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-
-  return texture;
-};
-
-export const initImageLayerDraw = async (
-  gl: WebGLRenderingContext,
-  program: WebGLProgram,
-  fishermanWrapper: HTMLDivElement,
-) => {
-  const dpr = window.devicePixelRatio;
   // look up where the vertex data needs to go.
-  const positionLocation = gl.getAttribLocation(program, "a_position");
-  const texcoordLocation = gl.getAttribLocation(program, "a_texcoord");
+  const positionLocation = gl.getAttribLocation(renderSceneToTextureProgram, "a_position");
+  const texcoordLocation = gl.getAttribLocation(renderSceneToTextureProgram, "a_texcoord");
 
   // lookup uniforms
-  const matrixLocation = gl.getUniformLocation(program, "u_matrix");
-  const textureLocation = gl.getUniformLocation(program, "u_texture");
+  const matrixLocation = gl.getUniformLocation(renderSceneToTextureProgram, "u_matrix");
+  const textureLocation = gl.getUniformLocation(renderSceneToTextureProgram, "u_texture");
 
   // Create a buffer.
   const positionBuffer = gl.createBuffer();
@@ -178,8 +136,6 @@ export const initImageLayerDraw = async (
   // Put texcoords in the buffer
   const texcoords = [0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1];
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(texcoords), gl.STATIC_DRAW);
-
-  const assets = await loadAssets();
 
   const { clientHeight } = fishermanWrapper;
   const { x, y } = fishermanWrapper.getBoundingClientRect();
@@ -259,11 +215,11 @@ export const initImageLayerDraw = async (
   };
 };
 
-export const drawAssets = (
-  gl: WebGLRenderingContext,
-  program: WebGLProgram,
-  assetsInfo: Awaited<ReturnType<typeof initImageLayerDraw>>,
+export const renderSceneToTexture = (
+  initData: Awaited<ReturnType<typeof initialise>>,
+  preparedData: ReturnType<typeof prepareRenderSceneToTexture>,
 ) => {
+  const { gl, renderSceneToTextureProgram } = initData;
   const {
     staticAssets,
     positionLocation,
@@ -272,9 +228,11 @@ export const drawAssets = (
     texcoordLocation,
     matrixLocation,
     textureLocation,
-  } = assetsInfo;
+  } = preparedData;
 
   resizeCanvasToDisplaySize(gl.canvas as HTMLCanvasElement);
+
+  const targetTexture = createTextureToRenderTo(gl);
 
   // Tell WebGL how to convert from clip space to pixels
   gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
@@ -283,10 +241,16 @@ export const drawAssets = (
 
   gl.clearColor(1, 0.9804, 0.9216, 1);
 
+  const frameBuffer = gl.createFramebuffer();
+  gl.bindFramebuffer(gl.FRAMEBUFFER, frameBuffer);
+
+  const attachmentPoint = gl.COLOR_ATTACHMENT0;
+  gl.framebufferTexture2D(gl.FRAMEBUFFER, attachmentPoint, gl.TEXTURE_2D, targetTexture, 0);
+
   staticAssets.forEach(({ texture, matrix }) => {
     gl.bindTexture(gl.TEXTURE_2D, texture);
 
-    gl.useProgram(program);
+    gl.useProgram(renderSceneToTextureProgram);
 
     // Setup the attributes to pull data from our buffers
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
@@ -305,4 +269,119 @@ export const drawAssets = (
     // draw the quad (2 triangles, 6 vertices)
     gl.drawArrays(gl.TRIANGLES, 0, 6);
   });
+
+  return targetTexture;
+};
+
+export const prepareRenderSceneToCanvas = (
+  sceneTexture: WebGLTexture,
+  initData: Awaited<ReturnType<typeof initialise>>,
+) => {
+  const { gl, canvas, distortSceneAndRenderToCanvasProgram } = initData;
+
+  gl.useProgram(distortSceneAndRenderToCanvasProgram);
+
+  const projectionUniformLocation = gl.getUniformLocation(
+    distortSceneAndRenderToCanvasProgram,
+    "u_canvas_projection_matrix",
+  );
+
+  const textureProjectionUniformLocation = gl.getUniformLocation(
+    distortSceneAndRenderToCanvasProgram,
+    "u_texture_projection_matrix",
+  );
+
+  // prettier-ignore
+  const projectionMatrix = [
+      2 / canvas.width, 0, 0,
+      0, (-2 / canvas.height), 0,
+      -1, 1, 1
+    ];
+
+  gl.uniformMatrix3fv(projectionUniformLocation, false, projectionMatrix);
+
+  // prettier-ignore
+  const textureProjectionMatrix = [
+    1 / canvas.width, 0, 0,
+    0, (-1 / canvas.height), 0,
+    0, 1, 1
+  ];
+
+  gl.uniformMatrix3fv(textureProjectionUniformLocation, false, textureProjectionMatrix);
+
+  // look up where the vertex data needs to go.
+  const positionLocation = gl.getAttribLocation(distortSceneAndRenderToCanvasProgram, "a_position");
+  const texcoordLocation = gl.getAttribLocation(distortSceneAndRenderToCanvasProgram, "a_texcoord");
+
+  // lookup uniforms
+  const textureLocation = gl.getUniformLocation(distortSceneAndRenderToCanvasProgram, "u_texture");
+
+  // Create a buffer.
+  const positionBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+
+  setQuadVerticesToCanvasDimension(gl);
+
+  // Create a buffer for texture coords
+  const texcoordBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, texcoordBuffer);
+
+  setQuadVerticesToCanvasDimension(gl);
+
+  return {
+    positionLocation,
+    positionBuffer,
+    texcoordLocation,
+    texcoordBuffer,
+    textureLocation,
+    sceneTexture,
+  };
+};
+
+export const renderDistortedSceneToCanvas = (
+  initData: Awaited<ReturnType<typeof initialise>>,
+  preparedData: ReturnType<typeof prepareRenderSceneToCanvas>,
+) => {
+  const { gl, distortSceneAndRenderToCanvasProgram } = initData;
+  const {
+    positionLocation,
+    texcoordLocation,
+    textureLocation,
+    sceneTexture,
+    positionBuffer,
+    texcoordBuffer,
+  } = preparedData;
+
+  resizeCanvasToDisplaySize(gl.canvas as HTMLCanvasElement);
+
+  // Tell WebGL how to convert from clip space to pixels
+  gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
+  gl.useProgram(distortSceneAndRenderToCanvasProgram);
+
+  // remove bound framebuffer so it defaults to rendering to canvas
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+
+  // render the cube with the texture we just rendered to
+  gl.bindTexture(gl.TEXTURE_2D, sceneTexture);
+
+  // Setup the attributes to pull data from our buffers
+  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+  gl.enableVertexAttribArray(positionLocation);
+  gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+  gl.bindBuffer(gl.ARRAY_BUFFER, texcoordBuffer);
+  gl.enableVertexAttribArray(texcoordLocation);
+  gl.vertexAttribPointer(texcoordLocation, 2, gl.FLOAT, false, 0, 0);
+
+  // Tell the shader to get the texture from texture unit 0
+  gl.uniform1i(textureLocation, 0);
+
+  gl.clear(gl.COLOR_BUFFER_BIT);
+
+  // Clear the canvas AND the depth buffer.
+  gl.clearColor(1, 0.9804, 0.9216, 1);
+
+  // draw the quad (2 triangles, 6 vertices)
+  gl.drawArrays(gl.TRIANGLES, 0, 6);
 };

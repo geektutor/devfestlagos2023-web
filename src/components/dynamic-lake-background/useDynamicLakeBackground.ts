@@ -1,5 +1,11 @@
 import { useEffect, useRef } from "react";
-import { drawAssets, initImageLayerDraw, initWebGL } from "./functions";
+import {
+  renderSceneToTexture,
+  prepareRenderSceneToTexture,
+  initialise,
+  prepareRenderSceneToCanvas,
+  renderDistortedSceneToCanvas,
+} from "./functions";
 
 const useDynamicLakeBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -8,15 +14,17 @@ const useDynamicLakeBackground = () => {
   useEffect(() => {
     (async () => {
       if (canvasRef.current && fishermanWrapperRef.current) {
-        // render boat shadow and big wave shadow to a texture
-        // render that texture to the canvas
-        const { gl, drawImageProgram } = await initWebGL(canvasRef.current);
-        const imageLayerDrawData = await initImageLayerDraw(
-          gl,
-          drawImageProgram,
+        const initData = await initialise(canvasRef.current);
+
+        const renderToTextureData = prepareRenderSceneToTexture(
           fishermanWrapperRef.current,
+          initData,
         );
-        drawAssets(gl, drawImageProgram, imageLayerDrawData);
+        const texture = renderSceneToTexture(initData, renderToTextureData);
+
+        const renderToCanvasData = prepareRenderSceneToCanvas(texture, initData);
+
+        renderDistortedSceneToCanvas(initData, renderToCanvasData);
       }
     })();
   }, []);
