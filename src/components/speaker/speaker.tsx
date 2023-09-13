@@ -11,33 +11,40 @@ import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import ArrowLeft from "@/images/arrow-left-dark.svg";
 import { PrimaryButton, SecondaryButton } from "@/components/button";
 import { createPortal } from "react-dom";
+import { classNames } from "@/utils/classNames";
+import { Speaker } from "@/types/Speaker";
 
 interface SpeakerCardProps {
-  imageSrc: string;
-  fullname: string;
-  role: string;
-  company: string;
-  backgroundColor?: string;
+  modalIsOpen?: boolean;
+  onClose: () => void;
+  onClickButton: (direction: "next" | "previous") => void;
+  hasNext: boolean;
+  hasPrevious: boolean;
+  onClick: () => void;
+  speaker: Speaker;
 }
 
 export default function SpeakerCard({
-  imageSrc,
-  fullname,
-  backgroundColor,
-  role,
-  company,
+  speaker,
+  onClick,
+  modalIsOpen,
+  onClose,
+  onClickButton,
+  hasNext,
+  hasPrevious,
 }: SpeakerCardProps) {
   const [portalWrapper, setPortalWrapper] = useState<Element | null>();
 
+  const { name, image, role, company, backgroundColor } = speaker;
   useEffect(() => {
     setPortalWrapper(document.querySelector(".app-wrapper")!);
   }, []);
 
   const modalContent = (
-    <div className={styles.modal}>
-      <div className={styles.modalOverlay} />
+    <div className={classNames(styles.modal, modalIsOpen && styles.active)}>
+      <div className={styles.modalOverlay} onClick={onClose} />
       <div className={styles.modalContent}>
-        <button className={styles.modalClose}>
+        <button className={styles.modalClose} onClick={onClose}>
           <CloseCircle />
         </button>
         <figure className={styles.modalImage}>
@@ -48,10 +55,10 @@ export default function SpeakerCard({
         </figure>
         <div className={styles.modalDetails}>
           <div className={styles.modalSpeakerImage}>
-            <Image src={imageSrc} alt={fullname} fill style={{ objectFit: "cover" }} />
+            <Image src={image} alt={name} fill style={{ objectFit: "cover" }} />
           </div>
           <div>
-            <h3 className={styles.modalSpeakerName}>{fullname}</h3>
+            <h3 className={styles.modalSpeakerName}>{name}</h3>
             <p className={styles.modalSpeakerCredits}>
               {role}, {company}
             </p>
@@ -82,14 +89,18 @@ export default function SpeakerCard({
           and FWA.
         </p>
         <div className={styles.modalButtons}>
-          <SecondaryButton>
-            <ArrowLeft />
-            <span>Previous Speaker</span>
-          </SecondaryButton>
-          <PrimaryButton className={styles.modalNextButton}>
-            <span>Next Speaker</span>
-            <ArrowRight />
-          </PrimaryButton>
+          {hasPrevious && (
+            <SecondaryButton onClick={() => onClickButton("previous")}>
+              <ArrowLeft />
+              <span>Previous Speaker</span>
+            </SecondaryButton>
+          )}
+          {hasNext && (
+            <PrimaryButton className={styles.modalNextButton} onClick={() => onClickButton("next")}>
+              <span>Next Speaker</span>
+              <ArrowRight />
+            </PrimaryButton>
+          )}
         </div>
       </div>
     </div>
@@ -97,9 +108,9 @@ export default function SpeakerCard({
 
   return (
     <>
-      <div className={styles.speaker}>
+      <div className={styles.speaker} onClick={onClick}>
         <div className={styles.speakerImage}>
-          <Image className={styles.speakerImageInner} src={imageSrc} alt={fullname} fill />
+          <Image className={styles.speakerImageInner} src={image} alt={name} fill />
         </div>
         <div
           className={styles.speakerTextContainer}
@@ -107,7 +118,7 @@ export default function SpeakerCard({
             backgroundColor: backgroundColor,
           }}
         >
-          <h4 className={styles.speakerFullName}>{fullname}</h4>
+          <h4 className={styles.speakerFullName}>{name}</h4>
           <p className={styles.speakerCompany}>
             {role}, <span>{company}</span>
           </p>

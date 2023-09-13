@@ -21,8 +21,9 @@ import { HomepageTalk } from "@/components/homepage/talk/talk";
 import FAQ from "@/components/faq/FAQ";
 import Footer from "@/components/footer";
 import Menu from "@/components/menu/menu";
-import speakers from "@/mock-data/speakers.json";
+import { speakers } from "@/mock-data";
 import talks from "@/mock-data/talks.json";
+import { Speaker } from "@/types/Speaker";
 
 const topics = [
   [
@@ -106,6 +107,17 @@ type Category = (typeof talkCategories)[number];
 
 export default function Landing() {
   const [activeCategory, setActiveCategory] = useState<Category>(talkCategories[0]);
+  const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
+
+  const handleChangeSpeaker = (index: number) => (direction: "next" | "previous") => {
+    if (direction === "next") {
+      setActiveSpeaker(speakers[index + 1]);
+    }
+
+    if (direction === "previous") {
+      setActiveSpeaker(speakers[index - 1]);
+    }
+  };
 
   return (
     <>
@@ -232,12 +244,14 @@ export default function Landing() {
           <div className='landing-page__speakers__speakers'>
             {speakers.map((speaker, index) => (
               <SpeakerCard
-                backgroundColor={speaker.backgroundColor}
+                speaker={speaker}
                 key={index}
-                imageSrc={speaker.image}
-                fullname={speaker.name}
-                role={speaker.role}
-                company={speaker.company}
+                onClick={() => setActiveSpeaker(speaker)}
+                onClose={() => setActiveSpeaker(null)}
+                hasNext={index < speakers.length - 1}
+                hasPrevious={index > 0}
+                onClickButton={handleChangeSpeaker(index)}
+                modalIsOpen={activeSpeaker === speaker}
               />
             ))}
           </div>

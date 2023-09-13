@@ -14,6 +14,7 @@
   border-bottom: 8px solid #211212;
   border-left: 1px solid #211212;
   flex-shrink: 0;
+  cursor: pointer;
 
   @include media("<=tablet") {
     width: 157px;
@@ -92,14 +93,28 @@
   align-items: center;
   justify-content: center;
   z-index: 16;
+  pointer-events: none;
+
+  &.active {
+    pointer-events: auto;
+    .modalOverlay {
+      opacity: 1;
+    }
+
+    .modalContent {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+  }
 }
 
 .modalOverlay {
   position: absolute;
   width: 100%;
   height: 100%;
-  filter: blur(1);
   background: $overlay-1;
+  opacity: 0;
+  transition: 300ms;
 }
 
 .modalContent {
@@ -112,6 +127,9 @@
   overflow: auto;
   position: relative;
   z-index: 2;
+  transform: scale(0.8) translateY(80px);
+  opacity: 0;
+  transition: 300ms;
 
   @include media("<=tablet") {
     padding: 16px;

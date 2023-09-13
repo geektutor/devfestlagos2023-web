@@ -1,50 +1,132 @@
 [
   {
+    "id": 1,
     "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527007/Devfest/img_clc5ww.png",
     "name": "Daniele Buffa",
     "role": "Design Lead",
     "company": "O2 Labs",
     "backgroundColor": "#F6EEEE",
-    "id": "1"
+    "day": 1,
+    "links": {
+      "twitter": "https://twitter.com/danielebuffa",
+      "instagram": "https://instagram.com/danielebuffa"
+    }
   },
   {
+    "id": 2,
     "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_1_fgdbdu.png",
     "name": "Omo Ologo 10G",
     "role": "Senior Product Manager",
     "company": "Google",
     "backgroundColor": "#EEF3F6",
-    "id": "2"
+    "day": 2,
+    "links": {
+      "twitter": "https://twitter.com/omoologo10G",
+      "website": "https://omoologo10G.com"
+    }
   },
   {
+    "id": 3,
     "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_2_jxcxt0.png",
     "name": "Sofia Papadopulu",
     "role": "Art Director",
     "company": "Washerey Inc.",
     "backgroundColor": "#FFF1CC",
-    "id": "3"
+    "day": 1,
+    "links": {
+      "instagram": "https://instagram.com/sofiapapadopulu",
+      "website": "https://sofiapapadopulu.com"
+    }
   },
   {
-    "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_1_fgdbdu.png",
-    "name": "Omo Ologo 10G",
-    "role": "Senior Product Manager",
-    "company": "Google",
-    "backgroundColor": "#EEF3F6",
-    "id": "4"
-  },
-  {
-    "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_2_jxcxt0.png",
-    "name": "Sofia Papadopulu",
-    "role": "Art Director",
-    "company": "Washerey Inc.",
-    "backgroundColor": "#FFF1CC",
-    "id": "5"
-  },
-  {
+    "id": 4,
     "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527033/Devfest/img_3_ywe63z.png",
     "name": "Maryann Onuoha",
     "role": "Chief Oppressor",
     "company": "Tesla",
     "backgroundColor": "#EDCCFF",
-    "id": "6"
+    "day": 2,
+    "links": {
+      "twitter": "https://twitter.com/maryannonuoha",
+      "instagram": "https://instagram.com/maryannonuoha"
+    }
+  },
+  {
+    "id": 5,
+    "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_1_fgdbdu.png",
+    "name": "Alex Johnson",
+    "role": "Software Engineer",
+    "company": "Microsoft",
+    "backgroundColor": "#F6EEEE",
+    "day": 1,
+    "links": {
+      "twitter": "https://twitter.com/alexjohnson",
+      "website": "https://alexjohnson.com"
+    }
+  },
+  {
+    "id": 6,
+    "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527007/Devfest/img_clc5ww.png",
+    "name": "Isabella Torres",
+    "role": "Frontend Developer",
+    "company": "Adobe",
+    "backgroundColor": "#F6FEEE",
+    "day": 1,
+    "links": {
+      "twitter": "https://twitter.com/isabella_torres",
+      "instagram": "https://instagram.com/isabella_torres"
+    }
+  },
+  {
+    "id": 7,
+    "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_1_fgdbdu.png",
+    "name": "Lucas Mendez",
+    "role": "Backend Engineer",
+    "company": "Oracle",
+    "backgroundColor": "#EEF4F6",
+    "day": 2,
+    "links": {
+      "twitter": "https://twitter.com/lucas_mendez",
+      "website": "https://lucasmendez.com"
+    }
+  },
+  {
+    "id": 8,
+    "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_2_jxcxt0.png",
+    "name": "Aria Stark",
+    "role": "UX Designer",
+    "company": "Apple",
+    "backgroundColor": "#FFF2CC",
+    "day": 1,
+    "links": {
+      "instagram": "https://instagram.com/aria_stark",
+      "website": "https://ariastark.com"
+    }
+  },
+  {
+    "id": 9,
+    "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527033/Devfest/img_3_ywe63z.png",
+    "name": "Ethan Hunt",
+    "role": "Security Analyst",
+    "company": "Amazon",
+    "backgroundColor": "#EDCDFF",
+    "day": 2,
+    "links": {
+      "twitter": "https://twitter.com/ethan_hunt",
+      "instagram": "https://instagram.com/ethan_hunt"
+    }
+  },
+  {
+    "id": 10,
+    "image": "https://res.cloudinary.com/dpgdjfckl/image/upload/v1693527034/Devfest/img_1_fgdbdu.png",
+    "name": "Natasha Romanoff",
+    "role": "Database Administrator",
+    "company": "IBM",
+    "backgroundColor": "#F6EDEE",
+    "day": 1,
+    "links": {
+      "twitter": "https://twitter.com/natasha_romanoff",
+      "website": "https://natasharomanoff.com"
+    }
   }
 ]
