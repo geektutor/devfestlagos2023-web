@@ -1,4 +1,4 @@
-import Categorypill from "../components/category-pill";
+import Categorypill from "../components/category-pill/category-pill";
 
 export default {
   tags: ["autodocs"],
@@ -9,6 +9,6 @@ export default {
 export const Default = {
   args: {
     text: "Design",
-    active: false,
+    isActive: false,
   },
 };
