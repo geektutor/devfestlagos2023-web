@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Image from "next/image";
-import styles from "./styles.module.scss";
+import styles from "./talk.module.scss";
 import { TalkType } from "@/types/Talk";
 
 type Props = {
