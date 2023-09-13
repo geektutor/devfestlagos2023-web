@@ -238,7 +238,7 @@ export default function Landing() {
               />
             ))}
           </div>
-          <PrimaryButton>
+          <PrimaryButton href='/speakers'>
             <span>View All Speakers</span>
             <ArrowRight />
           </PrimaryButton>

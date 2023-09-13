@@ -28,7 +28,7 @@ export const Talks = () => {
           <p className={styles.talksTitle}>Talks across all areas of tech</p>
           <p className={styles.talksDescription}>There is something for everyone</p>
         </div>
-        <PrimaryButton className={styles.talksCtaButton}>
+        <PrimaryButton className={styles.talksCtaButton} href='/schedule'>
           <span>View All Talks</span>
           <ArrowRightDark />
         </PrimaryButton>
