@@ -1,5 +1,5 @@
 import { SEO } from "@/components/seo";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { PrimaryButton, TertiaryButton } from "@/components/button";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import { HomepageScene } from "@/components/homepage/scene/scene";
@@ -16,13 +16,12 @@ import InviteLogo from "@/images/landing/logo.svg";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 import recapDoodleImage from "@/images/landing/recap-doodle.png";
 import SpeakerCard from "@/components/speaker/speaker";
-import { classNames } from "@/utils/classNames";
-import { HomepageTalk } from "@/components/homepage/talk/talk";
 import FAQ from "@/components/faq/FAQ";
 import Footer from "@/components/footer";
 import Menu from "@/components/menu/menu";
-import { speakers, talks } from "@/mock-data";
+import { speakers } from "@/mock-data";
 import { Speaker } from "@/types/Speaker";
+import { Talks } from "@/components/talks-section/talks";
 
 const topics = [
   [
@@ -90,22 +89,7 @@ const topics = [
   ],
 ];
 
-const talkCategories = ["All Talks", "Design", "Blockchain", "Mobile Development"] as const;
-
-type Category = (typeof talkCategories)[number];
-
-// const talkCategoriesMap: Record<Category, string> = talkCategories.reduce(
-//   (topics, topic: Category) => {
-//     return {
-//       ...topics,
-//       [topic]: topic,
-//     };
-//   },
-//   {} as Record<Category, string>,
-// );
-
 export default function Landing() {
-  const [activeCategory, setActiveCategory] = useState<Category>(talkCategories[0]);
   const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
 
   const handleChangeSpeaker = (index: number) => (direction: "next" | "previous") => {
@@ -117,14 +101,6 @@ export default function Landing() {
       setActiveSpeaker(speakers[index - 1]);
     }
   };
-
-  const validTalks = useMemo(() => {
-    if (activeCategory === "All Talks") {
-      return talks.slice(0, 3);
-    }
-
-    return talks.filter((talk) => talk.category === activeCategory).slice(0, 3);
-  }, [activeCategory]);
 
   return (
     <>
@@ -287,40 +263,7 @@ export default function Landing() {
             </div>
           </div>
         </section>
-        <section className='landing-page__talks'>
-          <div className='landing-page__talks__top'>
-            <div>
-              <p className='landing-page__talks__title'>Talks across all areas of tech</p>
-              <p className='landing-page__talks__description'>There is something for everyone</p>
-            </div>
-            <PrimaryButton className='landing-page__talks__cta-button'>
-              <span>View All Talks</span>
-              <ArrowRightDark />
-            </PrimaryButton>
-          </div>
-          <div className='landing-page__talks__tags'>
-            {talkCategories.map((category) => (
-              <p
-                key={category}
-                className={classNames(
-                  "landing-page__talks__tag",
-                  activeCategory === category && "landing-page__talks__tag--active",
-                )}
-                onClick={() => setActiveCategory(category)}
-              >
-                {category}
-              </p>
-            ))}
-          </div>
-          <div className='landing-page__talks__talks'>
-            {validTalks.map((talk, index) => (
-              <>
-                <HomepageTalk talk={talk} key={index} />
-                {index < talks.length - 1 && <hr className='landing-page__talks__divider' />}
-              </>
-            ))}
-          </div>
-        </section>
+        <Talks />
         <section className='landing-page__faq'>
           <h3 className='landing-page__faq__title'>Lets answer some of your burning questions</h3>
           <p className='landing-page__faq__subtext'>
