@@ -16,7 +16,6 @@ import InviteLogo from "@/images/landing/logo.svg";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 import recapDoodleImage from "@/images/landing/recap-doodle.png";
 import SpeakerCard from "@/components/speaker/speaker";
-import FAQ from "@/components/faq/FAQ";
 import Footer from "@/components/footer";
 import Menu from "@/components/menu/menu";
 import { speakers } from "@/mock-data";
@@ -24,6 +23,7 @@ import { Speaker } from "@/types/Speaker";
 import { Talks } from "@/components/talks-section/talks";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import CategoryPill from "@/components/category-pill/category-pill";
+import FaqSection from "@/components/faq-section/faq-section";
 
 const topics = [
   [
@@ -272,30 +272,7 @@ export default function Landing() {
           </div>
         </section>
         <Talks />
-        <section className='landing-page__faq'>
-          <h3 className='landing-page__faq__title'>Lets answer some of your burning questions</h3>
-          <p className='landing-page__faq__subtext'>
-            Check out our most asked questions here, mfjpm 😑🤚🏾
-          </p>
-          <div className='landing-page__faq__questions'>
-            <FAQ
-              question='How can we get TSticks to do giveaway by morning?'
-              answer='Threaten him ez'
-            />
-            <FAQ
-              question='How can we get TSticks to do giveaway by morning?'
-              answer='Threaten him ez'
-            />
-            <FAQ
-              question='How can we get TSticks to do giveaway by morning?'
-              answer='Threaten him ez'
-            />
-            <FAQ
-              question='How can we get TSticks to do giveaway by morning?'
-              answer='Threaten him ez'
-            />
-          </div>
-        </section>
+        <FaqSection />
         <section className='landing-page__no-matter-what'>
           <h4 className='landing-page__no-matter-what__title'>
             We are looking forward to hosting you again at
