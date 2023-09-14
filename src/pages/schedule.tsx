@@ -7,12 +7,15 @@ import RefreshDoodle from "@/images/schedule/refresh-doodles.png";
 import MemojiAvatar from "@/images/schedule/memoji-avatar-schedule.png";
 import { useState } from "react";
 import { ScheduleCard } from "@/components/schedule-card";
+import Menu from "@/components/menu/menu";
+import Footer from "@/components/footer";
 
 export default function Schedule() {
   const [selectedDay, setSelectedDay] = useState<number>(1);
 
   return (
     <>
+      <Menu />
       <header className='sc__header'>
         <div className='container'>
           <h3 className='sc__header__title'>Schedule</h3>
@@ -65,6 +68,7 @@ export default function Schedule() {
           </section>
         </div>
       </header>
+      <Footer />
     </>
   );
 }
