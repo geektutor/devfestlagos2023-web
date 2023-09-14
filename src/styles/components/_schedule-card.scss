@@ -1,0 +1,70 @@
+.scc {
+  border-radius: 24px;
+  border: 2px solid $grey-90;
+  padding: 12px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  gap: 12px;
+
+  &__img_holder {
+    width: 76px;
+    position: relative;
+
+    &__anchor {
+      position: absolute;
+      padding: 4px;
+      border-radius: 8px;
+      color: $grey-100;
+      background-color: $primary-green;
+      transform: rotate(-10deg);
+      @include body-5;
+      top: -9px;
+      left: -8px;
+    }
+
+    &__avatar {
+      width: 76px;
+      height: 80px;
+      border-radius: 16px;
+    }
+  }
+
+  &__text_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+
+    &__title {
+      @include title-1;
+    }
+
+    &__footer {
+      display: flex;
+      @include body-2;
+
+      &__time {
+        color: $grey-30;
+        margin-right: 6px;
+      }
+
+      &__venue {
+        color: $grey-30;
+        display: inline-flex;
+        align-items: center;
+        gap: 0 6px;
+      }
+
+      &__view {
+        margin-left: auto;
+        color: $primary-blue;
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+        gap: 0 4px;
+      }
+    }
+  }
+}
