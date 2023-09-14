@@ -47,6 +47,19 @@ const config: StorybookConfig = {
         extensions: config.resolve?.extensions,
       }),
     ];
+
+    // @ts-ignore Find the rule that handles images (usually SVGs are handled there)
+    const fileLoaderRule = config.module.rules.find((rule) => rule.test && rule.test.test(".svg"));
+
+    // @ts-ignore Exclude SVG files from the default file-loader rule
+    fileLoaderRule.exclude = /\.svg$/;
+
+    // Add a new rule for SVGs to use @svgr/webpack
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
+
     return config;
   },
 };

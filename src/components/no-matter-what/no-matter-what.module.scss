@@ -1,0 +1,70 @@
+@import "core/variables";
+@import "core/typography";
+@import "utils/breakpoints";
+@import "utils/mixins";
+
+.noMatterWhat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $secondary-grey;
+  padding: 48px 0;
+
+  @include media("<=phone") {
+    padding: 16px 24px;
+  }
+}
+
+.title {
+  @include heading-4;
+  color: $grey-100;
+  max-width: 540px;
+  text-align: center;
+  margin-bottom: 16px;
+
+  @include media("<=tablet") {
+    @include title-2;
+  }
+
+  @include media("<=phone") {
+    @include heading-5;
+    margin-bottom: 24px;
+  }
+}
+
+.logo {
+  @include ratio(73, 323);
+  width: 323px;
+
+  @include media("<=tablet") {
+    width: 162px;
+  }
+
+  @include media("<=phone") {
+    width: 215px;
+  }
+}
+
+.question {
+  margin: 16px 0 32px;
+  color: $grey-80;
+  @include title-2;
+
+  @include media("<=tablet") {
+    @include body-5;
+  }
+
+  @include media("<=phone") {
+    @include body-1;
+  }
+}
+
+.button {
+  height: 84px;
+
+  @include media("<=tablet") {
+    max-width: unset;
+    width: fit-content;
+    height: unset;
+  }
+}

@@ -1,0 +1,33 @@
+@import "utils/mixins";
+@import "utils/breakpoints";
+@import "core/typography";
+@import "core/variables";
+
+.categoryPill {
+  padding: 12px 16px;
+  border: 1.5px solid $grey-40;
+  color: $grey-60;
+  border-radius: 48px;
+  background: transparent;
+  width: fit-content;
+  @include title-2;
+  transition: 300ms;
+
+  &.isSmall {
+    @include body-2;
+  }
+
+  &.isClickable {
+    cursor: pointer;
+  }
+
+  &.active {
+    border-color: var(--active-bg-color);
+    background: var(--active-bg-color);
+    color: var(--active-text-color);
+  }
+
+  @include media("<=phone") {
+    @include body-2;
+  }
+}
