@@ -63,6 +63,8 @@
   height: 84px;
 
   @include media("<=tablet") {
-    height: 60px;
+    max-width: unset;
+    width: fit-content;
+    height: unset;
   }
 }
