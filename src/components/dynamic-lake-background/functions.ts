@@ -11,7 +11,7 @@ import {
   createShader,
   createTextureToRenderTo,
   resizeCanvasToDisplaySize,
-  setQuadVerticesToCanvasDimension,
+  setQuadVertices,
 } from "./webgl-utility";
 
 const loadImage = (url: string) =>
@@ -277,7 +277,12 @@ export const prepareRenderSceneToCanvas = (
   sceneTexture: WebGLTexture,
   initData: Awaited<ReturnType<typeof initialise>>,
 ) => {
-  const { gl, canvas, distortSceneAndRenderToCanvasProgram } = initData;
+  const {
+    gl,
+    canvas,
+    distortSceneAndRenderToCanvasProgram,
+    assets: { waterDuDvMap },
+  } = initData;
 
   gl.useProgram(distortSceneAndRenderToCanvasProgram);
 
@@ -315,18 +320,32 @@ export const prepareRenderSceneToCanvas = (
 
   // lookup uniforms
   const textureLocation = gl.getUniformLocation(distortSceneAndRenderToCanvasProgram, "u_texture");
+  const dudvMapUniformLocation = gl.getUniformLocation(
+    distortSceneAndRenderToCanvasProgram,
+    "u_dudvMap",
+  );
+
+  const dudvMapTexture = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, dudvMapTexture);
+
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, waterDuDvMap);
 
   // Create a buffer.
   const positionBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
-  setQuadVerticesToCanvasDimension(gl);
+  setQuadVertices(gl);
 
   // Create a buffer for texture coords
   const texcoordBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, texcoordBuffer);
 
-  setQuadVerticesToCanvasDimension(gl);
+  setQuadVertices(gl);
 
   return {
     positionLocation,
@@ -335,6 +354,8 @@ export const prepareRenderSceneToCanvas = (
     texcoordBuffer,
     textureLocation,
     sceneTexture,
+    dudvMapUniformLocation,
+    dudvMapTexture,
   };
 };
 
@@ -350,6 +371,8 @@ export const renderDistortedSceneToCanvas = (
     sceneTexture,
     positionBuffer,
     texcoordBuffer,
+    dudvMapUniformLocation,
+    dudvMapTexture,
   } = preparedData;
 
   resizeCanvasToDisplaySize(gl.canvas as HTMLCanvasElement);
@@ -362,7 +385,15 @@ export const renderDistortedSceneToCanvas = (
   // remove bound framebuffer so it defaults to rendering to canvas
   gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 
-  // render the cube with the texture we just rendered to
+  // Tell the shader to get the texture from texture unit 0
+  gl.uniform1i(textureLocation, 0);
+  // Tell the shader to get the texture from texture unit 1
+  gl.uniform1i(dudvMapUniformLocation, 1);
+
+  gl.activeTexture(gl.TEXTURE1);
+  gl.bindTexture(gl.TEXTURE_2D, dudvMapTexture);
+
+  gl.activeTexture(gl.TEXTURE0);
   gl.bindTexture(gl.TEXTURE_2D, sceneTexture);
 
   // Setup the attributes to pull data from our buffers
@@ -373,9 +404,6 @@ export const renderDistortedSceneToCanvas = (
   gl.bindBuffer(gl.ARRAY_BUFFER, texcoordBuffer);
   gl.enableVertexAttribArray(texcoordLocation);
   gl.vertexAttribPointer(texcoordLocation, 2, gl.FLOAT, false, 0, 0);
-
-  // Tell the shader to get the texture from texture unit 0
-  gl.uniform1i(textureLocation, 0);
 
   gl.clear(gl.COLOR_BUFFER_BIT);
 

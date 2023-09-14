@@ -4,25 +4,12 @@ export const convertAssetToTexture = (gl: WebGLRenderingContext, image: HTMLImag
 
   gl.bindTexture(gl.TEXTURE_2D, texture);
 
-  // Fill the texture with a 1x1 blue pixel.
-  gl.texImage2D(
-    gl.TEXTURE_2D,
-    0,
-    gl.RGBA,
-    1,
-    1,
-    0,
-    gl.RGBA,
-    gl.UNSIGNED_BYTE,
-    new Uint8Array([0, 0, 255, 255]),
-  );
-
   // let's assume all images are not a power of 2
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
 
-  gl.bindTexture(gl.TEXTURE_2D, texture);
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
 
   return texture;
@@ -124,12 +111,12 @@ export const createTextureToRenderTo = (gl: WebGLRenderingContext) => {
   return targetTexture;
 };
 
-// This sets the vertices of a quad to fit the dimension of a canvas
-export const setQuadVerticesToCanvasDimension = (gl: WebGLRenderingContext) => {
+// This sets quad size. If dimensions aren't passed in, it uses the canvas width and height
+export const setQuadVertices = (gl: WebGLRenderingContext, width?: number, height?: number) => {
   const x1 = 0;
-  const x2 = gl.canvas.width;
+  const x2 = width || gl.canvas.width;
   const y1 = 0;
-  const y2 = gl.canvas.height;
+  const y2 = height || gl.canvas.height;
 
   gl.bufferData(
     gl.ARRAY_BUFFER,

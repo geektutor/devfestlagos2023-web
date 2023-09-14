@@ -46,7 +46,7 @@ export const DRAW_DISTORTED_TEXTURE_FRAGMENT_SHADER = `
     varying vec2 v_texcoord;
 
     uniform sampler2D u_texture;
-    uniform sampler2D u_dudMap;
+    uniform sampler2D u_dudvMap;
 
     void main() {
         gl_FragColor = texture2D(u_texture, v_texcoord);
