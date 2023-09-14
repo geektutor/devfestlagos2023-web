@@ -5,8 +5,11 @@
   position: relative;
   z-index: 2;
   overflow: hidden;
-  display: flex;
-  gap: 12px;
+
+  &__first_level {
+    display: flex;
+    gap: 12px;
+  }
 
   &__img_holder {
     width: 76px;
@@ -28,42 +31,59 @@
       width: 76px;
       height: 80px;
       border-radius: 16px;
+      object-fit: cover;
+
+      @include media("<=phone") {
+        height: 56px;
+      }
     }
   }
 
-  &__text_content {
+  &__title {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
+    flex-wrap: wrap;
+    @include title-1;
 
-    &__title {
-      @include title-1;
+    @include media("<=phone") {
+      @include body-1;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin: -30px 0 0 88px;
+    @include body-2;
+
+    @include media("<=phone") {
+      margin: 16px 0 0;
+      gap: 8px;
     }
 
-    &__footer {
-      display: flex;
-      @include body-2;
+    &__time {
+      color: $grey-30;
+      margin-right: 6px;
+    }
 
-      &__time {
-        color: $grey-30;
-        margin-right: 6px;
-      }
+    &__venue {
+      color: $grey-30;
+      display: inline-flex;
+      align-items: center;
+      gap: 0 10px;
+    }
 
-      &__venue {
-        color: $grey-30;
-        display: inline-flex;
-        align-items: center;
-        gap: 0 6px;
-      }
+    &__view {
+      margin-left: auto;
+      color: $primary-blue;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      gap: 0 4px;
 
-      &__view {
-        margin-left: auto;
-        color: $primary-blue;
-        display: inline-flex;
-        align-items: center;
-        cursor: pointer;
-        gap: 0 4px;
+      @include media("<=phone") {
+        margin-left: 0;
       }
     }
   }

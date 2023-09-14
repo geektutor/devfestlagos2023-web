@@ -16,6 +16,17 @@
     width: 147px;
     top: 0;
     left: 33%;
+
+    @include media("<=tablet") {
+      width: 88.2px;
+      top: 2%;
+      left: 28%;
+    }
+
+    @include media("<=phone") {
+      top: 1%;
+      left: 5%;
+    }
   }
 
   &__logic-doodle {
@@ -24,6 +35,18 @@
     width: 190px;
     left: 17%;
     top: 13%;
+
+    @include media("<=tablet") {
+      width: 104.571px;
+      height: 48px;
+      top: 9%;
+      left: 10%;
+    }
+
+    @include media("<=phone") {
+      top: 9%;
+      left: 0;
+    }
   }
 
   &__refresh-doodle {
@@ -32,6 +55,14 @@
     width: 85px;
     right: 29%;
     top: 5%;
+
+    @include media("<=tablet") {
+      width: 54.857px;
+      height: 48px;
+      top: 2%;
+      left: 50%;
+      margin-left: -27px;
+    }
   }
 
   &__dots-doodle {
@@ -40,6 +71,13 @@
     width: 80px;
     right: 30%;
     top: 17%;
+
+    @include media("<=tablet") {
+      width: 68.741px;
+      height: 48px;
+      right: 5%;
+      top: 8%;
+    }
   }
 
   &__people-doodle {
@@ -48,6 +86,13 @@
     width: 123px;
     right: 16px;
     top: 10%;
+
+    @include media("<=tablet") {
+      width: 73.8px;
+      height: 48px;
+      right: 3%;
+      top: 1%;
+    }
   }
 
   &__memoji__holder {
@@ -66,6 +111,28 @@
       @include ratio(134, 235.005);
       width: 64px;
       height: 78px;
+
+      @include media("<=tablet") {
+        width: 44px;
+        height: 58px;
+      }
+
+      @include media("<=phone") {
+        width: 28px;
+        height: 34px;
+      }
+    }
+
+    @include media("<=tablet") {
+      width: 78px;
+      height: 78px;
+      top: 0;
+      left: 5%;
+    }
+
+    @include media("<=phone") {
+      width: 48px;
+      height: 48px;
     }
   }
 
@@ -89,6 +156,10 @@
 .schedule_container {
   width: 680px;
   margin: 0 auto;
+
+  @include media("<=phone") {
+    width: 100%;
+  }
 
   &__day_selection {
     display: flex;
@@ -117,11 +188,16 @@
     color: $grey-10;
     @include body-2;
     display: inline-block;
+
+    @include media("<=phone") {
+      @include body-3;
+    }
   }
 
   &__list {
     margin-top: 20px;
     list-style: none;
+    overflow-x: hidden;
 
     &__item {
       margin-bottom: 16px;
