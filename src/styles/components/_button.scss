@@ -31,19 +31,25 @@
     width: fit-content;
 
     @include media("<=tablet") {
-      height: 60px;
+      min-height: 60px;
+      height: fit-content;
+      padding-top: 4px;
+      padding-bottom: 4px;
     }
   }
 
   @include media("<=phone") {
     max-width: 350px;
-    width: 100%;
+    width: 80%;
 
     &--tertiary {
       background: $secondary-blue;
       color: $grey-0;
       min-width: 200px;
-      height: 54px;
+      min-height: 54px;
+      height: fit-content;
+      padding-top: 4px;
+      padding-bottom: 4px;
     }
   }
 }
