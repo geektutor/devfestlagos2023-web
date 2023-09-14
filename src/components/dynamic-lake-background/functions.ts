@@ -101,7 +101,7 @@ export const prepareRenderSceneToTexture = (
 
   const projectionUniformLocation = gl.getUniformLocation(
     renderSceneToTextureProgram,
-    "u_canvas_projection_matrix",
+    "u_canvasProjectionMatrix",
   );
 
   // prettier-ignore
@@ -283,12 +283,12 @@ export const prepareRenderSceneToCanvas = (
 
   const projectionUniformLocation = gl.getUniformLocation(
     distortSceneAndRenderToCanvasProgram,
-    "u_canvas_projection_matrix",
+    "u_canvasProjectionMatrix",
   );
 
   const textureProjectionUniformLocation = gl.getUniformLocation(
     distortSceneAndRenderToCanvasProgram,
-    "u_texture_projection_matrix",
+    "u_textureProjectionMatrix",
   );
 
   // prettier-ignore
