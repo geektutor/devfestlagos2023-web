@@ -29,7 +29,6 @@ import Homepage from "@/animations/components/Homepage";
 import HighlightIcon from "@/images/home/highlight.svg";
 import { ticketsUrl } from "@/utils/urls";
 import { SEO } from "@/components/seo";
-import Menu from "@/components/menu/menu";
 
 export default function Home() {
   const hasInitializedAnimation = useRef(false);
@@ -50,7 +49,6 @@ export default function Home() {
         image='/og-images/coming-soon.png'
       />
       <main className='c-home'>
-        <Menu />
         <section className='c-home__intro'>
           <figure className='c-home__intro__globe-doodle'>
             <Image src={globeDoodle} alt='People Doodle' fill quality={100} />

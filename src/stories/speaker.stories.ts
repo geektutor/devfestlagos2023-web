@@ -1,4 +1,4 @@
-import SpeakerCard from "@/components/speaker";
+import SpeakerCard from "@/components/speaker/speaker";
 
 export default {
   tags: ["autodocs"],
