@@ -15,8 +15,6 @@ import scribbleImage from "@/images/landing/scribble.png";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 import recapDoodleImage from "@/images/landing/recap-doodle.png";
 import SpeakerCard from "@/components/speaker/speaker";
-import Footer from "@/components/footer";
-import Menu from "@/components/menu/menu";
 import { speakers } from "@/mock-data";
 import { Speaker } from "@/types/Speaker";
 import { Talks } from "@/components/talks-section/talks";
@@ -118,7 +116,6 @@ export default function Landing() {
         image='/og-images/coming-soon.png'
       />
       <div className='landing-page'>
-        <Menu />
         <section className='landing-page__intro'>
           <div className='landing-page__intro__title'>
             <h1 className='landing-page__intro__title__text'>
@@ -274,7 +271,6 @@ export default function Landing() {
         <Talks />
         <FaqSection />
         <NoMatterWhat />
-        <Footer />
       </div>
     </>
   );
