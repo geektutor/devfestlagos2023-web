@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   renderSceneToTexture,
   prepareRenderSceneToTexture,
@@ -10,24 +10,42 @@ import {
 const useDynamicLakeBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fishermanWrapperRef = useRef<HTMLDivElement>(null);
+  const [initData, setInitData] = useState<Awaited<ReturnType<typeof initialise>> | null>(null);
+
+  const render = useCallback(() => {
+    if (initData && fishermanWrapperRef.current) {
+      const renderToTextureData = prepareRenderSceneToTexture(
+        fishermanWrapperRef.current,
+        initData,
+      );
+      const texture = renderSceneToTexture(initData, renderToTextureData);
+
+      const renderToCanvasData = prepareRenderSceneToCanvas(texture, initData);
+
+      renderDistortedSceneToCanvas(initData, renderToCanvasData);
+    }
+  }, [initData]);
 
   useEffect(() => {
-    (async () => {
-      if (canvasRef.current && fishermanWrapperRef.current) {
-        const initData = await initialise(canvasRef.current);
-
-        const renderToTextureData = prepareRenderSceneToTexture(
-          fishermanWrapperRef.current,
-          initData,
-        );
-        const texture = renderSceneToTexture(initData, renderToTextureData);
-
-        const renderToCanvasData = prepareRenderSceneToCanvas(texture, initData);
-
-        renderDistortedSceneToCanvas(initData, renderToCanvasData);
-      }
-    })();
+    if (canvasRef.current && fishermanWrapperRef.current) {
+      initialise(canvasRef.current).then(setInitData);
+    }
   }, []);
+
+  useEffect(() => {
+    const draw = () => {
+      render();
+      requestAnimationFrame(draw);
+    };
+
+    if (initData) {
+      const animationFrame = requestAnimationFrame(draw);
+
+      return () => {
+        cancelAnimationFrame(animationFrame);
+      };
+    }
+  }, [initData, render]);
 
   return {
     canvasRef,
