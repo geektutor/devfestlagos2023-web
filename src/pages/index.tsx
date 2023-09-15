@@ -49,9 +49,6 @@ export default function Home() {
         image='/og-images/coming-soon.png'
       />
       <main className='c-home'>
-        <nav className='c-home__nav'>
-          <Logo className='c-home__nav__logo' />
-        </nav>
         <section className='c-home__intro'>
           <figure className='c-home__intro__globe-doodle'>
             <Image src={globeDoodle} alt='People Doodle' fill quality={100} />

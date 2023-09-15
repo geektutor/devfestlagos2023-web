@@ -1,0 +1,331 @@
+@import "core/variables";
+@import "core/typography";
+@import "utils/breakpoints";
+@import "utils/mixins";
+
+.speaker {
+  width: 284px;
+  position: relative;
+  font-family: inherit;
+  border-radius: 24px;
+  overflow: hidden;
+  border-top: 2px solid #211212;
+  border-right: 8px solid #211212;
+  border-bottom: 8px solid #211212;
+  border-left: 1px solid #211212;
+  flex-shrink: 0;
+  cursor: pointer;
+
+  @include media("<=tablet") {
+    width: 157px;
+  }
+
+  @include media("<=phone") {
+    width: 284px;
+  }
+}
+
+.speakerImage {
+  object-fit: cover;
+  @include ratio(242, 284);
+  width: 100%;
+  margin-top: -1px; //Explain: To fill gap that shows up at top of speaker card
+}
+
+.speakerImageInner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.speakerTextContainer {
+  background-color: $grey-90;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+
+  @include media("<=tablet") {
+    padding: 12px 12px 20px 8px;
+  }
+
+  @include media("<=phone") {
+    padding: 24px;
+  }
+}
+
+.speakerFullName {
+  @include title-2;
+  color: $grey-0;
+
+  @include media("<=tablet") {
+    @include body-4;
+  }
+
+  @include media("<=phone") {
+    @include title-1;
+  }
+}
+
+.speakerCompany {
+  @include body-3;
+  color: $grey-30;
+
+  @include media("<=tablet") {
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 11px;
+  }
+
+  @include media("<=phone") {
+    @include body-2;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 16;
+  pointer-events: none;
+
+  &.active {
+    pointer-events: auto;
+    .modalOverlay {
+      opacity: 1;
+    }
+
+    .modalContent {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+.modalOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: $overlay-1;
+  opacity: 0;
+  transition: 300ms;
+}
+
+.modalContent {
+  padding: 16px 32px;
+  border-radius: 24px;
+  background: $bg-shade-1;
+  width: 80%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow: auto;
+  position: relative;
+  z-index: 2;
+  transform: scale(0.8) translateY(80px);
+  opacity: 0;
+  transition: 300ms;
+
+  @include media("<=tablet") {
+    padding: 16px;
+    width: 90%;
+  }
+}
+
+.modalClose {
+  margin-left: auto;
+  margin-bottom: 32px;
+  border: none;
+  background: transparent;
+  display: block;
+
+  @include media("<=tablet") {
+    margin-bottom: 16px;
+  }
+}
+
+.modalImage {
+  @include ratio(155, 637);
+  width: 100%;
+  margin-bottom: 32px;
+
+  @include media("<=tablet") {
+    display: none;
+  }
+}
+
+.modalMobileImage {
+  @include ratio(155, 350);
+  width: 100%;
+  margin-bottom: 16px;
+
+  @include media(">tablet") {
+    display: none;
+  }
+}
+
+.modalDetails {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+
+  @include media("<=tablet") {
+    margin-bottom: 16px;
+  }
+
+  @include media("<=phone") {
+    flex-direction: column;
+    align-items: flex-start;
+    @include flex-gap(16px, 0);
+  }
+}
+
+.modalSpeakerImage {
+  @include ratio(1, 1);
+  width: 176px;
+  border-radius: 24px;
+  border-top: 1px solid $grey-10;
+  border-right: 4px solid $grey-10;
+  border-bottom: 4px solid $grey-10;
+  border-left: 1px solid $grey-10;
+  margin-right: 20px;
+
+  @include media("<=tablet") {
+    @include ratio(142, 118);
+    width: 118px;
+    margin-right: 8px;
+  }
+}
+
+.modalSpeakerName {
+  color: $grey-0;
+  @include heading-5;
+  margin-bottom: 8px;
+
+  @include media("<=tablet") {
+    @include title-2;
+    margin-bottom: 4px;
+  }
+}
+
+.modalSpeakerCredits {
+  color: $grey-20;
+  @include body-1;
+  margin-bottom: 16px;
+
+  @include media("<=tablet") {
+    @include body-4;
+    margin-bottom: 8px;
+  }
+}
+
+.modalLinksHeader {
+  color: $grey-20;
+  @include body-4;
+  margin-bottom: 8px;
+
+  @include media("<=tablet") {
+    @include body-5;
+    margin-bottom: 8px;
+  }
+}
+
+.modalLinks {
+  display: grid;
+  grid-template-columns: repeat(3, 48px);
+  grid-column-gap: 24px;
+
+  @include media("<=tablet") {
+    grid-template-columns: repeat(3, 40px);
+    grid-column-gap: 16px;
+  }
+}
+
+.modalLink {
+  background: transparent;
+  border: none;
+  width: 48px;
+  height: 48px;
+
+  svg {
+    @include ratio(1, 1);
+    width: 100%;
+  }
+
+  @include media("<=tablet") {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.modalTags {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+  @include media("<=tablet") {
+    flex-direction: column;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+}
+
+.modalCategory {
+  color: $grey-20 !important;
+  margin-right: 8px;
+
+  @include media("<=tablet") {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+}
+
+.modalTitle {
+  @include heading-4;
+  color: $grey-0;
+  margin-bottom: 16px;
+
+  @include media("<=tablet") {
+    @include title-1;
+    margin-bottom: 8px;
+  }
+}
+
+.modalDescription {
+  color: $grey-10;
+  @include body-1;
+  margin-bottom: 32px;
+
+  @include media("<=tablet") {
+    @include body-3;
+    margin-bottom: 32px;
+  }
+}
+
+.modalButtons {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  @include media("<=tablet") {
+    flex-direction: column-reverse;
+
+    .c-button {
+      width: 100%;
+    }
+  }
+}
+
+.modalNextButton {
+  margin-left: auto;
+
+  @include media("<=tablet") {
+    margin-left: unset;
+    margin-bottom: 16px;
+  }
+}

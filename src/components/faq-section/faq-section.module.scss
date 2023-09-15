@@ -1,0 +1,76 @@
+@import "core/variables";
+@import "core/typography";
+@import "utils/breakpoints";
+@import "utils/mixins";
+
+.faq {
+  padding: 48px 0;
+  background-color: $bg-shade-2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include media("<=tablet") {
+    padding: 24px 0 16px;
+  }
+
+  @include media("<=phone") {
+    padding: 24px 24px 20px;
+  }
+}
+
+.faqTitle {
+  max-width: 540px;
+  color: $grey-0;
+  @include heading-4;
+  margin-bottom: 16px;
+  text-align: center;
+
+  @include media("<=tablet") {
+    max-width: 270px;
+    @include title-2;
+    margin-bottom: 0;
+  }
+
+  @include media("<=phone") {
+    max-width: unset;
+    @include heading-5;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+}
+
+.faqSubtext {
+  max-width: 452px;
+  color: $grey-40;
+  margin-bottom: 16px;
+  text-align: center;
+  @include title-2;
+
+  @include media("<=tablet") {
+    max-width: 226px;
+    @include body-5;
+  }
+
+  @include media("<=phone") {
+    margin-bottom: 24px;
+    @include body-1;
+    max-width: unset;
+    text-align: left;
+  }
+}
+
+.faqQuestions {
+  @include flex-gap(16px, 0);
+  max-width: 706px;
+
+  @include media("<=tablet") {
+    max-width: 353px;
+    @include flex-gap(8px, 0);
+  }
+
+  @include media("<=tablet") {
+    max-width: unset;
+    @include flex-gap(16px, 0);
+  }
+}

@@ -1,0 +1,125 @@
+@use "../../styles/core/variables" as v;
+@use "../../styles/utils/breakpoints" as b;
+
+.menu {
+  position: relative;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: v.$bg-shade-1;
+  padding: 0 8.6%;
+  z-index: 15;
+
+  @include b.media("<=desktop-sm") {
+    height: 96px;
+    padding: 0 4.17%;
+  }
+
+  @include b.media("<=phone") {
+    height: 56px;
+    padding: 0 24px;
+  }
+}
+
+.logo {
+  width: 125px;
+  min-width: 125px;
+
+  @include b.media("<=desktop-sm") {
+    width: 94px;
+    min-width: 94px;
+  }
+
+  @include b.media("<=phone") {
+    width: 78px;
+    min-width: 78px;
+  }
+}
+
+.items,
+.navItems {
+  display: flex;
+  align-items: center;
+  column-gap: 32px;
+}
+
+.items {
+  @include b.media("<=desktop-sm") {
+    column-gap: 8px;
+  }
+  @include b.media("<=phone") {
+    display: none;
+  }
+}
+
+.navItems {
+  @include b.media("<=desktop-sm") {
+    column-gap: 2px;
+  }
+  @include b.media("<=phone") {
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+    align-items: flex-start;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.navItem {
+  list-style: none;
+}
+
+.link {
+  color: v.$grey-50;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 8px;
+
+  @include b.media("<=desktop-sm") {
+    font-size: 16px;
+  }
+}
+
+.cta {
+  display: flex;
+  column-gap: 8px;
+
+  @include b.media("<=desktop-sm") {
+    height: 59px;
+
+    &Icon {
+      display: none;
+    }
+  }
+}
+
+.hamburger {
+  border: none;
+  background-color: transparent;
+
+  @include b.media(">phone") {
+    display: none;
+  }
+}
+
+.mobileNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: v.$bg-shade-1;
+}
+
+.mobileItems {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  padding: 48px 24px;
+}
