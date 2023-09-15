@@ -9,7 +9,7 @@ import YouTubeLightIcon from "@/images/social-media/youtube-light.svg";
 const Footer = () => {
   return (
     <footer className='c-footer'>
-      <div className='container'>
+      <div>
         <div className='c-footer__container'>
           <Logo className='c-footer__logo' alt='DevFest Lagos 2023 Logo' />
 

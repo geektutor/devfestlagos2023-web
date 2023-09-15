@@ -1,0 +1,115 @@
+@import "core/variables";
+@import "core/typography";
+@import "utils/breakpoints";
+@import "utils/mixins";
+
+.talk {
+  display: flex;
+  align-items: flex-start;
+
+  @include media("<=phone") {
+    flex-direction: column;
+    @include flex-gap(24px, 0);
+    align-items: flex-start;
+    width: 100%;
+  }
+}
+
+.portrait {
+  @include ratio(212, 167);
+  width: 167px;
+  margin-right: 24px;
+  border-radius: 16px;
+  filter: grayscale(1);
+
+  @include media("<=tablet") {
+    width: 83px;
+    margin-right: 12px;
+    border-radius: 8px;
+  }
+
+  @include media("<=phone") {
+    width: 100%;
+    max-width: 382px;
+    @include ratio(349, 382);
+    margin-right: 0;
+    border-radius: 16px;
+  }
+}
+
+.pills {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+
+  @include media("<=tablet") {
+    margin-bottom: 8px;
+  }
+
+  @include media("<=phone") {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.category {
+  margin-right: 8px;
+
+  @include media("<=phone") {
+    margin-bottom: 8px;
+    margin-right: 0;
+  }
+}
+
+.title {
+  max-width: 810px;
+  @include heading-4;
+  color: $grey-100;
+  margin-bottom: 16px;
+
+  @include media("<=tablet") {
+    @include body-2;
+    margin-bottom: 8px;
+  }
+
+  @include media("<=phone") {
+    @include heading-5;
+    margin-bottom: 14px;
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  @include flex-gap(0, 8px);
+
+  @include body-1;
+  color: $grey-70;
+
+  @include media("<=tablet") {
+    @include body-5;
+    @include flex-gap(0, 4px);
+  }
+
+  @include media("<=phone") {
+    @include body-3;
+    @include flex-gap(0, 8px);
+  }
+}
+
+.ellipse {
+  @include ratio(1, 1);
+  width: 8px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+
+  @include media("<=tablet") {
+    width: 4px;
+  }
+
+  @include media("<=phone") {
+    width: 8px;
+  }
+}

@@ -8,7 +8,7 @@ export default {
 
 export const Default = {
   args: {
-    text: "Design",
+    children: "Design",
     isActive: false,
   },
 };
