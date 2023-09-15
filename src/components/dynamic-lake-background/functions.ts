@@ -26,7 +26,7 @@ const loadAssets = async () => {
   const boatShadowImage = await loadImage("/404-images/boat-shadow.png");
   const bigWaveImage = await loadImage("/404-images/big-wave.png");
   const smallWaveImage = await loadImage("/404-images/small-wave.png");
-  const waterDuDvMap = await loadImage("/404-images/water-dudv-map.jpeg");
+  const waterDuDvMap = await loadImage("/404-images/water-dudv-map.png");
 
   return { boatShadowImage, bigWaveImage, smallWaveImage, waterDuDvMap };
 };
@@ -174,13 +174,13 @@ export const prepareRenderSceneToTexture = (
     {
       texture: convertAssetToTexture(gl, assets.smallWaveImage),
       matrix: (() => {
-        const waveWidth = 0.97 * boatWidth;
+        const waveWidth = boatWidth * 1.05;
         const waveHeight = 0.75 * boatHeight;
 
         let matrix = identity();
         matrix = translate(
           matrix,
-          xOffset + boatWidth + 0.08 * boatWidth,
+          xOffset + boatWidth + 0.0855 * boatWidth,
           gl.canvas.height - waveHeight,
         );
         matrix = scale(matrix, waveWidth, waveHeight);
@@ -193,11 +193,7 @@ export const prepareRenderSceneToTexture = (
       matrix: (() => {
         let matrix = identity();
 
-        matrix = translate(
-          matrix,
-          xOffset + boatWidth - boatWidth / 50,
-          yOffset + boatHeight / 6.3,
-        );
+        matrix = translate(matrix, xOffset + boatWidth, yOffset + boatHeight / 6.2);
         matrix = scale(matrix, boatWidth, boatHeight);
         return matrix;
       })(),
@@ -276,6 +272,7 @@ export const renderSceneToTexture = (
 export const prepareRenderSceneToCanvas = (
   sceneTexture: WebGLTexture,
   initData: Awaited<ReturnType<typeof initialise>>,
+  moveFactor: number,
 ) => {
   const {
     gl,
@@ -296,6 +293,11 @@ export const prepareRenderSceneToCanvas = (
     "u_textureProjectionMatrix",
   );
 
+  const moveFactorUniform = gl.getUniformLocation(
+    distortSceneAndRenderToCanvasProgram,
+    "moveFactor",
+  );
+
   // prettier-ignore
   const projectionMatrix = [
       2 / canvas.width, 0, 0,
@@ -314,6 +316,8 @@ export const prepareRenderSceneToCanvas = (
 
   gl.uniformMatrix3fv(textureProjectionUniformLocation, false, textureProjectionMatrix);
 
+  gl.uniform1f(moveFactorUniform, moveFactor);
+
   // look up where the vertex data needs to go.
   const positionLocation = gl.getAttribLocation(distortSceneAndRenderToCanvasProgram, "a_position");
   const texcoordLocation = gl.getAttribLocation(distortSceneAndRenderToCanvasProgram, "a_texcoord");
@@ -328,8 +332,8 @@ export const prepareRenderSceneToCanvas = (
   const dudvMapTexture = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, dudvMapTexture);
 
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
 
