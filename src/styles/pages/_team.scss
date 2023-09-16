@@ -9,7 +9,17 @@
     align-items: center;
 
     @include media("<=tablet") {
-      padding-top: 20rem;
+      padding-top: unset;
+      justify-content: center;
+      padding-bottom: 10rem;
+      height: calc(100vh - 9.6rem);
+    }
+
+    @include media("<=phone") {
+      padding-top: 32px;
+      max-height: unset;
+      min-height: 700px;
+      height: calc(100vh - 5.6rem);
     }
 
     &__header {
@@ -24,6 +34,13 @@
         max-width: 53.8rem;
         margin-bottom: 2.8rem;
       }
+
+      @include media("<=phone") {
+        padding: 0 24px;
+        width: 100%;
+        font-weight: 700;
+        margin-bottom: 2rem;
+      }
     }
 
     &__subtext {
@@ -37,6 +54,12 @@
         @include body-2;
         max-width: 35rem;
       }
+
+      @include media("<=phone") {
+        @include body-1;
+        padding: 0 24px;
+        width: 100%;
+      }
     }
   }
 
@@ -48,10 +71,19 @@
       padding: 4.8rem 3.2rem;
     }
 
+    @include media("<=phone") {
+      padding: 1.6rem 0 1.6rem 2.4rem;
+    }
+
     &__top {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
+
+      @include media("<=phone") {
+        flex-direction: column;
+        justify-content: unset;
+      }
     }
 
     &__header {
@@ -66,6 +98,13 @@
         max-width: 23.7rem;
         margin-bottom: 0.4rem;
       }
+
+      @include media("<=phone") {
+        width: 100%;
+        padding-right: 2.4rem;
+        @include heading-5;
+        max-width: unset;
+      }
     }
 
     &__subtext {
@@ -78,11 +117,28 @@
         @include body-5;
         max-width: 20.7rem;
       }
+
+      @include media("<=phone") {
+        width: 100%;
+        padding-right: 2.4rem;
+        @include body-1;
+        max-width: unset;
+      }
     }
 
     &__categories {
       display: flex;
       position: relative;
+      overflow: auto;
+      margin-left: 40px;
+      scroll-snap-type: x;
+
+      @include media("<=phone") {
+        margin-left: unset;
+        margin-top: 24px;
+        width: 100%;
+        padding-right: 1.6rem;
+      }
     }
 
     --category-width: 9.4rem;
@@ -101,6 +157,7 @@
       color: $grey-70;
       transition: 300ms;
       cursor: pointer;
+      flex-shrink: 0;
 
       &.is-active {
         color: $grey-100;
@@ -108,6 +165,7 @@
 
       @include media("<=tablet") {
         @include body-5;
+        scroll-snap-align: start;
       }
     }
 
@@ -134,6 +192,14 @@
 
     @include media("<=tablet") {
       column-gap: 2.4rem;
+    }
+
+    @include media("<=tablet-sm") {
+      grid-template-columns: 1fr;
+    }
+
+    @include media("<=phone") {
+      padding-right: 2.4rem;
     }
   }
 }

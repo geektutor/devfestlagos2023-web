@@ -24,6 +24,18 @@
   @include media("<=tablet") {
     margin-bottom: 0.8rem;
   }
+
+  @include media("<=phone") {
+    grid-template-columns: 1fr;
+  }
+}
+
+.imageRow {
+  @include media("<=phone") {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: unset;
+  }
 }
 
 %section {
@@ -34,6 +46,11 @@
   @include media("<=tablet") {
     padding: 0.8rem;
     border-radius: 1.08rem;
+  }
+
+  @include media("<=phone") {
+    padding: 1.6rem;
+    border-radius: 2.4rem;
   }
 }
 
@@ -58,6 +75,10 @@
   @include media("<=tablet") {
     @include body-3;
   }
+
+  @include media("<=phone") {
+    @include title-2;
+  }
 }
 
 .role {
@@ -67,6 +88,10 @@
 
   @include media("<=tablet") {
     @include body-5;
+  }
+
+  @include media("<=phone") {
+    @include body-1;
   }
 }
 
@@ -81,6 +106,10 @@
     font-size: 0.8rem;
     line-height: normal;
   }
+
+  @include media("<=phone") {
+    @include body-3;
+  }
 }
 
 .sectionHeader {
@@ -93,11 +122,21 @@
     line-height: normal;
     margin-bottom: 0.4rem;
   }
+
+  @include media("<=phone") {
+    @include body-3;
+    margin-bottom: 1.6rem;
+  }
 }
 
 .linksSection {
   @extend %section;
   height: 10rem;
+
+  @include media("<=phone") {
+    min-height: 10rem;
+    height: unset;
+  }
 }
 
 .links {
@@ -107,6 +146,10 @@
 
   @include media("<=tablet") {
     column-gap: 0.8rem;
+  }
+
+  @include media("<=phone") {
+    column-gap: 2.8rem;
   }
 }
 
@@ -129,6 +172,10 @@
   @include media("<=tablet") {
     @include body-1;
   }
+
+  @include media("<=phone") {
+    @include title-2;
+  }
 }
 
 .picture {
@@ -139,6 +186,12 @@
   @include media("<=tablet") {
     @include ratio(172.5, 145);
     border-radius: 0.8rem;
+  }
+
+  @include media("<=phone") {
+    @include ratio(1, 1);
+    border-radius: 2.4rem;
+    margin-bottom: 1.6rem;
   }
 }
 

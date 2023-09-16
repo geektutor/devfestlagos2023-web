@@ -7,6 +7,7 @@ import LinkedInIcon from "@/images/team/links/linkedin.svg";
 import TwitterIcon from "@/images/team/links/twitter.svg";
 import FacebookIcon from "@/images/team/links/facebook.svg";
 import EmailIcon from "@/images/team/links/mail.svg";
+import { classNames } from "@/utils/classNames";
 
 const linksMap: Partial<Record<TeamMemberLink["type"], FC>> = {
   instagram: IgIcon,
@@ -19,7 +20,7 @@ const linksMap: Partial<Record<TeamMemberLink["type"], FC>> = {
 export const TeamMember: FC<{ member: ITeamMember }> = ({ member }) => {
   return (
     <div className={styles.teamMember}>
-      <div className={styles.row}>
+      <div className={classNames(styles.row, styles.imageRow)}>
         <div className={styles.leftColumn}>
           <div className={styles.name}>
             {member.name.split(" ").map((namePart, index) => (
@@ -30,7 +31,13 @@ export const TeamMember: FC<{ member: ITeamMember }> = ({ member }) => {
           <p className={styles.comment}>{member.comment}</p>
         </div>
         <div className={styles.picture}>
-          <Image src={member.image} alt={member.name} fill />
+          <Image
+            src={member.image}
+            alt={member.name}
+            fill
+            style={{ objectFit: "cover" }}
+            quality={80}
+          />
         </div>
       </div>
       <div className={styles.row}>
