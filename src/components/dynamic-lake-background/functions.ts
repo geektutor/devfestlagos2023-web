@@ -30,6 +30,8 @@ const loadAssets = async () => {
   const firstFour = await loadImage("/404-images/first-four.png");
   const zero = await loadImage("/404-images/zero.png");
   const secondFour = await loadImage("/404-images/second-four.png");
+  const rightHandOarShadow = await loadImage("/404-images/right-hand-oar-shadow.png");
+  const leftHandOarShadow = await loadImage("/404-images/left-hand-oar-shadow.png");
 
   return {
     boatShadowImage,
@@ -39,6 +41,8 @@ const loadAssets = async () => {
     firstFour,
     zero,
     secondFour,
+    rightHandOarShadow,
+    leftHandOarShadow,
   };
 };
 
@@ -152,16 +156,16 @@ export const prepareRenderSceneToTexture = (
   const texcoords = [0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1];
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(texcoords), gl.STATIC_DRAW);
 
-  const { clientHeight } = fishermanWrapper;
-  const { x, y } = fishermanWrapper.getBoundingClientRect();
-  const xOffset = (x + window.scrollX) * dpr;
-  const yOffset = (y + window.scrollY - clientHeight / 4) * dpr;
+  const { clientHeight, offsetTop, offsetLeft } = fishermanWrapper;
+  const xOffset = offsetLeft * dpr;
+  const yOffset = offsetTop * dpr;
 
-  const boatHeight = clientHeight * 0.78 * dpr * 1.02; // I multiple by 0.78 because the actual bot is 78% the height of the bounding box
+  const boatHeight = clientHeight * 0.78 * dpr; // I multiple by 0.78 because the actual bot is 78% the height of the bounding box
 
   /* The Boat ratio is 150.83 / 347.7. Therefore we calculate the boat width
   relative to the boat height. */
   const boatWidth = (150.83 * boatHeight) / 347.7;
+
   /* NOTE: The following translations and scaling used on each item can be hardcoded into a single matrix
     and then multiplied by the projection in shader. However, this is much easier to,
     read, debug and understand. An example of what it could look like is:
@@ -173,6 +177,8 @@ export const prepareRenderSceneToTexture = (
     Read more here:
     https://webglfundamentals.org/webgl/lessons/webgl-2d-matrices.html
   */
+  /* NOTE: When getting dimensions to translate by, I do a lot of multiplication by boatWidth/boatHeight in order to make things relative
+ to the boat height and width defined in CSS */
   const staticAssets = [
     {
       texture: convertAssetToTexture(gl, assets.bigWaveImage),
@@ -207,8 +213,11 @@ export const prepareRenderSceneToTexture = (
       texture: convertAssetToTexture(gl, assets.boatShadowImage),
       matrix: (() => {
         let matrix = identity();
-
-        matrix = translate(matrix, xOffset + boatWidth, yOffset + boatHeight / 6.2);
+        matrix = translate(
+          matrix,
+          xOffset + boatWidth + 0.02 * boatWidth,
+          yOffset + 0.175 * boatHeight,
+        );
         matrix = scale(matrix, boatWidth, boatHeight);
         return matrix;
       })(),
@@ -267,6 +276,36 @@ export const prepareRenderSceneToTexture = (
           Math.max(gl.canvas.width * 0.06, 160),
           Math.max(gl.canvas.width * 0.07, 180),
         );
+
+        return matrix;
+      })(),
+    },
+    {
+      texture: convertAssetToTexture(gl, assets.rightHandOarShadow),
+      matrix: (() => {
+        let matrix = identity();
+
+        const oarWidth = boatWidth;
+        const oarHeight = 0.038 * boatHeight;
+
+        matrix = translate(matrix, xOffset + 0.38 * boatWidth, yOffset + boatHeight / 1.44);
+
+        matrix = scale(matrix, oarWidth, oarHeight);
+
+        return matrix;
+      })(),
+    },
+    {
+      texture: convertAssetToTexture(gl, assets.leftHandOarShadow),
+      matrix: (() => {
+        let matrix = identity();
+
+        const oarWidth = boatWidth;
+        const oarHeight = 0.1 * boatHeight;
+
+        matrix = translate(matrix, xOffset + 1.64 * boatWidth, yOffset + boatHeight / 1.38);
+
+        matrix = scale(matrix, oarWidth, oarHeight);
 
         return matrix;
       })(),

@@ -51,7 +51,7 @@ export const DRAW_DISTORTED_TEXTURE_FRAGMENT_SHADER = `
     uniform sampler2D u_dudvMap;
 
     void main() {
-        float intensity = 0.02; // This value dictates the intensity of the flow. The higher the value, the more intense and chaotic
+        float intensity = 0.01; // This value dictates the intensity of the flow. The higher the value, the more intense and chaotic
         vec2 distortion = texture2D(u_dudvMap, vec2(v_texcoord.x + moveFactor, v_texcoord.y + moveFactor)).rg * intensity;
         vec2 distortedTextureCoords = v_texcoord + distortion;
         gl_FragColor = texture2D(u_texture, distortedTextureCoords);
