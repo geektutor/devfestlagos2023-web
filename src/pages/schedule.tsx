@@ -7,6 +7,9 @@ import RefreshDoodle from "@/images/schedule/refresh-doodles.png";
 import MemojiAvatar from "@/images/schedule/memoji-avatar-schedule.png";
 import { useState } from "react";
 import { ScheduleCard } from "@/components/schedule-card";
+import { Talks } from "@/components/talks-section/talks";
+import FaqSection from "@/components/faq-section/faq-section";
+import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
 
 export default function Schedule() {
   const [selectedDay, setSelectedDay] = useState<number>(1);
@@ -65,6 +68,9 @@ export default function Schedule() {
           </section>
         </div>
       </header>
+      <Talks />
+      <FaqSection />
+      <NoMatterWhat />
     </>
   );
 }
