@@ -38,6 +38,10 @@ export const initialise = async (canvas: HTMLCanvasElement) => {
 
   if (!gl) throw new Error("Failed to inistialise WebGL");
 
+  gl.clear(gl.COLOR_BUFFER_BIT);
+
+  gl.clearColor(1, 0.9804, 0.9216, 1);
+
   gl.enable(gl.BLEND);
 
   gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
@@ -139,8 +143,8 @@ export const prepareRenderSceneToTexture = (
 
   const { clientHeight } = fishermanWrapper;
   const { x, y } = fishermanWrapper.getBoundingClientRect();
-  const xOffset = x * dpr;
-  const yOffset = y * dpr;
+  const xOffset = (x + window.scrollX) * dpr;
+  const yOffset = (y + window.scrollY - clientHeight / 4) * dpr;
 
   const boatHeight = clientHeight * 0.78 * dpr * 1.02; // I multiple by 0.78 because the actual bot is 78% the height of the bounding box
 

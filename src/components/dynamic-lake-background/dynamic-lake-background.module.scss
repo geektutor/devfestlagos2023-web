@@ -1,3 +1,6 @@
+@import "utils/mixins";
+@import "utils/breakpoints";
+
 .container {
   height: 100%;
   width: 100%;
@@ -7,10 +10,14 @@
 }
 
 .fishermanIllustration {
-  height: calc(100vh / 2.2);
-  aspect-ratio: 1 / 1;
+  height: calc(100% / 2.2);
+  @include ratio(1, 1);
   position: absolute;
   bottom: 15.5%;
+  @include media("<=phone") {
+    bottom: 10%;
+    height: calc(100% / 3);
+  }
 }
 
 .canvas {

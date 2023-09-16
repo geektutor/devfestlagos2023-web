@@ -13,9 +13,7 @@ const useDynamicLakeBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fishermanWrapperRef = useRef<HTMLDivElement>(null);
   const [initData, setInitData] = useState<Awaited<ReturnType<typeof initialise>> | null>(null);
-  // const timeElapsed = useRef(0);
   const prevTimestamp = useRef(0);
-  // const prevTimestamp = useRef(0);
   const moveFactor = useRef(0);
 
   const render = useCallback(() => {

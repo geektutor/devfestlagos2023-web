@@ -1,3 +1,5 @@
+@import "utils/mixins";
+
 .c-404 {
   @extend %page;
   background-color: $bg-shade-1;
@@ -6,5 +8,54 @@
 
   &__content {
     position: relative;
+    padding: 48px 8.6%;
+    @include media("<=tablet") {
+      padding: 24px 32px;
+    }
+    @include media("<=phone") {
+      padding: 32px 24px 16px;
+    }
+    &__header {
+      display: flex;
+      gap: 8px;
+      &__information {
+        h1 {
+          @include heading-3;
+          max-width: 739px;
+          margin-bottom: 16px;
+          @include media("<=tablet") {
+            @include heading-4;
+
+            max-width: 450px;
+          }
+          @include media("<=phone") {
+            max-width: 350px;
+          }
+        }
+        p {
+          @include title-1;
+          max-width: 456px;
+          margin-bottom: 25px;
+          @include media("<=tablet") {
+            @include title-2;
+            max-width: 400px;
+          }
+        }
+      }
+      &__anime-person {
+        position: relative;
+        height: 142px;
+        min-width: 142px;
+        @include media("<=tablet") {
+          height: 100px;
+          min-width: 100px;
+        }
+        @include media("<=phone") {
+          height: 70px;
+          min-width: 70px;
+        }
+        @include ratio(1, 1);
+      }
+    }
   }
 }
