@@ -1,0 +1,88 @@
+@import "core/variables";
+@import "core/typography";
+@import "utils/breakpoints";
+@import "utils/mixins";
+
+.teamMember {
+  padding: 1.6rem;
+  display: grid;
+  grid-template-columns: 25fr 29fr;
+  gap: 1.6rem;
+  border-radius: 24px;
+  background: $grey-0;
+}
+
+%section {
+  padding: 16px;
+  border-radius: 2.4rem;
+  background: $secondary-grey;
+}
+
+.leftColumn {
+  display: flex;
+  @include flex-gap(16px, 0);
+  flex-direction: column;
+}
+
+.name {
+  @extend %section;
+  @include heading-5;
+  color: $grey-100;
+  margin-top: 0;
+  @include flex-gap(0.8rem, 0);
+  flex-direction: column;
+
+  span {
+    display: block;
+  }
+}
+
+.role {
+  @extend %section;
+  @include body-1;
+  color: $grey-80;
+}
+
+.comment {
+  @extend %section;
+  @include body-3;
+  color: $grey-40;
+  flex-grow: 1;
+  max-height: 130px;
+  overflow: auto;
+}
+
+.sectionHeader {
+  @include body-3;
+  color: $grey-40;
+  margin-bottom: 1.6rem;
+}
+
+.linksSection {
+  @extend %section;
+}
+
+.links {
+  grid-template-columns: repeat(5, 1fr); //todo: make this break into seperate lines on mobile
+}
+
+.quote {
+  @extend %section;
+  @include heading-4;
+  color: $grey-100;
+  grid-column: 1/3;
+  flex-grow: 1;
+}
+
+.picture {
+  @include ratio(34.5, 29);
+  width: 100%;
+  border-radius: 24px;
+}
+
+.spotify {
+  width: 100%;
+  height: 10rem;
+  border-radius: 2.4rem;
+  background: linear-gradient(90deg, #12c2e9 0%, #c471ed 100%);
+}
