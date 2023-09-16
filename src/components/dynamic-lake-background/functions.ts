@@ -27,8 +27,19 @@ const loadAssets = async () => {
   const bigWaveImage = await loadImage("/404-images/big-wave.png");
   const smallWaveImage = await loadImage("/404-images/small-wave.png");
   const waterDuDvMap = await loadImage("/404-images/water-dudv-map.png");
+  const firstFour = await loadImage("/404-images/first-four.png");
+  const zero = await loadImage("/404-images/zero.png");
+  const secondFour = await loadImage("/404-images/second-four.png");
 
-  return { boatShadowImage, bigWaveImage, smallWaveImage, waterDuDvMap };
+  return {
+    boatShadowImage,
+    bigWaveImage,
+    smallWaveImage,
+    waterDuDvMap,
+    firstFour,
+    zero,
+    secondFour,
+  };
 };
 
 export const initialise = async (canvas: HTMLCanvasElement) => {
@@ -199,6 +210,64 @@ export const prepareRenderSceneToTexture = (
 
         matrix = translate(matrix, xOffset + boatWidth, yOffset + boatHeight / 6.2);
         matrix = scale(matrix, boatWidth, boatHeight);
+        return matrix;
+      })(),
+    },
+
+    {
+      texture: convertAssetToTexture(gl, assets.firstFour),
+      matrix: (() => {
+        let matrix = identity();
+
+        matrix = translate(
+          matrix,
+          Math.max(gl.canvas.width * 0.1, 100),
+          gl.canvas.height - gl.canvas.height * 0.4,
+        );
+        matrix = scale(
+          matrix,
+          Math.max(gl.canvas.width * 0.06, 160),
+          Math.max(gl.canvas.width * 0.07, 180),
+        );
+        return matrix;
+      })(),
+    },
+
+    {
+      texture: convertAssetToTexture(gl, assets.zero),
+      matrix: (() => {
+        let matrix = identity();
+
+        matrix = translate(
+          matrix,
+          Math.max(gl.canvas.width * 0.2, 250),
+          gl.canvas.height - gl.canvas.height * 0.5,
+        );
+        matrix = scale(
+          matrix,
+          Math.max(gl.canvas.width * 0.06, 160),
+          Math.max(gl.canvas.width * 0.07, 180),
+        );
+        return matrix;
+      })(),
+    },
+    {
+      texture: convertAssetToTexture(gl, assets.secondFour),
+      matrix: (() => {
+        let matrix = identity();
+
+        matrix = translate(
+          matrix,
+          Math.max(gl.canvas.width * 0.3, 600),
+          gl.canvas.height - gl.canvas.height * 0.4,
+        );
+
+        matrix = scale(
+          matrix,
+          Math.max(gl.canvas.width * 0.06, 160),
+          Math.max(gl.canvas.width * 0.07, 180),
+        );
+
         return matrix;
       })(),
     },
