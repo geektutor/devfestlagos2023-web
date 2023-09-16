@@ -32,6 +32,8 @@ const loadAssets = async () => {
   const secondFour = await loadImage("/404-images/second-four.png");
   const rightHandOarShadow = await loadImage("/404-images/right-hand-oar-shadow.png");
   const leftHandOarShadow = await loadImage("/404-images/left-hand-oar-shadow.png");
+  const stalkClover = await loadImage("/404-images/stalk-clover.png");
+  const clover = await loadImage("/404-images/clover.png");
 
   return {
     boatShadowImage,
@@ -43,6 +45,8 @@ const loadAssets = async () => {
     secondFour,
     rightHandOarShadow,
     leftHandOarShadow,
+    stalkClover,
+    clover,
   };
 };
 
@@ -296,6 +300,30 @@ export const prepareRenderSceneToTexture = (
         matrix = translate(matrix, xOffset + 1.36 * boatWidth, yOffset + boatHeight / 1.67);
 
         matrix = scale(matrix, oarWidth, oarHeight);
+
+        return matrix;
+      })(),
+    },
+    {
+      texture: convertAssetToTexture(gl, assets.stalkClover),
+      matrix: (() => {
+        let matrix = identity();
+
+        matrix = translate(matrix, xOffset + 2.5 * boatWidth, yOffset);
+
+        matrix = scale(matrix, 65, 80);
+
+        return matrix;
+      })(),
+    },
+    {
+      texture: convertAssetToTexture(gl, assets.clover),
+      matrix: (() => {
+        let matrix = identity();
+
+        matrix = translate(matrix, xOffset + 4 * boatWidth, yOffset * 1.5);
+
+        matrix = scale(matrix, 65, 65);
 
         return matrix;
       })(),
