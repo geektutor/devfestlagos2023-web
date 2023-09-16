@@ -363,10 +363,6 @@ export const renderSceneToTexture = (
   // Tell WebGL how to convert from clip space to pixels
   gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 
-  gl.clear(gl.COLOR_BUFFER_BIT);
-
-  gl.clearColor(1, 0.9804, 0.9216, 1);
-
   const frameBuffer = gl.createFramebuffer();
   gl.bindFramebuffer(gl.FRAMEBUFFER, frameBuffer);
 
