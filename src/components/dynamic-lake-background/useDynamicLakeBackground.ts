@@ -68,6 +68,7 @@ const useDynamicLakeBackground = () => {
   return {
     canvasRef,
     fishermanWrapperRef,
+    loaded: !!initData,
   };
 };
 
