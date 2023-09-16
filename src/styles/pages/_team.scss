@@ -46,6 +46,8 @@
     &__subtext {
       @include title-2;
       color: $grey-80;
+      max-width: 49.8rem;
+      width: 34.5vw;
     }
 
     &__categories {
