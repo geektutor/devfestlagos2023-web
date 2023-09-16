@@ -63,7 +63,8 @@ export const initialise = async (canvas: HTMLCanvasElement) => {
 
   gl.enable(gl.BLEND);
 
-  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+  gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+  gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
 
   const drawImageVertexShader = createShader(gl, gl.VERTEX_SHADER, DRAW_IMAGE_VERTEX_SHADER);
   if (!drawImageVertexShader) throw new Error("Failed to create 'draw image' vertex shader");
