@@ -10,10 +10,10 @@
 }
 
 .fishermanIllustration {
-  height: calc(100% / 2.2);
-  @include ratio(1, 1);
+  height: calc(100% / 2.8);
+  aspect-ratio: 339 / 329; // The aspect ratio mixin kinda adds some padding so I just use the regular aspect ratio property
   position: absolute;
-  bottom: 15.5%;
+  bottom: 20.5%;
   @include media("<=phone") {
     bottom: 10%;
     height: calc(100% / 3);

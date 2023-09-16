@@ -156,15 +156,13 @@ export const prepareRenderSceneToTexture = (
   const texcoords = [0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1];
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(texcoords), gl.STATIC_DRAW);
 
-  const { clientHeight, offsetTop, offsetLeft } = fishermanWrapper;
+  const { clientHeight, clientWidth, offsetTop, offsetLeft } = fishermanWrapper;
   const xOffset = offsetLeft * dpr;
   const yOffset = offsetTop * dpr;
 
-  const boatHeight = clientHeight * 0.78 * dpr; // I multiple by 0.78 because the actual bot is 78% the height of the bounding box
+  const boatHeight = clientHeight * dpr; // I multiple by 0.78 because the actual bot is 78% the height of the bounding box
 
-  /* The Boat ratio is 150.83 / 347.7. Therefore we calculate the boat width
-  relative to the boat height. */
-  const boatWidth = (150.83 * boatHeight) / 347.7;
+  const boatWidth = clientWidth * 0.42 * dpr;
 
   /* NOTE: The following translations and scaling used on each item can be hardcoded into a single matrix
     and then multiplied by the projection in shader. However, this is much easier to,
@@ -187,7 +185,7 @@ export const prepareRenderSceneToTexture = (
         const waveHeight = 1.9 * boatHeight;
 
         let matrix = identity();
-        matrix = translate(matrix, xOffset + boatWidth * 0.75, gl.canvas.height - waveHeight);
+        matrix = translate(matrix, xOffset + boatWidth * 0.4, gl.canvas.height - waveHeight);
         matrix = scale(matrix, waveWidth, waveHeight);
         return matrix;
       })(),
@@ -199,11 +197,7 @@ export const prepareRenderSceneToTexture = (
         const waveHeight = 0.75 * boatHeight;
 
         let matrix = identity();
-        matrix = translate(
-          matrix,
-          xOffset + boatWidth + 0.0855 * boatWidth,
-          gl.canvas.height - waveHeight,
-        );
+        matrix = translate(matrix, xOffset + 0.815 * boatWidth, gl.canvas.height - waveHeight);
         matrix = scale(matrix, waveWidth, waveHeight);
         return matrix;
       })(),
@@ -213,12 +207,8 @@ export const prepareRenderSceneToTexture = (
       texture: convertAssetToTexture(gl, assets.boatShadowImage),
       matrix: (() => {
         let matrix = identity();
-        matrix = translate(
-          matrix,
-          xOffset + boatWidth + 0.02 * boatWidth,
-          yOffset + 0.175 * boatHeight,
-        );
-        matrix = scale(matrix, boatWidth, boatHeight);
+        matrix = translate(matrix, xOffset + 0.7 * boatWidth, yOffset + 0.05 * boatHeight);
+        matrix = scale(matrix, boatWidth + 0.03 * boatWidth, boatHeight);
         return matrix;
       })(),
     },
@@ -288,7 +278,7 @@ export const prepareRenderSceneToTexture = (
         const oarWidth = boatWidth;
         const oarHeight = 0.038 * boatHeight;
 
-        matrix = translate(matrix, xOffset + 0.38 * boatWidth, yOffset + boatHeight / 1.44);
+        matrix = translate(matrix, xOffset + 0.025 * boatWidth, yOffset + boatHeight / 1.75);
 
         matrix = scale(matrix, oarWidth, oarHeight);
 
@@ -303,7 +293,7 @@ export const prepareRenderSceneToTexture = (
         const oarWidth = boatWidth;
         const oarHeight = 0.1 * boatHeight;
 
-        matrix = translate(matrix, xOffset + 1.64 * boatWidth, yOffset + boatHeight / 1.38);
+        matrix = translate(matrix, xOffset + 1.36 * boatWidth, yOffset + boatHeight / 1.67);
 
         matrix = scale(matrix, oarWidth, oarHeight);
 
