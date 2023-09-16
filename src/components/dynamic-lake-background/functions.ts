@@ -212,7 +212,7 @@ export const prepareRenderSceneToTexture = (
       texture: convertAssetToTexture(gl, assets.boatShadowImage),
       matrix: (() => {
         let matrix = identity();
-        matrix = translate(matrix, xOffset + 0.7 * boatWidth, yOffset + 0.05 * boatHeight);
+        matrix = translate(matrix, xOffset + 0.75 * boatWidth, yOffset + 0.04 * boatHeight);
         matrix = scale(matrix, boatWidth + 0.03 * boatWidth, boatHeight);
         return matrix;
       })(),
@@ -283,7 +283,7 @@ export const prepareRenderSceneToTexture = (
         const oarWidth = boatWidth;
         const oarHeight = 0.038 * boatHeight;
 
-        matrix = translate(matrix, xOffset + 0.025 * boatWidth, yOffset + boatHeight / 1.75);
+        matrix = translate(matrix, xOffset + 0.07 * boatWidth, yOffset + boatHeight / 1.8);
 
         matrix = scale(matrix, oarWidth, oarHeight);
 
@@ -298,7 +298,7 @@ export const prepareRenderSceneToTexture = (
         const oarWidth = boatWidth;
         const oarHeight = 0.1 * boatHeight;
 
-        matrix = translate(matrix, xOffset + 1.36 * boatWidth, yOffset + boatHeight / 1.67);
+        matrix = translate(matrix, xOffset + 1.43 * boatWidth, yOffset + boatHeight / 1.7);
 
         matrix = scale(matrix, oarWidth, oarHeight);
 
