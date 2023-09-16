@@ -1,11 +1,12 @@
 import React from "react";
+import styles from "./rsvp-sign-in.module.scss";
 import CloseCircle from "@/images/close-circle.svg";
 import { SecondaryButton, TertiaryButton } from "@/components/button";
 
 const RSVPSignIn = () => {
   return (
-    <div>
-      <button className='' onClick={() => {}}>
+    <div className={styles.modal}>
+      <button onClick={() => {}}>
         <CloseCircle />
       </button>
       <div>{/* Emoticon goes here */}</div>
