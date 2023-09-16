@@ -1,9 +1,15 @@
 html {
   box-sizing: border-box;
-  font-size: calc(100vw / 1440 * 10);
+  font-size: 62.5%;
   overscroll-behavior: none;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 1920px) {
+  html {
+    font-size: calc(100vw / 1920 * 10);
+  }
 }
 
 body {

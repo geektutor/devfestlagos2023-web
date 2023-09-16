@@ -2,14 +2,14 @@
 @import "utils/breakpoints";
 
 .scene {
-  margin: -62px auto 0;
+  margin: -6.2rem auto 0;
   @include ratio(576, 834);
   width: 58%;
-  max-width: 834px;
+  max-width: 83.4rem;
 
   @include media("<=tablet") {
-    margin-top: 4px;
-    max-width: 600px;
+    margin-top: 0.4rem;
+    max-width: 60rem;
     width: 90%;
   }
 
@@ -17,9 +17,9 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    max-width: 600px;
+    max-width: 60rem;
     width: 130%;
-    bottom: -140px;
+    bottom: -14rem;
   }
 }
 

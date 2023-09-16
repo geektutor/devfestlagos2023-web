@@ -3,7 +3,8 @@ import type { AppProps } from "next/app";
 import localFont from "next/font/local";
 import Head from "next/head";
 import { classNames } from "@/utils/classNames";
-import Script from "next/script";
+import React from "react";
+import GeneralLayout from "@/layouts/general-layout";
 
 export const googleSans = localFont({
   src: [
@@ -33,17 +34,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel='alternate icon' href='/favicon.ico' type='image/x-icon' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       </Head>
-      <Script src='https://www.googletagmanager.com/gtag/js?id=G-26MR8PNK9R' />
-      <Script id='google-analytics'>
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-26MR8PNK9R');
-        `}
-      </Script>
-      <Component {...pageProps} />
+      <GeneralLayout>
+        <Component {...pageProps} />
+      </GeneralLayout>
     </div>
   );
 }

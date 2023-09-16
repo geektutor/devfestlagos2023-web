@@ -1,16 +1,16 @@
 .c-button {
-  @include flex-gap(0, 8px);
-  min-width: 204px;
+  @include flex-gap(0, 0.8rem);
+  min-width: 20.4rem;
   width: fit-content;
-  height: 66px;
+  height: 6.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 48px;
+  border-radius: 4.8rem;
   @include button-text;
   border: none;
   outline: none;
-  padding: 0 24px;
+  padding: 0 2.4rem;
   text-decoration: none;
 
   &--primary {
@@ -19,7 +19,7 @@
   }
 
   &--secondary {
-    border: 2px solid $grey-0;
+    border: 0.2rem solid $grey-0;
     background: $bg-shade-1;
     color: $grey-0;
   }
@@ -27,29 +27,29 @@
   &--tertiary {
     background: $primary-blue;
     color: $grey-100;
-    min-width: 234px;
+    min-width: 23.4rem;
     width: fit-content;
 
     @include media("<=tablet") {
-      min-height: 60px;
+      min-height: 6rem;
       height: fit-content;
-      padding-top: 4px;
-      padding-bottom: 4px;
+      padding-top: 0.4rem;
+      padding-bottom: 0.4rem;
     }
   }
 
   @include media("<=phone") {
-    max-width: 350px;
+    max-width: 35rem;
     width: 80%;
 
     &--tertiary {
       background: $secondary-blue;
       color: $grey-0;
-      min-width: 200px;
-      min-height: 54px;
+      min-width: 20rem;
+      min-height: 5.4rem;
       height: fit-content;
-      padding-top: 4px;
-      padding-bottom: 4px;
+      padding-top: 0.4rem;
+      padding-bottom: 0.4rem;
     }
   }
 }
