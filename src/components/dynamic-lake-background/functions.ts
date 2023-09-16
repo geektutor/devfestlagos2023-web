@@ -53,7 +53,7 @@ const loadAssets = async () => {
 export const initialise = async (canvas: HTMLCanvasElement) => {
   resizeCanvasToDisplaySize(canvas);
 
-  const gl = canvas.getContext("webgl", { alpha: false });
+  const gl = canvas.getContext("webgl");
 
   if (!gl) throw new Error("Failed to inistialise WebGL");
 
