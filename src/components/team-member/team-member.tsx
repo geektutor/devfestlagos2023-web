@@ -19,43 +19,47 @@ const linksMap: Partial<Record<TeamMemberLink["type"], FC>> = {
 export const TeamMember: FC<{ member: ITeamMember }> = ({ member }) => {
   return (
     <div className={styles.teamMember}>
-      <div className={styles.leftColumn}>
-        <div className={styles.name}>
-          {member.name.split(" ").map((namePart, index) => (
-            <span key={index}>{namePart}</span>
-          ))}
+      <div className={styles.row}>
+        <div className={styles.leftColumn}>
+          <div className={styles.name}>
+            {member.name.split(" ").map((namePart, index) => (
+              <span key={index}>{namePart}</span>
+            ))}
+          </div>
+          <div className={styles.role}>{member.role}</div>
+          <p className={styles.comment}>{member.comment}</p>
         </div>
-        <div className={styles.role}>{member.role}</div>
-        <p className={styles.comment}>{member.comment}</p>
-      </div>
-      <div className={styles.picture}>
-        <Image src={member.image} alt={member.name} fill />
-      </div>
-      <div className={styles.linksSection}>
-        <p className={styles.sectionHeader}>LINKS</p>
-        <div className={styles.links}>
-          {member.links?.map((link, index) => {
-            const Icon = linksMap[link.type]!;
-
-            const isEmail = link.type === "email";
-
-            const url = isEmail ? "mailto:" + link.url : link.url;
-
-            return (
-              <a
-                key={index}
-                href={url}
-                target='_blank'
-                rel='noopener noreferrer'
-                className={styles.link}
-              >
-                <Icon />
-              </a>
-            );
-          })}
+        <div className={styles.picture}>
+          <Image src={member.image} alt={member.name} fill />
         </div>
       </div>
-      <div className={styles.spotify}></div>
+      <div className={styles.row}>
+        <div className={styles.linksSection}>
+          <p className={styles.sectionHeader}>LINKS</p>
+          <div className={styles.links}>
+            {member.links?.map((link, index) => {
+              const Icon = linksMap[link.type]!;
+
+              const isEmail = link.type === "email";
+
+              const url = isEmail ? "mailto:" + link.url : link.url;
+
+              return (
+                <a
+                  key={index}
+                  href={url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className={styles.link}
+                >
+                  <Icon />
+                </a>
+              );
+            })}
+          </div>
+        </div>
+        <div className={styles.spotify}></div>
+      </div>
       <div className={styles.quote}>
         <p className={styles.sectionHeader}>WORDS TO LIVE BY</p>
         <p>{member.quote}</p>

@@ -134,7 +134,7 @@ export const teamMembers: ITeamMember[] = [
     name: "Omolere Asama",
     role: "Content Manager / Web Developer",
     comment:
-      "First of, as you have heard, I'm a sweet babe😌🤚🏾I always look forward to planning DevFest, it's always a lovely experience working with the team. I also owe Chinaza one Benz for being the best team player ❤️",
+      "First of, as you have heard, I'm a sweet babe 😌🤚🏾. I always look forward to planning DevFest, it's always a lovely experience working with the team.",
     quote: "Let everything happen to you—beauty and terror. Keep going, nothing is final.",
     category: "dev,content",
     image: lereImage,
