@@ -8,12 +8,22 @@
     background: $bg-shade-1;
     align-items: center;
 
+    @include media("<=tablet") {
+      padding-top: 20rem;
+    }
+
     &__header {
       @include heading-1;
       max-width: 89.8rem;
       width: 80%;
       text-align: center;
       color: $grey-0;
+
+      @include media("<=tablet") {
+        @include heading-4;
+        max-width: 53.8rem;
+        margin-bottom: 2.8rem;
+      }
     }
 
     &__subtext {
@@ -22,12 +32,21 @@
       max-width: 45.2rem;
       text-align: center;
       color: $grey-40;
+
+      @include media("<=tablet") {
+        @include body-2;
+        max-width: 35rem;
+      }
     }
   }
 
   &__dream {
     padding: 4.8rem 12.4rem 6.4rem;
     background: $bg-3;
+
+    @include media("<=tablet") {
+      padding: 4.8rem 3.2rem;
+    }
 
     &__top {
       display: flex;
@@ -41,6 +60,12 @@
       margin-bottom: 0.8rem;
       max-width: 498px;
       width: 35vw;
+
+      @include media("<=tablet") {
+        @include title-2;
+        max-width: 23.7rem;
+        margin-bottom: 0.4rem;
+      }
     }
 
     &__subtext {
@@ -48,6 +73,11 @@
       color: $grey-80;
       max-width: 49.8rem;
       width: 34.5vw;
+
+      @include media("<=tablet") {
+        @include body-5;
+        max-width: 20.7rem;
+      }
     }
 
     &__categories {
@@ -55,9 +85,15 @@
       position: relative;
     }
 
+    --category-width: 9.4rem;
+
+    @include media("<=tablet") {
+      --category-width: 6.4rem;
+    }
+
     &__category {
       height: 4rem;
-      width: 9.4rem;
+      width: var(--category-width);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -69,17 +105,21 @@
       &.is-active {
         color: $grey-100;
       }
+
+      @include media("<=tablet") {
+        @include body-5;
+      }
     }
 
     &__active-indicator {
-      width: 9.4rem;
+      width: var(--category-width);
       height: 0.2rem;
       border-radius: 0.8rem;
       color: $grey-100;
       position: absolute;
       bottom: 0;
       left: 0;
-      transform: translateX(calc(var(--index) * 9.4rem));
+      transform: translateX(calc(var(--index) * var(--category-width)));
       transition: 300ms;
       display: block;
       background: $grey-100;
@@ -91,5 +131,9 @@
     grid-template-columns: 1fr 1fr;
     gap: 1.6rem;
     margin-top: 40px;
+
+    @include media("<=tablet") {
+      column-gap: 2.4rem;
+    }
   }
 }

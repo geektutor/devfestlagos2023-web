@@ -2,7 +2,7 @@ import styles from "./team-member.module.scss";
 import { FC } from "react";
 import { ITeamMember, TeamMemberLink } from "@/mock-data/team";
 import Image from "next/image";
-import IgIcon from "@/images/team/links/linkedin.svg";
+import IgIcon from "@/images/team/links/instagram.svg";
 import LinkedInIcon from "@/images/team/links/linkedin.svg";
 import TwitterIcon from "@/images/team/links/twitter.svg";
 import FacebookIcon from "@/images/team/links/facebook.svg";

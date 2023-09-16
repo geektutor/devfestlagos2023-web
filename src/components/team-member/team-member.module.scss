@@ -5,28 +5,41 @@
 
 .teamMember {
   padding: 1.6rem;
-  border-radius: 24px;
+  border-radius: 2.4rem;
   background: $grey-0;
   display: flex;
   flex-direction: column;
+
+  @include media("<=tablet") {
+    padding: 0.8rem;
+  }
 }
 
 .row {
   display: grid;
   grid-template-columns: 25fr 29fr;
   gap: 1.6rem;
-  margin-bottom: 16px;
+  margin-bottom: 1.6rem;
+
+  @include media("<=tablet") {
+    margin-bottom: 0.8rem;
+  }
 }
 
 %section {
-  padding: 16px;
+  padding: 1.6rem;
   border-radius: 2.4rem;
   background: $secondary-grey;
+
+  @include media("<=tablet") {
+    padding: 0.8rem;
+    border-radius: 1.08rem;
+  }
 }
 
 .leftColumn {
   display: flex;
-  @include flex-gap(16px, 0);
+  @include flex-gap(1.6rem, 0);
   flex-direction: column;
 }
 
@@ -41,12 +54,20 @@
   span {
     display: block;
   }
+
+  @include media("<=tablet") {
+    @include body-3;
+  }
 }
 
 .role {
   @extend %section;
   @include body-1;
   color: $grey-80;
+
+  @include media("<=tablet") {
+    @include body-5;
+  }
 }
 
 .comment {
@@ -55,12 +76,23 @@
   color: $grey-40;
   flex-grow: 1;
   overflow: auto;
+
+  @include media("<=tablet") {
+    font-size: 0.8rem;
+    line-height: normal;
+  }
 }
 
 .sectionHeader {
   @include body-3;
   color: $grey-40;
   margin-bottom: 1.6rem;
+
+  @include media("<=tablet") {
+    font-size: 0.8rem;
+    line-height: normal;
+    margin-bottom: 0.4rem;
+  }
 }
 
 .linksSection {
@@ -69,21 +101,45 @@
 }
 
 .links {
+  display: grid;
   grid-template-columns: repeat(5, 1fr); //todo: make this break into seperate lines on mobile
+  column-gap: 1.6rem;
+
+  @include media("<=tablet") {
+    column-gap: 0.8rem;
+  }
+}
+
+.link {
+  @include ratio(1, 1);
+  width: 100%;
+  display: block;
+
+  svg {
+    width: 100%;
+  }
 }
 
 .quote {
   @extend %section;
   @include heading-4;
   color: $grey-100;
-  grid-column: 1/3;
   flex-grow: 1;
+
+  @include media("<=tablet") {
+    @include body-1;
+  }
 }
 
 .picture {
   @include ratio(360, 290);
   width: 100%;
-  border-radius: 24px;
+  border-radius: 2.4rem;
+
+  @include media("<=tablet") {
+    @include ratio(172.5, 145);
+    border-radius: 0.8rem;
+  }
 }
 
 .spotify {
@@ -91,4 +147,8 @@
   height: 10rem;
   border-radius: 2.4rem;
   background: linear-gradient(90deg, #12c2e9 0%, #c471ed 100%);
+
+  @include media("<=tablet") {
+    border-radius: 0.8rem;
+  }
 }

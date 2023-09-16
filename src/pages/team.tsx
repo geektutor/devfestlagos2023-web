@@ -28,7 +28,7 @@ const categories = [
   },
   {
     id: "gdg-team",
-    text: "GDG Team",
+    text: "Managers",
   },
 ] as const;
 
