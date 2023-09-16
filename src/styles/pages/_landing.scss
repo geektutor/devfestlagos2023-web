@@ -474,7 +474,7 @@
           @include body-5;
         }
 
-        @include media("<=tablet") {
+        @include media("<=phone") {
           @include body-1;
           margin-bottom: 3.2rem;
           padding: 0 1.6rem;
@@ -509,6 +509,7 @@
 
         @include media("<=phone") {
           @include flex-gap(0, 0.8rem);
+          flex-wrap: nowrap;
 
           & + & {
             margin-top: 0.8rem;
@@ -611,7 +612,7 @@
       padding: 5.1rem 0 3.7rem;
     }
 
-    @include media("<=tablet") {
+    @include media("<=phone") {
       padding-bottom: 4rem;
     }
 

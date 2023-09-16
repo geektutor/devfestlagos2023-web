@@ -27,7 +27,13 @@
     color: var(--active-text-color);
   }
 
+  @include media("<=tablet") {
+    @include body-5;
+    padding: 0.6rem 0.8rem;
+  }
+
   @include media("<=phone") {
     @include body-2;
+    padding: 1.2rem 1.6rem;
   }
 }

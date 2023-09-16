@@ -69,7 +69,7 @@
     @include flex-gap(0.8rem, 0);
   }
 
-  @include media("<=tablet") {
+  @include media("<=phone") {
     max-width: unset;
     @include flex-gap(1.6rem, 0);
   }
