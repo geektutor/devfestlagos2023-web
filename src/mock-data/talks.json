@@ -4,69 +4,79 @@
     "description": "Explore the latest trends in design and how to create user-centric products.",
     "category": "Design",
     "speakerId": 7,
-    "date": "10:00 AM"
+    "date": "10:00 AM",
+    "seatCount": 25
   },
   {
     "title": "Blockchain: The Next Revolution",
     "description": "Dive deep into the world of blockchain and its potential impact on various industries.",
     "category": "Blockchain",
     "speakerId": 9,
-    "date": "11:00 AM"
+    "date": "11:00 AM",
+    "seatCount": 10
   },
   {
     "title": "Mobile First: Building Responsive Apps",
     "description": "Learn the best practices for building mobile-first applications and ensuring a seamless user experience.",
     "category": "Mobile Development",
     "speakerId": 6,
-    "date": "12:00 PM"
+    "date": "12:00 PM",
+    "seatCount": 6
   },
   {
     "title": "The Art of UI/UX",
     "description": "Discover the principles of creating intuitive and engaging user interfaces.",
     "category": "Design",
     "speakerId": 10,
-    "date": "1:00 PM"
+    "date": "1:00 PM",
+    "seatCount": 75
   },
   {
     "title": "Decentralized Finance with Blockchain",
     "description": "Understand the rise of DeFi and how blockchain is revolutionizing the financial sector.",
     "category": "Blockchain",
     "speakerId": 8,
-    "date": "2:00 PM"
+    "date": "2:00 PM",
+    "seatCount": 32
   },
   {
     "title": "Cross-Platform Mobile Development",
     "description": "Explore tools and frameworks for developing apps that work seamlessly across different platforms.",
     "category": "Mobile Development",
     "speakerId": 5,
-    "date": "3:00 PM"
+    "date": "3:00 PM",
+    "seatCount": 5
   },
   {
     "title": "Design Thinking in Action",
     "description": "A hands-on workshop on implementing design thinking in your projects for better outcomes.",
     "category": "Design",
     "speakerId": 4,
-    "date": "8:00 AM"
+    "date": "8:00 AM",
+    "seatCount": 20
   },
   {
     "title": "Smart Contracts and Blockchain",
     "description": "An introduction to creating secure and efficient smart contracts on the blockchain.",
     "category": "Blockchain",
     "speakerId": 3,
-    "date": "9:00 AM"
+    "date": "9:00 AM",
+    "seatCount": 27
   },
   {
     "title": "Optimizing Mobile App Performance",
     "description": "Tips and tricks to ensure your mobile apps run smoothly and efficiently.",
     "category": "Mobile Development",
     "speakerId": 2,
-    "date": "4:00 PM"
+    "date": "4:00 PM",
+    "seatCount": 2
   },
   {
     "title": "Innovative Design Solutions",
     "description": "Showcasing groundbreaking design techniques for the modern web.",
     "category": "Design",
     "speakerId": 1,
-    "date": "8:30 AM"
+    "date": "8:30 AM",
+    "seatCount": 15
   }
 ]

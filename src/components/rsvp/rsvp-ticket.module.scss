@@ -1,0 +1,190 @@
+@import "core/variables";
+@import "core/typography";
+@import "utils/breakpoints";
+@import "utils/mixins";
+
+.ticket {
+  margin: 2rem;
+  max-width: 36.75rem;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  font-family: inherit;
+  border-radius: 24px;
+  overflow: hidden;
+  border-top: 2px solid #211212;
+  border-right: 8px solid #211212;
+  border-bottom: 8px solid #211212;
+  border-left: 1px solid #211212;
+  flex-shrink: 0;
+  cursor: pointer;
+
+  &:hover {
+    .seeSession {
+      display: block;
+    }
+  }
+
+  // @include media("<=tablet") {
+  //   width: 10rem;
+  // }
+
+  @include media("<=phone") {
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 0;
+  }
+}
+
+.speakerDetails {
+  width: 100%;
+  padding-right: 10px;
+
+  @include media("<=phone") {
+    padding: 0;
+    border-bottom: 2px dashed $grey-0;
+  }
+}
+
+.ticketDivider {
+  display: block;
+  width: 20px;
+  max-height: 100%;
+  border-left: 2px dashed $grey-0;
+  border-spacing: 2rem;
+
+  @include media("<=phone") {
+    display: none;
+  }
+}
+
+.speakerImage {
+  object-fit: cover;
+  @include ratio(242, 284);
+  width: 100%;
+  margin-top: -1px; // Rationale: To fill the tiny gap that shows up at top of speaker card
+}
+
+.speakerImageInner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.seeSession {
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: $primary-green;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.12);
+  color: $grey-100;
+  display: none;
+  @include body-5;
+  position: absolute;
+  left: 20px;
+  bottom: 95%;
+  transform: rotate(-10deg);
+  width: max-content;
+
+  @include media("<=tablet") {
+    @include body-3;
+  }
+
+  @include media("<=phone") {
+    display: block;
+  }
+}
+
+.speakerInfo {
+  position: relative;
+  padding: 1.5rem;
+}
+
+.speakerFullName {
+  @include body-1;
+  color: $grey-0;
+
+  @include media("<=tablet") {
+    @include body-4;
+  }
+
+  @include media("<=phone") {
+    @include title-1;
+  }
+}
+
+.speakerCompany {
+  @include body-4;
+  color: $grey-30;
+  padding-top: 0.875rem;
+
+  @include media("<=tablet") {
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 11px;
+  }
+
+  @include media("<=phone") {
+    @include body-2;
+  }
+}
+
+.talkDetails {
+  width: 100%;
+  padding: 1.375rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.seatCountOptimal {
+  font-weight: 500;
+}
+
+.seatCountLow {
+  font-weight: 500;
+  color: red;
+}
+
+.talkCategoryAndAvailability {
+  @include flex-gap(0, 16px);
+  display: flex;
+  align-items: center;
+  padding-bottom: 1.25rem;
+}
+
+.talkCategory {
+  font-size: 0.875rem !important;
+  font-weight: lighter !important;
+  color: $grey-0;
+}
+
+.talkTitle {
+  @include body-1;
+  font-weight: 400;
+  padding-bottom: 1rem;
+}
+
+.talkDate {
+  margin-bottom: 1rem;
+  font-weight: 300 !important;
+  color: $grey-0;
+  background-color: $secondary-yellow;
+  border: 0;
+
+  @include media("<=phone") {
+    font-size: 0.875rem !important;
+  }
+}
+
+.bookASeat {
+  background-color: $grey-0;
+
+  @include media("<=phone") {
+    min-width: 204px;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 66px;
+    color: $grey-100;
+  }
+}
