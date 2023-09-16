@@ -1,6 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { TeamMember } from "@/components/team-member/team-member";
-import { teamMembers } from "@/mock-data/team";
+import { ITeamMember, teamMembers } from "@/mock-data/team";
 import { classNames } from "@/utils/classNames";
 import FaqSection from "@/components/faq-section/faq-section";
 import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
@@ -32,8 +32,37 @@ const categories = [
   },
 ] as const;
 
+const shuffleTeamMembers = (array: ITeamMember[]) => {
+  const newArray = [...array];
+
+  let currentIndex = newArray.length;
+
+  let temporaryValue: ITeamMember;
+
+  let randomIndex: number;
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+
+    currentIndex -= 1;
+
+    temporaryValue = newArray[currentIndex];
+
+    newArray[currentIndex] = newArray[randomIndex];
+
+    newArray[randomIndex] = temporaryValue;
+  }
+
+  return newArray;
+};
+
 const Team = () => {
   const [activeCategory, setActiveCategory] = React.useState(0);
+  const [shuffledMembers, setShuffledMembers] = useState<ITeamMember[]>([]);
+
+  useEffect(() => {
+    setShuffledMembers(shuffleTeamMembers(teamMembers));
+  }, []);
 
   const onChangeCategory = (index: number) => {
     setActiveCategory(index);
@@ -41,21 +70,21 @@ const Team = () => {
 
   const filteredMembers = useMemo(() => {
     if (activeCategory === 0) {
-      return teamMembers;
+      return shuffledMembers;
     }
 
     const category = categories[activeCategory].id;
 
     if (category === "lead") {
-      return teamMembers.filter((member) => member.isLead);
+      return shuffledMembers.filter((member) => member.isLead);
     } else {
-      return teamMembers.filter((member) => {
+      return shuffledMembers.filter((member) => {
         const memberCategories = member.category.split(",");
 
         return memberCategories.includes(category);
       });
     }
-  }, [activeCategory]);
+  }, [activeCategory, shuffledMembers]);
 
   return (
     <div className='team'>
