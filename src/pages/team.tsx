@@ -4,6 +4,7 @@ import { ITeamMember, teamMembers } from "@/mock-data/team";
 import { classNames } from "@/utils/classNames";
 import FaqSection from "@/components/faq-section/faq-section";
 import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
+import { TeamPills } from "@/components/team-pills/team-pills";
 
 const categories = [
   {
@@ -94,6 +95,7 @@ const Team = () => {
           Here are profiles of the amazing people who worked on the website and app for this year’s
           DevFest
         </p>
+        <TeamPills />
       </div>
       <div className='team__dream'>
         <div className='team__dream__top'>

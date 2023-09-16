@@ -1,0 +1,39 @@
+@import "utils/breakpoints";
+
+.teamPills {
+  width: 100vw;
+  position: absolute;
+  --top-spacing: 10rem;
+
+  height: calc(100vh - var(--top-spacing));
+  max-height: 70rem;
+  top: calc(var(--top-spacing) + 35px);
+  left: 0;
+  overflow: hidden;
+
+  @include media("<=tablet") {
+    --top-spacing: 9.6rem;
+    top: calc(var(--top-spacing));
+  }
+
+  @include media("<=phone") {
+    display: none;
+  }
+}
+
+.canvas {
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.pill {
+  position: absolute;
+}
