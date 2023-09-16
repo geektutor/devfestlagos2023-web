@@ -9,7 +9,7 @@
 
   @include media("<=phone") {
     flex-direction: column;
-    @include flex-gap(24px, 0);
+    @include flex-gap(2.4rem, 0);
     align-items: flex-start;
     width: 100%;
   }
@@ -17,33 +17,33 @@
 
 .portrait {
   @include ratio(212, 167);
-  width: 167px;
-  margin-right: 24px;
-  border-radius: 16px;
+  width: 16.7rem;
+  margin-right: 2.4rem;
+  border-radius: 1.6rem;
   filter: grayscale(1);
 
   @include media("<=tablet") {
-    width: 83px;
-    margin-right: 12px;
-    border-radius: 8px;
+    width: 8.3rem;
+    margin-right: 1.2rem;
+    border-radius: 0.8rem;
   }
 
   @include media("<=phone") {
     width: 100%;
-    max-width: 382px;
+    max-width: 38.2rem;
     @include ratio(349, 382);
     margin-right: 0;
-    border-radius: 16px;
+    border-radius: 1.6rem;
   }
 }
 
 .pills {
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 1.6rem;
 
   @include media("<=tablet") {
-    margin-bottom: 8px;
+    margin-bottom: 0.8rem;
   }
 
   @include media("<=phone") {
@@ -53,63 +53,63 @@
 }
 
 .category {
-  margin-right: 8px;
+  margin-right: 0.8rem;
 
   @include media("<=phone") {
-    margin-bottom: 8px;
+    margin-bottom: 0.8rem;
     margin-right: 0;
   }
 }
 
 .title {
-  max-width: 810px;
+  max-width: 81rem;
   @include heading-4;
   color: $grey-100;
-  margin-bottom: 16px;
+  margin-bottom: 1.6rem;
 
   @include media("<=tablet") {
     @include body-2;
-    margin-bottom: 8px;
+    margin-bottom: 0.8rem;
   }
 
   @include media("<=phone") {
     @include heading-5;
-    margin-bottom: 14px;
+    margin-bottom: 1.4rem;
   }
 }
 
 .footer {
   display: flex;
   align-items: center;
-  @include flex-gap(0, 8px);
+  @include flex-gap(0, 0.8rem);
 
   @include body-1;
   color: $grey-70;
 
   @include media("<=tablet") {
     @include body-5;
-    @include flex-gap(0, 4px);
+    @include flex-gap(0, 0.4rem);
   }
 
   @include media("<=phone") {
     @include body-3;
-    @include flex-gap(0, 8px);
+    @include flex-gap(0, 0.8rem);
   }
 }
 
 .ellipse {
   @include ratio(1, 1);
-  width: 8px;
+  width: 0.8rem;
   background-color: #d9d9d9;
   border-radius: 50%;
   display: inline-block;
   flex-shrink: 0;
 
   @include media("<=tablet") {
-    width: 4px;
+    width: 0.4rem;
   }
 
   @include media("<=phone") {
-    width: 8px;
+    width: 0.8rem;
   }
 }
