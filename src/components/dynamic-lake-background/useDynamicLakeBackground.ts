@@ -12,8 +12,8 @@ const useDynamicLakeBackground = () => {
 
   useEffect(() => {
     if (canvasRef.current && fishermanWrapperRef.current) {
-      setLoaded(true);
       initialise(canvasRef.current, fishermanWrapperRef.current).then((render) => {
+        setLoaded(true);
         prevTimestamp.current = Date.now();
 
         const draw = () => {
