@@ -360,7 +360,7 @@ export const initialise = async (canvas: HTMLCanvasElement, fishermanWrapper: HT
         matrix: (() => {
           let matrix = identity();
 
-          matrix = translate(matrix, xOffset - 0.2 * boatWidth, yOffset * 1.38);
+          matrix = translate(matrix, xOffset - 0.2 * boatWidth, yOffset + boatHeight * 0.45);
 
           const rippleHeight = 0.2 * boatHeight;
           matrix = scale(matrix, rippleHeight, rippleHeight);
