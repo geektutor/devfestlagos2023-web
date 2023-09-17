@@ -84,6 +84,7 @@
   bottom: 95%;
   transform: rotate(-10deg);
   width: max-content;
+  transition: 300ms ease-in-out;
 
   @include media("<=tablet") {
     @include body-3;
