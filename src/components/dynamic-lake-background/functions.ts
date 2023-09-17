@@ -34,6 +34,8 @@ const loadAssets = async () => {
   const leftHandOarShadow = await loadImage("/404-images/left-hand-oar-shadow.png");
   const stalkClover = await loadImage("/404-images/stalk-clover.png");
   const clover = await loadImage("/404-images/clover.png");
+  const leftOarRipple = await loadImage("/404-images/left-oar-ripple.png");
+  const rightOarRipple = await loadImage("/404-images/right-oar-ripple.png");
 
   return {
     boatShadowImage,
@@ -47,6 +49,8 @@ const loadAssets = async () => {
     leftHandOarShadow,
     stalkClover,
     clover,
+    leftOarRipple,
+    rightOarRipple,
   };
 };
 
@@ -307,7 +311,7 @@ export const initialise = async (canvas: HTMLCanvasElement, fishermanWrapper: HT
           const oarWidth = boatWidth;
           const oarHeight = 0.1 * boatHeight;
 
-          matrix = translate(matrix, xOffset + 1.43 * boatWidth, yOffset + boatHeight / 1.7);
+          matrix = translate(matrix, xOffset + 1.43 * boatWidth, yOffset + boatHeight / 1.73);
 
           matrix = scale(matrix, oarWidth, oarHeight);
 
@@ -334,6 +338,32 @@ export const initialise = async (canvas: HTMLCanvasElement, fishermanWrapper: HT
           matrix = translate(matrix, xOffset + 4 * boatWidth, yOffset * 1.5);
 
           matrix = scale(matrix, 65, 65);
+
+          return matrix;
+        })(),
+      },
+      {
+        texture: textures.leftOarRipple,
+        matrix: (() => {
+          let matrix = identity();
+
+          matrix = translate(matrix, xOffset + 2.18 * boatWidth, yOffset * 1.45);
+
+          const rippleHeight = 0.2 * boatHeight;
+          matrix = scale(matrix, rippleHeight, rippleHeight);
+
+          return matrix;
+        })(),
+      },
+      {
+        texture: textures.rightOarRipple,
+        matrix: (() => {
+          let matrix = identity();
+
+          matrix = translate(matrix, xOffset - 0.2 * boatWidth, yOffset * 1.38);
+
+          const rippleHeight = 0.2 * boatHeight;
+          matrix = scale(matrix, rippleHeight, rippleHeight);
 
           return matrix;
         })(),
