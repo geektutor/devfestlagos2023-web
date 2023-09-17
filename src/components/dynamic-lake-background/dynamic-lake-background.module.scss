@@ -2,18 +2,21 @@
 @import "utils/breakpoints";
 @import "core/variables";
 
+$boat-tilt: 0.5deg;
+$boat-translate: 1px;
+
 @keyframes rock-boat {
   25% {
-    transform: rotate(1deg) translateX(1px) translateY(1px);
+    transform: rotate($boat-tilt) translateX($boat-translate) translateY($boat-translate);
   }
   50% {
-    transform: rotate(-1deg) translateX(-1px) translateY(-1px);
+    transform: rotate(-$boat-tilt) translateX(-$boat-translate) translateY(-$boat-translate);
   }
   75% {
-    transform: rotate(1deg) translateX(1px) translateY(1px);
+    transform: rotate($boat-tilt) translateX($boat-translate) translateY($boat-translate);
   }
   100% {
-    transform: rotate(-1deg) translateX(-1px) translateY(-1px);
+    transform: rotate(-$boat-tilt) translateX(-$boat-translate) translateY(-$boat-translate);
   }
 }
 
@@ -31,7 +34,7 @@
   position: absolute;
   bottom: 20.5%;
   animation: rock-boat 15s infinite;
-  transform: rotate(-1deg) translateX(-1px) translateY(-1px);
+  transform: rotate(-$boat-tilt) translateX(-$boat-translate) translateY(-$boat-translate);
   @include media("<=phone") {
     bottom: 10%;
     height: calc(100% / 3);

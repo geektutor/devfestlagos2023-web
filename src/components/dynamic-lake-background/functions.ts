@@ -296,7 +296,7 @@ export const initialise = async (canvas: HTMLCanvasElement, fishermanWrapper: HT
           const oarWidth = boatWidth;
           const oarHeight = 0.038 * boatHeight;
 
-          matrix = translate(matrix, xOffset + 0.07 * boatWidth, yOffset + boatHeight / 1.8);
+          matrix = translate(matrix, xOffset + 0.07 * boatWidth, yOffset + boatHeight / 1.85);
 
           matrix = scale(matrix, oarWidth, oarHeight);
 
