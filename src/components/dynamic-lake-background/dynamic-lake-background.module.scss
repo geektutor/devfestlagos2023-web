@@ -37,7 +37,7 @@ $boat-translate: 1px;
   transform: rotate(-$boat-tilt) translateX(-$boat-translate) translateY(-$boat-translate);
   @include media("<=phone") {
     bottom: 10%;
-    height: calc(100% / 3);
+    height: calc(100% / 4);
   }
 }
 
