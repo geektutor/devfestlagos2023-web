@@ -24,7 +24,7 @@ export default function Custom404() {
                 <br />
                 Use link, you go dey experiment.
                 <br />
-                Oshey, Marie Curie 🙌🏽
+                Oshey, Marie Curie <span>🙌🏽</span>
               </p>
               <PrimaryButton href='/'>
                 <span>Go to Home Page</span>

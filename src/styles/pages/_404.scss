@@ -36,6 +36,10 @@
           @include title-1;
           max-width: 456px;
           margin-bottom: 25px;
+          & > span {
+            transform: scale(1.1) translateY(-10%);
+            display: inline-block;
+          }
           @include media("<=tablet") {
             @include title-2;
             max-width: 400px;
