@@ -2,6 +2,21 @@
 @import "utils/breakpoints";
 @import "core/variables";
 
+@keyframes rock-boat {
+  25% {
+    transform: rotate(1deg) translateX(1px) translateY(1px);
+  }
+  50% {
+    transform: rotate(-1deg) translateX(-1px) translateY(-1px);
+  }
+  75% {
+    transform: rotate(1deg) translateX(1px) translateY(1px);
+  }
+  100% {
+    transform: rotate(-1deg) translateX(-1px) translateY(-1px);
+  }
+}
+
 .container {
   height: 100%;
   width: 100%;
@@ -15,6 +30,8 @@
   aspect-ratio: 339 / 329; // The aspect ratio mixin kinda adds some padding so I just use the regular aspect ratio property
   position: absolute;
   bottom: 20.5%;
+  animation: rock-boat 18s infinite;
+  transform: rotate(-1deg) translateX(-1px) translateY(-1px);
   @include media("<=phone") {
     bottom: 10%;
     height: calc(100% / 3);
