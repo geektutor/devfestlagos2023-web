@@ -30,7 +30,7 @@
   aspect-ratio: 339 / 329; // The aspect ratio mixin kinda adds some padding so I just use the regular aspect ratio property
   position: absolute;
   bottom: 20.5%;
-  animation: rock-boat 18s infinite;
+  animation: rock-boat 15s infinite;
   transform: rotate(-1deg) translateX(-1px) translateY(-1px);
   @include media("<=phone") {
     bottom: 10%;
