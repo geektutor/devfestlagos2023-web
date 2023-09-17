@@ -1,5 +1,8 @@
+@import "core/variables";
+
 .menuAndContentwrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: $bg-shade-1;
 }
