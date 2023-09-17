@@ -6,15 +6,11 @@ $boat-tilt: 0.5deg;
 $boat-translate: 1px;
 
 @keyframes rock-boat {
-  25% {
+  25%,
+  70% {
     transform: rotate($boat-tilt) translateX($boat-translate) translateY($boat-translate);
   }
-  50% {
-    transform: rotate(-$boat-tilt) translateX(-$boat-translate) translateY(-$boat-translate);
-  }
-  75% {
-    transform: rotate($boat-tilt) translateX($boat-translate) translateY($boat-translate);
-  }
+  50%,
   100% {
     transform: rotate(-$boat-tilt) translateX(-$boat-translate) translateY(-$boat-translate);
   }
