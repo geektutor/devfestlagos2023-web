@@ -468,6 +468,11 @@ export const initialise = async (canvas: HTMLCanvasElement, fishermanWrapper: HT
   setQuadVertices(gl);
 
   const render = (moveFactor: number) => {
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
+    // Clear the canvas AND the depth buffer.
+    gl.clearColor(1, 0.9804, 0.9216, 1);
+
     const sceneTexture = renderSceneToTexture();
     resizeCanvasToDisplaySize(gl.canvas as HTMLCanvasElement);
 
