@@ -1,0 +1,134 @@
+.sc__header {
+  background: $bg-shade-1;
+  position: relative;
+  min-height: 100vh;
+  padding: 40px 0;
+
+  %doodle {
+    // transform: rotate(26.766deg);
+    // opacity: 0;
+    position: absolute;
+  }
+
+  &__arrow-doodle {
+    @extend %doodle;
+    @include ratio(109, 118);
+    width: 147px;
+    top: 0;
+    left: 33%;
+  }
+
+  &__logic-doodle {
+    @extend %doodle;
+    @include ratio(134, 235.005);
+    width: 190px;
+    left: 17%;
+    top: 13%;
+  }
+
+  &__refresh-doodle {
+    @extend %doodle;
+    @include ratio(134, 235.005);
+    width: 85px;
+    right: 29%;
+    top: 5%;
+  }
+
+  &__dots-doodle {
+    @extend %doodle;
+    @include ratio(134, 235.005);
+    width: 80px;
+    right: 30%;
+    top: 17%;
+  }
+
+  &__people-doodle {
+    @extend %doodle;
+    @include ratio(134, 235.005);
+    width: 123px;
+    right: 16px;
+    top: 10%;
+  }
+
+  &__memoji__holder {
+    @extend %doodle;
+    background-color: #0d69d433;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    top: 3%;
+    left: 15%;
+
+    &__figure {
+      @include ratio(134, 235.005);
+      width: 64px;
+      height: 78px;
+    }
+  }
+
+  &__title {
+    @include heading-1;
+    color: $grey-0;
+    text-align: center;
+    padding: 40px 0 16px;
+
+    @include media("<=tablet") {
+      @include heading-5;
+    }
+
+    @include media("<=phone") {
+      @include heading-4;
+      text-align: center;
+    }
+  }
+}
+
+.schedule_container {
+  width: 680px;
+  margin: 0 auto;
+
+  &__day_selection {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+
+    &__number {
+      padding: 8px 16px;
+      color: $grey-50;
+      @include body-2;
+      cursor: pointer;
+      transition: 0.3s all ease-in-out;
+      border-bottom: 2px solid transparent;
+    }
+
+    &__active {
+      color: $grey-0;
+      border-bottom-color: $grey-0;
+    }
+  }
+
+  &__date_tag {
+    border-radius: 24px;
+    padding: 8px 12px;
+    background-color: $secondary-yellow;
+    color: $grey-10;
+    @include body-2;
+    display: inline-block;
+  }
+
+  &__list {
+    margin-top: 20px;
+    list-style: none;
+
+    &__item {
+      margin-bottom: 16px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
