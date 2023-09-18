@@ -15,7 +15,7 @@ export default function Schedule() {
   const [selectedDay, setSelectedDay] = useState<number>(1);
 
   return (
-    <>
+    <div className='schedule__page'>
       <header className='sc__header'>
         <div className='container'>
           <h3 className='sc__header__title'>Schedule</h3>
@@ -71,6 +71,6 @@ export default function Schedule() {
       <Talks />
       <FaqSection />
       <NoMatterWhat />
-    </>
+    </div>
   );
 }
