@@ -169,6 +169,27 @@
         color: $primary-yellow;
       }
     }
+
+    &__buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .c-button:last-child {
+        margin-left: 24px;
+      }
+
+      @include media("<=tablet") {
+        flex-direction: column;
+
+        .c-button:last-child {
+          margin-left: 0px;
+          margin-top: 16px;
+          width: fit-content;
+          min-width: 200px;
+        }
+      }
+    }
   }
 
   &__apply__form__section {

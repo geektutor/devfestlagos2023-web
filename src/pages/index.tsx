@@ -6,7 +6,7 @@ import repeatDoodle from "@/images/repeat-doodle.png";
 import peopleDoodle from "@/images/people-doodle.png";
 import videoDoodle from "@/images/cup-code.png";
 import arrowDoodle from "@/images/arrow-doodle.png";
-import { TertiaryButton } from "@/components/button";
+import { SecondaryButton, TertiaryButton } from "@/components/button";
 import recap1 from "@/images/home/recap/recap-1.png";
 import recap2 from "@/images/home/recap/recap-2.png";
 import recap3 from "@/images/home/recap/recap-3.png";
@@ -27,7 +27,7 @@ import { socialMediaLinks } from "@/utils/social-media";
 import React, { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
 import HighlightIcon from "@/images/home/highlight.svg";
-import { ticketsUrl } from "@/utils/urls";
+import { callForSpeakersURL, ticketsUrl } from "@/utils/urls";
 import { SEO } from "@/components/seo";
 
 export default function Home() {
@@ -70,9 +70,14 @@ export default function Home() {
             We&apos;re back! and it&apos;s about to be the most memorable tech festival <br />
             yet. Get ready for DevFest Lagos 2023.
           </p>
-          <TertiaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
-            Apply To Speak
-          </TertiaryButton>
+          <div className='c-home__intro__buttons'>
+            <TertiaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
+              Grab Your Early Bird Ticket
+            </TertiaryButton>
+            <SecondaryButton onClick={() => window.open(callForSpeakersURL, "_blank")}>
+              Apply To Speak
+            </SecondaryButton>
+          </div>
         </section>
         <section className='c-home__marquee-wrapper'>
           <div className='c-home__marquee' data-marquee>
