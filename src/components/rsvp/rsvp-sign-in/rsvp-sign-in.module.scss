@@ -13,20 +13,20 @@
   align-items: center;
   justify-content: flex-end;
   z-index: 16;
-  pointer-events: none;
+  // pointer-events: none;
 
-  &.active {
-    pointer-events: auto;
+  // &.active {
+  //   pointer-events: auto;
 
-    .modalOverlay {
-      opacity: 1;
-    }
-
-    .modalContent {
-      transform: scale(1) translateY(0);
-      opacity: 1;
-    }
+  .modalOverlay {
+    opacity: 1;
   }
+
+  .modalContent {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  // }
 }
 
 .modalOverlay {
@@ -127,6 +127,7 @@
 }
 
 .modalInput {
+  @include body-3;
   width: 100%;
   border: 0;
   color: $grey-0;

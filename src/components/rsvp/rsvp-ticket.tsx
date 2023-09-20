@@ -1,11 +1,11 @@
-import React from "react";
-// import RSVPSignIn from "./rsvp-sign-in/rsvp-sign-in";
+import React, { useState, useEffect } from "react";
+import RSVPSignIn from "./rsvp-sign-in/rsvp-sign-in";
 import Image from "next/image";
 import styles from "./rsvp-ticket.module.scss";
 import CategoryPill from "../category-pill/category-pill";
 import { TertiaryButton } from "../button";
 import { TalkType } from "@/types/Talk";
-// import { createPortal } from "react-dom";
+import { createPortal } from "react-dom";
 
 type RSVPTicketProps = {
   modalIsOpen?: boolean;
@@ -15,12 +15,8 @@ type RSVPTicketProps = {
 
 const getDayText = (day: 1 | 2) => (day === 1 ? "24th November" : "25th November");
 
-const RSVPTicket = ({
-  talk,
-} // modalIsOpen,
-// onClose
-: RSVPTicketProps) => {
-  // const [portalWrapper, setPortalWrapper] = useState<Element | null>();
+const RSVPTicket = ({ talk, modalIsOpen, onClose }: RSVPTicketProps) => {
+  const [portalWrapper, setPortalWrapper] = useState<Element | null>();
 
   const {
     category,
@@ -30,9 +26,9 @@ const RSVPTicket = ({
     speaker: { name, company, day, role, image, backgroundColor },
   } = talk;
 
-  // useEffect(() => {
-  //   setPortalWrapper(document.querySelector(".app-wrapper")!);
-  // }, []);
+  useEffect(() => {
+    setPortalWrapper(document.querySelector(".app-wrapper")!);
+  }, []);
 
   return (
     <>
@@ -82,7 +78,8 @@ const RSVPTicket = ({
           </div>
         </div>
       </div>
-      {/* {portalWrapper && createPortal(<RSVPSignIn modalIsOpen={modalIsOpen} onClose={onClose} />, portalWrapper)} */}
+      {portalWrapper &&
+        createPortal(<RSVPSignIn modalIsOpen={modalIsOpen} onClose={onClose} />, portalWrapper)}
     </>
   );
 };

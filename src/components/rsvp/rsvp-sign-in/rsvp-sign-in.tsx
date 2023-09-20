@@ -1,4 +1,5 @@
-import React from "react";
+import React from // useState
+"react";
 import Image from "next/image";
 import Emoji from "@/images/sign-in-emoji.png";
 import Arrow from "@/images/downward-arroww.png";
@@ -12,6 +13,11 @@ type RSVPSignInProps = {
   modalIsOpen?: boolean;
 };
 const RSVPSignIn = ({ onClose, modalIsOpen }: RSVPSignInProps) => {
+  // const [email, setEmail] = useState('');
+  // const [ticketNumber, setTicketNumber] = useState('');
+  // const [emailError, setEmailError] = useState('');
+  // const [ticketNumberError, setTicketNumberError] = useState('');
+
   return (
     <div className={classNames(styles.modal, modalIsOpen && styles.active)}>
       <div className={styles.modalOverlay} onClick={onClose} />
@@ -38,15 +44,29 @@ const RSVPSignIn = ({ onClose, modalIsOpen }: RSVPSignInProps) => {
         <p className={styles.modalDescription}>
           Confirm your registration to RSVP and book a seat in your favourite sessions.
         </p>
-        <form className={styles.modalFormContainer}>
+        <form className={styles.modalFormContainer} onSubmit={() => {}}>
           <div className={styles.modalInputContainer}>
-            <input type='email' id='email' placeholder=' ' className={styles.modalInput} />
+            <input
+              type='text'
+              id='email'
+              placeholder=' '
+              aria-placeholder='email input field'
+              className={styles.modalInput}
+              onChange={() => {}}
+            />
             <label htmlFor='email' className={styles.modalInputLabel}>
               Enter Email
             </label>
           </div>
           <div className={styles.modalInputContainer}>
-            <input type='text' id='ticket' placeholder=' ' className={styles.modalInput} />
+            <input
+              type='text'
+              id='ticket'
+              placeholder=' '
+              aria-placeholder='ticket number input field'
+              className={styles.modalInput}
+              onChange={() => {}}
+            />
             <label htmlFor='ticket' className={styles.modalInputLabel}>
               Enter Ticket Number
             </label>
@@ -54,9 +74,7 @@ const RSVPSignIn = ({ onClose, modalIsOpen }: RSVPSignInProps) => {
               The Ticket No. is sent to your email when you register
             </div>
           </div>
-          <TertiaryButton onClick={() => {}} className={styles.modalProceed}>
-            Proceed
-          </TertiaryButton>
+          <TertiaryButton className={styles.modalProceed}>Proceed</TertiaryButton>
           <SecondaryButton onClick={() => {}} className={styles.modalRegister}>
             Don’t have a ticket? 👉🏽 Register
           </SecondaryButton>
