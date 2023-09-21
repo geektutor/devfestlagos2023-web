@@ -68,7 +68,9 @@ export default function Home() {
           <h1 className='c-home__intro__title'>Are you ready for 23x?</h1>
           <p className='c-home__intro__subtext'>
             2 days with 40+ speakers across Artificial Intelligence, Machine Learning, Mobile,
-            Cloud, Intellectual Property and startup funding, policy & governance, and so much more!
+            Cloud, Intellectual Property and Startup Funding, Policy & Governance, and so much more!
+          </p><br>
+          <p className='c-home__intro__subtext'>
             DevFest Lagos 2023 is about to be the most memorable tech festival yet.
           </p>
           <div className='c-home__intro__buttons'>
