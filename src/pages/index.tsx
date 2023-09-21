@@ -69,7 +69,7 @@ export default function Home() {
           <p className='c-home__intro__subtext'>
             2 days with 40+ speakers across Artificial Intelligence, Machine Learning, Mobile,
             Cloud, Intellectual Property and Startup Funding, Policy & Governance, and so much more!
-          </p><br>
+          </p><br/>
           <p className='c-home__intro__subtext'>
             DevFest Lagos 2023 is about to be the most memorable tech festival yet.
           </p>
