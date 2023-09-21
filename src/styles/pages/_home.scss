@@ -57,8 +57,8 @@
 
       @include media("<=phone") {
         width: 76.25px;
-        left: 165px;
-        top: 402px;
+        left: 50%;
+        top: 86%;
       }
     }
 
@@ -88,7 +88,7 @@
       @extend %doodle;
 
       @include media("<=tablet") {
-        width: 104.499px;
+        display: none;
       }
 
       @include media("<=phone") {
@@ -142,6 +142,7 @@
       text-align: center;
       color: rgba(0, 0, 0, 0.59);
       margin: 24px 0 30px;
+      max-width: 940px;
 
       @include media("<=tablet") {
         @include body-2;
@@ -151,6 +152,7 @@
       @include media("<=phone") {
         @include body-3;
         max-width: 379px;
+        padding: 0 16px;
 
         br {
           display: none;

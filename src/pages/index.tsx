@@ -67,8 +67,9 @@ export default function Home() {
           </figure>
           <h1 className='c-home__intro__title'>Are you ready for 23x?</h1>
           <p className='c-home__intro__subtext'>
-            We&apos;re back! and it&apos;s about to be the most memorable tech festival <br />
-            yet. Get ready for DevFest Lagos 2023.
+            2 days with 40+ speakers across Artificial Intelligence, Machine Learning, Mobile,
+            Cloud, Intellectual Property and startup funding, policy & governance, and so much more!
+            DevFest Lagos 2023 is about to be the most memorable tech festival yet.
           </p>
           <div className='c-home__intro__buttons'>
             <TertiaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
