@@ -69,8 +69,7 @@ export default function Home() {
           <p className='c-home__intro__subtext'>
             2 days with 40+ speakers across Artificial Intelligence, Machine Learning, Mobile,
             Cloud, Intellectual Property and Startup Funding, Policy & Governance, and so much more!
-            <br />
-            DevFest Lagos 2023 is about to be the most memorable tech festival yet.
+            <br /> DevFest Lagos 2023 is about to be the most memorable tech festival yet.
           </p>
           <div className='c-home__intro__buttons'>
             <TertiaryButton href={ticketsUrl} isExternal>

@@ -179,6 +179,10 @@
       align-items: center;
       justify-content: center;
 
+      .c-button {
+        z-index: 10;
+        position: relative;
+      }
       .c-button:last-child {
         margin-left: 2.4rem;
       }
