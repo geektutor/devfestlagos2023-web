@@ -1,9 +1,15 @@
 html {
   box-sizing: border-box;
-  font-size: calc(100vw / 1440 * 10);
+  font-size: 62.5%;
   overscroll-behavior: none;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 1920px) {
+  html {
+    font-size: calc(100vw / 1920 * 10);
+  }
 }
 
 body {
@@ -58,5 +64,21 @@ button {
     100% {
       transform: translate3d(-50%, 0, 0);
     }
+  }
+}
+
+.container {
+  width: 100%;
+  padding: 0 24px;
+  margin: 0 auto;
+
+  @include media("<=desktop") {
+    max-width: 1320px;
+  }
+  @include media("<=desktop-sm") {
+    max-width: 900px;
+  }
+  @include media("<=tablet") {
+    max-width: 720px;
   }
 }
