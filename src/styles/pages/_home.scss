@@ -20,7 +20,8 @@
   }
 
   &__intro {
-    padding: 13.2rem 0 23.3rem;
+    padding: 13.2rem 0 2rem;
+    min-height: max(calc(100vh - 10rem - 8.6rem), 530px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,7 +32,7 @@
     }
 
     @include media("<=tablet") {
-      padding-top: 24.7rem;
+      padding-top: 15rem;
     }
 
     @include media("<=phone") {
@@ -143,6 +144,7 @@
       color: rgba(0, 0, 0, 0.59);
       margin: 2.4rem 0 3rem;
       max-width: 94rem;
+      padding: 0 1.6rem;
 
       @include media("<=tablet") {
         @include body-2;
@@ -183,6 +185,7 @@
 
       @include media("<=tablet") {
         flex-direction: column;
+        width: 100%;
 
         .c-button:last-child {
           margin-left: 0;

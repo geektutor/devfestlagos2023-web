@@ -69,15 +69,14 @@ export default function Home() {
           <p className='c-home__intro__subtext'>
             2 days with 40+ speakers across Artificial Intelligence, Machine Learning, Mobile,
             Cloud, Intellectual Property and Startup Funding, Policy & Governance, and so much more!
-          </p>
-          <p className='c-home__intro__subtext'>
+            <br />
             DevFest Lagos 2023 is about to be the most memorable tech festival yet.
           </p>
           <div className='c-home__intro__buttons'>
-            <TertiaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
+            <TertiaryButton href={ticketsUrl} isExternal>
               Grab Your Early Bird Ticket
             </TertiaryButton>
-            <SecondaryButton onClick={() => window.open(callForSpeakersURL, "_blank")}>
+            <SecondaryButton href={callForSpeakersURL} isExternal>
               Apply To Speak
             </SecondaryButton>
           </div>
