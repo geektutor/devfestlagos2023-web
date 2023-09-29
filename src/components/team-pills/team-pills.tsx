@@ -93,6 +93,19 @@ export const TeamPills = () => {
   const renderEngine = () => {
     if (!canvas.current) return;
 
+    canvas.current.addEventListener(
+      "wheel",
+      (event) => {
+        // Prevent the canvas from capturing the scroll
+        event.preventDefault();
+
+        // Propagate the scroll to the body or parent element
+        document.body.scrollTop += event.deltaY;
+        document.documentElement.scrollTop += event.deltaY;
+      },
+      { passive: false },
+    );
+
     const worldWidth = canvas.current.offsetWidth;
     const worldHeight = canvas.current.offsetHeight;
 
@@ -162,13 +175,11 @@ export const TeamPills = () => {
 
     // For each HTML element, create a corresponding physics body and add it to the world
     const htmlElements = elements.current;
-    htmlElements.forEach((element, index) => {
+    htmlElements.forEach((element) => {
       const rect = element.getBoundingClientRect();
 
-      if (index === 0) {
-        console.log(rect.top + rect.height / 2, worldHeight);
-      }
-      const y = Math.min(rect.top + rect.height / 2, worldHeight - rect.height);
+      const top = rect.top + window.scrollY;
+      const y = Math.min(top + rect.height / 2, worldHeight - rect.height);
       const body = Matter.Bodies.rectangle(rect.left + rect.width / 2, y, rect.width, rect.height, {
         restitution: 0.9,
       });
@@ -234,7 +245,12 @@ export const TeamPills = () => {
           className={styles.pill}
           ref={(el) => (elements.current[index] = el!)}
         >
-          <CategoryPill isActive activeBgColor={pill.color} activeTextColor='#1C1C1C'>
+          <CategoryPill
+            isActive
+            activeBgColor={pill.color}
+            activeTextColor='#1C1C1C'
+            className={styles.innerPill}
+          >
             {pill.text}
           </CategoryPill>
         </div>

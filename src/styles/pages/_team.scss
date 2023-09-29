@@ -16,10 +16,12 @@
     }
 
     @include media("<=phone") {
-      padding-top: 32px;
+      padding-top: 3.2rem;
       max-height: unset;
       min-height: 700px;
       height: calc(100vh - 5.6rem);
+      padding-bottom: 0;
+      justify-content: unset;
     }
 
     &__header {

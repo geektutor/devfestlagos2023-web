@@ -1,4 +1,5 @@
 @import "utils/breakpoints";
+@import "core/typography";
 
 .teamPills {
   width: 100vw;
@@ -16,8 +17,9 @@
     top: calc(var(--top-spacing));
   }
 
-  @include media("<=phone") {
-    display: none;
+  @include media("<=tablet") {
+    --top-spacing: 5.6rem;
+    max-height: unset;
   }
 }
 
@@ -36,4 +38,12 @@
 
 .pill {
   position: absolute;
+}
+
+.innerPill {
+  @include media("<=phone") {
+    font-size: 2.6rem !important;
+    font-weight: 500;
+    padding: 4px !important;
+  }
 }
