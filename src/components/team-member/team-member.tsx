@@ -6,6 +6,7 @@ import IgIcon from "@/images/team/links/instagram.svg";
 import LinkedInIcon from "@/images/team/links/linkedin.svg";
 import TwitterIcon from "@/images/team/links/twitter.svg";
 import FacebookIcon from "@/images/team/links/facebook.svg";
+import PlayIcon from "@/images/team/play-icon.svg";
 import EmailIcon from "@/images/team/links/mail.svg";
 import { classNames } from "@/utils/classNames";
 
@@ -65,7 +66,18 @@ export const TeamMember: FC<{ member: ITeamMember }> = ({ member }) => {
             })}
           </div>
         </div>
-        <div className={styles.spotify}></div>
+        <a className={styles.music} href={member.music.url} target='_blank'>
+          <div className={styles.musicInner}>
+            <figure className={styles.albumArt}>
+              <Image src={member.music.image} alt={member.music.name} fill />
+            </figure>
+            <div>
+              <p className={styles.musicTitle}>{member.music.name}</p>
+              <p className={styles.artist}>{member.music.artist}</p>
+            </div>
+            <PlayIcon className={styles.playIcon} />
+          </div>
+        </a>
       </div>
       <div className={styles.quote}>
         <p className={styles.sectionHeader}>WORDS TO LIVE BY</p>
