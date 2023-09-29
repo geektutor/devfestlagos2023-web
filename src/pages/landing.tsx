@@ -22,6 +22,13 @@ import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import CategoryPill from "@/components/category-pill/category-pill";
 import FaqSection from "@/components/faq-section/faq-section";
 import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
+import dotsDoodle from "@/images/landing/doodles/dots.png";
+import cloudsDoodle from "@/images/landing/doodles/cloud.png";
+import memojiDoodle from "@/images/landing/doodles/memoji-1.png";
+import repeatDoodle from "@/images/landing/doodles/repeat.png";
+import speakerMemojiLeft from "@/images/landing/doodles/speaker-memoji.png";
+import speakerMemojiRight from "@/images/landing/doodles/speaker-memoji-2.png";
+import SparkleIcon from "@/images/landing/doodles/sparkle.svg";
 
 const topics = [
   [
@@ -118,13 +125,25 @@ export default function Landing() {
       <div className='landing-page'>
         <section className='landing-page__intro'>
           <div className='landing-page__intro__title'>
-            <h1 className='landing-page__intro__title__text'>
-              DevFest <br /> Lagos
-            </h1>
+            <h1 className='landing-page__intro__title__text'>DevFest Lagos</h1>
+            <Image src={dotsDoodle} alt='doodle' className='landing-page__intro__title__dots' />
+            <Image
+              src={cloudsDoodle}
+              alt='doodle'
+              className='landing-page__intro__title__cloud-left'
+            />
+            <Image
+              src={cloudsDoodle}
+              alt='doodle'
+              className='landing-page__intro__title__cloud-right'
+            />
             <div className='landing-page__intro__title__presents'>GDG Lagos Presents</div>
           </div>
           <p className='landing-page__intro__description'>
             The biggest tech event in sub-saharan Africa is back and even bigger and better!
+            <div className='landing-page__intro__memoji'>
+              <Image src={memojiDoodle} alt='doodle' quality={100} />
+            </div>
           </p>
           <PrimaryButton>
             <span>Get Your Ticket</span>
@@ -226,9 +245,28 @@ export default function Landing() {
           </div>
         </section>
         <section className='landing-page__speakers'>
-          <p className='landing-page__speakers__count'>41</p>
-          <p className='landing-page__speakers__speakers-text'>Speakers</p>
-          <p className='landing-page__speakers__subtext'>All ready to cut soap for you!</p>
+          <p className='landing-page__speakers__count'>
+            41
+            <SparkleIcon className='landing-page__speakers__sparkle' />
+          </p>
+          <p className='landing-page__speakers__speakers-text'>
+            Speakers
+            <Image
+              src={speakerMemojiLeft}
+              alt='doodle'
+              className='landing-page__speakers__memoji-left'
+            />
+            <Image
+              src={speakerMemojiRight}
+              alt='doodle'
+              className='landing-page__speakers__memoji-right'
+            />
+          </p>
+          <p className='landing-page__speakers__subtext'>
+            All ready to cut soap for you!
+            <Image src={repeatDoodle} alt='doodle' className='landing-page__speakers__repeat' />
+            <Image src={cloudsDoodle} alt='doodle' className='landing-page__speakers__cloud' />
+          </p>
           <div className='landing-page__speakers__speakers'>
             {speakers.map((speaker, index) => (
               <SpeakerCard
