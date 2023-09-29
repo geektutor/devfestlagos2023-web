@@ -20,6 +20,7 @@
   @include media("<=tablet") {
     --top-spacing: 5.6rem;
     max-height: unset;
+    transform: translateY(35px);
   }
 }
 
