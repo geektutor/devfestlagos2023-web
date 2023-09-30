@@ -13,7 +13,6 @@ import songCoverImage from "@/images/landing/song-cover.png";
 import SpotifyLyricIcon from "@/images/landing/spotify.svg";
 import scribbleImage from "@/images/landing/scribble.png";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
-import recapDoodleImage from "@/images/landing/recap-doodle.png";
 import SpeakerCard from "@/components/speaker/speaker";
 import { speakers } from "@/mock-data";
 import { Speaker } from "@/types/Speaker";
@@ -24,11 +23,11 @@ import FaqSection from "@/components/faq-section/faq-section";
 import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
 import dotsDoodle from "@/images/landing/doodles/dots.png";
 import cloudsDoodle from "@/images/landing/doodles/cloud.png";
-import memojiDoodle from "@/images/landing/doodles/memoji-1.png";
 import repeatDoodle from "@/images/landing/doodles/repeat.png";
 import speakerMemojiLeft from "@/images/landing/doodles/speaker-memoji.png";
 import speakerMemojiRight from "@/images/landing/doodles/speaker-memoji-2.png";
 import SparkleIcon from "@/images/landing/doodles/sparkle.svg";
+import { YoutubePlayer } from "@/components/youtube-player";
 
 const topics = [
   [
@@ -141,9 +140,9 @@ export default function Landing() {
           </div>
           <p className='landing-page__intro__description'>
             The biggest tech event in sub-saharan Africa is back and even bigger and better!
-            <div className='landing-page__intro__memoji'>
-              <Image src={memojiDoodle} alt='doodle' quality={100} />
-            </div>
+            {/*<div className='landing-page__intro__memoji'>*/}
+            {/*  <Image src={memojiDoodle} alt='doodle' quality={100} />*/}
+            {/*</div>*/}
           </p>
           <PrimaryButton>
             <span>Get Your Ticket</span>
@@ -241,7 +240,7 @@ export default function Landing() {
             </p>
           </div>
           <div className='landing-page__recap__video'>
-            <Image src={recapDoodleImage} alt='Recap' fill />
+            <YoutubePlayer videoId='7kat5HlPtzU' />
           </div>
         </section>
         <section className='landing-page__speakers'>

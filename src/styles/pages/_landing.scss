@@ -675,11 +675,16 @@
     }
 
     &__video {
-      @include ratio(669, 1191); // Note: Ratio values remain unchanged
+      @include ratio(669, 1191);
       width: 100%;
 
       @include media("<=phone") {
-        @include ratio(288, 382); // Note: Ratio values remain unchanged
+        @include ratio(288, 382);
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
       }
     }
   }
