@@ -315,6 +315,10 @@
       @include media("<=phone") {
         padding: 1.6rem;
         border-radius: 3.2rem;
+
+        .c-button {
+          width: 100%;
+        }
       }
 
       &__lyric {
@@ -524,6 +528,10 @@
         margin-top: 2.4rem;
         padding: 1.6rem 0 0;
         border-radius: 3.2rem;
+
+        .c-button {
+          width: 100%;
+        }
       }
 
       &__title {
