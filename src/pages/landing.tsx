@@ -28,6 +28,7 @@ import speakerMemojiLeft from "@/images/landing/doodles/speaker-memoji.png";
 import speakerMemojiRight from "@/images/landing/doodles/speaker-memoji-2.png";
 import SparkleIcon from "@/images/landing/doodles/sparkle.svg";
 import { YoutubePlayer } from "@/components/youtube-player";
+import LandingPage from "@/animations/components/LandingPage";
 
 const topics = [
   [
@@ -112,6 +113,10 @@ export default function Landing() {
     if (!activeSpeaker) enableBodyScroll(document.body);
     else disableBodyScroll(document.body);
   }, [activeSpeaker]);
+
+  useEffect(() => {
+    new LandingPage();
+  }, []);
 
   return (
     <>
@@ -267,18 +272,21 @@ export default function Landing() {
             <Image src={cloudsDoodle} alt='doodle' className='landing-page__speakers__cloud' />
           </p>
           <div className='landing-page__speakers__speakers'>
-            {speakers.map((speaker, index) => (
-              <SpeakerCard
-                speaker={speaker}
-                key={index}
-                onClick={() => setActiveSpeaker(speaker)}
-                onClose={() => setActiveSpeaker(null)}
-                hasNext={index < speakers.length - 1}
-                hasPrevious={index > 0}
-                onClickButton={handleChangeSpeaker(index)}
-                modalIsOpen={activeSpeaker === speaker}
-              />
-            ))}
+            <div className='active inner' data-marquee-list>
+              {speakers.map((speaker, index) => (
+                <div key={index} data-marquee-item>
+                  <SpeakerCard
+                    speaker={speaker}
+                    onClick={() => setActiveSpeaker(speaker)}
+                    onClose={() => setActiveSpeaker(null)}
+                    hasNext={index < speakers.length - 1}
+                    hasPrevious={index > 0}
+                    onClickButton={handleChangeSpeaker(index)}
+                    modalIsOpen={activeSpeaker === speaker}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
           <PrimaryButton href='/speakers'>
             <span>View All Speakers</span>

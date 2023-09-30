@@ -838,17 +838,26 @@
     }
 
     &__speakers {
-      padding-left: 8.7vw;
       display: flex;
       align-items: center;
       width: 100%;
-      @include flex-gap(0, 1.6rem);
+      //@include flex-gap(0, 1.6rem);
       overflow: hidden;
       flex-wrap: nowrap;
       margin-bottom: 4.8rem;
+      position: relative;
+
+      .inner {
+        display: flex;
+        //padding-left: 8.7vw;
+      }
 
       @include media("<=phone") {
         margin-bottom: 3.2rem;
+      }
+
+      [data-marquee-item] {
+        margin-left: 1.6rem;
       }
     }
 
