@@ -17,10 +17,11 @@
     top: calc(var(--top-spacing));
   }
 
-  @include media("<=tablet") {
+  @include media("<=phone") {
     --top-spacing: 5.6rem;
     max-height: unset;
     transform: translateY(35px);
+    pointer-events: none;
   }
 }
 
