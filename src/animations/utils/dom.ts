@@ -31,11 +31,11 @@ export const mapElements = (
   return elements;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Callback = (
   element: HTMLElement | Element | NodeList | string | null | [],
   index?: number,
   array?: [],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ) => any;
 
 export const map = (array: [], iteratee: Callback) => {
