@@ -8,4 +8,6 @@ export type TalkType = {
   date: string;
   speaker: Speaker;
   seatCount?: number;
+  timeLeft?: string;
+  hall?: string;
 };

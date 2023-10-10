@@ -13,20 +13,20 @@
   align-items: center;
   justify-content: flex-end;
   z-index: 16;
-  // pointer-events: none;
+  pointer-events: none;
 
-  // &.active {
-  //   pointer-events: auto;
+  &.active {
+    pointer-events: auto;
 
-  .modalOverlay {
-    opacity: 1;
+    .modalOverlay {
+      opacity: 1;
+    }
+
+    .modalContent {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
   }
-
-  .modalContent {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-  // }
 }
 
 .modalOverlay {
@@ -183,8 +183,29 @@
   cursor: pointer;
   transition: 300ms;
   margin-bottom: 5rem;
+}
 
-  // &:hover {
-  //   background-color: darken($primary-blue, 10%);
-  // }
+// Error States
+
+.error {
+  .modalInput {
+    border: 1px solid $primary-red;
+    color: $primary-red;
+  }
+
+  .errorMessage {
+    @include body-4;
+    color: $primary-red;
+    padding: 2rem 2.4rem;
+    margin-bottom: 1.6rem;
+  }
+}
+
+.modalProceed {
+  background-color: $grey-0;
+
+  @include media("<=phone") {
+    height: 68px;
+    color: $grey-100;
+  }
 }

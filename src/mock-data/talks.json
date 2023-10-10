@@ -5,7 +5,9 @@
     "category": "Design",
     "speakerId": 7,
     "date": "10:00 AM",
-    "seatCount": 25
+    "seatCount": 25,
+    "timeLeft": "25",
+    "hall": "A"
   },
   {
     "title": "Blockchain: The Next Revolution",
@@ -13,7 +15,9 @@
     "category": "Blockchain",
     "speakerId": 9,
     "date": "11:00 AM",
-    "seatCount": 10
+    "seatCount": 10,
+    "timeLeft": "5",
+    "hall": "B"
   },
   {
     "title": "Mobile First: Building Responsive Apps",
@@ -21,7 +25,9 @@
     "category": "Mobile Development",
     "speakerId": 6,
     "date": "12:00 PM",
-    "seatCount": 6
+    "seatCount": 6,
+    "timeLeft": "20",
+    "hall": "B"
   },
   {
     "title": "The Art of UI/UX",
@@ -29,7 +35,9 @@
     "category": "Design",
     "speakerId": 10,
     "date": "1:00 PM",
-    "seatCount": 75
+    "seatCount": 75,
+    "timeLeft": "35",
+    "hall": "A"
   },
   {
     "title": "Decentralized Finance with Blockchain",
@@ -37,7 +45,9 @@
     "category": "Blockchain",
     "speakerId": 8,
     "date": "2:00 PM",
-    "seatCount": 32
+    "seatCount": 32,
+    "timeLeft": "45",
+    "hall": "A"
   },
   {
     "title": "Cross-Platform Mobile Development",
@@ -45,7 +55,9 @@
     "category": "Mobile Development",
     "speakerId": 5,
     "date": "3:00 PM",
-    "seatCount": 5
+    "seatCount": 5,
+    "timeLeft": "25",
+    "hall": "A"
   },
   {
     "title": "Design Thinking in Action",
@@ -53,7 +65,9 @@
     "category": "Design",
     "speakerId": 4,
     "date": "8:00 AM",
-    "seatCount": 20
+    "seatCount": 20,
+    "timeLeft": "35",
+    "hall": "A"
   },
   {
     "title": "Smart Contracts and Blockchain",
@@ -61,7 +75,9 @@
     "category": "Blockchain",
     "speakerId": 3,
     "date": "9:00 AM",
-    "seatCount": 27
+    "seatCount": 27,
+    "timeLeft": "22",
+    "hall": "B"
   },
   {
     "title": "Optimizing Mobile App Performance",
@@ -69,7 +85,9 @@
     "category": "Mobile Development",
     "speakerId": 2,
     "date": "4:00 PM",
-    "seatCount": 2
+    "seatCount": 2,
+    "timeLeft": "2",
+    "hall": "B"
   },
   {
     "title": "Innovative Design Solutions",
@@ -77,6 +95,8 @@
     "category": "Design",
     "speakerId": 1,
     "date": "8:30 AM",
-    "seatCount": 15
+    "seatCount": 15,
+    "timeLeft": "5",
+    "hall": "B"
   }
 ]

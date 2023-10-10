@@ -9,6 +9,7 @@ type Props = {
   variant: "primary" | "secondary" | "tertiary";
   href?: string;
   isExternal?: boolean;
+  type?: "button" | "submit" | "reset";
 };
 
 const Button: FC<PropsWithChildren<Props>> = ({
@@ -16,6 +17,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
   variant,
   href,
   isExternal,
+  type,
   ...props
 }) => {
   const className = classNames("c-button", `c-button--${variant}`, props.className);
@@ -37,7 +39,11 @@ const Button: FC<PropsWithChildren<Props>> = ({
   }
 
   return (
-    <button {...props} className={classNames("c-button", `c-button--${variant}`, props.className)}>
+    <button
+      {...props}
+      className={classNames("c-button", `c-button--${variant}`, props.className)}
+      type={type}
+    >
       {children}
     </button>
   );
