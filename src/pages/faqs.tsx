@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import { faqs } from "@/data/faqs";
 import FAQ from "@/components/faq/FAQ";
 import Memojis from "@/images/faqs/memojis.png";
 import MenuDoodle from "@/images/faqs/menu-doodle.png";
 import MoveDoodle from "@/images/faqs/move-doodle.png";
+import Accordion from "@/components/accordion/accordion";
+import { faqs, paidDevFestQuestions } from "@/data/faqs";
 import CloudDoodle from "@/images/landing/doodles/cloud.png";
 import LogicDoodle from "@/images/schedule/logic-doodles.png";
 import TransferDoodle from "@/images/faqs/transfer-doodle.png";
@@ -54,6 +55,14 @@ export default function Faqs() {
       <div className='fq__list'>
         {faqs.map((faq) => (
           <FAQ key={faq.question} question={faq.question} answer={faq.answer} />
+        ))}
+      </div>
+      <div className='fq__list--dark'>
+        <h2 className='fq__list--dark__heading'>Why is DevFest Lagos 2023 a paid event?</h2>
+        {paidDevFestQuestions.map((question) => (
+          <Accordion key={question.title} title={question.title}>
+            {question.children}
+          </Accordion>
         ))}
       </div>
       <div className='fq__contact'>
