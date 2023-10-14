@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import { faqs } from "@/data/faqs";
+import FAQ from "@/components/faq/FAQ";
 import MenuDoodle from "@/images/faqs/menu-doodle.png";
 import MoveDoodle from "@/images/faqs/move-doodle.png";
 import CloudDoodle from "@/images/landing/doodles/cloud.png";
@@ -47,6 +49,11 @@ export default function Faqs() {
           </figure>
         </div>
       </header>
+      <div className='fq__list'>
+        {faqs.map((faq) => (
+          <FAQ key={faq.question} question={faq.question} answer={faq.answer} />
+        ))}
+      </div>
     </main>
   );
 }

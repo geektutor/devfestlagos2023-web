@@ -131,3 +131,18 @@
     }
   }
 }
+
+.fq__list {
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px 0;
+
+  @include media("<=tablet") {
+    padding: 42px 32px;
+  }
+
+  @include media("<=phone") {
+    padding: 50px 16px;
+  }
+}

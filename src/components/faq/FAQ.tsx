@@ -3,12 +3,12 @@ import UpArrow from "@/images/up-arrow.svg";
 import DownArrow from "@/images/down-arrow.svg";
 import styles from "./faq.module.scss";
 
-interface FAQProps {
+export interface FAQ {
   question: string;
   answer: string;
 }
 
-export default function FAQ(props: FAQProps) {
+export default function FAQ(props: FAQ) {
   const [show, setShow] = useState(false);
 
   return (
