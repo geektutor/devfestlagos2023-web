@@ -17,7 +17,7 @@
     text-align: center;
     margin: 0 auto;
     white-space: pre-wrap;
-    z-index: 2;
+    z-index: 1;
 
     @include media("<=tablet") {
       @include heading-4;
