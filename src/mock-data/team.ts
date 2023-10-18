@@ -28,15 +28,16 @@ import btsImage from "@/images/team/music/bts.png";
 
 export type TeamMemberLink = {
   type:
+    | "instagram"
     | "twitter"
     | "linkedin"
+    | "facebook"
+    | "email"
     | "github"
     | "website"
     | "medium"
     | "behance"
-    | "facebook"
-    | "instagram"
-    | "email";
+    | "substack";
   url: string;
 };
 
@@ -68,7 +69,7 @@ export const teamMembers: ITeamMember[] = [
     links: [
       {
         type: "twitter",
-        url: "https://twitter.com/sodiqakinjobi",
+        url: "https://twitter.com/Geektutor",
       },
     ],
     quote: "Always be kind to others regardless",
@@ -121,12 +122,18 @@ export const teamMembers: ITeamMember[] = [
   {
     key: "maryann",
     name: "Maryann Onuoha",
-    role: "GDG Lagos Organizer",
+    role: "General Team Lead",
     comment:
       "Working with this team was an amazing journey for me! Here’s is to more wins. #BigPurr",
     quote: "We hope for better days - Kim Namjoon of BTS",
     category: "gdg-team",
     image: maryannImage,
+    links: [
+      {
+        type: "twitter",
+        url: "https://twitter.com/maryanneonuoha?s=21&t=jD_36Pj42zh462tKuHOCDg",
+      },
+    ],
     music: {
       image: btsImage,
       name: "Young Forever",
@@ -138,16 +145,22 @@ export const teamMembers: ITeamMember[] = [
     key: "joel",
     name: "Joel Adewole",
     role: "Content Writer/QA",
-    comment: "I love the team spirit and commitment",
+    comment: "Great teamwork",
     quote: "Don't be too sweet, or people will eat you",
     category: "content",
     image: joelImage,
     music: {
       image: asakeImage,
-      name: "Lonely At The Top",
-      artist: "Asake",
-      url: "https://open.spotify.com/track/5ZtK8XAVnoaGdBXZWCEVCY?si=c64045644dcc44ce",
+      name: "City Boys",
+      artist: "Burna Boy",
+      url: "https://open.spotify.com/track/1OX1aWd5WTavFuOXZ7k6Q5?si=00d21b47a78c46c9",
     },
+    links: [
+      {
+        type: "twitter",
+        url: "https://twitter.com/wolz_codelife",
+      },
+    ],
   },
   {
     key: "sebastine",
@@ -163,12 +176,27 @@ export const teamMembers: ITeamMember[] = [
       artist: "Digital Farm Animals",
       url: "https://open.spotify.com/track/3TxKtkCNR1yQARsvHxvNnP?si=a5e62589435c423e",
     },
+    links: [
+      {
+        type: "twitter",
+        url: "https://twitter.com/H3ndrick",
+      },
+      {
+        type: "github",
+        url: ", https://github.com/CoderNamedHendrick",
+      },
+      {
+        type: "email",
+        url: "sebastinesoacatp@gmail.com",
+      },
+    ],
   },
   {
     key: "lukmon",
     name: "Lukmon Abdulsalam",
     role: "Web Developer",
-    comment: "The daily drama and dragging is top notch",
+    comment:
+      "Awemazing work so far, fun filled and dragging each other for fun. Overall great work.",
     quote: "Anything you do, do 100% unless you are donating blood",
     category: "dev",
     image: lukmonImage,
@@ -178,6 +206,12 @@ export const teamMembers: ITeamMember[] = [
       artist: "Asake",
       url: "https://open.spotify.com/track/5UwxpuGHkwiojKDaPC5ZNu?si=b965ba812a0549c1",
     },
+    links: [
+      {
+        type: "linkedin",
+        url: "www.linkedin.com/in/Lukmon-Abdulsalam",
+      },
+    ],
   },
   {
     key: "iyin",
@@ -190,10 +224,28 @@ export const teamMembers: ITeamMember[] = [
     image: iyinImage,
     music: {
       image: johaImage,
-      name: "Joha",
-      artist: "Asake",
-      url: "https://open.spotify.com/track/5UwxpuGHkwiojKDaPC5ZNu?si=b965ba812a0549c1",
+      name: "Giants",
+      artist: "Dermot Kennedy",
+      url: "https://open.spotify.com/track/0l4AReW2LuX0yStPfgQgSR?si=c8a9e62d86e94d23",
     },
+    links: [
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/iyin-ogundairo-877a401aa/",
+      },
+      {
+        type: "email",
+        url: "dairoiyin@gmail.com",
+      },
+      {
+        type: "github",
+        url: "https://github.com/DairoIyin",
+      },
+      {
+        type: "twitter",
+        url: "https://twitter.com/IyinDairo",
+      },
+    ],
   },
   {
     key: "lere",
@@ -206,10 +258,28 @@ export const teamMembers: ITeamMember[] = [
     image: lereImage,
     music: {
       image: caniImage,
-      name: "Can I",
-      artist: "Genevieve Stokes",
-      url: "https://open.spotify.com/track/1H1ODNzLPam5SjmSOOChyU?si=9eaa3db4f4064b9b",
+      name: "Babydoll",
+      artist: "Dominic Fike",
+      url: "https://open.spotify.com/track/7yNf9YjeO5JXUE3JEBgnYc?si=e4b85fb602ad45b6",
     },
+    links: [
+      {
+        type: "email",
+        url: "temitopeasama@gmail.com",
+      },
+      {
+        type: "github",
+        url: "www.github.com/TemitopeAsama",
+      },
+      {
+        type: "twitter",
+        url: "www.x.com/omolxre",
+      },
+      {
+        type: "linkedin",
+        url: "www.linkedin.com/in/TemitopeAsama",
+      },
+    ],
   },
   {
     key: "tobi",
@@ -247,16 +317,32 @@ export const teamMembers: ITeamMember[] = [
     key: "naza",
     name: "Chinaza Icheke",
     role: "Product Designer",
-    comment: "I enjoyed every moment of this project. These are amazing people.",
-    quote: "When fear and doubt are a burden too heavy to bear. Remember this: You are not alone",
+    comment:
+      "It has been an incredible experience! The team is always pushing everyone to get better and to improve. Amazing people every single one of them.",
+    quote:
+      "When you are at your weakest, and fear, and doubt, or a burden too heavy to bear, remember this, you are not alone",
     category: "design",
     isLead: true,
     image: nazaImage,
+    links: [
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/chinaza-i-329947a5/",
+      },
+      {
+        type: "twitter",
+        url: "https://twitter.com/IchekeChinaza",
+      },
+      {
+        type: "website",
+        url: "https://bit.ly/32LWrIa",
+      },
+    ],
     music: {
       image: dragonbornImage,
-      name: "Dragonborn",
-      artist: "Jeremy Soule",
-      url: "https://open.spotify.com/track/2gaZJDgE71VL9PzzUUlpMg?si=e88d4e06c02345c0",
+      name: "Victory",
+      artist: "Two Steps From Hell",
+      url: "https://open.spotify.com/track/2F9xBxKbx2M0pbgtSu8fLf?si=9ea2561265e5477d",
     },
   },
   {
@@ -273,6 +359,16 @@ export const teamMembers: ITeamMember[] = [
       artist: "MADAX",
       url: "https://open.spotify.com/track/52QBHz2VLVpp4dzsAe4Lpv?si=529664f02adf49b7",
     },
+    links: [
+      {
+        type: "twitter",
+        url: "https://mobile.twitter.com/aghahowadaniel",
+      },
+      {
+        type: "website",
+        url: "Userman.webflow.io",
+      },
+    ],
   },
   {
     key: "nifemi",
@@ -290,5 +386,129 @@ export const teamMembers: ITeamMember[] = [
       artist: "Dominic Fike",
       url: "https://open.spotify.com/track/3frC55hy41BhQK65FiJK7q?si=bacd6040a81d4b6d",
     },
+    links: [
+      {
+        type: "twitter",
+        url: "https://twitter.com/N1femi",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/oluwanifemi-adeyemi-600758174/",
+      },
+    ],
+  },
+  {
+    key: "marvin",
+    name: "Marvin Ogah",
+    role: "Design",
+    comment: "The team is crazy good, thats all I can say.",
+    quote:
+      "As we let our own light shine, we unconsciously give other people permission to do the same as we are liberated from our own fears.",
+    category: "design",
+    image: nifemiImage,
+    music: {
+      image: fikeImage,
+      name: "No place like hope",
+      artist: "Zachary Knowles",
+      url: "https://open.spotify.com/track/5ttql4WZYAh4LGUSMhQcJc?si=37e232f436c54d19",
+    },
+    links: [
+      {
+        type: "twitter",
+        url: "www.twitter.com/marvinographer",
+      },
+    ],
+  },
+  {
+    key: "omorinsola",
+    name: "Adesanya Omorinsola",
+    role: "Software Tester / QA Engineer ",
+    comment: "Amazing , proud of the team.",
+    quote: "It gets better",
+    category: "QA",
+    image: nifemiImage,
+    music: {
+      image: fikeImage,
+      name: "No place like hope",
+      artist: "Zachary Knowles",
+      url: "https://open.spotify.com/track/5ttql4WZYAh4LGUSMhQcJc?si=37e232f436c54d19",
+    },
+    links: [
+      {
+        type: "twitter",
+        url: "www.twitter.com/rynsola__",
+      },
+      {
+        type: "linkedin",
+        url: "www.linkedin.com/in/adesanya-omorinsola-76aab6174/",
+      },
+      {
+        type: "instagram",
+        url: "www.instagram.com/omo.rinsola?igshid=MzMyNGUyNmU2YQ==",
+      },
+      {
+        type: "substack",
+        url: "https://open.substack.com/pub/omorinsola/p/friendships-that-shapes-our-lives?r=1zfo97&utm_campaign=post&utm_medium=web",
+      },
+    ],
+  },
+  {
+    key: "akin",
+    name: "Akin Aguda",
+    role: "Frontend Developer",
+    comment:
+      "I'm grateful to the FE team and the design team. I got to express myself creatively through the excellent design and great codebase and infrastructure that the other Devs had worked on.",
+    quote: "Jesus saved my life",
+    category: "QA",
+    image: nifemiImage,
+    music: {
+      image: fikeImage,
+      name: "Hindsight ",
+      artist: "Hillsong Young & Free",
+      url: "https://open.spotify.com/track/24ql1HeqRrvruTLE8wPnSj?si=563b10cb0c9a46f6",
+    },
+    links: [
+      {
+        type: "github",
+        url: "https://github.com/AkinAguda",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/akinaguda",
+      },
+    ],
+  },
+  {
+    key: "tobiju",
+    name: "Oluwatobiju Judah",
+    role: "Frontend Developer",
+    comment: "Amazing , proud of the team.",
+    quote: "It gets better",
+    category: "QA",
+    image: nifemiImage,
+    music: {
+      image: fikeImage,
+      name: "IDK",
+      artist: "Mosss",
+      url: "https://open.spotify.com/track/6NrwVoFmjeNsEtrgZTMo4T?si=790f8168688747b1",
+    },
+    links: [
+      {
+        type: "github",
+        url: "https://github.com/Tobijudah",
+      },
+      {
+        type: "twitter",
+        url: "https://twitter.com/tobijudah",
+      },
+      {
+        type: "website",
+        url: "http://projects.tobiju.com/",
+      },
+      {
+        type: "medium",
+        url: "https://tobiju.medium.com/",
+      },
+    ],
   },
 ];
