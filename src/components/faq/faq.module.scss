@@ -51,6 +51,11 @@
     @include body-2;
     border-radius: 2.4rem;
   }
+
+  & a {
+    color: $primary-green;
+    text-decoration: none;
+  }
 }
 
 .faqSvg {

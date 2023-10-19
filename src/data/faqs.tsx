@@ -1,15 +1,21 @@
+import Link from "next/link";
 import { FAQ } from "@/components/faq/FAQ";
 
 export const faqs: FAQ[] = [
   {
     question: "1. So, what is DevFest Lagos 2023?",
     answer:
-      "DevFest Lagos 2023 is a two-day developer festival that will bring together technology enthusiasts, developers, designers, beginners, veterans and experts alike. It will also gather  tech ecosystem drivers and thought leaders. It features keynotes, workshops, speaker-led sessions, and codelabs on various technology topics. The event offers a platform to learn, connect, network, and explore the latest developments in the tech industry.",
+      "DevFest Lagos 2023 is a two-day developer festival that will bring together technology enthusiasts, developers, designers, beginners, veterans and experts alike. It will also gather tech ecosystem drivers and thought leaders. It features keynotes, workshops, speaker-led sessions, and codelabs on various technology topics. The event offers a platform to learn, connect, network, and explore the latest developments in the tech industry.",
   },
   {
     question: "2. When and where is DevFest Lagos 2023 taking place?",
-    answer:
-      "DevFest Lagos 2023 will be held on November 24th and 25th, 2023, starting at 9:00 AM each day. The venue is Landmark, Oniru, Lagos.",
+    answer: (
+      <>
+        To attend DevFest Lagos 2023, you must register through the official event registration
+        platform at <Link href='/'>DevFestLagos.com</Link>. You can choose between a two-day ticket
+        or a single-day ticket.
+      </>
+    ),
   },
   {
     question: "3. How can I register for DevFest Lagos 2023?",
@@ -48,8 +54,17 @@ export const faqs: FAQ[] = [
   },
   {
     question: "10. Is there a code of conduct for attendees?",
-    answer:
-      "Yes, there is a community conduct guideline that all attendees are expected to follow. We are committed to creating a safe and inclusive environment for all participants. Please review and adhere to our conduct guidelines to ensure a respectful and enjoyable experience for everyone. [community code of conduct guidelines link here]",
+    answer: (
+      <>
+        Yes, there is a community conduct guideline that all attendees are expected to follow. We
+        are committed to creating a safe and inclusive environment for all participants. Please
+        review and adhere to our{" "}
+        <a target='_blank' href='https://developers.google.com/community-guidelines'>
+          conduct guidelines
+        </a>{" "}
+        to ensure a respectful and enjoyable experience for everyone.
+      </>
+    ),
   },
   {
     question: "11. How can I get updates and announcements about DevFest Lagos 2023?",
