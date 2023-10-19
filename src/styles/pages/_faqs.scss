@@ -146,3 +146,52 @@
     padding: 50px 16px;
   }
 }
+
+.fq__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px 0;
+  background: $bg-shade-1;
+  padding: 137px 0 129px;
+
+  @include media("<=tablet") {
+    padding: 80px 0 70px;
+  }
+
+  &__image {
+    @include media("<=tablet") {
+      height: 75px;
+      width: 187.5px;
+    }
+  }
+
+  &__title {
+    @include heading-4;
+    text-align: center;
+
+    @include media("<=tablet") {
+      max-width: 270px;
+      @include title-2;
+    }
+  }
+
+  &__text {
+    max-width: 450px;
+    @include title-2;
+    color: $grey-40;
+    text-align: center;
+    letter-spacing: 0.5px;
+
+    @include media("<=tablet") {
+      max-width: 226px;
+      @include body-5;
+      letter-spacing: normal;
+    }
+
+    &__highlight {
+      color: $primary-green;
+      text-decoration: none;
+    }
+  }
+}

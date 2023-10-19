@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { faqs } from "@/data/faqs";
 import FAQ from "@/components/faq/FAQ";
+import Memojis from "@/images/faqs/memojis.png";
 import MenuDoodle from "@/images/faqs/menu-doodle.png";
 import MoveDoodle from "@/images/faqs/move-doodle.png";
 import CloudDoodle from "@/images/landing/doodles/cloud.png";
@@ -54,6 +55,24 @@ export default function Faqs() {
         {faqs.map((faq) => (
           <FAQ key={faq.question} question={faq.question} answer={faq.answer} />
         ))}
+      </div>
+      <div className='fq__contact'>
+        <Image
+          alt=''
+          width={250}
+          height={100}
+          quality={100}
+          src={Memojis}
+          className='fq__contact__image'
+        />
+        <p className='fq__contact__title'>Still have some questions?</p>
+        <p className='fq__contact__text'>
+          Can’t find the answer you’re looking for? Please{" "}
+          <a href='mailto:contact@devfestlagos.com' className='fq__contact__text__highlight'>
+            contact
+          </a>{" "}
+          our friendly team.
+        </p>
       </div>
       <NoMatterWhat />
     </main>
