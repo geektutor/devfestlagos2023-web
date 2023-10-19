@@ -3,7 +3,8 @@
 @import "utils/breakpoints";
 
 .faq {
-  display: inline;
+  display: inline-flex;
+  row-gap: 0.8rem;
   flex-direction: column;
   cursor: pointer;
   width: 100%;
