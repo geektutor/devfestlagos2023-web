@@ -1,5 +1,6 @@
 import Logo from "@/images/logo.svg";
 import StarIcon from "@/images/home/star.svg";
+import Link from "next/link";
 import Image from "next/image";
 import globeDoodle from "@/images/globe-doodle.png";
 import repeatDoodle from "@/images/repeat-doodle.png";
@@ -27,7 +28,7 @@ import { socialMediaLinks } from "@/utils/social-media";
 import React, { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
 import HighlightIcon from "@/images/home/highlight.svg";
-import { callForSpeakersURL, ticketsUrl } from "@/utils/urls";
+import { ticketsUrl, callForVolunteersURL } from "@/utils/urls";
 import { SEO } from "@/components/seo";
 
 export default function Home() {
@@ -43,7 +44,7 @@ export default function Home() {
   return (
     <>
       <SEO
-        title='Devfest Lagos 2023'
+        title='Devfest Lagos 2023 | Grab Your Tickets'
         description='DevFest Lagos 2023 is an annual developer festival organized by GDG Lagos. It will take place on Friday November 24, 2023 and Saturday, November 25, 2023 at the Landmark Event Centre, Lagos. DevFest Lagos will feature speaker-led sessions, workshops, code-labs, and more on a variety of topics such as Web, Flutter, AI & ML, blockchain, design and many others. Join us! 🫵🏾'
         keywords='gdg lagos, devfest, devfest lagos, devfest lagos 2023'
         image='/og-images/home-page.png'
@@ -73,10 +74,10 @@ export default function Home() {
           </p>
           <div className='c-home__intro__buttons'>
             <TertiaryButton href={ticketsUrl} isExternal>
-              Grab Your Early Bird Ticket
+              Grab Your Tickets
             </TertiaryButton>
-            <SecondaryButton href={callForSpeakersURL} isExternal>
-              Apply To Speak
+            <SecondaryButton href={callForVolunteersURL} isExternal>
+              Apply To Volunteer
             </SecondaryButton>
           </div>
         </section>
@@ -173,6 +174,9 @@ export default function Home() {
         <ComingSoonCountdown />
         <section className='c-home__footer'>
           <ul className='c-home__footer__links'>
+            <li className='c-home__footer__links__link'>
+              <Link href='/faq'>FAQ</Link>
+            </li>
             <li className='c-home__footer__links__link'>
               <a href='https://gdg.community.dev/gdg-lagos/' target='_blank'>
                 Join the community
