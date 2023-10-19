@@ -25,7 +25,7 @@ export default function Faqs() {
       <header className='fq__header'>
         <div className='container'>
           <h1 className='fq__header__title'>
-            {"Top questions about\nDevFest"}
+            {"Top questions about\nDevFest Lagos"}
             <Image
               alt='FAQs'
               quality={100}
