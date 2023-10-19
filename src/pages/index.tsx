@@ -1,5 +1,6 @@
 import Logo from "@/images/logo.svg";
 import StarIcon from "@/images/home/star.svg";
+import Link from "next/link";
 import Image from "next/image";
 import globeDoodle from "@/images/globe-doodle.png";
 import repeatDoodle from "@/images/repeat-doodle.png";
@@ -173,6 +174,9 @@ export default function Home() {
         <ComingSoonCountdown />
         <section className='c-home__footer'>
           <ul className='c-home__footer__links'>
+            <li className='c-home__footer__links__link'>
+              <Link href='/faq'>FAQ</Link>
+            </li>
             <li className='c-home__footer__links__link'>
               <a href='https://gdg.community.dev/gdg-lagos/' target='_blank'>
                 Join the community
