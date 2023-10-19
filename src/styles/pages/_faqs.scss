@@ -147,6 +147,9 @@
     &__heading {
       @include heading-5;
       color: $secondary-yellow;
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
     }
   }
 

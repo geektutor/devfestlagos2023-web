@@ -4,6 +4,9 @@
 @import "utils/breakpoints";
 
 .accordion {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   display: flex;
   gap: 0 2.4rem;
   padding: 2.4rem;
