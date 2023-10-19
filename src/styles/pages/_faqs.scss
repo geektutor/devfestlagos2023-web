@@ -1,8 +1,8 @@
 .fq__header {
   background: $bg-shade-1;
   position: relative;
-  height: 500px;
-  padding-top: 130px;
+  height: 50rem;
+  padding-top: 13rem;
 
   @include media("<=tablet") {
     height: 75vh;
@@ -25,14 +25,14 @@
 
     &__svg {
       position: absolute;
-      top: -117px;
-      left: -58px;
+      top: -11.7rem;
+      left: -5.8rem;
 
       @include media("<=tablet") {
-        top: -41px;
-        left: -30px;
-        width: 81px;
-        height: 67px;
+        top: -4.1rem;
+        left: -3rem;
+        width: 8.1rem;
+        height: 6.7rem;
       }
     }
   }
@@ -42,11 +42,11 @@
     position: absolute;
     top: 34%;
     left: 12.16%;
-    width: 81.879px;
+    width: 8.19rem;
     transform: rotate(13deg);
 
     @include media("<=tablet") {
-      width: 61.41px;
+      width: 6.14rem;
       top: 36%;
       left: 9.29%;
     }
@@ -57,10 +57,10 @@
     position: absolute;
     left: 29.5%;
     bottom: 12%;
-    width: 86.034px;
+    width: 8.6rem;
 
     @include media("<=tablet") {
-      width: 64.53px;
+      width: 6.45rem;
       bottom: 26.167%;
       left: initial;
       right: 27.145%;
@@ -70,12 +70,12 @@
   &__logic-doodle {
     @include ratio(512, 1117);
     position: absolute;
-    width: 137.711px;
+    width: 13.77rem;
     top: 9.4%;
     left: 45.24%;
 
     @include media("<=tablet") {
-      width: 103.28px;
+      width: 10.33rem;
       top: 31.64%;
       right: 38.89583%;
     }
@@ -84,7 +84,7 @@
   &__people-doodle {
     @include ratio(512, 787);
     position: absolute;
-    width: 128.097px;
+    width: 12.81rem;
     bottom: 6.724%;
     right: 24.8%;
 
@@ -96,7 +96,7 @@
   &__transfer-doodle {
     @include ratio(152, 299);
     position: absolute;
-    width: 144.351px;
+    width: 14.44rem;
     top: 33%;
     right: 11.164%;
 
@@ -109,7 +109,7 @@
     display: none;
     @include ratio(160, 235);
     position: absolute;
-    width: 80.72px;
+    width: 8.07rem;
     bottom: 26.167%;
     left: 27.865%;
 
@@ -122,7 +122,7 @@
     display: none;
     @include ratio(512, 588);
     position: absolute;
-    width: 62.9px;
+    width: 6.29rem;
     top: 38.28%;
     right: 11.862%;
 
@@ -133,17 +133,17 @@
 }
 
 .fq__list {
-  padding: 100px;
+  padding: 10rem;
   display: flex;
   flex-direction: column;
-  gap: 24px 0;
+  gap: 2.4rem 0;
 
   @include media("<=tablet") {
-    padding: 42px 32px;
+    padding: 4.2rem 3.2rem;
   }
 
   @include media("<=phone") {
-    padding: 50px 16px;
+    padding: 5rem 1.6rem;
   }
 }
 
@@ -151,18 +151,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px 0;
+  gap: 1.6rem 0;
   background: $bg-shade-1;
-  padding: 137px 0 129px;
+  padding: 13.7rem 0 12.9rem;
 
   @include media("<=tablet") {
-    padding: 80px 0 70px;
+    padding: 8rem 0 7rem;
   }
 
   &__image {
     @include media("<=tablet") {
-      height: 75px;
-      width: 187.5px;
+      height: 7.5rem;
+      width: 18.75rem;
     }
   }
 
@@ -171,20 +171,20 @@
     text-align: center;
 
     @include media("<=tablet") {
-      max-width: 270px;
+      max-width: 27rem;
       @include title-2;
     }
   }
 
   &__text {
-    max-width: 450px;
+    max-width: 45rem;
     @include title-2;
     color: $grey-40;
     text-align: center;
     letter-spacing: 0.5px;
 
     @include media("<=tablet") {
-      max-width: 226px;
+      max-width: 22.6rem;
       @include body-5;
       letter-spacing: normal;
     }
