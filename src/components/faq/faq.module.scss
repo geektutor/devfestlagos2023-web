@@ -54,13 +54,16 @@
 
 .faqSvg {
   width: 3.2rem;
+  min-width: 3.2rem;
 
   @include media("<=tablet") {
     width: 1.6rem;
+    min-width: 1.6rem;
   }
 
   @include media("<=phone") {
     width: 3.2rem;
+    min-width: 3.2rem;
     margin-left: 3.2rem;
   }
 }
