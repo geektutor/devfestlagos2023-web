@@ -56,7 +56,7 @@ export const ComingSoonCountdown = () => {
         </div>
       </div>
       <TertiaryButton href={ticketsUrl} isExternal>
-        Grab Your Early Bird Ticket
+        Grab Your Tickets
       </TertiaryButton>
     </section>
   );
