@@ -97,3 +97,77 @@ export const faqs: FAQ[] = [
       "Yes, we welcome volunteers who are passionate about contributing to the success of DevFest Lagos 2023. To join our volunteer team, please follow us on our social media channels for updates and information on how to get involved.",
   },
 ];
+
+export const paidDevFestQuestions = [
+  {
+    title: "Q1. Why do I have to pay for DevFest Lagos 2023 when previous editions were free?",
+    children: (
+      <p>
+        DevFest Lagos 2023 is the first pay-to-attend DevFest in our history, and there are several
+        compelling reasons behind this change. We believe that paying for a DevFest ticket offers
+        you distinct advantages and value compared to a free event.
+      </p>
+    ),
+  },
+  {
+    title: "Q2. What benefits do I get from purchasing a ticket?",
+    children: (
+      <>
+        <p>
+          Charging a nominal fee for DevFest Lagos 2023 aligns with our commitment to sustainability
+          and community support. This decision was made to enhance your experience in the following
+          ways:
+        </p>
+        <br />
+        <p>
+          Reduced No-Shows: A paid ticket helps reduce the number of no-shows, ensuring a more
+          engaged and focused audience during the two-day event.
+        </p>
+        <br />
+        <p>
+          Premium Content: Devfest Lagos 2023 will offer exclusive access to high-quality, in-depth
+          content, workshops, and sessions led by tech industry experts and innovation leaders.
+          You&apos;ll gain valuable insights and knowledge that can significantly impact your
+          career.
+        </p>
+        <br />
+        <p>
+          Networking Opportunities: Attendees will have the chance to connect with fellow
+          professionals, speakers, and sponsors in a more intimate and focused setting, opening
+          doors to new opportunities and collaborations.
+        </p>
+        <br />
+        <p>
+          Interactive Workshops: Most sessions will include hands-on workshops and interactive
+          experiences, allowing you to apply what you&apos;ve learned in real-time, enhancing your
+          skills and understanding.
+        </p>
+        <br />
+        <p>
+          Exclusive Resources: You&apos;ll receive access to event materials, presentation slides,
+          and additional resources that are not freely available, serving as valuable references
+          long after the event ends.
+        </p>
+        <br />
+        <p>
+          Enhanced Experience: We prioritize your experience, providing comfortable seating,
+          refreshments, and other amenities that contribute to an enjoyable and productive event.
+        </p>
+        <br />
+        <p>
+          Supporting/Scaling the Event: Charging a fee also opens up opportunities to scale the
+          event, potentially reaching a wider audience while delivering even more value to
+          attendees. Your ticket purchase helps support the event&apos;s organization, ensuring the
+          continued provision of valuable content, attracting top-notch speakers, and improving the
+          overall event experience.
+        </p>
+        <br />
+        <p>
+          By investing in the event&apos;s infrastructure and content, we aim to provide you with a
+          more enriching and fulfilling experience at DevFest Lagos 2023.
+        </p>
+        <br />
+      </>
+    ),
+  },
+];

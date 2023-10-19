@@ -138,6 +138,18 @@
   flex-direction: column;
   gap: 2.4rem 0;
 
+  &--dark {
+    @extend .fq__list;
+    background:
+      url("../../images/noise-and-texture.png") center/cover repeat,
+      #050505;
+
+    &__heading {
+      @include heading-5;
+      color: $secondary-yellow;
+    }
+  }
+
   @include media("<=tablet") {
     padding: 4.2rem 3.2rem;
   }
