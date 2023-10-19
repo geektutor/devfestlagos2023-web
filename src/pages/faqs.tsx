@@ -9,6 +9,7 @@ import LogicDoodle from "@/images/schedule/logic-doodles.png";
 import TransferDoodle from "@/images/faqs/transfer-doodle.png";
 import PeopleDoodle from "@/images/schedule/people-doodles.png";
 import RefreshDoodle from "@/images/schedule/refresh-doodles.png";
+import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
 
 export default function Faqs() {
   return (
@@ -54,6 +55,7 @@ export default function Faqs() {
           <FAQ key={faq.question} question={faq.question} answer={faq.answer} />
         ))}
       </div>
+      <NoMatterWhat />
     </main>
   );
 }
