@@ -5,7 +5,7 @@ import styles from "./faq.module.scss";
 
 export interface FAQ {
   question: string;
-  answer: string;
+  answer: React.ReactNode;
 }
 
 export default function FAQ(props: FAQ) {

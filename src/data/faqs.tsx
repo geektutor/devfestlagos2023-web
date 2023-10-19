@@ -1,4 +1,5 @@
 import { FAQ } from "@/components/faq/FAQ";
+import Link from "next/link";
 
 export const faqs: FAQ[] = [
   {
@@ -13,8 +14,13 @@ export const faqs: FAQ[] = [
   },
   {
     question: "3. How can I register for DevFest Lagos 2023?",
-    answer:
-      "To attend DevFest Lagos 2023, you must register through the official event registration platform at [registration_link]. You can choose between a two-day ticket or a single-day ticket.",
+    answer: (
+      <>
+        To attend DevFest Lagos 2023, you must register through the official event registration
+        platform at <Link href='/'>DevFestLagos.com</Link>. You can choose between a two-day ticket
+        or a single-day ticket.
+      </>
+    ),
   },
   {
     question: "4. Is DevFest Lagos 2023 the first edition of this event?",
@@ -48,8 +54,17 @@ export const faqs: FAQ[] = [
   },
   {
     question: "10. Is there a code of conduct for attendees?",
-    answer:
-      "Yes, there is a community conduct guideline that all attendees are expected to follow. We are committed to creating a safe and inclusive environment for all participants. Please review and adhere to our conduct guidelines to ensure a respectful and enjoyable experience for everyone. [community code of conduct guidelines link here]",
+    answer: (
+      <>
+        Yes, there is a community conduct guideline that all attendees are expected to follow. We
+        are committed to creating a safe and inclusive environment for all participants. Please
+        review and adhere to our{" "}
+        <a target='_blank' href='https://developers.google.com/community-guidelines'>
+          conduct guidelines
+        </a>{" "}
+        to ensure a respectful and enjoyable experience for everyone.
+      </>
+    ),
   },
   {
     question: "11. How can I get updates and announcements about DevFest Lagos 2023?",
