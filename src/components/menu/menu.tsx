@@ -21,13 +21,15 @@ const Menu = () => {
 
   return (
     <header className={styles.menu}>
-      <Logo className={styles.logo} />
+      <div className={styles.logo}>
+        <Logo data-menu-logo />
+      </div>
       <div className={styles.items}>
         <nav className={styles.nav}>
           <NavItems />
         </nav>
-        <Button variant='primary' className={styles.cta}>
-          Register Now
+        <Button variant='primary' className={styles.cta} data-menu-button>
+          <span>Register Now</span>
           <RightArrow className={styles.ctaIcon} />
         </Button>
       </div>
@@ -58,17 +60,17 @@ const Menu = () => {
 const NavItems = () => {
   return (
     <ul className={styles.navItems}>
-      <li className={styles.navItem}>
+      <li className={styles.navItem} data-nav-item>
         <Link href='/speakers' className={styles.link}>
           Speakers
         </Link>
       </li>
-      <li className={styles.navItem}>
+      <li className={styles.navItem} data-nav-item>
         <Link href='/schedule' className={styles.link}>
           Schedule
         </Link>
       </li>
-      <li className={styles.navItem}>
+      <li className={styles.navItem} data-nav-item>
         <Link href='/team' className={styles.link}>
           The team
         </Link>

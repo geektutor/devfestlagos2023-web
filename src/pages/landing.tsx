@@ -28,7 +28,7 @@ import speakerMemojiLeft from "@/images/landing/doodles/speaker-memoji.png";
 import speakerMemojiRight from "@/images/landing/doodles/speaker-memoji-2.png";
 import SparkleIcon from "@/images/landing/doodles/sparkle.svg";
 import { YoutubePlayer } from "@/components/youtube-player";
-import LandingPage from "@/animations/components/LandingPage";
+import LandingPage from "@/animations/components/Landing";
 
 const topics = [
   [
@@ -129,32 +129,50 @@ export default function Landing() {
       <div className='landing-page'>
         <section className='landing-page__intro'>
           <div className='landing-page__intro__title'>
-            <h1 className='landing-page__intro__title__text'>DevFest Lagos</h1>
-            <Image src={dotsDoodle} alt='doodle' className='landing-page__intro__title__dots' />
+            <h1 className='landing-page__intro__title__text' data-landing-title>
+              <span>
+                <span>DevFest</span>
+              </span>{" "}
+              <span>
+                <span>Lagos</span>
+              </span>
+            </h1>
+            <Image
+              src={dotsDoodle}
+              alt='doodle'
+              className='landing-page__intro__title__dots'
+              data-landing-doodle
+            />
             <Image
               src={cloudsDoodle}
               alt='doodle'
               className='landing-page__intro__title__cloud-left'
+              data-landing-doodle
             />
             <Image
               src={cloudsDoodle}
               alt='doodle'
               className='landing-page__intro__title__cloud-right'
+              data-landing-doodle
             />
-            <div className='landing-page__intro__title__presents'>GDG Lagos Presents</div>
+            <div className='landing-page__intro__title__presents' data-gdg-presents>
+              GDG Lagos Presents
+            </div>
           </div>
-          <p className='landing-page__intro__description'>
-            The biggest tech event in sub-saharan Africa is back and even bigger and better!
+          <p className='landing-page__intro__description' data-landing-subtext>
+            <span>
+              The biggest tech event in sub-saharan Africa is back and even bigger and better!
+            </span>
             {/*<div className='landing-page__intro__memoji'>*/}
             {/*  <Image src={memojiDoodle} alt='doodle' quality={100} />*/}
             {/*</div>*/}
           </p>
-          <PrimaryButton>
+          <PrimaryButton data-landing-button>
             <span>Get Your Ticket</span>
             <ArrowRight />
           </PrimaryButton>
           <HomepageScene />
-          <div className='landing-page__intro__sponsor-cta'>
+          <div className='landing-page__intro__sponsor-cta' data-sponsor-cta>
             <Image quality={100} src={sponsorImage} alt='Sponsor' />
           </div>
         </section>

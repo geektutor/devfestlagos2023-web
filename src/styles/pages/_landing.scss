@@ -1,6 +1,7 @@
 .landing-page {
   width: 100vw;
   overflow: hidden;
+  scroll-snap-type: y mandatory;
 
   &__menu {
     height: 10rem;
@@ -16,6 +17,7 @@
     width: 100%;
     padding-top: 8.2rem;
     position: relative;
+    scroll-snap-align: start;
 
     @include media("<=phone") {
       padding-bottom: 26rem;
@@ -39,7 +41,16 @@
         line-height: 7.2rem;
         color: $grey-0;
         text-align: center;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
         max-width: 272px;
+
+        > span {
+          display: flex;
+          overflow: hidden;
+          height: 76px;
+        }
 
         @include media("<=tablet") {
           @include heading-4;
@@ -109,7 +120,7 @@
         color: $grey-100;
         @include title-1;
         position: absolute;
-        bottom: calc(100% - 0.8rem);
+        bottom: calc(100% - 3.5rem);
         transform: translateX(-50%) rotate(-10deg);
         width: max-content;
 
@@ -132,7 +143,12 @@
       margin-bottom: 3.2rem;
       max-width: 45.2rem;
       text-align: center;
+      overflow: hidden;
       position: relative;
+
+      > span {
+        display: flex;
+      }
 
       @include media("<=tablet") {
         @include body-2;
@@ -204,6 +220,7 @@
     position: relative;
     z-index: 3;
     background: white;
+    scroll-snap-align: end;
 
     @include media("<=tablet") {
       padding: 3.2rem 0;
