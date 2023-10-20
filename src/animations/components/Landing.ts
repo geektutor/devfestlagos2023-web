@@ -2,6 +2,7 @@ import Component from "@/animations/classes/Component";
 import GSAP from "gsap";
 import { CustomEase } from "@/animations/utils/CustomEase";
 import Marquee from "@/animations/classes/Marquee";
+import { calculateSentences, split } from "@/animations/utils/text";
 
 const easings = {
   LOGO: CustomEase.create("doodle", "0.81, 0.00, 0.00, 1.00"),
@@ -33,7 +34,7 @@ export default class LandingPage extends Component {
       elements: {
         gdgPresents: "[data-gdg-presents]",
         landingTitle: "[data-landing-title] span span",
-        landingSubtext: "[data-landing-subtext] span",
+        landingSubtext: "[data-landing-subtext]",
         landingButtonText: getButtonWithArrowSelectors("[data-landing-button]").text,
         landingButtonIconCircle: getButtonWithArrowSelectors("[data-landing-button]").iconCircle,
         landingButtonIconArrow: getButtonWithArrowSelectors("[data-landing-button]").iconArrow,
@@ -72,8 +73,27 @@ export default class LandingPage extends Component {
 
     this.update();
 
+    this.elements.landingSubtextWords = this.convertToSentences(this.elements.landingSubtext);
+
     this.setup();
+
     this.animateLanding();
+  }
+
+  convertToSentences(element: HTMLElement) {
+    split({
+      element,
+    });
+
+    split({
+      element,
+    });
+
+    return calculateSentences(this.getWords(this.elements.landingSubtext as HTMLElement));
+  }
+
+  getWords(element: HTMLElement) {
+    return element.querySelectorAll("span span");
   }
 
   setup() {
@@ -85,16 +105,17 @@ export default class LandingPage extends Component {
       menuButtonIconArrow,
       gdgPresents,
       landingTitle,
-      landingSubtext,
       landingButtonText,
       landingButtonIconCircle,
       landingButtonIconArrow,
       landingDoodles,
       landingScene,
       landingSponsorCTA,
+      landingSubtextWords,
     } = this.elements;
 
-    GSAP.set([menuLogo, navItems, landingTitle, landingSubtext], {
+    //@ts-ignore
+    GSAP.set([menuLogo, navItems, landingTitle, landingSubtextWords.flat(1)], {
       yPercent: 100,
     });
 
@@ -131,13 +152,13 @@ export default class LandingPage extends Component {
       menuButtonIconArrow,
       gdgPresents,
       landingTitle,
-      landingSubtext,
       landingButtonText,
       landingButtonIconCircle,
       landingButtonIconArrow,
       landingDoodles,
       landingScene,
       landingSponsorCTA,
+      landingSubtextWords,
     } = this.elements;
 
     GSAP.to(menuLogo, {
@@ -199,13 +220,16 @@ export default class LandingPage extends Component {
       duration: 1,
       ease: easings.LANDING_TITLE,
       delay: 0.167,
+      stagger: 0.084,
     });
 
-    GSAP.to(landingSubtext, {
-      yPercent: 0,
-      duration: 1,
-      ease: easings.LANDING_DESCRIPTION,
-      delay: 0.333,
+    landingSubtextWords.forEach((sentence, index) => {
+      GSAP.to(sentence, {
+        yPercent: 0,
+        duration: 1,
+        ease: easings.LANDING_DESCRIPTION,
+        delay: 0.333 + 0.084 * index,
+      });
     });
 
     GSAP.to(landingScene, {

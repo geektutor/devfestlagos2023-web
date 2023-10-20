@@ -147,7 +147,8 @@
       position: relative;
 
       > span {
-        display: flex;
+        display: inline-flex;
+        overflow: hidden;
       }
 
       @include media("<=tablet") {

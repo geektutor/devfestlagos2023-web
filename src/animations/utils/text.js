@@ -35,7 +35,7 @@ export function split({ element, expression = " ", append = true }) {
   return spans;
 }
 
-export function calculate(spans) {
+export function calculateSentences(spans) {
   const lines = [];
   let words = [];
 

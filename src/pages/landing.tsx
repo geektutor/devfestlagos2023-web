@@ -1,5 +1,5 @@
 import { SEO } from "@/components/seo";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { PrimaryButton } from "@/components/button";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import { HomepageScene } from "@/components/homepage/scene/scene";
@@ -98,6 +98,7 @@ const topics = [
 
 export default function Landing() {
   const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
+  const isInitialized = useRef(false);
 
   const handleChangeSpeaker = (index: number) => (direction: "next" | "previous") => {
     if (direction === "next") {
@@ -115,7 +116,11 @@ export default function Landing() {
   }, [activeSpeaker]);
 
   useEffect(() => {
-    new LandingPage();
+    if(!isInitialized.current){
+      new LandingPage();
+
+      isInitialized.current = true
+    }
   }, []);
 
   return (
@@ -159,10 +164,10 @@ export default function Landing() {
               GDG Lagos Presents
             </div>
           </div>
+          {/*<span>*/}
+          {/*  </span>*/}
           <p className='landing-page__intro__description' data-landing-subtext>
-            <span>
-              The biggest tech event in sub-saharan Africa is back and even bigger and better!
-            </span>
+            The biggest tech event in sub-saharan Africa is back and even bigger and better!
             {/*<div className='landing-page__intro__memoji'>*/}
             {/*  <Image src={memojiDoodle} alt='doodle' quality={100} />*/}
             {/*</div>*/}
