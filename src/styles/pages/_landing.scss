@@ -146,11 +146,6 @@
       overflow: hidden;
       position: relative;
 
-      > span {
-        display: inline-flex;
-        overflow: hidden;
-      }
-
       @include media("<=tablet") {
         @include body-2;
         margin-bottom: 4rem;
@@ -275,6 +270,7 @@
       max-width: 77rem;
       margin: 0 auto;
       width: 80%;
+      overflow: hidden;
 
       @include media("<=tablet") {
         max-width: 41.5rem;

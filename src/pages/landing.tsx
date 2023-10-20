@@ -182,11 +182,11 @@ export default function Landing() {
           </div>
         </section>
         <section className='landing-page__better'>
-          <h3 className='landing-page__better__title'>
-            When we said <span className='green'>better</span>, we weren’t joking!
+          <h3 className='landing-page__better__title' data-better-title>
+            When we said better, we weren’t joking!
           </h3>
-          <p className='landing-page__better__subtext'>Here are our headline sponsors</p>
-          <div className='landing-page__better__sponsors'>
+          <p className='landing-page__better__subtext' data-better-sponsor>Here are our headline sponsors</p>
+          <div className='landing-page__better__sponsors' data-better-logos>
             <GoogleIcon />
             <SpotifyIcon />
             <LyftIcon />
@@ -260,14 +260,14 @@ export default function Landing() {
         </section>
         <section className='landing-page__recap'>
           <div className='landing-page__recap__top'>
-            <h3 className='landing-page__recap__title'>
+            <h3 className='landing-page__recap__title' data-recap-title>
               Last year&apos;s edition was like no other.
             </h3>
-            <p className='landing-page__recap__subtext'>
+            <p className='landing-page__recap__subtext' data-recap-subtext>
               With your support, we&apos;re about to raise the bar even higher this year!
             </p>
           </div>
-          <div className='landing-page__recap__video'>
+          <div className='landing-page__recap__video' data-recap-video>
             <YoutubePlayer videoId='7kat5HlPtzU' />
           </div>
         </section>

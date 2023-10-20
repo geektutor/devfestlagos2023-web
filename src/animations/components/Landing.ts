@@ -16,6 +16,8 @@ const easings = {
   LANDING_DESCRIPTION: CustomEase.create("doodle", "0.05, 0.00, 0.00, 1.00"),
   LANDING_IMAGE: CustomEase.create("doodle", "0.60, 0.00, 0.00, 1.00"),
   LANDING_DOODLES: CustomEase.create("doodle", "0.09, 0.00, 0.00, 1.00"),
+  SPONSOR_BETTER: CustomEase.create("doodle", "0.13, 0.00, 0.00, 1.00"),
+  RECAP_VIDEO: CustomEase.create("doodle", "0.09, 0.00, 0.00, 1.00"),
 };
 
 const getButtonWithArrowSelectors = (baseSelector: string) => ({
@@ -43,6 +45,12 @@ export default class LandingPage extends Component {
         landingSponsorCTA: "[data-sponsor-cta]",
         marqueeList: "[data-marquee-list]",
         marqueeItem: "[data-marquee-item]",
+        betterTitle: "[data-better-title]",
+        betterSponsor: "[data-better-sponsor]",
+        betterLogos: "[data-better-logos] svg",
+        recapTitle: "[data-recap-title]",
+        recapSubtitle: "[data-recap-subtext]",
+        recapVideo: "[data-recap-video]",
       },
     });
 
@@ -73,11 +81,20 @@ export default class LandingPage extends Component {
 
     this.update();
 
-    this.elements.landingSubtextWords = this.convertToSentences(this.elements.landingSubtext);
+    const { betterSponsor, landingSubtext, betterTitle, recapTitle, recapSubtitle } = this.elements;
+
+    this.elements.landingSubtextWords = this.convertToSentences(landingSubtext);
+    this.elements.betterTitleWords = this.convertToSentences(betterTitle);
+    this.elements.recapTitleWords = this.convertToSentences(recapTitle);
+    this.elements.recapSubtitleWords = this.convertToSentences(recapSubtitle);
+
+    this.elements.betterSponsor = this.addSpan(betterSponsor);
 
     this.setup();
 
     this.animateLanding();
+    this.animateBetter();
+    this.animateRecap();
   }
 
   convertToSentences(element: HTMLElement) {
@@ -89,11 +106,21 @@ export default class LandingPage extends Component {
       element,
     });
 
-    return calculateSentences(this.getWords(this.elements.landingSubtext as HTMLElement));
+    element.dataset.sentences = "true";
+
+    return calculateSentences(this.getWords(element as HTMLElement));
   }
 
   getWords(element: HTMLElement) {
     return element.querySelectorAll("span span");
+  }
+
+  addSpan(element: HTMLElement) {
+    const currentHTML = element.innerHTML;
+    element.innerHTML = `<span>${currentHTML}</span>`;
+    element.dataset.lineAnimation = "true";
+
+    return element.querySelector("span");
   }
 
   setup() {
@@ -112,12 +139,30 @@ export default class LandingPage extends Component {
       landingScene,
       landingSponsorCTA,
       landingSubtextWords,
+      betterSponsor,
+      betterLogos,
+      betterTitleWords,
+      recapTitleWords,
+      recapSubtitleWords,
+      recapVideo,
     } = this.elements;
 
-    //@ts-ignore
-    GSAP.set([menuLogo, navItems, landingTitle, landingSubtextWords.flat(1)], {
-      yPercent: 100,
-    });
+    GSAP.set(
+      [
+        menuLogo,
+        navItems,
+        landingTitle,
+        landingSubtextWords,
+        betterSponsor,
+        betterTitleWords,
+        betterLogos,
+        recapTitleWords,
+        recapSubtitleWords,
+      ],
+      {
+        yPercent: 100,
+      },
+    );
 
     GSAP.set([menuButtonIconArrow, landingButtonIconArrow], {
       scaleX: 0,
@@ -129,9 +174,12 @@ export default class LandingPage extends Component {
       transformOrigin: "center",
     });
 
-    GSAP.set([menuButtonText, landingButtonText, landingDoodles, landingScene, gdgPresents], {
-      opacity: 0,
-    });
+    GSAP.set(
+      [menuButtonText, landingButtonText, landingDoodles, landingScene, gdgPresents, recapVideo],
+      {
+        opacity: 0,
+      },
+    );
 
     GSAP.set([gdgPresents], {
       rotate: 0,
@@ -140,6 +188,10 @@ export default class LandingPage extends Component {
 
     GSAP.set([landingSponsorCTA], {
       rotate: -540,
+    });
+
+    GSAP.set([recapVideo], {
+      y: "+200",
     });
   }
 
@@ -245,6 +297,64 @@ export default class LandingPage extends Component {
       ease: easings.LANDING_IMAGE,
       delay: 0.083,
       stagger: 0.083,
+    });
+  }
+
+  animateBetter() {
+    const { betterSponsor, betterLogos, betterTitleWords } = this.elements;
+
+    betterTitleWords.forEach((sentence, index) => {
+      GSAP.to(sentence, {
+        yPercent: 0,
+        duration: 1,
+        ease: easings.SPONSOR_BETTER,
+        delay: 0.083 * index,
+      });
+    });
+
+    GSAP.to(betterSponsor, {
+      yPercent: 0,
+      duration: 1,
+      ease: easings.SPONSOR_BETTER,
+      delay: 0.167,
+    });
+
+    GSAP.to(betterLogos, {
+      yPercent: 0,
+      duration: 1,
+      ease: easings.SPONSOR_BETTER,
+      delay: 0.083,
+      stagger: 0.083,
+    });
+  }
+
+  animateRecap() {
+    const { recapTitleWords, recapSubtitleWords, recapVideo } = this.elements;
+
+    recapTitleWords.forEach((sentence, index) => {
+      GSAP.to(sentence, {
+        yPercent: 0,
+        duration: 1,
+        ease: easings.SPONSOR_BETTER,
+        delay: 0.083 * index,
+      });
+    });
+
+    recapSubtitleWords.forEach((sentence, index) => {
+      GSAP.to(sentence, {
+        yPercent: 0,
+        duration: 1,
+        ease: easings.SPONSOR_BETTER,
+        delay: 0.083 * index + 0.167,
+      });
+    });
+
+    GSAP.to(recapVideo, {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: easings.RECAP_VIDEO,
+      delay: .35,
     });
   }
 
