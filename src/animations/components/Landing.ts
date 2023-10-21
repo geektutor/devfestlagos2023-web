@@ -22,6 +22,7 @@ const easings = {
   SPEAKERS_MEMOJI: CustomEase.create("doodle", "0.89, 0.00, 0.00, 1.00"),
   SPEAKERS_CARDS: CustomEase.create("doodle", "0.91, 0.00, 0.00, 1.00"),
   FAQ_ITEM: CustomEase.create("doodle", "0.11, 0.00, 0.00, 1.00"),
+  NO_MATTER_WHAT: CustomEase.create("doodle", "0.17, 0.00, 0.00, 1.00"),
 };
 
 const getButtonWithArrowSelectors = (baseSelector: string) => ({
@@ -29,6 +30,8 @@ const getButtonWithArrowSelectors = (baseSelector: string) => ({
   iconCircle: `${baseSelector} svg path:first-child`,
   iconArrow: `${baseSelector} svg path:last-child`,
 });
+
+const nmwButtons = getButtonWithArrowSelectors("[data-nmw-button]");
 
 export default class LandingPage extends Component {
   //@ts-ignore
@@ -67,6 +70,12 @@ export default class LandingPage extends Component {
         faqTitle: "[data-faq-title]",
         faqSubtitle: "[data-faq-sub]",
         faqItem: "[data-faq-item] div",
+        nmwTitle: "[data-nmw-title]",
+        nmwLogo: "[data-nmw-logo]",
+        nmwQuestion: "[data-nmw-question]",
+        nmwButtonText: nmwButtons.text,
+        nmwButtonIconCircle: nmwButtons.iconCircle,
+        nmwButtonIconArrow: nmwButtons.iconArrow,
       },
     });
 
@@ -89,7 +98,7 @@ export default class LandingPage extends Component {
 
     this.update();
 
-    const { betterSponsor, landingSubtext, betterTitle, recapTitle, recapSubtitle, speakersTitle, speakersTitleWord, speakersSubText, faqTitle, faqSubtitle} = this.elements;
+    const { betterSponsor, landingSubtext, betterTitle, recapTitle, recapSubtitle, speakersTitle, speakersTitleWord, speakersSubText, faqTitle, faqSubtitle, nmwTitle, nmwQuestion} = this.elements;
 
     this.elements.landingSubtextWords = this.convertToSentences(landingSubtext);
     this.elements.betterTitleWords = this.convertToSentences(betterTitle);
@@ -97,11 +106,13 @@ export default class LandingPage extends Component {
     this.elements.recapSubtitleWords = this.convertToSentences(recapSubtitle);
     this.elements.faqTitleWords = this.convertToSentences(faqTitle);
     this.elements.faqSubtitleWords = this.convertToSentences(faqSubtitle);
+    this.elements.nmwTitleWords = this.convertToSentences(nmwTitle);
 
     this.elements.betterSponsor = this.addSpan(betterSponsor);
     this.elements.speakersTitle = this.addSpan(speakersTitle);
     this.elements.speakersTitleWord = this.addSpan(speakersTitleWord);
     this.elements.speakersSubText = this.addSpan(speakersSubText);
+    this.elements.nmwQuestion = this.addSpan(nmwQuestion);
 
     this.setup();
 
@@ -109,9 +120,9 @@ export default class LandingPage extends Component {
     this.animateBetter();
     this.animateRecap();
     this.animateSpeakers();
-    setTimeout(() => {
-      this.animateFAQ();
-    }, 5000)
+    this.animateFAQ();
+    this.animateNoMatterWhat();
+
   }
 
   convertToSentences(element: HTMLElement) {
@@ -173,7 +184,13 @@ export default class LandingPage extends Component {
       speakersBanner,
       faqTitleWords,
       faqSubtitleWords,
-      faqItem
+      faqItem,
+      nmwTitleWords,
+      nmwLogo,
+      nmwQuestion,
+      nmwButtonText,
+      nmwButtonIconCircle,
+      nmwButtonIconArrow,
     } = this.elements;
 
     GSAP.set(
@@ -191,19 +208,22 @@ export default class LandingPage extends Component {
         speakersTitleWord,
         speakersSubText,
         faqTitleWords,
-        faqSubtitleWords
+        faqSubtitleWords,
+        nmwTitleWords,
+        nmwLogo,
+        nmwQuestion,
       ],
       {
         yPercent: 100,
       },
     );
 
-    GSAP.set([menuButtonIconArrow, landingButtonIconArrow], {
+    GSAP.set([menuButtonIconArrow, landingButtonIconArrow, nmwButtonIconArrow], {
       scaleX: 0,
       transformOrigin: "left",
     });
 
-    GSAP.set([menuButtonIconWhite, landingButtonIconCircle, speakersMemoji, speakerCards], {
+    GSAP.set([menuButtonIconWhite, landingButtonIconCircle, speakersMemoji, speakerCards, nmwButtonIconCircle], {
       scale: 0,
       transformOrigin: "center",
     });
@@ -213,7 +233,7 @@ export default class LandingPage extends Component {
     })
 
     GSAP.set(
-      [speakersBanner, menuButtonText, landingButtonText, landingDoodles, landingScene, gdgPresents, recapVideo, speakersDoodle, speakerSparkle],
+      [speakersBanner, menuButtonText, landingButtonText, landingDoodles, landingScene, gdgPresents, recapVideo, speakersDoodle, speakerSparkle, nmwButtonText],
       {
         opacity: 0,
       },
@@ -493,6 +513,62 @@ export default class LandingPage extends Component {
     })
   }
 
+  animateNoMatterWhat(){
+    const {
+      nmwButtonText,
+      nmwButtonIconCircle,
+      nmwButtonIconArrow,
+      nmwTitleWords,
+      nmwLogo,
+      nmwQuestion,
+    } = this.elements;
+
+    GSAP.to(nmwButtonIconArrow, {
+      scaleX: 1,
+      ease: easings.MENU_ARROW,
+      duration: 0.917,
+      delay: 1.367,
+    });
+
+    GSAP.to(nmwButtonIconCircle, {
+      scale: 1,
+      ease: easings.MENU_CIRCLE,
+      duration: 0.55,
+      delay: 0.983,
+    });
+
+    GSAP.to(nmwButtonText, {
+      opacity: 1,
+      ease: easings.MENU_BUTTON_TEXT,
+      duration: 0.25,
+      delay: 0.783,
+    });
+
+    console.log({nmwLogo, nmwQuestion, nmwTitleWords})
+
+    nmwTitleWords.forEach((sentence, index) => {
+      GSAP.to(sentence, {
+        yPercent: 0,
+        duration: 1,
+        ease: easings.NO_MATTER_WHAT,
+        delay: index * .1
+      })
+    })
+
+    GSAP.to(nmwLogo, {
+      yPercent: 0,
+      duration: 1,
+      ease: easings.NO_MATTER_WHAT,
+      delay: .167
+    })
+
+    GSAP.to(nmwQuestion, {
+      yPercent: 0,
+      duration: 1,
+      ease: easings.NO_MATTER_WHAT,
+      delay: .25
+    })
+  }
   update() {
     this.marquee?.update();
     window.requestAnimationFrame(this.update);
