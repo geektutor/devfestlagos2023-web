@@ -716,6 +716,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 
     @include media("<=tablet") {
       padding: 5.1rem 0 3.7rem;
@@ -760,11 +761,23 @@
       }
     }
 
+    &__speakers-wrapper{
+      position: relative;
+      margin-bottom: 1.6rem;
+
+      @include media("<=tablet") {
+        margin-bottom: 1rem;
+      }
+
+      @include media("<=phone") {
+        margin-bottom: 0.8rem;
+      }
+    }
+
     &__speakers-text {
       @include heading-4;
       color: $grey-0;
       position: relative;
-      margin-bottom: 1.6rem;
 
       @include media("<=tablet") {
         @include body-2;

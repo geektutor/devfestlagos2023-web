@@ -30,7 +30,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
 
   if (href && !isExternal) {
     return (
-      <Link href={href} className={className}>
+      <Link {...props} href={href} className={className}>
         {children}
       </Link>
     );

@@ -18,6 +18,9 @@ const easings = {
   LANDING_DOODLES: CustomEase.create("doodle", "0.09, 0.00, 0.00, 1.00"),
   SPONSOR_BETTER: CustomEase.create("doodle", "0.13, 0.00, 0.00, 1.00"),
   RECAP_VIDEO: CustomEase.create("doodle", "0.09, 0.00, 0.00, 1.00"),
+  SPEAKERS_TITLE: CustomEase.create("doodle", "0.07, 0.00, 0.00, 1.00"),
+  SPEAKERS_MEMOJI: CustomEase.create("doodle", "0.89, 0.00, 0.00, 1.00"),
+  SPEAKERS_CARDS: CustomEase.create("doodle", "0.91, 0.00, 0.00, 1.00"),
 };
 
 const getButtonWithArrowSelectors = (baseSelector: string) => ({
@@ -51,6 +54,15 @@ export default class LandingPage extends Component {
         recapTitle: "[data-recap-title]",
         recapSubtitle: "[data-recap-subtext]",
         recapVideo: "[data-recap-video]",
+        speakersTitle: "[data-speakers-title]",
+        speakersTitleWord: "[data-speakers-title-word]",
+        speakersSubText: "[data-speakers-subtext]",
+        speakersDoodle: "[data-speaker-doodle]",
+        speakersMemoji: "[data-speaker-memoji]",
+        speakerCards: "[data-speaker-card]",
+        speakerButton: "[data-speaker-button]",
+        speakerSparkle: "[data-speakers-sparkle]",
+        speakersBanner: "[data-speakers-banner]",
       },
     });
 
@@ -71,17 +83,17 @@ export default class LandingPage extends Component {
       navItems: Array.from(document.querySelectorAll("[data-nav-item] a")),
     };
 
-    this.marquee = new Marquee({
-      element: this.elements.marqueeList,
-      elements: {
-        items: this.elements.marqueeItem,
-        list: this.elements.marqueeList,
-      },
-    });
+    // this.marquee = new Marquee({
+    //   element: this.elements.marqueeList,
+    //   elements: {
+    //     items: this.elements.marqueeItem,
+    //     list: this.elements.marqueeList,
+    //   },
+    // });
 
     this.update();
 
-    const { betterSponsor, landingSubtext, betterTitle, recapTitle, recapSubtitle } = this.elements;
+    const { betterSponsor, landingSubtext, betterTitle, recapTitle, recapSubtitle, speakersTitle, speakersTitleWord, speakersSubText, speakersDoodle, speakersMemoji, speakerCards} = this.elements;
 
     this.elements.landingSubtextWords = this.convertToSentences(landingSubtext);
     this.elements.betterTitleWords = this.convertToSentences(betterTitle);
@@ -89,12 +101,16 @@ export default class LandingPage extends Component {
     this.elements.recapSubtitleWords = this.convertToSentences(recapSubtitle);
 
     this.elements.betterSponsor = this.addSpan(betterSponsor);
+    this.elements.speakersTitle = this.addSpan(speakersTitle);
+    this.elements.speakersTitleWord = this.addSpan(speakersTitleWord);
+    this.elements.speakersSubText = this.addSpan(speakersSubText);
 
     this.setup();
 
     this.animateLanding();
     this.animateBetter();
     this.animateRecap();
+    this.animateSpeakers();
   }
 
   convertToSentences(element: HTMLElement) {
@@ -145,6 +161,15 @@ export default class LandingPage extends Component {
       recapTitleWords,
       recapSubtitleWords,
       recapVideo,
+      speakersTitle,
+      speakersTitleWord,
+      speakersSubText,
+      speakersDoodle,
+      speakersMemoji,
+      speakerCards,
+      speakerButton,
+      speakerSparkle,
+      speakersBanner
     } = this.elements;
 
     GSAP.set(
@@ -158,6 +183,9 @@ export default class LandingPage extends Component {
         betterLogos,
         recapTitleWords,
         recapSubtitleWords,
+        speakersTitle,
+        speakersTitleWord,
+        speakersSubText,
       ],
       {
         yPercent: 100,
@@ -169,13 +197,17 @@ export default class LandingPage extends Component {
       transformOrigin: "left",
     });
 
-    GSAP.set([menuButtonIconWhite, landingButtonIconCircle], {
+    GSAP.set([menuButtonIconWhite, landingButtonIconCircle, speakersMemoji, speakerCards], {
       scale: 0,
       transformOrigin: "center",
     });
 
+    GSAP.set(speakerCards, {
+      x: "+400"
+    })
+
     GSAP.set(
-      [menuButtonText, landingButtonText, landingDoodles, landingScene, gdgPresents, recapVideo],
+      [speakersBanner, menuButtonText, landingButtonText, landingDoodles, landingScene, gdgPresents, recapVideo, speakersDoodle, speakerSparkle],
       {
         opacity: 0,
       },
@@ -192,6 +224,10 @@ export default class LandingPage extends Component {
 
     GSAP.set([recapVideo], {
       y: "+200",
+    });
+
+    GSAP.set(speakerButton, {
+      y: "+240",
     });
   }
 
@@ -355,6 +391,61 @@ export default class LandingPage extends Component {
       duration: 1,
       ease: easings.RECAP_VIDEO,
       delay: .35,
+    });
+  }
+
+  animateSpeakers(){
+    const {
+      speakersTitle,
+      speakersTitleWord,
+      speakersSubText,
+      speakersDoodle,
+      speakersMemoji,
+      speakerCards,
+      speakerButton,
+      speakerSparkle,
+      speakersBanner
+    } = this.elements;
+
+    GSAP.to([speakersDoodle, speakerSparkle], {
+      opacity: 1,
+      duration: 1,
+      ease: easings.GDG_OPACITY,
+    });
+
+    GSAP.to(speakersBanner, {
+      opacity: 1,
+      duration: 1,
+      delay: .84,
+      ease: easings.GDG_OPACITY,
+    });
+
+    GSAP.to([speakersTitle, speakersTitleWord, speakersSubText], {
+      yPercent: 1,
+      duration: 1,
+      ease: easings.SPEAKERS_TITLE,
+      stagger: .084
+    });
+
+    GSAP.to(speakerButton, {
+      y: 0,
+      duration: 1,
+      delay: .8,
+      ease: easings.SPEAKERS_TITLE
+    });
+
+    GSAP.to(speakersMemoji, {
+      scale: 1,
+      duration: 1,
+      ease: easings.SPEAKERS_MEMOJI
+    });
+
+    GSAP.to(speakerCards, {
+      x: 0,
+      scale: 1,
+      duration: 1.417,
+      ease: easings.SPEAKERS_CARDS,
+      stagger: .083
     });
   }
 

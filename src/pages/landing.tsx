@@ -272,32 +272,40 @@ export default function Landing() {
           </div>
         </section>
         <section className='landing-page__speakers'>
-          <p className='landing-page__speakers__count'>
-            41
-            <SparkleIcon className='landing-page__speakers__sparkle' />
-          </p>
-          <p className='landing-page__speakers__speakers-text'>
-            Speakers
+          <div style={{position: "relative"}}>
+            <SparkleIcon data-speakers-sparkle className='landing-page__speakers__sparkle' />
+            <p className='landing-page__speakers__count' data-speakers-title>
+              41
+            </p>
+          </div>
+          <div className='landing-page__speakers__speakers-wrapper'>
             <Image
               src={speakerMemojiLeft}
               alt='doodle'
               className='landing-page__speakers__memoji-left'
+              data-speaker-memoji
             />
             <Image
               src={speakerMemojiRight}
               alt='doodle'
               className='landing-page__speakers__memoji-right'
+              data-speaker-memoji
             />
-          </p>
-          <p className='landing-page__speakers__subtext'>
-            All ready to cut soap for you!
-            <Image src={repeatDoodle} alt='doodle' className='landing-page__speakers__repeat' />
-            <Image src={cloudsDoodle} alt='doodle' className='landing-page__speakers__cloud' />
-          </p>
+            <p className='landing-page__speakers__speakers-text' data-speakers-title-word>
+              Speakers
+            </p>
+          </div>
+          <div className='landing-page__speakers__subtext'>
+            <Image data-speaker-doodle src={repeatDoodle} alt='doodle' className='landing-page__speakers__repeat' />
+            <Image data-speaker-doodle src={cloudsDoodle} alt='doodle' className='landing-page__speakers__cloud' />
+            <p data-speakers-subtext>
+              All ready to cut soap for you!
+            </p>
+          </div>
           <div className='landing-page__speakers__speakers'>
             <div className='active inner' data-marquee-list>
               {speakers.map((speaker, index) => (
-                <div key={index} data-marquee-item>
+                <div key={index} data-marquee-item data-speaker-card>
                   <SpeakerCard
                     speaker={speaker}
                     onClick={() => setActiveSpeaker(speaker)}
@@ -311,12 +319,12 @@ export default function Landing() {
               ))}
             </div>
           </div>
-          <PrimaryButton href='/speakers'>
+          <PrimaryButton href='/speakers' data-speaker-button>
             <span>View All Speakers</span>
             <ArrowRight />
           </PrimaryButton>
           <div className='landing-page__speakers__hype-banner'>
-            <div className='landing-page__speakers__hype-banner__item visible'>
+            <div className='landing-page__speakers__hype-banner__item visible' data-speakers-banner>
               {Array.from({ length: 5 }).map(() => (
                 <>
                   <span>🔥</span>
@@ -325,7 +333,7 @@ export default function Landing() {
                 </>
               ))}
             </div>
-            <div className='landing-page__speakers__hype-banner__item faded'>
+            <div className='landing-page__speakers__hype-banner__item faded' data-speakers-banner>
               {Array.from({ length: 5 }).map(() => (
                 <>
                   <span>🔥</span>
