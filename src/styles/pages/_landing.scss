@@ -1,7 +1,12 @@
 .landing-page {
   width: 100vw;
-  overflow: hidden;
+  overflow: scroll;
   scroll-snap-type: y mandatory;
+  height: 100vh;
+
+  > section, header {
+    scroll-snap-align: start;
+  }
 
   &__menu {
     height: 10rem;

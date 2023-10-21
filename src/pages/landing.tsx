@@ -29,6 +29,8 @@ import speakerMemojiRight from "@/images/landing/doodles/speaker-memoji-2.png";
 import SparkleIcon from "@/images/landing/doodles/sparkle.svg";
 import { YoutubePlayer } from "@/components/youtube-player";
 import LandingPage from "@/animations/components/Landing";
+import Menu from "@/components/menu/menu";
+import Footer from "@/components/footer";
 
 const topics = [
   [
@@ -132,6 +134,7 @@ export default function Landing() {
         image='/og-images/coming-soon.png'
       />
       <div className='landing-page'>
+        <Menu />
         <section className='landing-page__intro'>
           <div className='landing-page__intro__title'>
             <h1 className='landing-page__intro__title__text' data-landing-title>
@@ -347,7 +350,10 @@ export default function Landing() {
         <Talks />
         <FaqSection />
         <NoMatterWhat />
+        <Footer />
       </div>
     </>
   );
 }
+
+Landing.disableLayout = true;
