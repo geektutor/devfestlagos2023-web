@@ -76,6 +76,11 @@ export default class LandingPage extends Component {
         nmwButtonText: nmwButtons.text,
         nmwButtonIconCircle: nmwButtons.iconCircle,
         nmwButtonIconArrow: nmwButtons.iconArrow,
+        betterSection: "[data-better-section]",
+        recapSection: "[data-recap-section]",
+        speakersSection: "[data-speakers-section]",
+        faqSection: "[data-faq-section]",
+        nmwSection: "[data-nmw]",
       },
     });
 
@@ -98,7 +103,25 @@ export default class LandingPage extends Component {
 
     this.update();
 
-    const { betterSponsor, landingSubtext, betterTitle, recapTitle, recapSubtitle, speakersTitle, speakersTitleWord, speakersSubText, faqTitle, faqSubtitle, nmwTitle, nmwQuestion} = this.elements;
+    const {
+      betterSponsor,
+      landingSubtext,
+      betterTitle,
+      recapTitle,
+      recapSubtitle,
+      speakersTitle,
+      speakersTitleWord,
+      speakersSubText,
+      faqTitle,
+      faqSubtitle,
+      nmwTitle,
+      nmwQuestion,
+      betterSection,
+      recapSection,
+      speakersSection,
+      faqSection,
+      nmwSection,
+    } = this.elements;
 
     this.elements.landingSubtextWords = this.convertToSentences(landingSubtext);
     this.elements.betterTitleWords = this.convertToSentences(betterTitle);
@@ -116,13 +139,39 @@ export default class LandingPage extends Component {
 
     this.setup();
 
-    this.animateLanding();
-    this.animateBetter();
-    this.animateRecap();
-    this.animateSpeakers();
-    this.animateFAQ();
-    this.animateNoMatterWhat();
+    const animations = [
+      [betterSection, this.animateBetter],
+      [recapSection, this.animateRecap],
+      [speakersSection, this.animateSpeakers],
+      [faqSection, this.animateFAQ],
+      [nmwSection, this.animateNoMatterWhat],
+    ];
 
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.some((entry) => {
+          if (entry.isIntersecting) {
+            const target = animations.findIndex((e) => e[0] === entry.target);
+
+            if (target > -1) {
+              observer.unobserve(entry.target);
+              animations[target][1].call(this);
+            }
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.7,
+      },
+    );
+
+    animations.forEach((animation) => {
+      observer.observe(animation[0]);
+    });
+
+    this.animateLanding();
   }
 
   convertToSentences(element: HTMLElement) {
@@ -223,17 +272,37 @@ export default class LandingPage extends Component {
       transformOrigin: "left",
     });
 
-    GSAP.set([menuButtonIconWhite, landingButtonIconCircle, speakersMemoji, speakerCards, nmwButtonIconCircle], {
-      scale: 0,
-      transformOrigin: "center",
-    });
+    GSAP.set(
+      [
+        menuButtonIconWhite,
+        landingButtonIconCircle,
+        speakersMemoji,
+        speakerCards,
+        nmwButtonIconCircle,
+      ],
+      {
+        scale: 0,
+        transformOrigin: "center",
+      },
+    );
 
     GSAP.set(speakerCards, {
-      x: "+400"
-    })
+      x: "+400",
+    });
 
     GSAP.set(
-      [speakersBanner, menuButtonText, landingButtonText, landingDoodles, landingScene, gdgPresents, recapVideo, speakersDoodle, speakerSparkle, nmwButtonText],
+      [
+        speakersBanner,
+        menuButtonText,
+        landingButtonText,
+        landingDoodles,
+        landingScene,
+        gdgPresents,
+        recapVideo,
+        speakersDoodle,
+        speakerSparkle,
+        nmwButtonText,
+      ],
       {
         opacity: 0,
       },
@@ -259,6 +328,11 @@ export default class LandingPage extends Component {
     GSAP.set(speakerButton, {
       y: "+240",
     });
+
+    this.element?.scrollTo({
+      top: 0,
+    });
+    this.element.classList.add("is-active");
   }
 
   animateLanding() {
@@ -420,11 +494,11 @@ export default class LandingPage extends Component {
       opacity: 1,
       duration: 1,
       ease: easings.RECAP_VIDEO,
-      delay: .35,
+      delay: 0.35,
     });
   }
 
-  animateSpeakers(){
+  animateSpeakers() {
     const {
       speakersTitle,
       speakersTitleWord,
@@ -434,7 +508,7 @@ export default class LandingPage extends Component {
       speakerCards,
       speakerButton,
       speakerSparkle,
-      speakersBanner
+      speakersBanner,
     } = this.elements;
 
     GSAP.to([speakersDoodle, speakerSparkle], {
@@ -446,7 +520,7 @@ export default class LandingPage extends Component {
     GSAP.to(speakersBanner, {
       opacity: 1,
       duration: 1,
-      delay: .84,
+      delay: 0.84,
       ease: easings.GDG_OPACITY,
     });
 
@@ -454,20 +528,20 @@ export default class LandingPage extends Component {
       yPercent: 0,
       duration: 1,
       ease: easings.SPEAKERS_TITLE,
-      stagger: .084
+      stagger: 0.084,
     });
 
     GSAP.to(speakerButton, {
       y: 0,
       duration: 1,
-      delay: .8,
-      ease: easings.SPEAKERS_TITLE
+      delay: 0.8,
+      ease: easings.SPEAKERS_TITLE,
     });
 
     GSAP.to(speakersMemoji, {
       scale: 1,
       duration: 1,
-      ease: easings.SPEAKERS_MEMOJI
+      ease: easings.SPEAKERS_MEMOJI,
     });
 
     GSAP.to(speakerCards, {
@@ -475,7 +549,7 @@ export default class LandingPage extends Component {
       scale: 1,
       duration: 1.417,
       ease: easings.SPEAKERS_CARDS,
-      stagger: .083,
+      stagger: 0.083,
       onComplete: () => {
         this.marquee = new Marquee({
           element: this.elements.marqueeList,
@@ -484,36 +558,32 @@ export default class LandingPage extends Component {
             list: this.elements.marqueeList,
           },
         });
-      }
+      },
     });
   }
 
-  animateFAQ(){
-    const {
-      faqTitleWords,
-      faqSubtitleWords,
-      faqItem
-    } = this.elements;
+  animateFAQ() {
+    const { faqTitleWords, faqSubtitleWords, faqItem } = this.elements;
 
     [...faqTitleWords, ...faqSubtitleWords].forEach((sentence, index) => {
       GSAP.to(sentence, {
         yPercent: 0,
         duration: 1,
         ease: easings.FAQ_ITEM,
-        delay: .084 * index
+        delay: 0.084 * index,
       });
-    })
+    });
 
     GSAP.to(faqItem, {
       y: 0,
-      delay: .333,
+      delay: 0.333,
       duration: 1,
       ease: easings.FAQ_ITEM,
-      stagger: .084
-    })
+      stagger: 0.084,
+    });
   }
 
-  animateNoMatterWhat(){
+  animateNoMatterWhat() {
     const {
       nmwButtonText,
       nmwButtonIconCircle,
@@ -544,31 +614,30 @@ export default class LandingPage extends Component {
       delay: 0.783,
     });
 
-    console.log({nmwLogo, nmwQuestion, nmwTitleWords})
-
     nmwTitleWords.forEach((sentence, index) => {
       GSAP.to(sentence, {
         yPercent: 0,
         duration: 1,
         ease: easings.NO_MATTER_WHAT,
-        delay: index * .1
-      })
-    })
+        delay: index * 0.1,
+      });
+    });
 
     GSAP.to(nmwLogo, {
       yPercent: 0,
       duration: 1,
       ease: easings.NO_MATTER_WHAT,
-      delay: .167
-    })
+      delay: 0.167,
+    });
 
     GSAP.to(nmwQuestion, {
       yPercent: 0,
       duration: 1,
       ease: easings.NO_MATTER_WHAT,
-      delay: .25
-    })
+      delay: 0.25,
+    });
   }
+
   update() {
     this.marquee?.update();
     window.requestAnimationFrame(this.update);

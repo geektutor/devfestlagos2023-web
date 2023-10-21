@@ -184,7 +184,7 @@ export default function Landing() {
             <Image quality={100} src={sponsorImage} alt='Sponsor' />
           </div>
         </section>
-        <section className='landing-page__better'>
+        <section className='landing-page__better' data-better-section>
           <h3 className='landing-page__better__title' data-better-title>
             When we said better, we weren’t joking!
           </h3>
@@ -261,7 +261,7 @@ export default function Landing() {
             ))}
           </div>
         </section>
-        <section className='landing-page__recap'>
+        <section className='landing-page__recap' data-recap-section>
           <div className='landing-page__recap__top'>
             <h3 className='landing-page__recap__title' data-recap-title>
               Last year&apos;s edition was like no other.
@@ -274,7 +274,7 @@ export default function Landing() {
             <YoutubePlayer videoId='7kat5HlPtzU' />
           </div>
         </section>
-        <section className='landing-page__speakers'>
+        <section className='landing-page__speakers' data-speakers-section>
           <div style={{position: "relative"}}>
             <SparkleIcon data-speakers-sparkle className='landing-page__speakers__sparkle' />
             <p className='landing-page__speakers__count' data-speakers-title>

@@ -4,7 +4,7 @@ import styles from "./faq-section.module.scss";
 
 const FaqSection = () => {
   return (
-    <section className={styles.faq}>
+    <section className={styles.faq} data-faq-section>
       <h3 className={styles.faqTitle} data-faq-title>
         Lets answer some of your burning questions
       </h3>
