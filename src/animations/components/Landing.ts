@@ -21,6 +21,7 @@ const easings = {
   SPEAKERS_TITLE: CustomEase.create("doodle", "0.07, 0.00, 0.00, 1.00"),
   SPEAKERS_MEMOJI: CustomEase.create("doodle", "0.89, 0.00, 0.00, 1.00"),
   SPEAKERS_CARDS: CustomEase.create("doodle", "0.91, 0.00, 0.00, 1.00"),
+  FAQ_ITEM: CustomEase.create("doodle", "0.11, 0.00, 0.00, 1.00"),
 };
 
 const getButtonWithArrowSelectors = (baseSelector: string) => ({
@@ -63,6 +64,9 @@ export default class LandingPage extends Component {
         speakerButton: "[data-speaker-button]",
         speakerSparkle: "[data-speakers-sparkle]",
         speakersBanner: "[data-speakers-banner]",
+        faqTitle: "[data-faq-title]",
+        faqSubtitle: "[data-faq-sub]",
+        faqItem: "[data-faq-item] div",
       },
     });
 
@@ -83,22 +87,16 @@ export default class LandingPage extends Component {
       navItems: Array.from(document.querySelectorAll("[data-nav-item] a")),
     };
 
-    // this.marquee = new Marquee({
-    //   element: this.elements.marqueeList,
-    //   elements: {
-    //     items: this.elements.marqueeItem,
-    //     list: this.elements.marqueeList,
-    //   },
-    // });
-
     this.update();
 
-    const { betterSponsor, landingSubtext, betterTitle, recapTitle, recapSubtitle, speakersTitle, speakersTitleWord, speakersSubText, speakersDoodle, speakersMemoji, speakerCards} = this.elements;
+    const { betterSponsor, landingSubtext, betterTitle, recapTitle, recapSubtitle, speakersTitle, speakersTitleWord, speakersSubText, faqTitle, faqSubtitle} = this.elements;
 
     this.elements.landingSubtextWords = this.convertToSentences(landingSubtext);
     this.elements.betterTitleWords = this.convertToSentences(betterTitle);
     this.elements.recapTitleWords = this.convertToSentences(recapTitle);
     this.elements.recapSubtitleWords = this.convertToSentences(recapSubtitle);
+    this.elements.faqTitleWords = this.convertToSentences(faqTitle);
+    this.elements.faqSubtitleWords = this.convertToSentences(faqSubtitle);
 
     this.elements.betterSponsor = this.addSpan(betterSponsor);
     this.elements.speakersTitle = this.addSpan(speakersTitle);
@@ -111,6 +109,9 @@ export default class LandingPage extends Component {
     this.animateBetter();
     this.animateRecap();
     this.animateSpeakers();
+    setTimeout(() => {
+      this.animateFAQ();
+    }, 5000)
   }
 
   convertToSentences(element: HTMLElement) {
@@ -169,7 +170,10 @@ export default class LandingPage extends Component {
       speakerCards,
       speakerButton,
       speakerSparkle,
-      speakersBanner
+      speakersBanner,
+      faqTitleWords,
+      faqSubtitleWords,
+      faqItem
     } = this.elements;
 
     GSAP.set(
@@ -186,6 +190,8 @@ export default class LandingPage extends Component {
         speakersTitle,
         speakersTitleWord,
         speakersSubText,
+        faqTitleWords,
+        faqSubtitleWords
       ],
       {
         yPercent: 100,
@@ -224,6 +230,10 @@ export default class LandingPage extends Component {
 
     GSAP.set([recapVideo], {
       y: "+200",
+    });
+
+    GSAP.set(faqItem, {
+      y: "+100",
     });
 
     GSAP.set(speakerButton, {
@@ -421,7 +431,7 @@ export default class LandingPage extends Component {
     });
 
     GSAP.to([speakersTitle, speakersTitleWord, speakersSubText], {
-      yPercent: 1,
+      yPercent: 0,
       duration: 1,
       ease: easings.SPEAKERS_TITLE,
       stagger: .084
@@ -445,8 +455,42 @@ export default class LandingPage extends Component {
       scale: 1,
       duration: 1.417,
       ease: easings.SPEAKERS_CARDS,
-      stagger: .083
+      stagger: .083,
+      onComplete: () => {
+        this.marquee = new Marquee({
+          element: this.elements.marqueeList,
+          elements: {
+            items: this.elements.marqueeItem,
+            list: this.elements.marqueeList,
+          },
+        });
+      }
     });
+  }
+
+  animateFAQ(){
+    const {
+      faqTitleWords,
+      faqSubtitleWords,
+      faqItem
+    } = this.elements;
+
+    [...faqTitleWords, ...faqSubtitleWords].forEach((sentence, index) => {
+      GSAP.to(sentence, {
+        yPercent: 0,
+        duration: 1,
+        ease: easings.FAQ_ITEM,
+        delay: .084 * index
+      });
+    })
+
+    GSAP.to(faqItem, {
+      y: 0,
+      delay: .333,
+      duration: 1,
+      ease: easings.FAQ_ITEM,
+      stagger: .084
+    })
   }
 
   update() {

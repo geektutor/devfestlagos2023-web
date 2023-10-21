@@ -8,10 +8,8 @@
     scroll-snap-align: start;
   }
 
-  &__menu {
-    height: 10rem;
-    width: 100%;
-    background-color: $bg-shade-1;
+  > section {
+    scroll-margin-top: 60px;
   }
 
   &__intro {
@@ -23,6 +21,7 @@
     padding-top: 8.2rem;
     position: relative;
     scroll-snap-align: start;
+    scroll-margin-top: 0;
 
     @include media("<=phone") {
       padding-bottom: 26rem;
@@ -307,6 +306,7 @@
     align-items: center;
     background-color: $grey-0;
     grid-column-gap: 1.6rem;
+    scroll-margin-top: 0 !important;
 
     @include media("<=tablet") {
       padding: 2.4rem 3.2rem;

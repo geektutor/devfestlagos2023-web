@@ -6,6 +6,7 @@
 .talks {
   padding: 4.8rem 0 4.8rem 8.6vw;
   background-color: $grey-0;
+  scroll-margin-top: 0 !important;
 
   @include media("<=tablet") {
     padding: 3.2rem 0 2.4rem 3.2rem;

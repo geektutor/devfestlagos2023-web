@@ -12,7 +12,7 @@ export default function FAQ(props: FAQProps) {
   const [show, setShow] = useState(false);
 
   return (
-    <div className={styles.faq}>
+    <div className={styles.faq} data-faq-item>
       <div onClick={() => setShow(!show)} className={styles.faqQuestion}>
         <h4>{props.question}</h4>
         {show ? <UpArrow className={styles.faqSvg} /> : <DownArrow className={styles.faqSvg} />}
