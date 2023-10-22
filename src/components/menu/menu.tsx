@@ -22,7 +22,7 @@ const Menu = () => {
   return (
     <header className={styles.menu}>
       <div className={styles.logo}>
-        <Logo data-animate-y-full />
+        <Logo data-animate-y-full data-easing='LOGO' />
       </div>
       <div className={styles.items}>
         <nav className={styles.nav}>
@@ -59,7 +59,7 @@ const Menu = () => {
 
 const NavItems = () => {
   return (
-    <ul className={styles.navItems} data-animate-y-children-full>
+    <ul className={styles.navItems} data-animate-y-children-full data-delay=".083" data-easing="MENU_ITEMS">
       <li className={styles.navItem}>
         <Link href='/speakers' className={styles.link}>
           Speakers

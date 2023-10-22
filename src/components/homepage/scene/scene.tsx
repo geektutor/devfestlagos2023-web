@@ -19,6 +19,7 @@ export const HomepageScene = () => {
           fill
           style={{ objectFit: "cover" }}
           data-fade-in
+          data-easing='LANDING_IMAGE'
         />
       </div>
       <div className={styles.kiteLeft} data-landing-doodle>

@@ -139,10 +139,10 @@ export default function Landing() {
           <div className='landing-page__intro__title'>
             <h1 className='landing-page__intro__title__text'>
               <span>
-                <span data-animate-y-full>DevFest</span>
+                <span data-animate-y-full data-delay=".167" data-easing="LANDING_TITLE">DevFest</span>
               </span>{" "}
               <span>
-                <span data-animate-y-full>Lagos</span>
+                <span data-animate-y-full data-delay=".167" data-easing="LANDING_TITLE">Lagos</span>
               </span>
             </h1>
             <Image
@@ -169,7 +169,7 @@ export default function Landing() {
           </div>
           {/*<span>*/}
           {/*  </span>*/}
-          <p className='landing-page__intro__description' data-animate-sentences data-delay={0.333}>
+          <p className='landing-page__intro__description' data-animate-sentences data-delay={0.333} data-easing="LANDING_DESCRIPTION">
             The biggest tech event in sub-saharan Africa is back and even bigger and better!
             {/*<div className='landing-page__intro__memoji'>*/}
             {/*  <Image src={memojiDoodle} alt='doodle' quality={100} />*/}
@@ -185,11 +185,11 @@ export default function Landing() {
           </div>
         </section>
         <section className='landing-page__better' data-better-section>
-          <h3 className='landing-page__better__title' data-animate-sentences>
+          <h3 className='landing-page__better__title' data-animate-sentences data-easing="SPONSOR_BETTER">
             When we said better, we weren’t joking!
           </h3>
-          <p className='landing-page__better__subtext' data-animate-y-full data-add-span>Here are our headline sponsors</p>
-          <div className='landing-page__better__sponsors' data-animate-y-children-full>
+          <p className='landing-page__better__subtext' data-animate-y-full data-add-span data-easing="SPONSOR_BETTER">Here are our headline sponsors</p>
+          <div className='landing-page__better__sponsors' data-animate-y-children-full data-delay=".083" data-easing="SPONSOR_BETTER">
             <GoogleIcon />
             <SpotifyIcon />
             <LyftIcon />

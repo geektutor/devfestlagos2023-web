@@ -157,13 +157,21 @@ export default class LandingPage extends Component {
     const sectionElements: Array<Array<Node>> = [];
 
     const processElement = (element: Node) => {
+
+
       let parentSection = element.closest('section');
 
       if(!parentSection) {
         parentSection = element.closest('header');
       }
 
+
       const index = Number(parentSection.dataset.index);
+      if(element.className === 'landing-page__better__subtext'){
+        console.log(element)
+        console.log(index)
+      }else{
+      }
       if(!sectionElements[index]){
         sectionElements[index] = []
       }
@@ -190,6 +198,7 @@ export default class LandingPage extends Component {
 
             const elements = sectionElements[index];
 
+            console.log(sectionElements[index])
             elements.forEach(element => {
               if(element.dataset.animateSentences){
                 this.animateSentences(element)
@@ -248,7 +257,9 @@ export default class LandingPage extends Component {
   animateYFull(element){
     const delay = Number(element.dataset.delay) || 0;
 
-    GSAP.to(element, {
+    const targetElement = element.dataset.addSpan ? element.querySelector('span') : element;
+
+    GSAP.to(targetElement, {
       yPercent: 0,
       duration: 1,
       ease: easings.LANDING_DESCRIPTION,
@@ -270,25 +281,27 @@ export default class LandingPage extends Component {
   }
 
   animateButton(button: HTMLElement) {
+    const delay = Number(button.dataset.delay) || 0.783;
+
     GSAP.to(button.querySelector(buttonSelectors.iconArrow), {
       scaleX: 1,
       ease: easings.MENU_ARROW,
       duration: 0.917,
-      delay: 1.367,
+      delay: delay + .384,
     });
 
     GSAP.to(button.querySelector(buttonSelectors.iconCircle), {
       scale: 1,
       ease: easings.MENU_CIRCLE,
       duration: 0.55,
-      delay: 0.983,
+      delay: delay + 0.2,
     });
 
     GSAP.to(button.querySelector(buttonSelectors.text), {
       opacity: 1,
       ease: easings.MENU_BUTTON_TEXT,
       duration: 0.25,
-      delay: 0.783,
+      delay: delay,
     });
   }
 
