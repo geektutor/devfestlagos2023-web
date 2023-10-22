@@ -5,10 +5,10 @@ import styles from "./faq-section.module.scss";
 const FaqSection = () => {
   return (
     <section className={styles.faq} data-faq-section>
-      <h3 className={styles.faqTitle} data-faq-title>
+      <h3 className={styles.faqTitle} data-animate-sentences>
         Lets answer some of your burning questions
       </h3>
-      <p className={styles.faqSubtext} data-faq-sub>
+      <p className={styles.faqSubtext} data-animate-sentences data-delay={0.167}>
         Check out our most asked questions here, mfjpm 😑🤚🏾
       </p>
       <div className={styles.faqQuestions}>

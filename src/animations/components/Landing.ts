@@ -25,13 +25,11 @@ const easings = {
   NO_MATTER_WHAT: CustomEase.create("doodle", "0.17, 0.00, 0.00, 1.00"),
 };
 
-const getButtonWithArrowSelectors = (baseSelector: string) => ({
-  text: `${baseSelector} span`,
-  iconCircle: `${baseSelector} svg path:first-child`,
-  iconArrow: `${baseSelector} svg path:last-child`,
-});
-
-const nmwButtons = getButtonWithArrowSelectors("[data-nmw-button]");
+const buttonSelectors = {
+  text: `span`,
+  iconCircle: `svg path:first-child`,
+  iconArrow: `svg path:last-child`,
+}
 
 export default class LandingPage extends Component {
   //@ts-ignore
@@ -41,110 +39,52 @@ export default class LandingPage extends Component {
     super({
       element: ".landing-page",
       elements: {
+        sections: "section",
+        header: "header",
+        animateSentences: "[data-animate-sentences]",
+        animateY: "[data-animate-y-full]",
+        animateYChildren: "[data-animate-y-children-full]",
+        addSpan: "[data-add-span]",
+        animateButtons: "[data-animate-button]",
+        fadeIn: "[data-fade-in]",
         gdgPresents: "[data-gdg-presents]",
-        landingTitle: "[data-landing-title] span span",
         landingSubtext: "[data-landing-subtext]",
-        landingButtonText: getButtonWithArrowSelectors("[data-landing-button]").text,
-        landingButtonIconCircle: getButtonWithArrowSelectors("[data-landing-button]").iconCircle,
-        landingButtonIconArrow: getButtonWithArrowSelectors("[data-landing-button]").iconArrow,
         landingDoodles: "[data-landing-doodle]",
-        landingScene: "[data-scene]",
         landingSponsorCTA: "[data-sponsor-cta]",
         marqueeList: "[data-marquee-list]",
         marqueeItem: "[data-marquee-item]",
-        betterTitle: "[data-better-title]",
-        betterSponsor: "[data-better-sponsor]",
-        betterLogos: "[data-better-logos] svg",
-        recapTitle: "[data-recap-title]",
-        recapSubtitle: "[data-recap-subtext]",
         recapVideo: "[data-recap-video]",
-        speakersTitle: "[data-speakers-title]",
-        speakersTitleWord: "[data-speakers-title-word]",
-        speakersSubText: "[data-speakers-subtext]",
         speakersDoodle: "[data-speaker-doodle]",
         speakersMemoji: "[data-speaker-memoji]",
         speakerCards: "[data-speaker-card]",
         speakerButton: "[data-speaker-button]",
-        speakerSparkle: "[data-speakers-sparkle]",
         speakersBanner: "[data-speakers-banner]",
-        faqTitle: "[data-faq-title]",
-        faqSubtitle: "[data-faq-sub]",
         faqItem: "[data-faq-item] div",
-        nmwTitle: "[data-nmw-title]",
-        nmwLogo: "[data-nmw-logo]",
-        nmwQuestion: "[data-nmw-question]",
-        nmwButtonText: nmwButtons.text,
-        nmwButtonIconCircle: nmwButtons.iconCircle,
-        nmwButtonIconArrow: nmwButtons.iconArrow,
-        betterSection: "[data-better-section]",
-        recapSection: "[data-recap-section]",
         speakersSection: "[data-speakers-section]",
         faqSection: "[data-faq-section]",
-        nmwSection: "[data-nmw]",
       },
     });
-
-    this.elements = {
-      ...this.elements,
-      menuLogo: document.querySelector("[data-menu-logo]"),
-      menuButton: document.querySelector("[data-menu-button]"),
-      menuButtonText: document.querySelector(
-        getButtonWithArrowSelectors("[data-menu-button]").text,
-      ),
-      menuButtonIconWhite: document.querySelector(
-        getButtonWithArrowSelectors("[data-menu-button]").iconCircle,
-      ),
-      menuButtonIconArrow: document.querySelector(
-        getButtonWithArrowSelectors("[data-menu-button]").iconArrow,
-      ),
-      //@ts-ignore
-      navItems: Array.from(document.querySelectorAll("[data-nav-item] a")),
-    };
 
     this.update();
 
     const {
-      betterSponsor,
-      landingSubtext,
-      betterTitle,
-      recapTitle,
-      recapSubtitle,
-      speakersTitle,
-      speakersTitleWord,
-      speakersSubText,
-      faqTitle,
-      faqSubtitle,
-      nmwTitle,
-      nmwQuestion,
-      betterSection,
-      recapSection,
+      animateSentences,
       speakersSection,
       faqSection,
-      nmwSection,
+      addSpan
     } = this.elements;
 
-    this.elements.landingSubtextWords = this.convertToSentences(landingSubtext);
-    this.elements.betterTitleWords = this.convertToSentences(betterTitle);
-    this.elements.recapTitleWords = this.convertToSentences(recapTitle);
-    this.elements.recapSubtitleWords = this.convertToSentences(recapSubtitle);
-    this.elements.faqTitleWords = this.convertToSentences(faqTitle);
-    this.elements.faqSubtitleWords = this.convertToSentences(faqSubtitle);
-    this.elements.nmwTitleWords = this.convertToSentences(nmwTitle);
 
-    this.elements.betterSponsor = this.addSpan(betterSponsor);
-    this.elements.speakersTitle = this.addSpan(speakersTitle);
-    this.elements.speakersTitleWord = this.addSpan(speakersTitleWord);
-    this.elements.speakersSubText = this.addSpan(speakersSubText);
-    this.elements.nmwQuestion = this.addSpan(nmwQuestion);
 
+    addSpan.forEach(this.addSpan)
+    animateSentences.forEach(this.convertToSentences)
+
+    this.setupSections()
     this.setup();
 
     const animations = [
-      [betterSection, this.animateBetter],
-      [recapSection, this.animateRecap],
       [speakersSection, this.animateSpeakers],
       [faqSection, this.animateFAQ],
-      [nmwSection, this.animateNoMatterWhat],
     ];
 
     const observer = new IntersectionObserver(
@@ -200,85 +140,218 @@ export default class LandingPage extends Component {
     return element.querySelector("span");
   }
 
+  setupSections(){
+    const {
+      sections,
+      header
+    } = this.elements;
+
+    if(!(sections instanceof NodeList)) return
+
+    const sectionsArray = Array.from(sections).concat(header);
+
+    sectionsArray.forEach((section, index) => {
+      section.dataset.index = index
+    })
+
+
+    const sectionElements: Array<Array<Node>> = [];
+
+    const processElement = (element: Node) => {
+      let parentSection = element.closest('section');
+
+      if(!parentSection) {
+        parentSection = element.closest('header')
+        //todo: make this work with header
+        // return;
+      }
+
+      const index = Number(parentSection.dataset.index);
+      if(!sectionElements[index]){
+        sectionElements[index] = []
+      }
+
+      sectionElements[index].push(element)
+    }
+
+
+    Object.values(this.elements).forEach(element => {
+      if(!element || Array.isArray(element)) return;
+
+      if(element instanceof NodeList){
+        element.forEach(processElement)
+      }else{
+        processElement(element)
+      }
+    })
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.some((entry) => {
+          if (entry.isIntersecting) {
+            const index = entry.target.dataset.index;
+
+            const elements = sectionElements[index];
+
+            console.log(index, elements)
+            elements.forEach(element => {
+              if(element.dataset.animateSentences){
+                this.animateSentences(element)
+              }
+
+              if(element.dataset.animateYFull){
+                this.animateYFull(element)
+              }
+
+              if(element.dataset.animateYChildrenFull){
+                this.animateYChildrenFull(element)
+              }
+
+              if(element.dataset.animateButton){
+                this.animateButton(element)
+              }
+
+              if(element.dataset.fadeIn){
+                this.fadeIn(element)
+              }
+            })
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.7,
+      },
+    );
+
+    sectionsArray.forEach((animation) => {
+      observer.observe(animation);
+    });
+  }
+
+  animateSentences(element: HTMLElement){
+    const words = calculateSentences(this.getWords(element as HTMLElement));
+    const delay = Number(element.dataset.delay) || 0;
+    const stagger = Number(element.dataset.stagger) || 0.084;
+
+    words.forEach((sentence, index) => {
+      GSAP.to(sentence, {
+        yPercent: 0,
+        duration: 1,
+        ease: easings.LANDING_DESCRIPTION,
+        delay: delay + stagger * index,
+      });
+    });
+  }
+
+  animateYFull(element){
+    const delay = Number(element.dataset.delay) || 0;
+
+    GSAP.to(element, {
+      yPercent: 0,
+      duration: 1,
+      ease: easings.LANDING_DESCRIPTION,
+      delay
+    });
+  }
+
+  animateYChildrenFull(element){
+    const delay = Number(element.dataset.delay) || 0;
+    const stagger = Number(element.dataset.stagger) || 0.084;
+
+    GSAP.to(element.children, {
+      yPercent: 0,
+      duration: 1,
+      ease: easings.LANDING_DESCRIPTION,
+      delay,
+      stagger,
+    });
+  }
+
+  animateButton(button: HTMLElement) {
+    GSAP.to(button.querySelector(buttonSelectors.iconArrow), {
+      scaleX: 1,
+      ease: easings.MENU_ARROW,
+      duration: 0.917,
+      delay: 1.367,
+    });
+
+    GSAP.to(button.querySelector(buttonSelectors.iconCircle), {
+      scale: 1,
+      ease: easings.MENU_CIRCLE,
+      duration: 0.55,
+      delay: 0.983,
+    });
+
+    GSAP.to(button.querySelector(buttonSelectors.text), {
+      opacity: 1,
+      ease: easings.MENU_BUTTON_TEXT,
+      duration: 0.25,
+      delay: 0.783,
+    });
+  }
+
+  fadeIn(element: HTMLElement){
+    const delay = Number(element.dataset.delay) || 0;
+
+    GSAP.to(element, {
+      opacity: 1,
+      duration: 1,
+      ease: easings.LANDING_IMAGE,
+      delay,
+    });
+  }
+
   setup() {
     const {
-      menuLogo,
-      navItems,
-      menuButtonText,
-      menuButtonIconWhite,
-      menuButtonIconArrow,
       gdgPresents,
-      landingTitle,
-      landingButtonText,
-      landingButtonIconCircle,
-      landingButtonIconArrow,
       landingDoodles,
-      landingScene,
       landingSponsorCTA,
-      landingSubtextWords,
-      betterSponsor,
-      betterLogos,
-      betterTitleWords,
-      recapTitleWords,
-      recapSubtitleWords,
       recapVideo,
-      speakersTitle,
-      speakersTitleWord,
-      speakersSubText,
       speakersDoodle,
       speakersMemoji,
       speakerCards,
       speakerButton,
-      speakerSparkle,
       speakersBanner,
-      faqTitleWords,
-      faqSubtitleWords,
       faqItem,
-      nmwTitleWords,
-      nmwLogo,
-      nmwQuestion,
-      nmwButtonText,
-      nmwButtonIconCircle,
-      nmwButtonIconArrow,
+      hypeLyrics,
+      hypeCat,
+      animateSentences,
+      animateY,
+      animateYChildren,
+      animateButtons,
+      fadeIn
     } = this.elements;
+
 
     GSAP.set(
       [
-        menuLogo,
-        navItems,
-        landingTitle,
-        landingSubtextWords,
-        betterSponsor,
-        betterTitleWords,
-        betterLogos,
-        recapTitleWords,
-        recapSubtitleWords,
-        speakersTitle,
-        speakersTitleWord,
-        speakersSubText,
-        faqTitleWords,
-        faqSubtitleWords,
-        nmwTitleWords,
-        nmwLogo,
-        nmwQuestion,
+        [...animateYChildren].map(element => element.children),
+        [...animateY].map(element => {
+          if(element.dataset.addSpan){
+            return element.querySelector('span')
+          }else{
+            return element;
+          }
+        }),
+        [...animateSentences].map(element => element.querySelectorAll('span span')) //todo: replace with one function that gets words and calcs seentence
       ],
       {
         yPercent: 100,
       },
     );
 
-    GSAP.set([menuButtonIconArrow, landingButtonIconArrow, nmwButtonIconArrow], {
+    GSAP.set([...animateButtons].map(button => button.querySelector(buttonSelectors.iconArrow)), {
       scaleX: 0,
       transformOrigin: "left",
     });
 
     GSAP.set(
       [
-        menuButtonIconWhite,
-        landingButtonIconCircle,
+        [...animateButtons].map(button => button.querySelector(buttonSelectors.iconCircle)),
         speakersMemoji,
         speakerCards,
-        nmwButtonIconCircle,
       ],
       {
         scale: 0,
@@ -292,16 +365,13 @@ export default class LandingPage extends Component {
 
     GSAP.set(
       [
+        [...animateButtons].map(button => button.querySelector(buttonSelectors.text)),
         speakersBanner,
-        menuButtonText,
-        landingButtonText,
         landingDoodles,
-        landingScene,
-        gdgPresents,
-        recapVideo,
         speakersDoodle,
-        speakerSparkle,
-        nmwButtonText,
+        hypeLyrics,
+        hypeCat,
+        fadeIn
       ],
       {
         opacity: 0,
@@ -325,6 +395,10 @@ export default class LandingPage extends Component {
       y: "+100",
     });
 
+    // GSAP.set([hypeLyrics, hypeCat], {
+    //   y: "+50",
+    // });
+
     GSAP.set(speakerButton, {
       y: "+240",
     });
@@ -332,61 +406,17 @@ export default class LandingPage extends Component {
     this.element?.scrollTo({
       top: 0,
     });
-    this.element.classList.add("is-active");
+
+    this.element?.classList.add("is-active");
   }
 
   animateLanding() {
     const {
-      menuLogo,
-      navItems,
-      menuButtonText,
-      menuButtonIconWhite,
-      menuButtonIconArrow,
       gdgPresents,
-      landingTitle,
-      landingButtonText,
-      landingButtonIconCircle,
-      landingButtonIconArrow,
       landingDoodles,
       landingScene,
       landingSponsorCTA,
-      landingSubtextWords,
     } = this.elements;
-
-    GSAP.to(menuLogo, {
-      yPercent: 0,
-      ease: easings.LOGO,
-      duration: 1,
-    });
-
-    GSAP.to(navItems, {
-      yPercent: 0,
-      ease: easings.MENU_ITEMS,
-      duration: 1,
-      stagger: 0.08,
-      delay: 0.08,
-    });
-
-    GSAP.to([menuButtonIconArrow, landingButtonIconArrow], {
-      scaleX: 1,
-      ease: easings.MENU_ARROW,
-      duration: 0.917,
-      delay: 1.367,
-    });
-
-    GSAP.to([menuButtonIconWhite, landingButtonIconCircle], {
-      scale: 1,
-      ease: easings.MENU_CIRCLE,
-      duration: 0.55,
-      delay: 0.983,
-    });
-
-    GSAP.to([menuButtonText, landingButtonText], {
-      opacity: 1,
-      ease: easings.MENU_BUTTON_TEXT,
-      duration: 0.25,
-      delay: 0.783,
-    });
 
     GSAP.to(gdgPresents, {
       rotate: -10,
@@ -394,41 +424,11 @@ export default class LandingPage extends Component {
       ease: easings.GDG_ROTATION,
     });
 
-    GSAP.to(gdgPresents, {
-      opacity: 1,
-      duration: 1,
-      ease: easings.GDG_OPACITY,
-    });
-
     GSAP.to(landingSponsorCTA, {
       rotate: 0,
       duration: 0.896,
       ease: "none",
       delay: 0.167,
-    });
-
-    GSAP.to(landingTitle, {
-      yPercent: 0,
-      duration: 1,
-      ease: easings.LANDING_TITLE,
-      delay: 0.167,
-      stagger: 0.084,
-    });
-
-    landingSubtextWords.forEach((sentence, index) => {
-      GSAP.to(sentence, {
-        yPercent: 0,
-        duration: 1,
-        ease: easings.LANDING_DESCRIPTION,
-        delay: 0.333 + 0.084 * index,
-      });
-    });
-
-    GSAP.to(landingScene, {
-      opacity: 1,
-      duration: 1,
-      ease: easings.LANDING_IMAGE,
-      delay: 0.35,
     });
 
     GSAP.to(landingDoodles, {
@@ -440,95 +440,18 @@ export default class LandingPage extends Component {
     });
   }
 
-  animateBetter() {
-    const { betterSponsor, betterLogos, betterTitleWords } = this.elements;
-
-    betterTitleWords.forEach((sentence, index) => {
-      GSAP.to(sentence, {
-        yPercent: 0,
-        duration: 1,
-        ease: easings.SPONSOR_BETTER,
-        delay: 0.083 * index,
-      });
-    });
-
-    GSAP.to(betterSponsor, {
-      yPercent: 0,
-      duration: 1,
-      ease: easings.SPONSOR_BETTER,
-      delay: 0.167,
-    });
-
-    GSAP.to(betterLogos, {
-      yPercent: 0,
-      duration: 1,
-      ease: easings.SPONSOR_BETTER,
-      delay: 0.083,
-      stagger: 0.083,
-    });
-  }
-
-  animateRecap() {
-    const { recapTitleWords, recapSubtitleWords, recapVideo } = this.elements;
-
-    recapTitleWords.forEach((sentence, index) => {
-      GSAP.to(sentence, {
-        yPercent: 0,
-        duration: 1,
-        ease: easings.SPONSOR_BETTER,
-        delay: 0.083 * index,
-      });
-    });
-
-    recapSubtitleWords.forEach((sentence, index) => {
-      GSAP.to(sentence, {
-        yPercent: 0,
-        duration: 1,
-        ease: easings.SPONSOR_BETTER,
-        delay: 0.083 * index + 0.167,
-      });
-    });
-
-    GSAP.to(recapVideo, {
-      y: 0,
-      opacity: 1,
-      duration: 1,
-      ease: easings.RECAP_VIDEO,
-      delay: 0.35,
-    });
-  }
-
   animateSpeakers() {
     const {
-      speakersTitle,
-      speakersTitleWord,
-      speakersSubText,
       speakersDoodle,
       speakersMemoji,
       speakerCards,
       speakerButton,
-      speakerSparkle,
-      speakersBanner,
     } = this.elements;
 
-    GSAP.to([speakersDoodle, speakerSparkle], {
+    GSAP.to(speakersDoodle, {
       opacity: 1,
       duration: 1,
       ease: easings.GDG_OPACITY,
-    });
-
-    GSAP.to(speakersBanner, {
-      opacity: 1,
-      duration: 1,
-      delay: 0.84,
-      ease: easings.GDG_OPACITY,
-    });
-
-    GSAP.to([speakersTitle, speakersTitleWord, speakersSubText], {
-      yPercent: 0,
-      duration: 1,
-      ease: easings.SPEAKERS_TITLE,
-      stagger: 0.084,
     });
 
     GSAP.to(speakerButton, {
@@ -563,16 +486,7 @@ export default class LandingPage extends Component {
   }
 
   animateFAQ() {
-    const { faqTitleWords, faqSubtitleWords, faqItem } = this.elements;
-
-    [...faqTitleWords, ...faqSubtitleWords].forEach((sentence, index) => {
-      GSAP.to(sentence, {
-        yPercent: 0,
-        duration: 1,
-        ease: easings.FAQ_ITEM,
-        delay: 0.084 * index,
-      });
-    });
+    const { faqItem } = this.elements;
 
     GSAP.to(faqItem, {
       y: 0,
@@ -580,61 +494,6 @@ export default class LandingPage extends Component {
       duration: 1,
       ease: easings.FAQ_ITEM,
       stagger: 0.084,
-    });
-  }
-
-  animateNoMatterWhat() {
-    const {
-      nmwButtonText,
-      nmwButtonIconCircle,
-      nmwButtonIconArrow,
-      nmwTitleWords,
-      nmwLogo,
-      nmwQuestion,
-    } = this.elements;
-
-    GSAP.to(nmwButtonIconArrow, {
-      scaleX: 1,
-      ease: easings.MENU_ARROW,
-      duration: 0.917,
-      delay: 1.367,
-    });
-
-    GSAP.to(nmwButtonIconCircle, {
-      scale: 1,
-      ease: easings.MENU_CIRCLE,
-      duration: 0.55,
-      delay: 0.983,
-    });
-
-    GSAP.to(nmwButtonText, {
-      opacity: 1,
-      ease: easings.MENU_BUTTON_TEXT,
-      duration: 0.25,
-      delay: 0.783,
-    });
-
-    nmwTitleWords.forEach((sentence, index) => {
-      GSAP.to(sentence, {
-        yPercent: 0,
-        duration: 1,
-        ease: easings.NO_MATTER_WHAT,
-        delay: index * 0.1,
-      });
-    });
-
-    GSAP.to(nmwLogo, {
-      yPercent: 0,
-      duration: 1,
-      ease: easings.NO_MATTER_WHAT,
-      delay: 0.167,
-    });
-
-    GSAP.to(nmwQuestion, {
-      yPercent: 0,
-      duration: 1,
-      ease: easings.NO_MATTER_WHAT,
-      delay: 0.25,
     });
   }
 

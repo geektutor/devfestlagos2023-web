@@ -22,13 +22,13 @@ const Menu = () => {
   return (
     <header className={styles.menu}>
       <div className={styles.logo}>
-        <Logo data-menu-logo />
+        <Logo data-animate-y-full />
       </div>
       <div className={styles.items}>
         <nav className={styles.nav}>
           <NavItems />
         </nav>
-        <Button variant='primary' className={styles.cta} data-menu-button>
+        <Button variant='primary' className={styles.cta} data-animate-button>
           <span>Register Now</span>
           <RightArrow className={styles.ctaIcon} />
         </Button>
@@ -59,18 +59,18 @@ const Menu = () => {
 
 const NavItems = () => {
   return (
-    <ul className={styles.navItems}>
-      <li className={styles.navItem} data-nav-item>
+    <ul className={styles.navItems} data-animate-y-children-full>
+      <li className={styles.navItem}>
         <Link href='/speakers' className={styles.link}>
           Speakers
         </Link>
       </li>
-      <li className={styles.navItem} data-nav-item>
+      <li className={styles.navItem}>
         <Link href='/schedule' className={styles.link}>
           Schedule
         </Link>
       </li>
-      <li className={styles.navItem} data-nav-item>
+      <li className={styles.navItem}>
         <Link href='/team' className={styles.link}>
           The team
         </Link>

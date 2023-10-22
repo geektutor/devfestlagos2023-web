@@ -49,6 +49,10 @@
   column-gap: 3.2rem;
 }
 
+.navItems{
+  overflow: hidden;
+}
+
 .items {
   @include b.media("<=desktop-sm") {
     column-gap: 0.8rem;

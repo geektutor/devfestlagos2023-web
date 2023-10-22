@@ -18,7 +18,7 @@ export const HomepageScene = () => {
           alt='DevFest Lagos 2023'
           fill
           style={{ objectFit: "cover" }}
-          data-scene
+          data-fade-in
         />
       </div>
       <div className={styles.kiteLeft} data-landing-doodle>
