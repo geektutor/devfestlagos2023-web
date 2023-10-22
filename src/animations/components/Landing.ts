@@ -42,24 +42,24 @@ export default class LandingPage extends Component {
         sections: "section",
         header: "header",
         animateSentences: "[data-animate-sentences]",
-        animateY: "[data-animate-y-full]",
+        animateY: "[data-animate-y]",
+        animateYFull: "[data-animate-y-full]",
         animateYChildren: "[data-animate-y-children-full]",
         addSpan: "[data-add-span]",
         animateButtons: "[data-animate-button]",
         fadeIn: "[data-fade-in]",
+        marqueeList: "[data-marquee-list]",
+        marqueeItem: "[data-marquee-item]",
+
+
         gdgPresents: "[data-gdg-presents]",
         landingSubtext: "[data-landing-subtext]",
         landingDoodles: "[data-landing-doodle]",
         landingSponsorCTA: "[data-sponsor-cta]",
-        marqueeList: "[data-marquee-list]",
-        marqueeItem: "[data-marquee-item]",
-        recapVideo: "[data-recap-video]",
         speakersDoodle: "[data-speaker-doodle]",
         speakersMemoji: "[data-speaker-memoji]",
         speakerCards: "[data-speaker-card]",
-        speakerButton: "[data-speaker-button]",
         speakersBanner: "[data-speakers-banner]",
-        faqItem: "[data-faq-item] div",
         speakersSection: "[data-speakers-section]",
         faqSection: "[data-faq-section]",
       },
@@ -193,7 +193,6 @@ export default class LandingPage extends Component {
 
             const elements = sectionElements[index];
 
-            console.log(index, elements)
             elements.forEach(element => {
               if(element.dataset.animateSentences){
                 this.animateSentences(element)
@@ -213,6 +212,10 @@ export default class LandingPage extends Component {
 
               if(element.dataset.fadeIn){
                 this.fadeIn(element)
+              }
+
+              if(element.dataset.animateY){
+                this.animateY(element)
               }
             })
           }
@@ -303,32 +306,39 @@ export default class LandingPage extends Component {
     });
   }
 
+  animateY(element: HTMLElement){
+    const delay = Number(element.dataset.delay) || 0;
+
+    GSAP.to(element, {
+      y: 0,
+      duration: 1,
+      delay,
+      ease: easings.SPEAKERS_TITLE,
+    });
+  }
+
   setup() {
     const {
       gdgPresents,
       landingDoodles,
       landingSponsorCTA,
-      recapVideo,
       speakersDoodle,
       speakersMemoji,
       speakerCards,
-      speakerButton,
       speakersBanner,
-      faqItem,
-      hypeLyrics,
-      hypeCat,
       animateSentences,
-      animateY,
+      animateYFull,
       animateYChildren,
       animateButtons,
-      fadeIn
+      fadeIn,
+      animateY
     } = this.elements;
 
 
     GSAP.set(
       [
         [...animateYChildren].map(element => element.children),
-        [...animateY].map(element => {
+        [...animateYFull].map(element => {
           if(element.dataset.addSpan){
             return element.querySelector('span')
           }else{
@@ -369,14 +379,14 @@ export default class LandingPage extends Component {
         speakersBanner,
         landingDoodles,
         speakersDoodle,
-        hypeLyrics,
-        hypeCat,
         fadeIn
       ],
       {
         opacity: 0,
       },
     );
+
+    console.log(animateY)
 
     GSAP.set([gdgPresents], {
       rotate: 0,
@@ -387,21 +397,11 @@ export default class LandingPage extends Component {
       rotate: -540,
     });
 
-    GSAP.set([recapVideo], {
-      y: "+200",
-    });
-
-    GSAP.set(faqItem, {
-      y: "+100",
-    });
-
-    // GSAP.set([hypeLyrics, hypeCat], {
-    //   y: "+50",
-    // });
-
-    GSAP.set(speakerButton, {
-      y: "+240",
-    });
+    [...animateY].forEach(element => {
+      GSAP.set(element, {
+        y: element.dataset.animateY
+      })
+    })
 
     this.element?.scrollTo({
       top: 0,
@@ -414,7 +414,6 @@ export default class LandingPage extends Component {
     const {
       gdgPresents,
       landingDoodles,
-      landingScene,
       landingSponsorCTA,
     } = this.elements;
 

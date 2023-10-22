@@ -198,7 +198,7 @@ export default function Landing() {
         </section>
         <section className='landing-page__hype'>
           <div className='landing-page__hype__yarns'>
-            <div className='landing-page__hype__yarns__lyric' data-fade-in>
+            <div className='landing-page__hype__yarns__lyric' data-fade-in data-animate-y="+50">
               <div className='landing-page__hype__yarns__lyric__song-deets'>
                 <div className='landing-page__hype__yarns__lyric__cover-image'>
                   <Image src={songCoverImage} alt='Rich Flex Cover Image' />
@@ -230,7 +230,7 @@ export default function Landing() {
               <span>Get Your Ticket</span> <ArrowRightDark />
             </PrimaryButton>
           </div>
-          <div className='landing-page__hype__categories' data-fade-in>
+          <div className='landing-page__hype__categories' data-fade-in data-animate-y="+50">
             <p className='landing-page__hype__categories__title' data-animate-sentences>
               23x or nothing this year, all out or all home
             </p>
@@ -270,7 +270,7 @@ export default function Landing() {
               With your support, we&apos;re about to raise the bar even higher this year!
             </p>
           </div>
-          <div className='landing-page__recap__video' data-fade-in data-recap-video>
+          <div className='landing-page__recap__video' data-fade-in data-animate-y="+200">
             <YoutubePlayer videoId='7kat5HlPtzU' />
           </div>
         </section>
@@ -322,7 +322,7 @@ export default function Landing() {
               ))}
             </div>
           </div>
-          <PrimaryButton href='/speakers' data-speaker-button>
+          <PrimaryButton href='/speakers' data-animate-y="+240">
             <span>View All Speakers</span>
             <ArrowRight />
           </PrimaryButton>
