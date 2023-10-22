@@ -53,7 +53,6 @@ export default class LandingPage extends Component {
 
 
         gdgPresents: "[data-gdg-presents]",
-        landingSubtext: "[data-landing-subtext]",
         landingDoodles: "[data-landing-doodle]",
         landingSponsorCTA: "[data-sponsor-cta]",
         speakersDoodle: "[data-speaker-doodle]",
@@ -161,9 +160,7 @@ export default class LandingPage extends Component {
       let parentSection = element.closest('section');
 
       if(!parentSection) {
-        parentSection = element.closest('header')
-        //todo: make this work with header
-        // return;
+        parentSection = element.closest('header');
       }
 
       const index = Number(parentSection.dataset.index);
@@ -385,8 +382,6 @@ export default class LandingPage extends Component {
         opacity: 0,
       },
     );
-
-    console.log(animateY)
 
     GSAP.set([gdgPresents], {
       rotate: 0,
