@@ -19,19 +19,22 @@ export const Talk: FC<Props> = ({ talk }) => {
           alt={talk.speaker.name}
           fill
           style={{ objectFit: "cover" }}
+          data-fade-in
+          data-animate-y="+50"
+          data-easing="MENU_ITEMS"
         />
       </div>
       <div>
-        <div className={styles.pills}>
-          <CategoryPill isSmall className={styles.category}>
-            {talk.category}
-          </CategoryPill>
-          <CategoryPill activeBgColor='#FDE293' isActive isSmall>
-            {getDayText(talk.speaker.day)}, {talk.date}
-          </CategoryPill>
+        <div className={styles.pills} data-animate-y-children-full data-easing="MENU_ITEMS">
+            <CategoryPill isSmall className={styles.category}>
+              {talk.category}
+            </CategoryPill>
+            <CategoryPill activeBgColor='#FDE293' isActive isSmall>
+              {getDayText(talk.speaker.day)}, {talk.date}
+            </CategoryPill>
         </div>
-        <p className={styles.title}>{talk.title}</p>
-        <div className={styles.footer}>
+        <p className={styles.title} data-animate-sentences data-easing="MENU_ITEMS">{talk.title}</p>
+        <div className={styles.footer} data-animate-y-children-full data-easing="MENU_ITEMS">
           <span>{talk.speaker.name}</span>
           <span className={styles.ellipse}></span>
           <span>{talk.speaker.role}</span>

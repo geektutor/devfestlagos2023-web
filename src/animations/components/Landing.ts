@@ -185,11 +185,15 @@ export default class LandingPage extends Component {
       }
     })
 
+    const talksIndex = 5;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.some((entry) => {
           if (entry.isIntersecting) {
             const index = entry.target.dataset.index;
+
+            if(Number(index) !== talksIndex && entry.intersectionRatio < 0.7) return;
 
             const elements = sectionElements[index];
 
@@ -218,13 +222,15 @@ export default class LandingPage extends Component {
                 this.animateY(element)
               }
             })
+
+            observer.unobserve(entry.target);
           }
         });
       },
       {
         root: null,
         rootMargin: "0px",
-        threshold: 0.7,
+        threshold: [0.3, 0.7],
       },
     );
 
