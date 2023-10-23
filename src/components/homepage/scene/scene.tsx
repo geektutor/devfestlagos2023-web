@@ -19,6 +19,7 @@ export const HomepageScene = () => {
           fill
           style={{ objectFit: "cover" }}
           data-fade-in
+          data-delay='.35'
           data-easing='LANDING_IMAGE'
         />
       </div>

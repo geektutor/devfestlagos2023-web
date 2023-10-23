@@ -6,16 +6,27 @@ import { TertiaryButton } from "@/components/button";
 export const NoMatterWhat = () => {
   return (
     <section className={styles.noMatterWhat} data-nmw>
-      <h4 className={styles.title} data-animate-sentences data-stagger={0.1}>
+      <h4
+        className={styles.title}
+        data-animate-sentences
+        data-stagger={0.1}
+        data-easing='NO_MATTER_WHAT'
+      >
         We are looking forward to hosting you again at
       </h4>
       <figure className={styles.logo}>
-        <InviteLogo data-animate-y-full />
+        <InviteLogo data-animate-y-full data-easing='NO_MATTER_WHAT' data-delay='.167' />
       </figure>
-      <p className={styles.question} data-animate-y-full data-add-span>
+      <p
+        className={styles.question}
+        data-animate-y-full
+        data-add-span
+        data-easing='NO_MATTER_WHAT'
+        data-delay='.250'
+      >
         Will you be there?
       </p>
-      <TertiaryButton className={styles.button} data-animate-button>
+      <TertiaryButton className={styles.button} data-animate-button data-delay='.7'>
         I will be there no matter what
       </TertiaryButton>
     </section>

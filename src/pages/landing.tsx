@@ -188,7 +188,7 @@ export default function Landing() {
           <h3 className='landing-page__better__title' data-animate-sentences data-easing="SPONSOR_BETTER">
             When we said better, we weren’t joking!
           </h3>
-          <p className='landing-page__better__subtext' data-animate-y-full data-add-span data-easing="SPONSOR_BETTER">Here are our headline sponsors</p>
+          <p className='landing-page__better__subtext' data-animate-y-full data-add-span data-easing="SPONSOR_BETTER" data-delay=".167">Here are our headline sponsors</p>
           <div className='landing-page__better__sponsors' data-animate-y-children-full data-delay=".083" data-easing="SPONSOR_BETTER">
             <GoogleIcon />
             <SpotifyIcon />
@@ -221,25 +221,25 @@ export default function Landing() {
               </div>
               <SpotifyLyricIcon className='landing-page__hype__yarns__lyric__spotify' />
             </div>
-            <p className='landing-page__hype__yarns__intro' data-animate-sentences>After an amazing event last year,</p>
-            <p className='landing-page__hype__yarns__subtext' data-animate-sentences>
+            <p className='landing-page__hype__yarns__intro' data-animate-sentences data-easing="NO_MATTER_WHAT" data-delay=".417">After an amazing event last year,</p>
+            <p className='landing-page__hype__yarns__subtext' data-animate-sentences data-easing="NO_MATTER_WHAT" data-delay=".583">
               We are back to do so much more and we look forward to showing you what we have in
               store.
             </p>
-            <PrimaryButton data-animate-button>
+            <PrimaryButton data-animate-button data-delay="1.2">
               <span>Get Your Ticket</span> <ArrowRightDark />
             </PrimaryButton>
           </div>
           <div className='landing-page__hype__categories' data-fade-in data-animate-y="+50">
-            <p className='landing-page__hype__categories__title' data-animate-sentences>
+            <p className='landing-page__hype__categories__title' data-animate-sentences data-easing="HYPE" data-delay=".25">
               23x or nothing this year, all out or all home
             </p>
-            <p className='landing-page__hype__categories__subtext' data-animate-sentences>
+            <p className='landing-page__hype__categories__subtext' data-animate-sentences data-easing="HYPE" data-delay=".417">
               We have prepared a host of topics and speakers for you! Lots of food and we are not
               talking groceries 🌚
             </p>
             <div className='landing-page__hype__categories__button-wrapper'>
-              <PrimaryButton data-animate-button>
+              <PrimaryButton data-animate-button data-delay="1.7">
                 <span>Register Now</span>
                 <ArrowRight />
               </PrimaryButton>
@@ -263,21 +263,21 @@ export default function Landing() {
         </section>
         <section className='landing-page__recap' data-recap-section>
           <div className='landing-page__recap__top'>
-            <h3 className='landing-page__recap__title' data-animate-sentences>
+            <h3 className='landing-page__recap__title' data-animate-sentences data-easing="LANDING_TITLE">
               Last year&apos;s edition was like no other.
             </h3>
-            <p className='landing-page__recap__subtext' data-animate-sentences data-delay={0.167}>
+            <p className='landing-page__recap__subtext' data-animate-sentences data-delay={0.167} data-easing="LANDING_TITLE">
               With your support, we&apos;re about to raise the bar even higher this year!
             </p>
           </div>
-          <div className='landing-page__recap__video' data-fade-in data-animate-y="+200">
+          <div className='landing-page__recap__video' data-fade-in data-delay=".35" data-animate-y="+200" data-easing="RECAP_VIDEO">
             <YoutubePlayer videoId='7kat5HlPtzU' />
           </div>
         </section>
         <section className='landing-page__speakers' data-speakers-section>
           <div style={{position: "relative"}}>
             <SparkleIcon data-fade-in className='landing-page__speakers__sparkle' />
-            <p className='landing-page__speakers__count' data-animate-y-full data-add-span>
+            <p className='landing-page__speakers__count' data-animate-y-full data-add-span data-easing="SPEAKERS_TITLE">
               41
             </p>
           </div>
@@ -294,14 +294,14 @@ export default function Landing() {
               className='landing-page__speakers__memoji-right'
               data-speaker-memoji
             />
-            <p className='landing-page__speakers__speakers-text' data-animate-y-full data-add-span>
+            <p className='landing-page__speakers__speakers-text' data-animate-y-full data-add-span data-easing="SPEAKERS_TITLE" data-delay=".83">
               Speakers
             </p>
           </div>
           <div className='landing-page__speakers__subtext'>
             <Image data-speaker-doodle src={repeatDoodle} alt='doodle' className='landing-page__speakers__repeat' />
             <Image data-speaker-doodle src={cloudsDoodle} alt='doodle' className='landing-page__speakers__cloud' />
-            <p data-animate-y-full data-add-span>
+            <p data-animate-y-full data-add-span data-easing="GDG_OPACITY" data-delay=".167">
               All ready to cut soap for you!
             </p>
           </div>
@@ -336,7 +336,7 @@ export default function Landing() {
                 </>
               ))}
             </div>
-            <div className='landing-page__speakers__hype-banner__item faded' data-speakers-banner>
+            <div className='landing-page__speakers__hype-banner__item faded' data-speakers-banner data-delay=".83">
               {Array.from({ length: 5 }).map(() => (
                 <>
                   <span>🔥</span>

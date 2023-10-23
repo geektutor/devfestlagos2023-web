@@ -21,8 +21,9 @@ const easings = {
   SPEAKERS_TITLE: CustomEase.create("doodle", "0.07, 0.00, 0.00, 1.00"),
   SPEAKERS_MEMOJI: CustomEase.create("doodle", "0.89, 0.00, 0.00, 1.00"),
   SPEAKERS_CARDS: CustomEase.create("doodle", "0.91, 0.00, 0.00, 1.00"),
-  FAQ_ITEM: CustomEase.create("doodle", "0.11, 0.00, 0.00, 1.00"),
+  FAQ: CustomEase.create("doodle", "0.11, 0.00, 0.00, 1.00"),
   NO_MATTER_WHAT: CustomEase.create("doodle", "0.17, 0.00, 0.00, 1.00"),
+  HYPE: CustomEase.create("doodle", "0.18, 0.00, 0.00, 1.00"),
 };
 
 const buttonSelectors = {
@@ -60,7 +61,6 @@ export default class LandingPage extends Component {
         speakerCards: "[data-speaker-card]",
         speakersBanner: "[data-speakers-banner]",
         speakersSection: "[data-speakers-section]",
-        faqSection: "[data-faq-section]",
       },
     });
 
@@ -83,7 +83,6 @@ export default class LandingPage extends Component {
 
     const animations = [
       [speakersSection, this.animateSpeakers],
-      [faqSection, this.animateFAQ],
     ];
 
     const observer = new IntersectionObserver(
@@ -157,8 +156,6 @@ export default class LandingPage extends Component {
     const sectionElements: Array<Array<Node>> = [];
 
     const processElement = (element: Node) => {
-
-
       let parentSection = element.closest('section');
 
       if(!parentSection) {
@@ -167,11 +164,7 @@ export default class LandingPage extends Component {
 
 
       const index = Number(parentSection.dataset.index);
-      if(element.className === 'landing-page__better__subtext'){
-        console.log(element)
-        console.log(index)
-      }else{
-      }
+
       if(!sectionElements[index]){
         sectionElements[index] = []
       }
@@ -198,7 +191,6 @@ export default class LandingPage extends Component {
 
             const elements = sectionElements[index];
 
-            console.log(sectionElements[index])
             elements.forEach(element => {
               if(element.dataset.animateSentences){
                 this.animateSentences(element)
@@ -243,12 +235,14 @@ export default class LandingPage extends Component {
     const words = calculateSentences(this.getWords(element as HTMLElement));
     const delay = Number(element.dataset.delay) || 0;
     const stagger = Number(element.dataset.stagger) || 0.084;
+    const datasetEasing = element.dataset.easing as keyof typeof easings;
+    const easing = easings[datasetEasing] || easings.LANDING_DESCRIPTION;
 
     words.forEach((sentence, index) => {
       GSAP.to(sentence, {
         yPercent: 0,
         duration: 1,
-        ease: easings.LANDING_DESCRIPTION,
+        ease: easing,
         delay: delay + stagger * index,
       });
     });
@@ -256,13 +250,15 @@ export default class LandingPage extends Component {
 
   animateYFull(element){
     const delay = Number(element.dataset.delay) || 0;
+    const datasetEasing = element.dataset.easing as keyof typeof easings;
+    const easing = easings[datasetEasing] || easings.LANDING_DESCRIPTION;
 
     const targetElement = element.dataset.addSpan ? element.querySelector('span') : element;
 
     GSAP.to(targetElement, {
       yPercent: 0,
       duration: 1,
-      ease: easings.LANDING_DESCRIPTION,
+      ease: easing,
       delay
     });
   }
@@ -270,11 +266,13 @@ export default class LandingPage extends Component {
   animateYChildrenFull(element){
     const delay = Number(element.dataset.delay) || 0;
     const stagger = Number(element.dataset.stagger) || 0.084;
+    const datasetEasing = element.dataset.easing as keyof typeof easings;
+    const easing = easings[datasetEasing] || easings.LANDING_DESCRIPTION;
 
     GSAP.to(element.children, {
       yPercent: 0,
       duration: 1,
-      ease: easings.LANDING_DESCRIPTION,
+      ease: easing,
       delay,
       stagger,
     });
@@ -307,23 +305,27 @@ export default class LandingPage extends Component {
 
   fadeIn(element: HTMLElement){
     const delay = Number(element.dataset.delay) || 0;
+    const datasetEasing = element.dataset.easing as keyof typeof easings;
+    const easing = easings[datasetEasing] || easings.LANDING_IMAGE;
 
     GSAP.to(element, {
       opacity: 1,
       duration: 1,
-      ease: easings.LANDING_IMAGE,
+      ease: easing,
       delay,
     });
   }
 
   animateY(element: HTMLElement){
     const delay = Number(element.dataset.delay) || 0;
+    const datasetEasing = element.dataset.easing as keyof typeof easings;
+    const easing = easings[datasetEasing] || easings.SPEAKERS_TITLE;
 
     GSAP.to(element, {
       y: 0,
       duration: 1,
       delay,
-      ease: easings.SPEAKERS_TITLE,
+      ease: easing,
     });
   }
 
@@ -489,18 +491,6 @@ export default class LandingPage extends Component {
           },
         });
       },
-    });
-  }
-
-  animateFAQ() {
-    const { faqItem } = this.elements;
-
-    GSAP.to(faqItem, {
-      y: 0,
-      delay: 0.333,
-      duration: 1,
-      ease: easings.FAQ_ITEM,
-      stagger: 0.084,
     });
   }
 
