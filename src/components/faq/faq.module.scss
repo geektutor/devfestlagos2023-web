@@ -3,11 +3,14 @@
 @import "utils/breakpoints";
 
 .faq {
-  display: inline;
+  display: inline-flex;
+  row-gap: 0.8rem;
   flex-direction: column;
   cursor: pointer;
   width: 100%;
   overflow: hidden;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .faqQuestion {
@@ -51,17 +54,25 @@
     @include body-2;
     border-radius: 2.4rem;
   }
+
+  & a {
+    color: $primary-green;
+    text-decoration: none;
+  }
 }
 
 .faqSvg {
   width: 3.2rem;
+  min-width: 3.2rem;
 
   @include media("<=tablet") {
     width: 1.6rem;
+    min-width: 1.6rem;
   }
 
   @include media("<=phone") {
     width: 3.2rem;
+    min-width: 3.2rem;
     margin-left: 3.2rem;
   }
 }
