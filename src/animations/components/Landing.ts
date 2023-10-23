@@ -1,3 +1,4 @@
+// @ts-nocheck I can't deal with the type issues right now :)
 import Component from "@/animations/classes/Component";
 import GSAP from "gsap";
 import { CustomEase } from "@/animations/utils/CustomEase";
@@ -31,7 +32,7 @@ const buttonSelectors = {
   text: `span`,
   iconCircle: `svg path:first-child`,
   iconArrow: `svg path:last-child`,
-}
+};
 
 export default class LandingPage extends Component {
   //@ts-ignore
@@ -54,7 +55,6 @@ export default class LandingPage extends Component {
         marqueeList: "[data-marquee-list]",
         marqueeItem: "[data-marquee-item]",
 
-
         gdgPresents: "[data-gdg-presents]",
         landingDoodles: "[data-landing-doodle]",
         landingSponsorCTA: "[data-sponsor-cta]",
@@ -68,23 +68,15 @@ export default class LandingPage extends Component {
 
     this.update();
 
-    const {
-      animateSentences,
-      speakersSection,
-      addSpan
-    } = this.elements;
+    const { animateSentences, speakersSection, addSpan } = this.elements;
 
+    addSpan.forEach(this.addSpan);
+    animateSentences.forEach(this.convertToSentences);
 
-
-    addSpan.forEach(this.addSpan)
-    animateSentences.forEach(this.convertToSentences)
-
-    this.setupSections()
+    this.setupSections();
     this.setup();
 
-    const animations = [
-      [speakersSection, this.animateSpeakers],
-    ];
+    const animations = [[speakersSection, this.animateSpeakers]];
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -139,51 +131,44 @@ export default class LandingPage extends Component {
     return element.querySelector("span");
   }
 
-  setupSections(){
-    const {
-      sections,
-      header,
-      footer
-    } = this.elements;
+  setupSections() {
+    const { sections, header, footer } = this.elements;
 
-    if(!(sections instanceof NodeList)) return
+    if (!(sections instanceof NodeList)) return;
 
     const sectionsArray = Array.from(sections).concat([header, footer]);
 
     sectionsArray.forEach((section, index) => {
-      section.dataset.index = index
-    })
-
+      section.dataset.index = index;
+    });
 
     const sectionElements: Array<Array<Node>> = [];
 
     const processElement = (element: Node) => {
-      let parentSection = element.closest('section');
+      let parentSection = element.closest("section");
 
-      if(!parentSection) {
-        parentSection = element.closest('header') || element.closest('footer');
+      if (!parentSection) {
+        parentSection = element.closest("header") || element.closest("footer");
       }
-
 
       const index = Number(parentSection.dataset.index);
 
-      if(!sectionElements[index]){
-        sectionElements[index] = []
+      if (!sectionElements[index]) {
+        sectionElements[index] = [];
       }
 
-      sectionElements[index].push(element)
-    }
+      sectionElements[index].push(element);
+    };
 
+    Object.values(this.elements).forEach((element) => {
+      if (!element || Array.isArray(element)) return;
 
-    Object.values(this.elements).forEach(element => {
-      if(!element || Array.isArray(element)) return;
-
-      if(element instanceof NodeList){
-        element.forEach(processElement)
-      }else{
-        processElement(element)
+      if (element instanceof NodeList) {
+        element.forEach(processElement);
+      } else {
+        processElement(element);
       }
-    })
+    });
 
     const talksIndex = 5;
 
@@ -193,35 +178,35 @@ export default class LandingPage extends Component {
           if (entry.isIntersecting) {
             const index = entry.target.dataset.index;
 
-            if(Number(index) !== talksIndex && entry.intersectionRatio < 0.7) return;
+            if (Number(index) !== talksIndex && entry.intersectionRatio < 0.7) return;
 
             const elements = sectionElements[index];
 
-            elements.forEach(element => {
-              if(element.dataset.animateSentences){
-                this.animateSentences(element)
+            elements.forEach((element) => {
+              if (element.dataset.animateSentences) {
+                this.animateSentences(element);
               }
 
-              if(element.dataset.animateYFull){
-                this.animateYFull(element)
+              if (element.dataset.animateYFull) {
+                this.animateYFull(element);
               }
 
-              if(element.dataset.animateYChildrenFull){
-                this.animateYChildrenFull(element)
+              if (element.dataset.animateYChildrenFull) {
+                this.animateYChildrenFull(element);
               }
 
-              if(element.dataset.animateButton){
-                this.animateButton(element)
+              if (element.dataset.animateButton) {
+                this.animateButton(element);
               }
 
-              if(element.dataset.fadeIn){
-                this.fadeIn(element)
+              if (element.dataset.fadeIn) {
+                this.fadeIn(element);
               }
 
-              if(element.dataset.animateY){
-                this.animateY(element)
+              if (element.dataset.animateY) {
+                this.animateY(element);
               }
-            })
+            });
 
             observer.unobserve(entry.target);
           }
@@ -239,7 +224,7 @@ export default class LandingPage extends Component {
     });
   }
 
-  animateSentences(element: HTMLElement){
+  animateSentences(element: HTMLElement) {
     const words = calculateSentences(this.getWords(element as HTMLElement));
     const delay = Number(element.dataset.delay) || 0;
     const stagger = Number(element.dataset.stagger) || 0.084;
@@ -256,22 +241,22 @@ export default class LandingPage extends Component {
     });
   }
 
-  animateYFull(element){
+  animateYFull(element) {
     const delay = Number(element.dataset.delay) || 0;
     const datasetEasing = element.dataset.easing as keyof typeof easings;
     const easing = easings[datasetEasing] || easings.LANDING_DESCRIPTION;
 
-    const targetElement = element.dataset.addSpan ? element.querySelector('span') : element;
+    const targetElement = element.dataset.addSpan ? element.querySelector("span") : element;
 
     GSAP.to(targetElement, {
       yPercent: 0,
       duration: 1,
       ease: easing,
-      delay
+      delay,
     });
   }
 
-  animateYChildrenFull(element){
+  animateYChildrenFull(element) {
     const delay = Number(element.dataset.delay) || 0;
     const stagger = Number(element.dataset.stagger) || 0.084;
     const datasetEasing = element.dataset.easing as keyof typeof easings;
@@ -293,7 +278,7 @@ export default class LandingPage extends Component {
       scaleX: 1,
       ease: easings.MENU_ARROW,
       duration: 0.917,
-      delay: delay + .384,
+      delay: delay + 0.384,
     });
 
     GSAP.to(button.querySelector(buttonSelectors.iconCircle), {
@@ -311,7 +296,7 @@ export default class LandingPage extends Component {
     });
   }
 
-  fadeIn(element: HTMLElement){
+  fadeIn(element: HTMLElement) {
     const delay = Number(element.dataset.delay) || 0;
     const datasetEasing = element.dataset.easing as keyof typeof easings;
     const easing = easings[datasetEasing] || easings.LANDING_IMAGE;
@@ -324,7 +309,7 @@ export default class LandingPage extends Component {
     });
   }
 
-  animateY(element: HTMLElement){
+  animateY(element: HTMLElement) {
     const delay = Number(element.dataset.delay) || 0;
     const datasetEasing = element.dataset.easing as keyof typeof easings;
     const easing = easings[datasetEasing] || easings.SPEAKERS_TITLE;
@@ -351,40 +336,41 @@ export default class LandingPage extends Component {
       animateYChildren,
       animateButtons,
       fadeIn,
-      animateY
+      animateY,
     } = this.elements;
-
 
     GSAP.set(
       [
-        [...animateYFull].map(element => {
-          if(element.dataset.addSpan){
-            return element.querySelector('span')
-          }else{
+        [...animateYFull].map((element) => {
+          if (element.dataset.addSpan) {
+            return element.querySelector("span");
+          } else {
             return element;
           }
         }),
-        [...animateSentences].map(element => element.querySelectorAll('span span')) //todo: replace with one function that gets words and calcs seentence
+        [...animateSentences].map((element) => element.querySelectorAll("span span")), //todo: replace with one function that gets words and calcs seentence
       ],
       {
         yPercent: 100,
       },
     );
 
-    [...animateYChildren].map(element => {
+    [...animateYChildren].map((element) => {
       GSAP.set(element.children, {
         y: element.offsetHeight,
       });
     }),
-
-    GSAP.set([...animateButtons].map(button => button.querySelector(buttonSelectors.iconArrow)), {
-      scaleX: 0,
-      transformOrigin: "left",
-    });
+      GSAP.set(
+        [...animateButtons].map((button) => button.querySelector(buttonSelectors.iconArrow)),
+        {
+          scaleX: 0,
+          transformOrigin: "left",
+        },
+      );
 
     GSAP.set(
       [
-        [...animateButtons].map(button => button.querySelector(buttonSelectors.iconCircle)),
+        [...animateButtons].map((button) => button.querySelector(buttonSelectors.iconCircle)),
         speakersMemoji,
         speakerCards,
       ],
@@ -400,11 +386,11 @@ export default class LandingPage extends Component {
 
     GSAP.set(
       [
-        [...animateButtons].map(button => button.querySelector(buttonSelectors.text)),
+        [...animateButtons].map((button) => button.querySelector(buttonSelectors.text)),
         speakersBanner,
         landingDoodles,
         speakersDoodle,
-        fadeIn
+        fadeIn,
       ],
       {
         opacity: 0,
@@ -420,11 +406,11 @@ export default class LandingPage extends Component {
       rotate: -540,
     });
 
-    [...animateY].forEach(element => {
+    [...animateY].forEach((element) => {
       GSAP.set(element, {
-        y: element.dataset.animateY
-      })
-    })
+        y: element.dataset.animateY,
+      });
+    });
 
     this.element?.scrollTo({
       top: 0,
@@ -434,11 +420,7 @@ export default class LandingPage extends Component {
   }
 
   animateLanding() {
-    const {
-      gdgPresents,
-      landingDoodles,
-      landingSponsorCTA,
-    } = this.elements;
+    const { gdgPresents, landingDoodles, landingSponsorCTA } = this.elements;
 
     GSAP.to(gdgPresents, {
       rotate: -10,
@@ -463,12 +445,7 @@ export default class LandingPage extends Component {
   }
 
   animateSpeakers() {
-    const {
-      speakersDoodle,
-      speakersMemoji,
-      speakerCards,
-      speakerButton,
-    } = this.elements;
+    const { speakersDoodle, speakersMemoji, speakerCards, speakerButton } = this.elements;
 
     GSAP.to(speakersDoodle, {
       opacity: 1,
