@@ -178,7 +178,11 @@ export default class LandingPage extends Component {
           if (entry.isIntersecting) {
             const index = entry.target.dataset.index;
 
-            if (Number(index) !== talksIndex && entry.intersectionRatio < 0.7) return;
+            if (Number(index) !== talksIndex) {
+              if (window.innerWidth > 480 && entry.intersectionRatio < 0.7) {
+                return;
+              }
+            }
 
             const elements = sectionElements[index];
 

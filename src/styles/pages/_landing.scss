@@ -1,15 +1,17 @@
 .landing-page {
   width: 100vw;
   overflow-y: scroll;
+  overflow-x: hidden;
   //scroll-snap-type: y mandatory;
   height: 100vh;
   opacity: 0;
 
-  &.is-active{
+  &.is-active {
     opacity: 1;
   }
 
-  > section, header {
+  > section,
+  header {
     scroll-snap-align: start;
   }
 
@@ -771,7 +773,7 @@
       }
     }
 
-    &__speakers-wrapper{
+    &__speakers-wrapper {
       position: relative;
       margin-bottom: 1.6rem;
 
