@@ -64,7 +64,7 @@ export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
       </div>
       <div className={styles.talksTags}>
         {talkCategories.map((category, index) => (
-          <div key={category} style={{position: "relative", overflow: "hidden"}}>
+          <div key={category} style={{position: "relative", overflow: "hidden", flexShrink: "0"}}>
             <CategoryPill
               className={classNames(
                 styles.talksTag,

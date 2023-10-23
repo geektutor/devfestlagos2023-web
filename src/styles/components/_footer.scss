@@ -89,6 +89,7 @@
     @include media("<=phone") {
       @include body-4;
       text-align: start;
+      padding-left: 2.4rem;
     }
   }
 }
