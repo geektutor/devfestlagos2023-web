@@ -24,6 +24,7 @@ const easings = {
   FAQ: CustomEase.create("doodle", "0.11, 0.00, 0.00, 1.00"),
   NO_MATTER_WHAT: CustomEase.create("doodle", "0.17, 0.00, 0.00, 1.00"),
   HYPE: CustomEase.create("doodle", "0.18, 0.00, 0.00, 1.00"),
+  FOOTER: CustomEase.create("doodle", "0.12, 0.00, 0.00, 1.00"),
 };
 
 const buttonSelectors = {
@@ -42,6 +43,7 @@ export default class LandingPage extends Component {
       elements: {
         sections: "section",
         header: "header",
+        footer: "footer",
         animateSentences: "[data-animate-sentences]",
         animateY: "[data-animate-y]",
         animateYFull: "[data-animate-y-full]",
@@ -69,7 +71,6 @@ export default class LandingPage extends Component {
     const {
       animateSentences,
       speakersSection,
-      faqSection,
       addSpan
     } = this.elements;
 
@@ -141,12 +142,13 @@ export default class LandingPage extends Component {
   setupSections(){
     const {
       sections,
-      header
+      header,
+      footer
     } = this.elements;
 
     if(!(sections instanceof NodeList)) return
 
-    const sectionsArray = Array.from(sections).concat(header);
+    const sectionsArray = Array.from(sections).concat([header, footer]);
 
     sectionsArray.forEach((section, index) => {
       section.dataset.index = index
@@ -159,7 +161,7 @@ export default class LandingPage extends Component {
       let parentSection = element.closest('section');
 
       if(!parentSection) {
-        parentSection = element.closest('header');
+        parentSection = element.closest('header') || element.closest('footer');
       }
 
 
@@ -270,7 +272,7 @@ export default class LandingPage extends Component {
     const easing = easings[datasetEasing] || easings.LANDING_DESCRIPTION;
 
     GSAP.to(element.children, {
-      yPercent: 0,
+      y: 0,
       duration: 1,
       ease: easing,
       delay,
@@ -349,7 +351,6 @@ export default class LandingPage extends Component {
 
     GSAP.set(
       [
-        [...animateYChildren].map(element => element.children),
         [...animateYFull].map(element => {
           if(element.dataset.addSpan){
             return element.querySelector('span')
@@ -363,6 +364,12 @@ export default class LandingPage extends Component {
         yPercent: 100,
       },
     );
+
+    [...animateYChildren].map(element => {
+      GSAP.set(element.children, {
+        y: element.offsetHeight,
+      });
+    }),
 
     GSAP.set([...animateButtons].map(button => button.querySelector(buttonSelectors.iconArrow)), {
       scaleX: 0,
