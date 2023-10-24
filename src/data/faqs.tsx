@@ -9,6 +9,11 @@ export const faqs: FAQ[] = [
   },
   {
     question: "2. When and where is DevFest Lagos 2023 taking place?",
+    answer:
+      "DevFest Lagos 2023 will be held on November 24th and 25th, 2023, starting at 9:00 AM each day. The venue is Landmark Centre, Oniru, Lagos",
+  },
+  {
+    question: "3. How can I register for DevFest Lagos 2023?",
     answer: (
       <>
         To attend DevFest Lagos 2023, you must register through the official event registration
@@ -16,11 +21,6 @@ export const faqs: FAQ[] = [
         or a single-day ticket.
       </>
     ),
-  },
-  {
-    question: "3. How can I register for DevFest Lagos 2023?",
-    answer:
-      "To attend DevFest Lagos 2023, you must register through the official event registration platform at [registration_link]. You can choose between a two-day ticket or a single-day ticket.",
   },
   {
     question: "4. Is DevFest Lagos 2023 the first edition of this event?",
