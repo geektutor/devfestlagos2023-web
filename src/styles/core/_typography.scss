@@ -1,92 +1,92 @@
 @mixin heading-1 {
-  font-size: 72px;
+  font-size: 7.2rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: -2px;
+  letter-spacing: -0.2rem;
 }
 
 @mixin heading-2 {
-  font-size: 64px;
+  font-size: 6.4rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.05rem;
 }
 
 @mixin heading-3 {
-  font-size: 56px;
+  font-size: 5.6rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
 
 @mixin heading-4 {
-  font-size: 40px;
+  font-size: 4rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 }
 
 @mixin heading-5 {
-  font-size: 32px;
+  font-size: 3.2rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.05rem;
 }
 
 @mixin title-1 {
-  font-size: 26px;
+  font-size: 2.6rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 }
 
 @mixin title-2 {
-  font-size: 24px;
+  font-size: 2.4rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 }
 
 @mixin body-1 {
-  font-size: 22px;
+  font-size: 2.2rem;
   font-style: normal;
   font-weight: 500;
-  line-height: 28px;
+  line-height: 2.8rem;
 }
 
 @mixin body-2 {
-  font-size: 18px;
+  font-size: 1.8rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 }
 
 @mixin body-3 {
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 500;
-  line-height: 22px;
+  line-height: 2.2rem;
 }
 
 @mixin body-4 {
-  font-size: 14px;
+  font-size: 1.4rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 }
 
 @mixin body-5 {
-  font-size: 12px;
+  font-size: 1.2rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 }
 
 @mixin button-text {
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;

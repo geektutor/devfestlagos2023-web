@@ -1,0 +1,90 @@
+.scc {
+  border-radius: 24px;
+  border: 2px solid $grey-90;
+  padding: 12px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+
+  &__first_level {
+    display: flex;
+    gap: 12px;
+  }
+
+  &__img_holder {
+    width: 76px;
+    position: relative;
+
+    &__anchor {
+      position: absolute;
+      padding: 4px;
+      border-radius: 8px;
+      color: $grey-100;
+      background-color: $primary-green;
+      transform: rotate(-10deg);
+      @include body-5;
+      top: -9px;
+      left: -8px;
+    }
+
+    &__avatar {
+      width: 76px;
+      height: 80px;
+      border-radius: 16px;
+      object-fit: cover;
+
+      @include media("<=phone") {
+        height: 56px;
+      }
+    }
+  }
+
+  &__title {
+    display: flex;
+    flex-wrap: wrap;
+    @include title-1;
+
+    @include media("<=phone") {
+      @include body-1;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin: -30px 0 0 88px;
+    @include body-2;
+
+    @include media("<=phone") {
+      margin: 16px 0 0;
+      gap: 8px;
+    }
+
+    &__time {
+      color: $grey-30;
+      margin-right: 6px;
+    }
+
+    &__venue {
+      color: $grey-30;
+      display: inline-flex;
+      align-items: center;
+      gap: 0 10px;
+    }
+
+    &__view {
+      margin-left: auto;
+      color: $primary-blue;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      gap: 0 4px;
+
+      @include media("<=phone") {
+        margin-left: 0;
+      }
+    }
+  }
+}
