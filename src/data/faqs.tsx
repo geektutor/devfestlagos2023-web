@@ -5,11 +5,11 @@ export const faqs: FAQ[] = [
   {
     question: "1. So, what is DevFest Lagos 2023?",
     answer:
-      "DevFest Lagos 2023 is a two-day developer festival that will bring together technology enthusiasts, developers, designers, beginners, veterans and experts alike. It will also gather tech ecosystem drivers and thought leaders. It features keynotes, workshops, speaker-led sessions, and codelabs on various technology topics. The event offers a platform to learn, connect, network, and explore the latest developments in the tech industry.",
+      "DevFest Lagos 2023 is a two-day developer festival that will bring together technology enthusiasts, developers, designers, beginners, veterans, and experts alike. It will be a gathering of tech ecosystem drivers and thought leaders. The event features keynotes, workshops, speaker-led sessions, and codelabs on various technology topics. DevFest 2023 will also offer a platform for you to learn, connect, network, and explore the latest developments in the tech industry.",
   },
   {
     question: "2. When and where is DevFest Lagos 2023 taking place?",
-    answer:      
+    answer:
       "DevFest Lagos 2023 will be held on November 24th and 25th, 2023, starting at 9:00 AM each day. The venue is Landmark Centre, Oniru, Lagos",
   },
   {
@@ -25,7 +25,7 @@ export const faqs: FAQ[] = [
   {
     question: "4. Is DevFest Lagos 2023 the first edition of this event?",
     answer:
-      "No, DevFest Lagos 2023 is the sixth edition of DevFest Lagos. It has a rich history of bringing together the tech community in Lagos for valuable experiences and learning opportunities.",
+      "No, the event in November 2023 is the sixth edition of DevFest Lagos. It has a rich history of bringing together the tech community in Lagos for valuable experiences and learning opportunities.",
   },
   {
     question: "5. Who is organizing DevFest Lagos 2023?",
@@ -35,12 +35,12 @@ export const faqs: FAQ[] = [
   {
     question: "6. What topics will be covered during the event?",
     answer:
-      "DevFest Lagos 2023 will cover a wide range of topics, including Web development, Cloud computing, Android development, Flutter, Design, Machine Learning/AI, Cybersecurity, Technical Writing, and more. These sessions will be happening across multiple tracks, concurrently across the different breakout rooms in the venue. While it is a Google-supported event, organized by the Google Developers Group Lagos (GDG Lagos) it will encompass many other tech-related subjects.",
+      "DevFest Lagos 2023 will cover a wide range of topics, including Web development, Cloud computing, Android development, Flutter, Design, Machine Learning/AI, Cybersecurity, Technical Writing, and more. These sessions will happen across multiple tracks, concurrently across the different breakout rooms in the venue. Regardless it being a  Google-supported event organized by Google Developers Group Lagos (GDG Lagos), it will encompass many other tech-related subjects.",
   },
   {
     question: "7. Is DevFest Lagos 2023 only for Google-related technologies?",
     answer:
-      "No, DevFest Lagos 2023 is not limited to Google technologies. While Google is a supporter of the event, it will cover a diverse array of technology topics, including those beyond the Google ecosystem.",
+      "No, DevFest Lagos 2023 is not limited to Google technologies. Key aspects and topics under technology would also be the focus of the event. This includes those beyond the Google ecosystem.",
   },
   {
     question: "8. Who are the sponsors and partners of DevFest Lagos 2023?",
@@ -79,7 +79,7 @@ export const faqs: FAQ[] = [
   {
     question: "13. Will there be a livestream of the event for remote attendees?",
     answer:
-      "No, there won't be a livestream of DevFest Lagos 2023. The event is designed for in-person attendance only.",
+      "The 2023 edition of DevFest Lagos 2023 would not be live streamed like the previous editions. This edition is designed to give you the best experience in person only.",
   },
   {
     question: "14. Can I transfer my ticket to someone else if I am unable to attend?",
