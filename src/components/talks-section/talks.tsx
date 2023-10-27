@@ -33,7 +33,8 @@ export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
   }, [activeCategory, activeDay, hasDayToggle]);
 
   return (
-    <section className={styles.talks}>
+    <section className={styles.talks} data-section-delay='.6'>
+      <canvas data-animate-canvas className={styles.talkCanvas} />
       <div className={styles.talksTop}>
         <div>
           <p
@@ -76,6 +77,7 @@ export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
             href='/schedule'
             data-animate-button
             data-delay='.25'
+            data-hide-for-canvas
           >
             <span>View All Talks</span>
             <ArrowRightDark />

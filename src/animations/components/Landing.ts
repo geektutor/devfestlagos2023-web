@@ -30,6 +30,8 @@ const easings = {
   TALK_IMAGE: CustomEase.create("doodle", "0.84, 0.00, 0.00, 1.00"),
 };
 
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 const buttonSelectors = {
   text: `span`,
   iconCircle: `svg path:first-child`,
@@ -51,6 +53,8 @@ export default class LandingPage extends Component {
         animateY: "[data-animate-y]",
         animateYFull: "[data-animate-y-full]",
         animateYChildren: "[data-animate-y-children-full]",
+        animateCanvas: "[data-animate-canvas]",
+        hideForCanvas: "[data-hide-for-canvas]",
         addSpan: "[data-add-span]",
         animateButtons: "[data-animate-button]",
         fadeIn: "[data-fade-in]",
@@ -178,7 +182,9 @@ export default class LandingPage extends Component {
       (entries) => {
         entries.some((entry) => {
           if (entry.isIntersecting) {
-            const index = entry.target.dataset.index;
+            const section = entry.target;
+
+            const index = section.dataset.index;
 
             if (Number(index) !== talksIndex) {
               if (window.innerWidth > 480 && entry.intersectionRatio < 0.7) {
@@ -188,7 +194,13 @@ export default class LandingPage extends Component {
 
             const elements = sectionElements[index];
 
-            elements.forEach((element) => {
+            const sectionDelay = section.dataset.sectionDelay;
+
+            elements.forEach(async (element) => {
+              if (sectionDelay && !element.dataset.animateCanvas) {
+                await sleep(Number(sectionDelay) * 1000);
+              }
+
               if (element.dataset.animateSentences) {
                 this.animateSentences(element);
               }
@@ -212,6 +224,10 @@ export default class LandingPage extends Component {
               if (element.dataset.animateY) {
                 this.animateY(element);
               }
+
+              if (element.dataset.animateCanvas) {
+                this.animateCanvas(element);
+              }
             });
 
             observer.unobserve(entry.target);
@@ -227,6 +243,36 @@ export default class LandingPage extends Component {
 
     sectionsArray.forEach((animation) => {
       observer.observe(animation);
+    });
+  }
+
+  animateCanvas(canvas: HTMLCanvasElement) {
+    this.canvas = {
+      progress: 0,
+    };
+
+    this.context = canvas.getContext("2d");
+
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+
+    GSAP.to(this.canvas, {
+      // canvas
+      duration: 0.75,
+      // duration: 3,
+      // delay: 0.5,
+      ease: easings.LANDING_DOODLES,
+      onComplete: () => {
+        canvas.closest("section").querySelector("[data-hide-for-canvas]").style.opacity = 1;
+        // GSAP.set(this.elements.overlay, { opacity: 0 });
+
+        // todo: we may not need this if we have a singleton preloader keep an eye on that.
+        // GSAP.set(this.elements.canvas, { background: "white" });
+
+        // resolve();
+      },
+      onUpdate: () => this.onUpdateCanvas(canvas),
+      progress: 1,
     });
   }
 
@@ -343,6 +389,7 @@ export default class LandingPage extends Component {
       animateButtons,
       fadeIn,
       animateY,
+      hideForCanvas,
     } = this.elements;
 
     GSAP.set(
@@ -365,14 +412,15 @@ export default class LandingPage extends Component {
       GSAP.set(element.children, {
         y: element.offsetHeight,
       });
-    }),
-      GSAP.set(
-        [...animateButtons].map((button) => button.querySelector(buttonSelectors.iconArrow)),
-        {
-          scaleX: 0,
-          transformOrigin: "left",
-        },
-      );
+    });
+
+    GSAP.set(
+      [...animateButtons].map((button) => button.querySelector(buttonSelectors.iconArrow)),
+      {
+        scaleX: 0,
+        transformOrigin: "left",
+      },
+    );
 
     GSAP.set(
       [
@@ -397,6 +445,7 @@ export default class LandingPage extends Component {
         landingDoodles,
         speakersDoodle,
         fadeIn,
+        hideForCanvas,
       ],
       {
         opacity: 0,
@@ -493,5 +542,33 @@ export default class LandingPage extends Component {
   update() {
     this.marquee?.update();
     window.requestAnimationFrame(this.update);
+  }
+
+  onUpdateCanvas(canvas) {
+    this.context.clearRect(0, 0, canvas.width, canvas.height);
+    this.context.save();
+    this.context.beginPath();
+
+    const numberOfSegments = 80;
+    this.widthSegments = Math.ceil(canvas.width / numberOfSegments);
+    this.context.moveTo(canvas.width, canvas.height);
+    this.context.lineTo(0, canvas.height);
+
+    const t = (1 - this.canvas.progress) * canvas.height;
+    // const amplitude = 250 * Math.sin(this.canvas.progress * Math.PI);
+    const amplitude = 150 * Math.sin(this.canvas.progress * Math.PI);
+
+    this.context.lineTo(0, t);
+
+    for (let index = 0; index <= this.widthSegments; index++) {
+      const n = numberOfSegments * index;
+      const r = t - Math.sin((n / canvas.width) * Math.PI) * amplitude;
+
+      this.context.lineTo(n, r);
+    }
+
+    this.context.fillStyle = this.color;
+    this.context.fill();
+    this.context.restore();
   }
 }

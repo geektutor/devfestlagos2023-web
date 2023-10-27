@@ -222,8 +222,9 @@ export default function Landing() {
             <FacebookIcon />
           </div>
         </section>
-        <section className='landing-page__hype'>
-          <div className='landing-page__hype__yarns'>
+        <section className='landing-page__hype' data-section-delay='.6'>
+          <canvas className='landing-page__hype__canvas' data-animate-canvas />
+          <div className='landing-page__hype__yarns' data-hide-for-canvas>
             <div className='landing-page__hype__yarns__lyric' data-fade-in data-animate-y='+50'>
               <div className='landing-page__hype__yarns__lyric__song-deets'>
                 <div className='landing-page__hype__yarns__lyric__cover-image'>
