@@ -26,6 +26,8 @@ const easings = {
   NO_MATTER_WHAT: CustomEase.create("doodle", "0.17, 0.00, 0.00, 1.00"),
   HYPE: CustomEase.create("doodle", "0.18, 0.00, 0.00, 1.00"),
   FOOTER: CustomEase.create("doodle", "0.12, 0.00, 0.00, 1.00"),
+  TALKS: CustomEase.create("doodle", "0.16, 0.00, 0.00, 1.00"),
+  TALK_IMAGE: CustomEase.create("doodle", "0.84, 0.00, 0.00, 1.00"),
 };
 
 const buttonSelectors = {

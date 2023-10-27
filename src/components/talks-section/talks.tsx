@@ -36,8 +36,23 @@ export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
     <section className={styles.talks}>
       <div className={styles.talksTop}>
         <div>
-          <p className={styles.talksTitle} data-animate-sentences data-easing="MENU_ITEMS">Talks across all areas of tech</p>
-          <p className={styles.talksDescription} data-animate-y-full data-add-span data-easing="MENU_ITEMS">There is something for everyone</p>
+          <p
+            className={styles.talksTitle}
+            data-animate-sentences
+            data-delay='.333'
+            data-easing='TALKS'
+          >
+            Talks across all areas of tech
+          </p>
+          <p
+            className={styles.talksDescription}
+            data-animate-y-full
+            data-add-span
+            data-delay='.5'
+            data-easing='TALKS'
+          >
+            There is something for everyone
+          </p>
         </div>
         {hasDayToggle ? (
           <div className={classNames(styles.talksDayToggle, activeDay === 2 && styles.active)}>
@@ -56,7 +71,12 @@ export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
             </button>
           </div>
         ) : (
-          <PrimaryButton className={styles.talksCtaButton} href='/schedule' data-animate-button data-delay=".25">
+          <PrimaryButton
+            className={styles.talksCtaButton}
+            href='/schedule'
+            data-animate-button
+            data-delay='.25'
+          >
             <span>View All Talks</span>
             <ArrowRightDark />
           </PrimaryButton>
@@ -64,7 +84,7 @@ export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
       </div>
       <div className={styles.talksTags}>
         {talkCategories.map((category, index) => (
-          <div key={category} style={{position: "relative", overflow: "hidden", flexShrink: "0"}}>
+          <div key={category} style={{ position: "relative", overflow: "hidden", flexShrink: "0" }}>
             <CategoryPill
               className={classNames(
                 styles.talksTag,
@@ -73,8 +93,8 @@ export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
               isActive={activeCategory === category}
               onClick={() => setActiveCategory(category)}
               data-animate-y-full
-              data-easing="MENU_ITEMS"
-              data-delay={.084 * index}
+              data-easing='SPONSOR_BETTER'
+              data-delay={0.667 + 0.084 * index}
             >
               {category}
             </CategoryPill>
@@ -84,8 +104,10 @@ export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
       <div className={styles.talksGrid}>
         {validTalks.map((talk, index) => (
           <div key={index}>
-            <Talk talk={talk} key={index} />
-            {index < talks.length - 1 && <hr className={styles.talksDivider} data-fade-in data-delay={.084 * index}/>}
+            <Talk talk={talk} key={index} animationDelay={index * 0.084} />
+            {index < talks.length - 1 && (
+              <hr className={styles.talksDivider} data-fade-in data-delay={0.084 * index} />
+            )}
           </div>
         ))}
       </div>
