@@ -60,7 +60,7 @@ export const TeamMember: FC<{ member: ITeamMember }> = ({ member }) => {
                   rel='noopener noreferrer'
                   className={styles.link}
                 >
-                  <Icon />
+                  {Icon && <Icon />}
                 </a>
               );
             })}

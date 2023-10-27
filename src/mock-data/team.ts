@@ -382,9 +382,9 @@ export const teamMembers: ITeamMember[] = [
     image: nifemiImage,
     music: {
       image: fikeImage,
-      name: "4x4",
-      artist: "Dominic Fike",
-      url: "https://open.spotify.com/track/3frC55hy41BhQK65FiJK7q?si=bacd6040a81d4b6d",
+      name: "Grow",
+      artist: "Sion",
+      url: "https://open.spotify.com/track/03fDmeiWj0nQS3ZHIjfZ9X?si=b9991f28238a4784",
     },
     links: [
       {
