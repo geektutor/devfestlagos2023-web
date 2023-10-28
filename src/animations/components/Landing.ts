@@ -176,8 +176,6 @@ export default class LandingPage extends Component {
       }
     });
 
-    const talksIndex = 5;
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.some((entry) => {
@@ -185,12 +183,6 @@ export default class LandingPage extends Component {
             const section = entry.target;
 
             const index = section.dataset.index;
-
-            if (Number(index) !== talksIndex) {
-              if (window.innerWidth > 480 && entry.intersectionRatio < 0.7) {
-                return;
-              }
-            }
 
             const elements = sectionElements[index];
 
