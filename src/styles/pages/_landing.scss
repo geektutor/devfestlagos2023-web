@@ -526,15 +526,18 @@
         color: $grey-70;
         @include title-2;
         margin-bottom: 2.4rem;
+        max-width: 400px;
 
         @include media("<=tablet") {
           @include body-5;
+          max-width: 200px;
         }
 
         @include media("<=phone") {
           @include body-1;
           color: $grey-40;
           margin-bottom: 3.2rem;
+          max-width: unset;
         }
       }
 
