@@ -18,18 +18,21 @@ export const HomepageScene = () => {
           alt='DevFest Lagos 2023'
           fill
           style={{ objectFit: "cover" }}
+          data-fade-in
+          data-delay='.35'
+          data-easing='LANDING_IMAGE'
         />
       </div>
-      <div className={styles.kiteLeft}>
+      <div className={styles.kiteLeft} data-landing-doodle>
         <Image src={kiteDoodle} alt='doodle' />
       </div>
-      <div className={styles.kiteRight}>
+      <div className={styles.kiteRight} data-landing-doodle>
         <Image src={kiteRightDoodle} alt='doodle' />
       </div>
-      <div className={styles.rewind}>
+      <div className={styles.rewind} data-landing-doodle>
         <Image src={rewindDoodle} alt='doodle' />
       </div>
-      <div className={styles.arrow}>
+      <div className={styles.arrow} data-landing-doodle>
         <Image src={arrowDoodle} alt='doodle' />
       </div>
     </div>

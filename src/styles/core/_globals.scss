@@ -68,6 +68,26 @@ button {
   }
 }
 
+[data-line-animation]{
+  overflow: hidden;
+
+  > span {
+    display: inline-flex;
+    overflow: hidden;
+  }
+}
+
+[data-animate-sentences]{
+  > span{
+    overflow: hidden;
+    display: inline-flex;
+  }
+
+  span span {
+    display: inline-flex;
+  }
+}
+
 .container {
   width: 100%;
   padding: 0 24px;

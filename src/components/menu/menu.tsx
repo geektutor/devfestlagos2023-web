@@ -21,13 +21,15 @@ const Menu = () => {
 
   return (
     <header className={styles.menu}>
-      <Logo className={styles.logo} />
+      <div className={styles.logo}>
+        <Logo data-animate-y-full data-easing='LOGO' />
+      </div>
       <div className={styles.items}>
         <nav className={styles.nav}>
           <NavItems />
         </nav>
-        <Button variant='primary' className={styles.cta}>
-          Register Now
+        <Button variant='primary' className={styles.cta} data-animate-button>
+          <span>Register Now</span>
           <RightArrow className={styles.ctaIcon} />
         </Button>
       </div>
@@ -57,7 +59,7 @@ const Menu = () => {
 
 const NavItems = () => {
   return (
-    <ul className={styles.navItems}>
+    <ul className={styles.navItems} data-animate-y-children-full data-delay=".083" data-easing="MENU_ITEMS">
       <li className={styles.navItem}>
         <Link href='/speakers' className={styles.link}>
           Speakers

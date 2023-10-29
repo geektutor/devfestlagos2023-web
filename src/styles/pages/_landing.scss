@@ -1,11 +1,22 @@
 .landing-page {
   width: 100vw;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  //scroll-snap-type: y mandatory;
+  height: 100vh;
+  opacity: 0;
 
-  &__menu {
-    height: 10rem;
-    width: 100%;
-    background-color: $bg-shade-1;
+  &.is-active {
+    opacity: 1;
+  }
+
+  > section,
+  header {
+    scroll-snap-align: start;
+  }
+
+  > section {
+    scroll-margin-top: 60px;
   }
 
   &__intro {
@@ -16,6 +27,8 @@
     width: 100%;
     padding-top: 8.2rem;
     position: relative;
+    scroll-snap-align: start;
+    scroll-margin-top: 0;
 
     @include media("<=phone") {
       padding-bottom: 26rem;
@@ -39,7 +52,16 @@
         line-height: 7.2rem;
         color: $grey-0;
         text-align: center;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
         max-width: 272px;
+
+        > span {
+          display: flex;
+          overflow: hidden;
+          height: 76px;
+        }
 
         @include media("<=tablet") {
           @include heading-4;
@@ -109,7 +131,7 @@
         color: $grey-100;
         @include title-1;
         position: absolute;
-        bottom: calc(100% - 0.8rem);
+        bottom: calc(100% - 3.5rem);
         transform: translateX(-50%) rotate(-10deg);
         width: max-content;
 
@@ -132,6 +154,7 @@
       margin-bottom: 3.2rem;
       max-width: 45.2rem;
       text-align: center;
+      overflow: hidden;
       position: relative;
 
       @include media("<=tablet") {
@@ -204,6 +227,7 @@
     position: relative;
     z-index: 3;
     background: white;
+    scroll-snap-align: end;
 
     @include media("<=tablet") {
       padding: 3.2rem 0;
@@ -257,6 +281,7 @@
       max-width: 77rem;
       margin: 0 auto;
       width: 80%;
+      overflow: hidden;
 
       @include media("<=tablet") {
         max-width: 41.5rem;
@@ -285,9 +310,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 4.8rem 8.6%;
-    align-items: center;
-    background-color: $grey-0;
+    align-items: flex-start;
+    position: relative;
+    //background-color: $grey-0;
     grid-column-gap: 1.6rem;
+    scroll-margin-top: 0 !important;
 
     @include media("<=tablet") {
       padding: 2.4rem 3.2rem;
@@ -300,6 +327,15 @@
 
     @include media("<=phone") {
       padding: 3.2rem 2.4rem 1.6rem;
+    }
+
+    &__canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
 
     &__yarns {
@@ -490,15 +526,18 @@
         color: $grey-70;
         @include title-2;
         margin-bottom: 2.4rem;
+        max-width: 400px;
 
         @include media("<=tablet") {
           @include body-5;
+          max-width: 200px;
         }
 
         @include media("<=phone") {
           @include body-1;
           color: $grey-40;
           margin-bottom: 3.2rem;
+          max-width: unset;
         }
       }
 
@@ -702,6 +741,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 
     @include media("<=tablet") {
       padding: 5.1rem 0 3.7rem;
@@ -746,11 +786,23 @@
       }
     }
 
+    &__speakers-wrapper {
+      position: relative;
+      margin-bottom: 1.6rem;
+
+      @include media("<=tablet") {
+        margin-bottom: 1rem;
+      }
+
+      @include media("<=phone") {
+        margin-bottom: 0.8rem;
+      }
+    }
+
     &__speakers-text {
       @include heading-4;
       color: $grey-0;
       position: relative;
-      margin-bottom: 1.6rem;
 
       @include media("<=tablet") {
         @include body-2;

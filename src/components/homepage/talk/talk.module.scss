@@ -41,6 +41,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 1.6rem;
+  overflow: hidden;
 
   @include media("<=tablet") {
     margin-bottom: 0.8rem;
@@ -82,6 +83,7 @@
   display: flex;
   align-items: center;
   @include flex-gap(0, 0.8rem);
+  overflow: hidden;
 
   @include body-1;
   color: $grey-70;
