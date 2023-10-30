@@ -10,6 +10,7 @@ type Props = {
   href?: string;
   isExternal?: boolean;
   type?: "button" | "submit" | "reset";
+  isDisabled?: boolean;
 };
 
 const Button: FC<PropsWithChildren<Props>> = ({
@@ -18,6 +19,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
   href,
   isExternal,
   type,
+  isDisabled,
   ...props
 }) => {
   const className = classNames("c-button", `c-button--${variant}`, props.className);
@@ -41,6 +43,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
   return (
     <button
       {...props}
+      disabled={isDisabled}
       className={classNames("c-button", `c-button--${variant}`, props.className)}
       type={type}
     >

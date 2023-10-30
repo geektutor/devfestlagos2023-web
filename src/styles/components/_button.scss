@@ -13,6 +13,11 @@
   padding: 0 2.4rem;
   text-decoration: none;
 
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   &--primary {
     background: $grey-0;
     color: $grey-100;

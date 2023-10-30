@@ -1,0 +1,97 @@
+.rsvp {
+  padding-top: 82px;
+
+  &__title {
+    @include heading-1;
+    color: $grey-0;
+    text-align: center;
+    margin: 0 auto 8px;
+  }
+
+  &__subtitle {
+    @include title-2;
+    color: $grey-40;
+    max-width: 452px;
+    text-align: center;
+    margin: 0 auto 24px;
+  }
+
+  &__days {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto;
+    scroll-margin-top: 30px;
+
+    &__day {
+      width: 94px;
+      height: 40px;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      background: transparent;
+      @include body-2;
+      color: $grey-50;
+
+      &.is-active {
+        border-bottom-color: $grey-0;
+        color: $grey-0;
+      }
+    }
+  }
+
+  &__categories {
+    display: flex;
+    @include flex-gap(0, 8px);
+    margin-bottom: 40px;
+    padding: 0 8.6%;
+  }
+
+  &__category {
+    color: $grey-10 !important;
+    font-weight: 400 !important;
+  }
+
+  &__talks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 36px;
+    column-gap: 16px;
+    margin-bottom: 44px;
+    padding: 0 8.6%;
+  }
+
+  &__pagination {
+    padding: 0 8.6% 48px;
+  }
+
+  &__pagination-text {
+    @include title-2;
+    color: $grey-40;
+    margin-bottom: 16px;
+    text-align: right;
+    font-weight: 400;
+  }
+
+  &__buttons-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__pagination-buttons {
+    display: flex;
+    @include flex-gap(0, 16px);
+  }
+
+  &__current-page {
+    height: 66px;
+    width: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    border: 2px solid #d9d9d9;
+    text-decoration: underline;
+  }
+}
