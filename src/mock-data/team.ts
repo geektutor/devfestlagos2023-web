@@ -22,10 +22,13 @@ import johaImage from "@/images/team/music/joha.png";
 import somewhereImage from "@/images/team/music/somewhere.png";
 import tearsImage from "@/images/team/music/tears.png";
 import btsImage from "@/images/team/music/bts.png";
+import akinImage from "@/images/team/akin.png";
 import o2Image from "@/images/team/music/o2.png";
 import idkImage from "@/images/team/music/idk.png";
+import tobijuImage from "@/images/team/tobiju.png";
 import growImage from "@/images/team/music/grow.png";
 import giantsImage from "@/images/team/music/giants.png";
+import omorinsolaImage from "@/images/team/omorinsola.png";
 import victoryImage from "@/images/team/music/victory.png";
 import babydollImage from "@/images/team/music/babydoll.png";
 import cityBoysImage from "@/images/team/music/city-boys.png";
@@ -432,7 +435,7 @@ export const teamMembers: ITeamMember[] = [
     comment: "Amazing , proud of the team.",
     quote: "It gets better",
     category: "QA",
-    image: nifemiImage,
+    image: omorinsolaImage,
     music: {
       image: o2Image,
       name: "No place like hope",
@@ -466,7 +469,7 @@ export const teamMembers: ITeamMember[] = [
       "I'm grateful to the FE team and the design team. I got to express myself creatively through the excellent design and great codebase and infrastructure that the other Devs had worked on.",
     quote: "Jesus saved my life",
     category: "QA",
-    image: nifemiImage,
+    image: akinImage,
     music: {
       image: hindsightImage,
       name: "Hindsight ",
@@ -491,7 +494,7 @@ export const teamMembers: ITeamMember[] = [
     comment: "Amazing , proud of the team.",
     quote: "It gets better",
     category: "QA",
-    image: nifemiImage,
+    image: tobijuImage,
     music: {
       image: idkImage,
       name: "IDK",
