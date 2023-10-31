@@ -14,17 +14,23 @@ import sodiqImage from "@/images/team/sodiq.png";
 import tobiImage from "@/images/team/tobi.png";
 import ziaImage from "@/images/team/zia.png";
 import asakeImage from "@/images/team/music/asake.png";
-import caniImage from "@/images/team/music/can-i.png";
 import tokyoImage from "@/images/team/music/tokyo.png";
 import commandoImage from "@/images/team/music/commando.png";
 import convictImage from "@/images/team/music/convict.png";
 import creatureImage from "@/images/team/music/creature.png";
-import dragonbornImage from "@/images/team/music/dragonborn.png";
-import fikeImage from "@/images/team/music/fike.png";
 import johaImage from "@/images/team/music/joha.png";
 import somewhereImage from "@/images/team/music/somewhere.png";
 import tearsImage from "@/images/team/music/tears.png";
 import btsImage from "@/images/team/music/bts.png";
+import o2Image from "@/images/team/music/o2.png";
+import idkImage from "@/images/team/music/idk.png";
+import growImage from "@/images/team/music/grow.png";
+import giantsImage from "@/images/team/music/giants.png";
+import victoryImage from "@/images/team/music/victory.png";
+import babydollImage from "@/images/team/music/babydoll.png";
+import cityBoysImage from "@/images/team/music/city-boys.png";
+import hindsightImage from "@/images/team/music/hindsight.png";
+import noPlaceLikeHopeImage from "@/images/team/music/no-place-like-hope.png";
 
 export type TeamMemberLink = {
   type:
@@ -150,7 +156,7 @@ export const teamMembers: ITeamMember[] = [
     category: "content",
     image: joelImage,
     music: {
-      image: asakeImage,
+      image: cityBoysImage,
       name: "City Boys",
       artist: "Burna Boy",
       url: "https://open.spotify.com/track/1OX1aWd5WTavFuOXZ7k6Q5?si=00d21b47a78c46c9",
@@ -223,7 +229,7 @@ export const teamMembers: ITeamMember[] = [
     category: "dev",
     image: iyinImage,
     music: {
-      image: johaImage,
+      image: giantsImage,
       name: "Giants",
       artist: "Dermot Kennedy",
       url: "https://open.spotify.com/track/0l4AReW2LuX0yStPfgQgSR?si=c8a9e62d86e94d23",
@@ -257,7 +263,7 @@ export const teamMembers: ITeamMember[] = [
     category: "dev,content",
     image: lereImage,
     music: {
-      image: caniImage,
+      image: babydollImage,
       name: "Babydoll",
       artist: "Dominic Fike",
       url: "https://open.spotify.com/track/7yNf9YjeO5JXUE3JEBgnYc?si=e4b85fb602ad45b6",
@@ -339,7 +345,7 @@ export const teamMembers: ITeamMember[] = [
       },
     ],
     music: {
-      image: dragonbornImage,
+      image: victoryImage,
       name: "Victory",
       artist: "Two Steps From Hell",
       url: "https://open.spotify.com/track/2F9xBxKbx2M0pbgtSu8fLf?si=9ea2561265e5477d",
@@ -381,7 +387,7 @@ export const teamMembers: ITeamMember[] = [
     isLead: true,
     image: nifemiImage,
     music: {
-      image: fikeImage,
+      image: growImage,
       name: "Grow",
       artist: "Sion",
       url: "https://open.spotify.com/track/03fDmeiWj0nQS3ZHIjfZ9X?si=b9991f28238a4784",
@@ -407,7 +413,7 @@ export const teamMembers: ITeamMember[] = [
     category: "design",
     image: nifemiImage,
     music: {
-      image: fikeImage,
+      image: noPlaceLikeHopeImage,
       name: "No place like hope",
       artist: "Zachary Knowles",
       url: "https://open.spotify.com/track/5ttql4WZYAh4LGUSMhQcJc?si=37e232f436c54d19",
@@ -428,7 +434,7 @@ export const teamMembers: ITeamMember[] = [
     category: "QA",
     image: nifemiImage,
     music: {
-      image: fikeImage,
+      image: o2Image,
       name: "No place like hope",
       artist: "Zachary Knowles",
       url: "https://open.spotify.com/track/5ttql4WZYAh4LGUSMhQcJc?si=37e232f436c54d19",
@@ -462,7 +468,7 @@ export const teamMembers: ITeamMember[] = [
     category: "QA",
     image: nifemiImage,
     music: {
-      image: fikeImage,
+      image: hindsightImage,
       name: "Hindsight ",
       artist: "Hillsong Young & Free",
       url: "https://open.spotify.com/track/24ql1HeqRrvruTLE8wPnSj?si=563b10cb0c9a46f6",
@@ -487,7 +493,7 @@ export const teamMembers: ITeamMember[] = [
     category: "QA",
     image: nifemiImage,
     music: {
-      image: fikeImage,
+      image: idkImage,
       name: "IDK",
       artist: "Mosss",
       url: "https://open.spotify.com/track/6NrwVoFmjeNsEtrgZTMo4T?si=790f8168688747b1",
