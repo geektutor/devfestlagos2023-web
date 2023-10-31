@@ -175,7 +175,7 @@ export const teamMembers: ITeamMember[] = [
     key: "sebastine",
     name: "Sebastaine Odeh",
     role: "Mobile Developer",
-    comment: "Lere is a sweet babe but my babe's sweeter🙏🏽🙏🏽",
+    comment: "It was incredible working with these guys!",
     quote: "God Abeg.",
     category: "dev",
     image: sebastineImage,
@@ -438,8 +438,8 @@ export const teamMembers: ITeamMember[] = [
     image: omorinsolaImage,
     music: {
       image: o2Image,
-      name: "No place like hope",
-      artist: "Zachary Knowles",
+      name: "O2",
+      artist: "Oxlade",
       url: "https://open.spotify.com/track/5ttql4WZYAh4LGUSMhQcJc?si=37e232f436c54d19",
     },
     links: [
@@ -491,8 +491,8 @@ export const teamMembers: ITeamMember[] = [
     key: "tobiju",
     name: "Oluwatobiju Judah",
     role: "Frontend Developer",
-    comment: "Amazing , proud of the team.",
-    quote: "It gets better",
+    comment: "fun people doing excellent work 🪐",
+    quote: "c'est la vie, n'est-ce pas?",
     category: "QA",
     image: tobijuImage,
     music: {
@@ -511,8 +511,8 @@ export const teamMembers: ITeamMember[] = [
         url: "https://twitter.com/tobijudah",
       },
       {
-        type: "website",
-        url: "http://projects.tobiju.com/",
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/oluwatobiju-judah-omotosho/",
       },
       {
         type: "medium",
