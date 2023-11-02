@@ -1,10 +1,10 @@
-import { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import { classNames } from "@/utils/classNames";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import Link from "next/link";
 
 type Props = {
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   className?: string;
   variant: "primary" | "secondary" | "tertiary";
   href?: string;
@@ -24,9 +24,11 @@ const Button: FC<PropsWithChildren<Props>> = ({
 }) => {
   const className = classNames("c-button", `c-button--${variant}`, props.className);
 
+  const { onClick, ...linkProps } = props;
+
   if (href && isExternal) {
     return (
-      <a {...props} href={href} className={className} target='_blank'>
+      <a {...linkProps} href={href} className={className} target='_blank'>
         {children}
       </a>
     );
@@ -34,7 +36,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
 
   if (href && !isExternal) {
     return (
-      <Link {...props} href={href} className={className}>
+      <Link {...linkProps} href={href} className={className}>
         {children}
       </Link>
     );
@@ -43,6 +45,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
   return (
     <button
       {...props}
+      onClick={onClick}
       disabled={isDisabled}
       className={classNames("c-button", `c-button--${variant}`, props.className)}
       type={type}

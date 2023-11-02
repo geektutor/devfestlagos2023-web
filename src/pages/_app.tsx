@@ -6,6 +6,16 @@ import { classNames } from "@/utils/classNames";
 import React from "react";
 import GeneralLayout from "@/layouts/general-layout";
 import { NextPage } from "next";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 0,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 export const googleSans = localFont({
   src: [
@@ -29,30 +39,29 @@ export const googleSans = localFont({
 
 export type NextPageWithLayout<P = NonNullable<unknown>, IP = P> = NextPage<P, IP> & {
   disableLayout?: boolean;
-}
+};
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout
-}
+  Component: NextPageWithLayout;
+};
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
-
   return (
     <div className={classNames(googleSans.className, "app-wrapper")}>
-      <Head>
-        <link rel='icon' href='/favicon.svg' type='image/svg+xml' />
-        <link rel='alternate icon' href='/favicon.ico' type='image/x-icon' />
-        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-      </Head>
-      {
-        Component.disableLayout ? (
+      <QueryClientProvider client={queryClient}>
+        <Head>
+          <link rel='icon' href='/favicon.svg' type='image/svg+xml' />
+          <link rel='alternate icon' href='/favicon.ico' type='image/x-icon' />
+          <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        </Head>
+        {Component.disableLayout ? (
           <Component {...pageProps} />
-        ) :(
+        ) : (
           <GeneralLayout>
             <Component {...pageProps} />
           </GeneralLayout>
-        )
-      }
+        )}
+      </QueryClientProvider>
     </div>
   );
 }

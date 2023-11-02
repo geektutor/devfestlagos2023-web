@@ -13,10 +13,19 @@ import { classNames } from "@/utils/classNames";
 import { Category } from "@/types/Category";
 import RSVPTicketDetails from "@/components/rsvp/rsvp-details/rsvp-ticket-details";
 import { useRSVPState } from "@/hooks/useRSVPState";
+import { useMutation } from "react-query";
+import { firebaseAuth } from "@/firebase/app";
+import firebase from "firebase/compat/app";
+import RSVPSignIn from "@/components/rsvp/rsvp-sign-in/rsvp-sign-in";
+import { addSessionsToRSVP } from "@/requests/rsvp";
 
 const pageSize = 6;
 
 const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const [user, setUser] = React.useState<firebase.User | null>(null);
+  const [showLogin, setShowLogin] = React.useState<boolean>(false);
+  const [tickets, setTickets] = React.useState<Set<string>>(new Set());
+
   //Refs
   const daysSectionRef = useRef<HTMLDivElement>(null);
   const scrollIntoView = useRef<boolean>(false);
@@ -49,6 +58,12 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
 
   // Effects
   useEffect(() => {
+    firebaseAuth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+  }, []);
+
+  useEffect(() => {
     if (scrollIntoView.current) {
       daysSectionRef.current?.scrollIntoView({
         behavior: "smooth",
@@ -57,6 +72,59 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
       scrollIntoView.current = false;
     }
   }, [talksPage]);
+
+  const addSessionsMutation = useMutation({
+    mutationFn: addSessionsToRSVP,
+    onSuccess: () => {
+      console.log("successfully added");
+    },
+    onError: () => {
+      console.log("I failed you Master Bruce");
+    },
+  });
+
+  // const getSessionsQuery = useQuery({
+  //   queryKey: ['getSessions', user?.email],
+  //   queryFn: async () => {
+  //     if(!user) return;
+  //
+  //     const token = await user.getIdToken();
+  //
+  //     if(token){
+  //       return fetchRSVPS(token)
+  //     }else{
+  //       setUser(null)
+  //     }
+  //   },
+  //   enabled: !!user
+  // })
+
+  const onClickFinish = (newUser?: firebase.User) => {
+    const currentUser = newUser || user;
+
+    if (currentUser) {
+      addSessionsMutation.mutate(Array.from(tickets));
+    } else {
+      setShowLogin(true);
+    }
+  };
+
+  const onLogin = (user: firebase.User) => {
+    setShowLogin(false);
+    onClickFinish(user);
+  };
+
+  const onSelectTicket = (talk: Session) => () => {
+    const mutableTickets = new Set(tickets);
+
+    if (mutableTickets.has(talk.sessionId)) {
+      mutableTickets.delete(talk.sessionId);
+    } else {
+      mutableTickets.add(talk.sessionId);
+    }
+
+    setTickets(mutableTickets);
+  };
 
   return (
     <>
@@ -103,13 +171,20 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
               key={talk.sessionId}
               onClick={() => onShowTalkDetails(talk)}
               session={talk}
+              isSelected={tickets.has(talk.sessionId)}
+              onSelectTicket={onSelectTicket(talk)}
             />
           ))}
         </section>
         <section className='rsvp__pagination'>
           <p className='rsvp__pagination-text'>{rangeText}</p>
           <div className='rsvp__buttons-row'>
-            <TertiaryButton>Got your sessions? Finish RSVP</TertiaryButton>
+            <TertiaryButton
+              onClick={() => onClickFinish()}
+              isDisabled={addSessionsMutation.isLoading}
+            >
+              {addSessionsMutation.isLoading ? "Booking Sessions..." : "Book Selected Sessions"}
+            </TertiaryButton>
             <div className='rsvp__pagination-buttons'>
               <SecondaryButton isDisabled={talksPage === 1} onClick={onClickPrev}>
                 Previous
@@ -131,7 +206,7 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
           session={talkModalState.session}
           modalIsOpen={talkModalState.isOpen}
         />
-        {/*<RSVPSignIn modalIsOpen={true} onClose={() => {}} />*/}
+        <RSVPSignIn modalIsOpen={showLogin} onLogin={onLogin} onClose={() => setShowLogin(false)} />
       </div>
       <Footer />
     </>

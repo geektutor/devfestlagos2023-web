@@ -1,1 +1,1 @@
-export const ticketsUrl = "/cfp-2023";
+export const ticketsUrl = "https://tix.africa/dflagos23";

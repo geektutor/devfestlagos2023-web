@@ -8,12 +8,14 @@ import { Session } from "@/types/Session";
 type RSVPTicketProps = {
   onClick: () => void;
   session: Session;
+  onSelectTicket: () => void;
+  isSelected: boolean;
 };
 
 const getDayText = (date: string) =>
   new Date(date).getDate() === 24 ? "24th November" : "25th November";
 
-const RSVPTicket = ({ session, onClick }: RSVPTicketProps) => {
+const RSVPTicket = ({ session, onClick, isSelected, onSelectTicket }: RSVPTicketProps) => {
   const {
     category,
     title,
@@ -26,6 +28,11 @@ const RSVPTicket = ({ session, onClick }: RSVPTicketProps) => {
   } = session;
 
   const backgroundColor = "#FFF";
+
+  const onBookSeat = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
+    onSelectTicket();
+  };
 
   return (
     <div className={styles.ticket} onClick={onClick}>
@@ -70,7 +77,9 @@ const RSVPTicket = ({ session, onClick }: RSVPTicketProps) => {
           <CategoryPill isSmall className={styles.talkDate}>
             {getDayText(sessionDate)}, {scheduledAt}
           </CategoryPill>
-          <TertiaryButton className={styles.bookASeat}>Book a Seat</TertiaryButton>
+          <TertiaryButton className={styles.bookASeat} onClick={onBookSeat}>
+            {isSelected ? "Seat Booked" : "Book a Seat"}
+          </TertiaryButton>
         </div>
       </div>
     </div>

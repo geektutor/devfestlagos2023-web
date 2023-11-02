@@ -46,13 +46,13 @@ export const useRSVPState = ({ sessions, pageSize, categories, scrollToTalks }: 
     const talksEnd = talksPage * pageSize;
 
     return currentPageTalks.slice(talksStart, talksEnd);
-  }, [currentPageTalks, talksPage]);
+  }, [currentPageTalks, pageSize, talksPage]);
 
   const rangeText = useMemo(() => {
     const start = (talksPage - 1) * pageSize + 1;
     const end = Math.min(talksPage * pageSize, totalTalks);
     return `Showing ${Math.min(start, totalTalks)} - ${end} of ${totalTalks}`;
-  }, [talksPage, totalTalks]);
+  }, [pageSize, talksPage, totalTalks]);
 
   // Event handlers
   const onClickNext = () => {

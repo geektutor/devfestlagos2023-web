@@ -6,17 +6,22 @@ import styles from "./rsvp-sign-in.module.scss";
 import CloseCircle from "@/images/close-circle.svg";
 import { SecondaryButton, TertiaryButton } from "@/components/button";
 import { classNames } from "@/utils/classNames";
+import { ticketsUrl } from "@/utils/urls";
+import { firebaseAuth } from "@/firebase/app";
+import firebase from "firebase/compat/app";
 
 type RSVPSignInProps = {
   onClose: () => void;
   modalIsOpen?: boolean;
+  onLogin: (user: firebase.User) => void;
 };
 
-const RSVPSignIn = ({ onClose, modalIsOpen }: RSVPSignInProps) => {
+const RSVPSignIn = ({ onClose, modalIsOpen, onLogin }: RSVPSignInProps) => {
   const [email, setEmail] = useState<string>("");
   const [ticketNumber, setTicketNumber] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
   const [ticketNumberError, setTicketNumberError] = useState<string>("");
+  const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
 
   const validateEmail = (email: string) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -67,8 +72,27 @@ const RSVPSignIn = ({ onClose, modalIsOpen }: RSVPSignInProps) => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (emailError || ticketNumberError) {
+      return;
+    }
+
+    setIsLoggingIn(true);
+
+    try {
+      await firebaseAuth.signInWithEmailAndPassword(email, ticketNumber);
+
+      setIsLoggingIn(false);
+
+      if (firebaseAuth.currentUser) {
+        onLogin(firebaseAuth.currentUser);
+      }
+    } catch (e) {
+      console.error(e);
+      // Todo: Handle errors bleh
+    }
   };
 
   return (
@@ -138,10 +162,15 @@ const RSVPSignIn = ({ onClose, modalIsOpen }: RSVPSignInProps) => {
               The Ticket No. is sent to your email when you register
             </div>
           </div>
-          <TertiaryButton className={styles.modalProceed} type='submit'>
-            Proceed
+          <TertiaryButton isDisabled={isLoggingIn} className={styles.modalProceed} type='submit'>
+            {isLoggingIn ? "Logging in..." : "Proceed"}
           </TertiaryButton>
-          <SecondaryButton href='https://tix.africa/dflagos23' className={styles.modalRegister}>
+          <SecondaryButton
+            isDisabled={isLoggingIn}
+            isExternal
+            href={ticketsUrl}
+            className={styles.modalRegister}
+          >
             Don’t have a ticket? 👉🏽 Register
           </SecondaryButton>
         </form>
