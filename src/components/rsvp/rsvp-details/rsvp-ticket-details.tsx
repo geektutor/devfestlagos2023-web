@@ -8,31 +8,38 @@ import Location from "@/images/pin-drop.svg";
 import CloseCircle from "@/images/close-circle.svg";
 import CategoryPill from "@/components/category-pill/category-pill";
 import { TertiaryButton } from "@/components/button";
-import { TalkType } from "@/types/Talk";
 import { classNames } from "@/utils/classNames";
+import { Session } from "@/types/Session";
 
 type RSVPTicketDetailsProps = {
   modalIsOpen?: boolean;
   onClose: () => void;
-  talk: TalkType;
+  session: Session | null;
 };
 
-const getDayText = (day: 1 | 2) => (day === 1 ? "24th November" : "25th November");
+const getDayText = (date: string) =>
+  new Date(date).getDate() === 24 ? "24th November" : "25th November";
 
-const RSVPTicketDetails = ({ talk, modalIsOpen, onClose }: RSVPTicketDetailsProps) => {
-  const {
-    title,
-    date,
-    description,
-    seatCount,
-    timeLeft,
-    hall,
-    speaker: { name, company, day, role, image },
-  } = talk;
-  return (
-    <div className={classNames(styles.modal, modalIsOpen && styles.active)}>
-      <div className={styles.modalOverlay} onClick={onClose} />
-      <div className={styles.modalContent}>
+const RSVPTicketDetails = ({ modalIsOpen, onClose, session }: RSVPTicketDetailsProps) => {
+  const timeLeft = "30"; //todo: Actually calculate this using the scheduledAt and sessionDate
+
+  const renderContent = () => {
+    if (!session) return null;
+
+    const {
+      title,
+      sessionDate,
+      availableSeats,
+      scheduledAt,
+      tagLine,
+      owner,
+      speakerImage,
+      description,
+      hall,
+    } = session;
+
+    return (
+      <>
         <div className={styles.topButtons}>
           <div className={styles.timeAndSeatCount}>
             <CategoryPill className={styles.time}>
@@ -41,32 +48,30 @@ const RSVPTicketDetails = ({ talk, modalIsOpen, onClose }: RSVPTicketDetailsProp
             </CategoryPill>
             <CategoryPill className={styles.seatCount}>
               <Group />
-              <span>{`${seatCount} Seats Left`}</span>
+              <span>{`${availableSeats} Seats Left`}</span>
             </CategoryPill>
           </div>
-          <div className={styles.modalClose}>
+          <button className={styles.modalClose} onClick={onClose}>
             <CloseCircle />
-          </div>
+          </button>
         </div>
         <h1 className={styles.talkTitle}>{title}</h1>
         <p className={styles.speakerHeading}>Speaker</p>
         <div className={styles.speakerSection}>
           <div className={styles.speakerImage}>
-            <Image className={styles.speakerImageInner} src={image} alt={name} fill />
+            <Image className={styles.speakerImageInner} src={speakerImage} alt={owner} fill />
           </div>
           <CategoryPill isSmall className={styles.speakerButton}>
             See Speaker Page
           </CategoryPill>
         </div>
-        <h3 className={styles.speakerName}>{name}</h3>
-        <p className={styles.speakerRole}>
-          {role}, {company}
-        </p>
+        <h3 className={styles.speakerName}>{owner}</h3>
+        <p className={styles.speakerRole}>{tagLine}</p>
         <div className={styles.talkDateAndLocation}>
           <CategoryPill className={styles.talkDate}>
             <Alarm />
             <span>
-              {getDayText(day)}, <strong>{date}</strong>
+              {getDayText(sessionDate)}, <strong>{scheduledAt}</strong>
             </span>
           </CategoryPill>
           <CategoryPill className={styles.location}>
@@ -86,7 +91,14 @@ const RSVPTicketDetails = ({ talk, modalIsOpen, onClose }: RSVPTicketDetailsProp
         </div>
 
         <TertiaryButton className={styles.bookASeat}>Book a Seat</TertiaryButton>
-      </div>
+      </>
+    );
+  };
+
+  return (
+    <div className={classNames(styles.modal, modalIsOpen && styles.active)}>
+      <div className={styles.modalOverlay} onClick={onClose} />
+      <div className={styles.modalContent}>{renderContent()}</div>
     </div>
   );
 };

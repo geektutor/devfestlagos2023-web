@@ -11,6 +11,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Session } from "@/types/Session";
 import { classNames } from "@/utils/classNames";
 import { Category } from "@/types/Category";
+import RSVPTicketDetails from "@/components/rsvp/rsvp-details/rsvp-ticket-details";
 
 const pageSize = 6;
 
@@ -19,6 +20,11 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
   const [talksPage, setTalksPage] = useState(1);
   const [activeDay, setActiveDay] = useState(0);
   const [activeCategory, setActiveCategory] = useState<string>("All");
+
+  const [talkModalState, setTalkModalState] = useState<{
+    isOpen: boolean;
+    session: Session | null;
+  }>({ isOpen: false, session: null });
 
   //Refs
   const daysSectionRef = useRef<HTMLDivElement>(null);
@@ -90,6 +96,18 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
     scrollToTalks();
   };
 
+  const onShowTalkDetails = (session: Session) => {
+    setTalkModalState({ isOpen: true, session });
+  };
+
+  const onCloseTalkDetails = () => {
+    setTalkModalState((prevState) => ({ ...prevState, isOpen: false }));
+
+    setTimeout(() => {
+      setTalkModalState({ isOpen: false, session: null });
+    }, 300);
+  };
+
   return (
     <>
       <Menu actionButton={<TertiaryButton>Hi, Omo Ologo</TertiaryButton>} />
@@ -131,7 +149,11 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
         </div>
         <section className='rsvp__talks'>
           {currentTalks.map((talk) => (
-            <RsvpTicket key={talk.sessionId} onClose={() => {}} session={talk} />
+            <RsvpTicket
+              key={talk.sessionId}
+              onClick={() => onShowTalkDetails(talk)}
+              session={talk}
+            />
           ))}
         </section>
         <section className='rsvp__pagination'>
@@ -154,6 +176,11 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
         </section>
         <FaqSection />
         <NoMatterWhat />
+        <RSVPTicketDetails
+          onClose={onCloseTalkDetails}
+          session={talkModalState.session}
+          modalIsOpen={talkModalState.isOpen}
+        />
         {/*<RSVPSignIn modalIsOpen={true} onClose={() => {}} />*/}
       </div>
       <Footer />
