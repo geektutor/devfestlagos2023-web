@@ -111,21 +111,23 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
           ))}
         </div>
         <div className='rsvp__categories'>
-          {categoriesWithAll.map((category) => (
-            <CategoryPill
-              className={classNames(
-                "rsvp__category",
-                activeCategory !== category.name && "is-inactive",
-              )}
-              activeTextColor='#FFF'
-              activeBgColor='#000'
-              key={category.name}
-              isActive={activeCategory === category.name}
-              onClick={() => setActiveCategory(category.name)}
-            >
-              {category.name}
-            </CategoryPill>
-          ))}
+          <div className='rsvp__categories__inner'>
+            {categoriesWithAll.map((category) => (
+              <CategoryPill
+                className={classNames(
+                  "rsvp__category",
+                  activeCategory !== category.name && "is-inactive",
+                )}
+                activeTextColor='#FFF'
+                activeBgColor='#000'
+                key={category.name}
+                isActive={activeCategory === category.name}
+                onClick={() => setActiveCategory(category.name)}
+              >
+                {category.name}
+              </CategoryPill>
+            ))}
+          </div>
         </div>
         <section className='rsvp__talks'>
           {currentTalks.map((talk) => (
