@@ -42,14 +42,21 @@
 
   &__categories {
     display: flex;
-    @include flex-gap(0, 8px);
+    row-gap: 8px;
+    column-gap: 8px;
+    margin-top: 24px;
     margin-bottom: 40px;
     padding: 0 8.6%;
+    flex-wrap: wrap;
   }
 
   &__category {
-    color: $grey-10 !important;
     font-weight: 400 !important;
+    text-transform: capitalize;
+
+    &.is-inactive {
+      color: $grey-10 !important;
+    }
   }
 
   &__talks {
