@@ -1,0 +1,137 @@
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+form p {
+  text-align: center;
+  margin-right: auto;
+}
+form h3 {
+  color: var(--greys-grey-10, #1c1c1c);
+
+  /* Header/Header 05 */
+  font-family: Google Sans;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.5px;
+  text-align: left;
+}
+.form-name {
+  border-radius: 10px;
+  border: 1.4px solid var(--greys-grey-60, #999);
+  background: var(--background-shade-1, #fffaeb);
+
+  /* display: flex; */
+  width: 35vw;
+  height: 3rem;
+  /* padding: 24px 511px 24px 24px; */
+  align-items: center;
+}
+.form-drag-drop {
+  border-radius: 4px;
+  border: 2px dashed var(--greys-grey-80, #ccc);
+  background: var(--background-shade-1, #fffaeb);
+
+  /* display: flex; */
+  width: 33.7vw;
+  height: 10rem;
+  /* padding: 24px 511px 24px 24px; */
+  align-items: center;
+}
+label {
+  margin: 1.5rem 0 0.5rem 0;
+  font-size: 0.9rem;
+}
+.drag-container {
+  width: 35vw;
+  background: var(--background-shade-1, #fffaeb);
+  padding: 0.7rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-button {
+  border-radius: 48px;
+  background: var(--secondary-blue, #8ab4f8);
+  width: 35vw;
+  height: 3rem;
+  margin-top: 1rem;
+}
+.form-info {
+  color: var(--primary-blue, #4285f4);
+  font-family: Google Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 137.5% */
+  /* margin-left: -13rem; */
+}
+
+.container {
+  text-align: center;
+}
+
+.previewImage {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.3rem;
+  margin-top: 10px;
+}
+.inputImage {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+.drag-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 99vw;
+}
+.form-drag-drop p {
+  font-size: 0.8rem;
+}
+.form-drag-drop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-drag-drop input {
+  margin-left: 7rem;
+}
+
+@media screen and (width < 768px) {
+  .form-button {
+    width: 75vw;
+  }
+  .form-drag-drop {
+    width: 75vw;
+    height: 10rem;
+  }
+  .drag-container {
+    width: 80vw;
+    background: var(--background-shade-1, #fffaeb);
+    padding: 0.7rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+  .form-name {
+    width: 80vw;
+    height: 2.4rem;
+  }
+}

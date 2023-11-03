@@ -1,0 +1,67 @@
+.hero-container {
+  background: var(--background-shade-1, #fffaeb);
+  position: relative;
+  height: 40vh;
+  width: 100vw;
+  margin-bottom: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.hero-container h2 {
+  font-size: 2.3rem;
+  font-weight: bold;
+}
+.hero-container p {
+  color: gray;
+  font-size: 0.9rem;
+}
+
+.hero-icons {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.avatar-container {
+  position: absolute;
+  top: 8rem;
+  left: 27rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(128, 128, 128, 0.452);
+  height: 2.3rem;
+  width: 2.3rem;
+  border-radius: 2rem;
+}
+.avatar-container2 {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-shade-1, #d7c79a);
+  top: 10rem;
+  right: 30rem;
+  height: 2.3rem;
+  width: 2.3rem;
+  border-radius: 2rem;
+}
+
+.hero-cup-icon {
+  position: absolute;
+  top: 2rem;
+  left: 30rem;
+}
+
+.hero-globe-icon {
+  position: absolute;
+  top: 11rem;
+  left: 35rem;
+}
+
+.hero-refresh-icon {
+  position: absolute;
+  top: 4rem;
+  right: 24rem;
+}
