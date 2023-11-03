@@ -4,18 +4,27 @@ import styles from "./rsvp-ticket.module.scss";
 import CategoryPill from "../category-pill/category-pill";
 import { TertiaryButton } from "../button";
 import { Session } from "@/types/Session";
+import StarIcon from "@/images/star.svg";
+import { classNames } from "@/utils/classNames";
 
 type RSVPTicketProps = {
   onClick: () => void;
   session: Session;
   onSelectTicket: () => void;
   isSelected: boolean;
+  isSecured?: boolean;
 };
 
 const getDayText = (date: string) =>
   new Date(date).getDate() === 24 ? "24th November" : "25th November";
 
-const RSVPTicket = ({ session, onClick, isSelected, onSelectTicket }: RSVPTicketProps) => {
+const RSVPTicket = ({
+  session,
+  onClick,
+  isSelected,
+  onSelectTicket,
+  isSecured,
+}: RSVPTicketProps) => {
   const {
     category,
     title,
@@ -32,6 +41,36 @@ const RSVPTicket = ({ session, onClick, isSelected, onSelectTicket }: RSVPTicket
   const onBookSeat = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     onSelectTicket();
+  };
+
+  const renderButton = () => {
+    const isBlueButton = isSelected || isSecured;
+
+    let buttonText;
+
+    if (isSecured) {
+      buttonText = "Session Secured";
+    } else if (isSelected) {
+      buttonText = "Seat Booked";
+    } else {
+      buttonText = "Book a Seat";
+    }
+
+    return (
+      <TertiaryButton
+        className={classNames(styles.bookASeat, !isBlueButton && styles.notSelected)}
+        onClick={onBookSeat}
+        icon={
+          isBlueButton ? (
+            <div className={styles.bookASeatIcon}>
+              <StarIcon />
+            </div>
+          ) : undefined
+        }
+      >
+        {buttonText}
+      </TertiaryButton>
+    );
   };
 
   return (
@@ -77,9 +116,7 @@ const RSVPTicket = ({ session, onClick, isSelected, onSelectTicket }: RSVPTicket
           <CategoryPill isSmall className={styles.talkDate}>
             {getDayText(sessionDate)}, {scheduledAt}
           </CategoryPill>
-          <TertiaryButton className={styles.bookASeat} onClick={onBookSeat}>
-            {isSelected ? "Seat Booked" : "Book a Seat"}
-          </TertiaryButton>
+          {renderButton()}
         </div>
       </div>
     </div>

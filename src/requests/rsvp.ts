@@ -1,9 +1,23 @@
 import axios from "axios";
 
-export const addSessionsToRSVP = async (sessionIds: string[]) => {
-  await axios.post("https://addmultipletousersessions-azqpniimiq-uc.a.run.app", {
-    sessionIds,
-  });
+export const addSessionsToRSVP = async ({
+  sessionIds,
+  token,
+}: {
+  sessionIds: string[];
+  token: string;
+}) => {
+  await axios.post(
+    "https://addmultipletousersessions-azqpniimiq-uc.a.run.app",
+    {
+      sessionIds,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
 };
 
 export const fetchRSVPS = async (session: string) => {
@@ -13,5 +27,5 @@ export const fetchRSVPS = async (session: string) => {
     },
   });
 
-  return response.data;
+  return response.data?.data || [];
 };

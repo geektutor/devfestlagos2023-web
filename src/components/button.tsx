@@ -11,6 +11,7 @@ type Props = {
   isExternal?: boolean;
   type?: "button" | "submit" | "reset";
   isDisabled?: boolean;
+  icon?: React.ReactNode;
 };
 
 const Button: FC<PropsWithChildren<Props>> = ({
@@ -20,6 +21,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
   isExternal,
   type,
   isDisabled,
+  icon,
   ...props
 }) => {
   const className = classNames("c-button", `c-button--${variant}`, props.className);
@@ -51,6 +53,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
       type={type}
     >
       {children}
+      {icon && <figure className='c-button__icon-wrapper'>{icon}</figure>}
     </button>
   );
 };
@@ -65,9 +68,8 @@ export const SecondaryButton: FC<PropsWithChildren<Omit<Props, "variant">>> = (p
 
 export const TertiaryButton: FC<PropsWithChildren<Omit<Props, "variant">>> = (props) => {
   return (
-    <Button {...props} variant='tertiary'>
-      <span>{props.children}</span>
-      <ArrowRight />
+    <Button {...props} variant='tertiary' icon={props.icon || <ArrowRight />}>
+      {props.children}
     </Button>
   );
 };

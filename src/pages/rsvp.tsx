@@ -13,18 +13,29 @@ import { classNames } from "@/utils/classNames";
 import { Category } from "@/types/Category";
 import RSVPTicketDetails from "@/components/rsvp/rsvp-details/rsvp-ticket-details";
 import { useRSVPState } from "@/hooks/useRSVPState";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { firebaseAuth } from "@/firebase/app";
 import firebase from "firebase/compat/app";
 import RSVPSignIn from "@/components/rsvp/rsvp-sign-in/rsvp-sign-in";
-import { addSessionsToRSVP } from "@/requests/rsvp";
+import { addSessionsToRSVP, fetchRSVPS } from "@/requests/rsvp";
 
 const pageSize = 6;
+
+const TABS = {
+  GENERAL: "GENERAL",
+  BOOKMARKS: "BOOKMARKS",
+};
 
 const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [user, setUser] = React.useState<firebase.User | null>(null);
   const [showLogin, setShowLogin] = React.useState<boolean>(false);
   const [tickets, setTickets] = React.useState<Set<string>>(new Set());
+  const [userToken, setUserToken] = React.useState<string | null>(null);
+
+  const [activeTab, setActiveTab] = React.useState<string>(TABS.GENERAL);
+  const [showRSVPPopup, setShowRSVPPopup] = React.useState<boolean>(false);
+
+  const [hasPendingSaveBookmarks, setHasPendingSaveBookmarks] = React.useState<boolean>(false);
 
   //Refs
   const daysSectionRef = useRef<HTMLDivElement>(null);
@@ -33,6 +44,40 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
   const scrollToTalks = () => {
     scrollIntoView.current = true;
   };
+
+  // API Calls
+  const addSessionsMutation = useMutation({
+    mutationFn: addSessionsToRSVP,
+    onSuccess: () => {
+      console.log("successfully added");
+    },
+    onError: () => {
+      console.log("I failed you Master Bruce");
+    },
+  });
+
+  const getSessionsQuery = useQuery({
+    queryKey: ["getSessions", user?.email],
+    queryFn: async () => {
+      if (!user || !userToken) return;
+
+      const rsvp = await fetchRSVPS(userToken);
+
+      setTickets(new Set(rsvp));
+
+      return rsvp;
+    },
+    enabled: !!user,
+    select: (data) => {
+      const sessionIds = data as string[];
+      const sessionIdsSet = new Set(sessionIds);
+
+      return {
+        sessions: sessions.filter((session) => sessionIdsSet.has(session.sessionId)),
+        sessionIds: sessionIdsSet,
+      };
+    },
+  });
 
   const {
     talksPage,
@@ -50,7 +95,7 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
     totalTalks,
     setActiveCategory,
   } = useRSVPState({
-    sessions,
+    sessions: activeTab === TABS.GENERAL ? sessions : getSessionsQuery.data?.sessions || [],
     categories,
     scrollToTalks,
     pageSize,
@@ -58,8 +103,12 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
 
   // Effects
   useEffect(() => {
-    firebaseAuth.onAuthStateChanged((user) => {
+    firebaseAuth.onAuthStateChanged(async (user) => {
       setUser(user);
+      if (user) {
+        const token = await user.getIdToken();
+        setUserToken(token);
+      }
     });
   }, []);
 
@@ -73,45 +122,35 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
     }
   }, [talksPage]);
 
-  const addSessionsMutation = useMutation({
-    mutationFn: addSessionsToRSVP,
-    onSuccess: () => {
-      console.log("successfully added");
-    },
-    onError: () => {
-      console.log("I failed you Master Bruce");
-    },
-  });
-
-  // const getSessionsQuery = useQuery({
-  //   queryKey: ['getSessions', user?.email],
-  //   queryFn: async () => {
-  //     if(!user) return;
-  //
-  //     const token = await user.getIdToken();
-  //
-  //     if(token){
-  //       return fetchRSVPS(token)
-  //     }else{
-  //       setUser(null)
-  //     }
-  //   },
-  //   enabled: !!user
-  // })
-
-  const onClickFinish = (newUser?: firebase.User) => {
+  // Event handlers
+  const onClickFinish = async (newUser?: firebase.User) => {
     const currentUser = newUser || user;
+    let token = userToken;
+
+    if (newUser) {
+      token = await newUser.getIdToken();
+    }
 
     if (currentUser) {
-      addSessionsMutation.mutate(Array.from(tickets));
+      addSessionsMutation.mutate({
+        sessionIds: Array.from(tickets),
+        token: token!,
+      });
     } else {
+      setHasPendingSaveBookmarks(true);
       setShowLogin(true);
     }
   };
 
   const onLogin = (user: firebase.User) => {
     setShowLogin(false);
-    onClickFinish(user);
+
+    if (hasPendingSaveBookmarks) {
+      onClickFinish(user);
+      setHasPendingSaveBookmarks(false);
+    } else {
+      setShowRSVPPopup(true);
+    }
   };
 
   const onSelectTicket = (talk: Session) => () => {
@@ -126,15 +165,56 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
     setTickets(mutableTickets);
   };
 
+  const onClickMenu = (tab: string) => () => {
+    setActiveTab(tab);
+    setShowRSVPPopup(false);
+  };
+
+  const onClickMenuButton = () => {
+    if (user) {
+      setShowRSVPPopup((currentState) => !currentState);
+    } else {
+      setShowLogin(true);
+    }
+  };
+
+  const onClickSignOut = () => {
+    firebaseAuth.signOut();
+    setShowRSVPPopup(false);
+  };
+
+  const renderMenuButton = () => {
+    return (
+      <div className='rsvp__menu'>
+        <TertiaryButton onClick={onClickMenuButton}>Hi, Omo Ologo</TertiaryButton>
+        <div className={classNames("rsvp__menu__inner", showRSVPPopup && "is-active")}>
+          <button className='rsvp__menu__button' onClick={onClickMenu(TABS.GENERAL)}>
+            All Sessions
+          </button>
+          <button className='rsvp__menu__button' onClick={onClickMenu(TABS.BOOKMARKS)}>
+            Booked Sessions
+          </button>
+          <button className='rsvp__menu__button sign-out' onClick={onClickSignOut}>
+            Sign Out
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
-      <Menu actionButton={<TertiaryButton>Hi, Omo Ologo</TertiaryButton>} />
+      <Menu actionButton={renderMenuButton()} />
       <div className='rsvp'>
-        <h1 className='rsvp__title'>RSVP</h1>
-        <p className='rsvp__subtitle'>
-          Rice and Soup very plenty 🤩 <br /> JK JK, Below you can select the sessions you’re
-          interested in.
-        </p>
+        <h1 className={classNames("rsvp__title", activeTab === TABS.BOOKMARKS && "bookmarked")}>
+          {activeTab === TABS.GENERAL ? "RSVP" : "Your Booked Sessions"}
+        </h1>
+        {activeTab === TABS.GENERAL && (
+          <p className='rsvp__subtitle'>
+            Rice and Soup very plenty 🤩 <br /> JK JK, Below you can select the sessions you’re
+            interested in.
+          </p>
+        )}
         <div className='rsvp__days' ref={daysSectionRef}>
           {Array.from({ length: 2 }).map((_, index) => (
             <button
@@ -173,6 +253,7 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
               session={talk}
               isSelected={tickets.has(talk.sessionId)}
               onSelectTicket={onSelectTicket(talk)}
+              isSecured={getSessionsQuery.data?.sessionIds.has(talk.sessionId)}
             />
           ))}
         </section>

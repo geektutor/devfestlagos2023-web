@@ -18,6 +18,12 @@
     cursor: not-allowed;
   }
 
+  &__icon-wrapper {
+    margin-left: 8px !important;
+    height: fit-content;
+    display: flex;
+  }
+
   &--primary {
     background: $grey-0;
     color: $grey-100;
