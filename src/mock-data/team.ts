@@ -219,7 +219,7 @@ export const teamMembers: ITeamMember[] = [
     links: [
       {
         type: "linkedin",
-        url: "www.linkedin.com/in/Lukmon-Abdulsalam",
+        url: "https://www.linkedin.com/in/Lukmon-Abdulsalam",
       },
     ],
   },
@@ -279,15 +279,15 @@ export const teamMembers: ITeamMember[] = [
       },
       {
         type: "github",
-        url: "www.github.com/TemitopeAsama",
+        url: "https://www.github.com/TemitopeAsama",
       },
       {
         type: "twitter",
-        url: "www.x.com/omolxre",
+        url: "https://www.x.com/omolxre",
       },
       {
         type: "linkedin",
-        url: "www.linkedin.com/in/TemitopeAsama",
+        url: "https://www.linkedin.com/in/TemitopeAsama",
       },
     ],
   },
@@ -426,7 +426,7 @@ export const teamMembers: ITeamMember[] = [
     links: [
       {
         type: "twitter",
-        url: "www.twitter.com/marvinographer",
+        url: "https://www.twitter.com/marvinographer",
       },
     ],
   },
@@ -447,15 +447,15 @@ export const teamMembers: ITeamMember[] = [
     links: [
       {
         type: "twitter",
-        url: "www.twitter.com/rynsola__",
+        url: "https://www.twitter.com/rynsola__",
       },
       {
         type: "linkedin",
-        url: "www.linkedin.com/in/adesanya-omorinsola-76aab6174/",
+        url: "https://www.linkedin.com/in/adesanya-omorinsola-76aab6174/",
       },
       {
         type: "instagram",
-        url: "www.instagram.com/omo.rinsola?igshid=MzMyNGUyNmU2YQ==",
+        url: "https://www.instagram.com/omo.rinsola?igshid=MzMyNGUyNmU2YQ==",
       },
       {
         type: "substack",
