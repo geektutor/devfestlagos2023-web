@@ -18,6 +18,8 @@ import { firebaseAuth } from "@/firebase/app";
 import firebase from "firebase/compat/app";
 import RSVPSignIn from "@/components/rsvp/rsvp-sign-in/rsvp-sign-in";
 import { addSessionsToRSVP, fetchRSVPS } from "@/requests/rsvp";
+import ArrowLeftDark from "@/images/arrow-left-dark.svg";
+import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 
 const pageSize = 6;
 
@@ -280,13 +282,18 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
               {addSessionsMutation.isLoading ? "Booking Sessions..." : "Book Selected Sessions"}
             </TertiaryButton>
             <div className='rsvp__pagination-buttons'>
-              <SecondaryButton isDisabled={talksPage === 1} onClick={onClickPrev}>
+              <SecondaryButton
+                isDisabled={talksPage === 1}
+                onClick={onClickPrev}
+                icon={<ArrowLeftDark />}
+              >
                 Previous
               </SecondaryButton>
               <p className='rsvp__current-page'>{talksPage}</p>
               <SecondaryButton
                 isDisabled={talksPage >= Math.ceil(totalTalks / pageSize)}
                 onClick={onClickNext}
+                icon={<ArrowRightDark style={{ color: "white" }} />}
               >
                 Next
               </SecondaryButton>
