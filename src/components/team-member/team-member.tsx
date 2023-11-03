@@ -9,9 +9,19 @@ import FacebookIcon from "@/images/team/links/facebook.svg";
 import PlayIcon from "@/images/team/play-icon.svg";
 import EmailIcon from "@/images/team/links/mail.svg";
 import { classNames } from "@/utils/classNames";
+import GithubIcon from "@/images/team/links/github.svg";
+import BehanceIcon from "@/images/team/links/behance.svg";
+import MediumIcon from "@/images/team/links/medium.svg";
+import SubstackIcon from "@/images/team/links/substack.svg";
+import WebsiteIcon from "@/images/team/links/website.svg";
 
 const linksMap: Partial<Record<TeamMemberLink["type"], FC>> = {
   instagram: IgIcon,
+  github: GithubIcon,
+  behance: BehanceIcon,
+  medium: MediumIcon,
+  substack: SubstackIcon,
+  website: WebsiteIcon,
   twitter: TwitterIcon,
   linkedin: LinkedInIcon,
   facebook: FacebookIcon,

@@ -14,17 +14,27 @@ import sodiqImage from "@/images/team/sodiq.png";
 import tobiImage from "@/images/team/tobi.png";
 import ziaImage from "@/images/team/zia.png";
 import asakeImage from "@/images/team/music/asake.png";
-import caniImage from "@/images/team/music/can-i.png";
 import tokyoImage from "@/images/team/music/tokyo.png";
 import commandoImage from "@/images/team/music/commando.png";
 import convictImage from "@/images/team/music/convict.png";
 import creatureImage from "@/images/team/music/creature.png";
-import dragonbornImage from "@/images/team/music/dragonborn.png";
-import fikeImage from "@/images/team/music/fike.png";
 import johaImage from "@/images/team/music/joha.png";
 import somewhereImage from "@/images/team/music/somewhere.png";
 import tearsImage from "@/images/team/music/tears.png";
 import btsImage from "@/images/team/music/bts.png";
+import akinImage from "@/images/team/akin.png";
+import o2Image from "@/images/team/music/o2.png";
+import idkImage from "@/images/team/music/idk.png";
+import marvinImage from "@/images/team/marvin.png";
+import tobijuImage from "@/images/team/tobiju.png";
+import growImage from "@/images/team/music/grow.png";
+import ollieImage from "@/images/team/music/ollie.png";
+import giantsImage from "@/images/team/music/giants.png";
+import omorinsolaImage from "@/images/team/omorinsola.png";
+import victoryImage from "@/images/team/music/victory.png";
+import babydollImage from "@/images/team/music/babydoll.png";
+import cityBoysImage from "@/images/team/music/city-boys.png";
+import hindsightImage from "@/images/team/music/hindsight.png";
 
 export type TeamMemberLink = {
   type:
@@ -150,7 +160,7 @@ export const teamMembers: ITeamMember[] = [
     category: "content",
     image: joelImage,
     music: {
-      image: asakeImage,
+      image: cityBoysImage,
       name: "City Boys",
       artist: "Burna Boy",
       url: "https://open.spotify.com/track/1OX1aWd5WTavFuOXZ7k6Q5?si=00d21b47a78c46c9",
@@ -166,7 +176,7 @@ export const teamMembers: ITeamMember[] = [
     key: "sebastine",
     name: "Sebastaine Odeh",
     role: "Mobile Developer",
-    comment: "Lere is a sweet babe but my babe's sweeter🙏🏽🙏🏽",
+    comment: "It was incredible working with these guys!",
     quote: "God Abeg.",
     category: "dev",
     image: sebastineImage,
@@ -223,7 +233,7 @@ export const teamMembers: ITeamMember[] = [
     category: "dev",
     image: iyinImage,
     music: {
-      image: johaImage,
+      image: giantsImage,
       name: "Giants",
       artist: "Dermot Kennedy",
       url: "https://open.spotify.com/track/0l4AReW2LuX0yStPfgQgSR?si=c8a9e62d86e94d23",
@@ -257,7 +267,7 @@ export const teamMembers: ITeamMember[] = [
     category: "dev,content",
     image: lereImage,
     music: {
-      image: caniImage,
+      image: babydollImage,
       name: "Babydoll",
       artist: "Dominic Fike",
       url: "https://open.spotify.com/track/7yNf9YjeO5JXUE3JEBgnYc?si=e4b85fb602ad45b6",
@@ -339,7 +349,7 @@ export const teamMembers: ITeamMember[] = [
       },
     ],
     music: {
-      image: dragonbornImage,
+      image: victoryImage,
       name: "Victory",
       artist: "Two Steps From Hell",
       url: "https://open.spotify.com/track/2F9xBxKbx2M0pbgtSu8fLf?si=9ea2561265e5477d",
@@ -381,7 +391,7 @@ export const teamMembers: ITeamMember[] = [
     isLead: true,
     image: nifemiImage,
     music: {
-      image: fikeImage,
+      image: growImage,
       name: "Grow",
       artist: "Sion",
       url: "https://open.spotify.com/track/03fDmeiWj0nQS3ZHIjfZ9X?si=b9991f28238a4784",
@@ -401,15 +411,16 @@ export const teamMembers: ITeamMember[] = [
     key: "marvin",
     name: "Marvin Ogah",
     role: "Design",
-    comment: "The team is crazy good, thats all I can say.",
+    comment:
+      "The team's Rick & Morty-esque, Everyone is Rick, smart with Incredible abilities, can travel galaxies & break the fabric of time to help their comrades, but will drag that same comrade like tiger gen the next second",
     quote:
       "As we let our own light shine, we unconsciously give other people permission to do the same as we are liberated from our own fears.",
     category: "design",
-    image: nifemiImage,
+    image: marvinImage,
     music: {
-      image: fikeImage,
-      name: "No place like hope",
-      artist: "Zachary Knowles",
+      image: ollieImage,
+      name: "Zero to one",
+      artist: "Ollie",
       url: "https://open.spotify.com/track/5ttql4WZYAh4LGUSMhQcJc?si=37e232f436c54d19",
     },
     links: [
@@ -426,11 +437,11 @@ export const teamMembers: ITeamMember[] = [
     comment: "Amazing , proud of the team.",
     quote: "It gets better",
     category: "QA",
-    image: nifemiImage,
+    image: omorinsolaImage,
     music: {
-      image: fikeImage,
-      name: "No place like hope",
-      artist: "Zachary Knowles",
+      image: o2Image,
+      name: "O2",
+      artist: "Oxlade",
       url: "https://open.spotify.com/track/5ttql4WZYAh4LGUSMhQcJc?si=37e232f436c54d19",
     },
     links: [
@@ -460,9 +471,9 @@ export const teamMembers: ITeamMember[] = [
       "I'm grateful to the FE team and the design team. I got to express myself creatively through the excellent design and great codebase and infrastructure that the other Devs had worked on.",
     quote: "Jesus saved my life",
     category: "QA",
-    image: nifemiImage,
+    image: akinImage,
     music: {
-      image: fikeImage,
+      image: hindsightImage,
       name: "Hindsight ",
       artist: "Hillsong Young & Free",
       url: "https://open.spotify.com/track/24ql1HeqRrvruTLE8wPnSj?si=563b10cb0c9a46f6",
@@ -482,12 +493,12 @@ export const teamMembers: ITeamMember[] = [
     key: "tobiju",
     name: "Oluwatobiju Judah",
     role: "Frontend Developer",
-    comment: "Amazing , proud of the team.",
-    quote: "It gets better",
+    comment: "fun people doing excellent work 🪐",
+    quote: "c'est la vie, n'est-ce pas?",
     category: "QA",
-    image: nifemiImage,
+    image: tobijuImage,
     music: {
-      image: fikeImage,
+      image: idkImage,
       name: "IDK",
       artist: "Mosss",
       url: "https://open.spotify.com/track/6NrwVoFmjeNsEtrgZTMo4T?si=790f8168688747b1",
@@ -502,8 +513,8 @@ export const teamMembers: ITeamMember[] = [
         url: "https://twitter.com/tobijudah",
       },
       {
-        type: "website",
-        url: "http://projects.tobiju.com/",
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/oluwatobiju-judah-omotosho/",
       },
       {
         type: "medium",
