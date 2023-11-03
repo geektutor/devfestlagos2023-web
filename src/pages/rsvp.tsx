@@ -305,6 +305,7 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
                 isDisabled={talksPage === 1}
                 onClick={onClickPrev}
                 icon={<ArrowLeftDark />}
+                isLeftIcon
               >
                 Previous
               </SecondaryButton>

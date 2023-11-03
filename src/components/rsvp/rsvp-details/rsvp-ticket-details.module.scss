@@ -43,7 +43,7 @@
 .modalContent {
   margin: 0 auto;
   padding: 2.4rem;
-  max-width: 43.6rem;
+  max-width: min(43.6rem, 94vw);
   background-color: $bg-shade-1;
   border-radius: 24px;
   border-top: 2px solid #211212;
@@ -57,7 +57,7 @@
   overflow: auto;
 
   @include media("<=tablet") {
-    margin: 0;
+    margin: 0 auto;
     padding: 1.8rem;
   }
 

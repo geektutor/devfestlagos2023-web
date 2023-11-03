@@ -12,6 +12,7 @@ type Props = {
   type?: "button" | "submit" | "reset";
   isDisabled?: boolean;
   icon?: React.ReactNode;
+  isLeftIcon?: boolean;
 };
 
 const Button: FC<PropsWithChildren<Props>> = ({
@@ -22,6 +23,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
   type,
   isDisabled,
   icon,
+  isLeftIcon,
   ...props
 }) => {
   const className = classNames("c-button", `c-button--${variant}`, props.className);
@@ -52,8 +54,9 @@ const Button: FC<PropsWithChildren<Props>> = ({
       className={classNames("c-button", `c-button--${variant}`, props.className)}
       type={type}
     >
+      {icon && isLeftIcon && <figure className='c-button__icon-wrapper is-left'>{icon}</figure>}
       {children}
-      {icon && <figure className='c-button__icon-wrapper'>{icon}</figure>}
+      {icon && !isLeftIcon && <figure className='c-button__icon-wrapper'>{icon}</figure>}
     </button>
   );
 };

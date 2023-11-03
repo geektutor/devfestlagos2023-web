@@ -22,6 +22,11 @@
     margin-left: 8px !important;
     height: fit-content;
     display: flex;
+
+    &.is-left {
+      margin-right: 8px;
+      margin-left: 0 !important;
+    }
   }
 
   &--primary {
