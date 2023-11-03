@@ -6,6 +6,9 @@ import { TertiaryButton } from "../button";
 import { Session } from "@/types/Session";
 import StarIcon from "@/images/star.svg";
 import { classNames } from "@/utils/classNames";
+import { useMutation } from "react-query";
+import { removeRSVP } from "@/requests/rsvp";
+import { firebaseAuth } from "@/firebase/app";
 
 type RSVPTicketProps = {
   onClick: () => void;
@@ -13,6 +16,7 @@ type RSVPTicketProps = {
   onSelectTicket: () => void;
   isSelected: boolean;
   isSecured?: boolean;
+  onRemoveSession: () => void;
 };
 
 const getDayText = (date: string) =>
@@ -24,6 +28,7 @@ const RSVPTicket = ({
   isSelected,
   onSelectTicket,
   isSecured,
+  onRemoveSession,
 }: RSVPTicketProps) => {
   const {
     category,
@@ -38,9 +43,32 @@ const RSVPTicket = ({
 
   const backgroundColor = "#FFF";
 
-  const onBookSeat = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const removeRSVPMutation = useMutation({
+    mutationFn: async () => {
+      const user = firebaseAuth.currentUser;
+
+      if (!user) return;
+
+      const token = await user.getIdToken();
+
+      return removeRSVP({
+        sessionId: session.sessionId,
+        token: token,
+      });
+    },
+    onSuccess: () => {
+      onRemoveSession();
+    },
+  });
+
+  const onClickAction = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
-    onSelectTicket();
+
+    if (isSecured) {
+      removeRSVPMutation.mutate();
+    } else {
+      onSelectTicket();
+    }
   };
 
   const renderButton = () => {
@@ -58,8 +86,13 @@ const RSVPTicket = ({
 
     return (
       <TertiaryButton
-        className={classNames(styles.bookASeat, !isBlueButton && styles.notSelected)}
-        onClick={onBookSeat}
+        className={classNames(
+          styles.bookASeat,
+          !isBlueButton && styles.notSelected,
+          isSecured && styles.secured,
+        )}
+        onClick={onClickAction}
+        isDisabled={removeRSVPMutation.isLoading}
         icon={
           isBlueButton ? (
             <div className={styles.bookASeatIcon}>
@@ -68,7 +101,8 @@ const RSVPTicket = ({
           ) : undefined
         }
       >
-        {buttonText}
+        <span className={styles.normalText}>{buttonText}</span>
+        {isSecured && <span className={styles.hoverText}>Remove Session</span>}
       </TertiaryButton>
     );
   };

@@ -13,7 +13,7 @@ import { classNames } from "@/utils/classNames";
 import { Category } from "@/types/Category";
 import RSVPTicketDetails from "@/components/rsvp/rsvp-details/rsvp-ticket-details";
 import { useRSVPState } from "@/hooks/useRSVPState";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { firebaseAuth } from "@/firebase/app";
 import firebase from "firebase/compat/app";
 import RSVPSignIn from "@/components/rsvp/rsvp-sign-in/rsvp-sign-in";
@@ -36,6 +36,8 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
   const [showRSVPPopup, setShowRSVPPopup] = React.useState<boolean>(false);
 
   const [hasPendingSaveBookmarks, setHasPendingSaveBookmarks] = React.useState<boolean>(false);
+
+  const queryClient = useQueryClient();
 
   //Refs
   const daysSectionRef = useRef<HTMLDivElement>(null);
@@ -61,11 +63,7 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
     queryFn: async () => {
       if (!user || !userToken) return;
 
-      const rsvp = await fetchRSVPS(userToken);
-
-      setTickets(new Set(rsvp));
-
-      return rsvp;
+      return fetchRSVPS(userToken);
     },
     enabled: !!user,
     select: (data) => {
@@ -183,6 +181,14 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
     setShowRSVPPopup(false);
   };
 
+  const onRemoveSession = (sessionId: string) => () => {
+    queryClient.setQueryData(["getSessions", user?.email], (data) => {
+      if (!data || !Array.isArray(data)) return;
+
+      return data.filter((session) => session !== sessionId);
+    });
+  };
+
   const renderMenuButton = () => {
     return (
       <div className='rsvp__menu'>
@@ -254,6 +260,7 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
               isSelected={tickets.has(talk.sessionId)}
               onSelectTicket={onSelectTicket(talk)}
               isSecured={getSessionsQuery.data?.sessionIds.has(talk.sessionId)}
+              onRemoveSession={onRemoveSession(talk.sessionId)}
             />
           ))}
         </section>

@@ -183,12 +183,36 @@
     background-color: $grey-0;
   }
 
+  &:disabled {
+    //opacity: 0.5;
+  }
+
   @include media("<=phone") {
     min-width: 204px;
     width: -moz-fit-content;
     width: fit-content;
     height: 66px;
     color: $grey-100;
+  }
+
+  &.secured {
+    &:hover {
+      background: $primary-red;
+    }
+
+    &:hover .normalText,
+    .hoverText {
+      display: none;
+    }
+
+    .hoverText {
+      display: none;
+      color: $grey-100;
+    }
+
+    &:hover .hoverText {
+      display: block;
+    }
   }
 }
 
