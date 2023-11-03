@@ -7,20 +7,33 @@ import Group from "@/images/group.svg";
 import Location from "@/images/pin-drop.svg";
 import CloseCircle from "@/images/close-circle.svg";
 import CategoryPill from "@/components/category-pill/category-pill";
-import { TertiaryButton } from "@/components/button";
 import { classNames } from "@/utils/classNames";
 import { Session } from "@/types/Session";
+import React from "react";
+import RsvpButton from "@/components/rsvp/rsvp-button/rsvp-button";
 
 type RSVPTicketDetailsProps = {
   modalIsOpen?: boolean;
   onClose: () => void;
   session: Session | null;
+  onSelectTicket: () => void;
+  isSelected: boolean;
+  isSecured?: boolean;
+  onRemoveSession: () => void;
 };
 
 const getDayText = (date: string) =>
   new Date(date).getDate() === 24 ? "24th November" : "25th November";
 
-const RSVPTicketDetails = ({ modalIsOpen, onClose, session }: RSVPTicketDetailsProps) => {
+const RSVPTicketDetails = ({
+  modalIsOpen,
+  onClose,
+  session,
+  isSelected,
+  onSelectTicket,
+  isSecured,
+  onRemoveSession,
+}: RSVPTicketDetailsProps) => {
   const timeLeft = "30"; //todo: Actually calculate this using the scheduledAt and sessionDate
 
   const renderContent = () => {
@@ -90,7 +103,14 @@ const RSVPTicketDetails = ({ modalIsOpen, onClose, session }: RSVPTicketDetailsP
           <span>Save your spot for this talk by booking a seat for this talk!</span>
         </div>
 
-        <TertiaryButton className={styles.bookASeat}>Book a Seat</TertiaryButton>
+        <RsvpButton
+          isSelected={isSelected}
+          onSelectTicket={onSelectTicket}
+          isSecured={isSecured}
+          onRemoveSession={onRemoveSession}
+          isFullWidth
+          session={session}
+        />
       </>
     );
   };

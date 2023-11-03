@@ -51,7 +51,13 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
   const addSessionsMutation = useMutation({
     mutationFn: addSessionsToRSVP,
     onSuccess: () => {
-      console.log("successfully added");
+      queryClient.setQueryData(["getSessions", user?.email], (data) => {
+        if (!data || !Array.isArray(data)) return;
+
+        return data.concat(Array.from(tickets));
+      });
+
+      setTickets(new Set());
     },
     onError: () => {
       console.log("I failed you Master Bruce");
@@ -269,7 +275,7 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
           <div className='rsvp__buttons-row'>
             <TertiaryButton
               onClick={() => onClickFinish()}
-              isDisabled={addSessionsMutation.isLoading}
+              isDisabled={addSessionsMutation.isLoading || !tickets.size}
             >
               {addSessionsMutation.isLoading ? "Booking Sessions..." : "Book Selected Sessions"}
             </TertiaryButton>
@@ -293,6 +299,10 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
           onClose={onCloseTalkDetails}
           session={talkModalState.session}
           modalIsOpen={talkModalState.isOpen}
+          isSelected={tickets.has(talkModalState.session?.sessionId || "")}
+          onRemoveSession={onRemoveSession(talkModalState.session?.sessionId || "")}
+          isSecured={getSessionsQuery.data?.sessionIds.has(talkModalState.session?.sessionId || "")}
+          onSelectTicket={onSelectTicket(talkModalState.session || ({} as Session))}
         />
         <RSVPSignIn modalIsOpen={showLogin} onLogin={onLogin} onClose={() => setShowLogin(false)} />
       </div>

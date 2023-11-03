@@ -2,13 +2,8 @@ import React from "react";
 import Image from "next/image";
 import styles from "./rsvp-ticket.module.scss";
 import CategoryPill from "../category-pill/category-pill";
-import { TertiaryButton } from "../button";
 import { Session } from "@/types/Session";
-import StarIcon from "@/images/star.svg";
-import { classNames } from "@/utils/classNames";
-import { useMutation } from "react-query";
-import { removeRSVP } from "@/requests/rsvp";
-import { firebaseAuth } from "@/firebase/app";
+import RsvpButton from "@/components/rsvp/rsvp-button/rsvp-button";
 
 type RSVPTicketProps = {
   onClick: () => void;
@@ -42,70 +37,6 @@ const RSVPTicket = ({
   } = session;
 
   const backgroundColor = "#FFF";
-
-  const removeRSVPMutation = useMutation({
-    mutationFn: async () => {
-      const user = firebaseAuth.currentUser;
-
-      if (!user) return;
-
-      const token = await user.getIdToken();
-
-      return removeRSVP({
-        sessionId: session.sessionId,
-        token: token,
-      });
-    },
-    onSuccess: () => {
-      onRemoveSession();
-    },
-  });
-
-  const onClickAction = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.stopPropagation();
-
-    if (isSecured) {
-      removeRSVPMutation.mutate();
-    } else {
-      onSelectTicket();
-    }
-  };
-
-  const renderButton = () => {
-    const isBlueButton = isSelected || isSecured;
-
-    let buttonText;
-
-    if (isSecured) {
-      buttonText = "Session Secured";
-    } else if (isSelected) {
-      buttonText = "Seat Booked";
-    } else {
-      buttonText = "Book a Seat";
-    }
-
-    return (
-      <TertiaryButton
-        className={classNames(
-          styles.bookASeat,
-          !isBlueButton && styles.notSelected,
-          isSecured && styles.secured,
-        )}
-        onClick={onClickAction}
-        isDisabled={removeRSVPMutation.isLoading}
-        icon={
-          isBlueButton ? (
-            <div className={styles.bookASeatIcon}>
-              <StarIcon />
-            </div>
-          ) : undefined
-        }
-      >
-        <span className={styles.normalText}>{buttonText}</span>
-        {isSecured && <span className={styles.hoverText}>Remove Session</span>}
-      </TertiaryButton>
-    );
-  };
 
   return (
     <div className={styles.ticket} onClick={onClick}>
@@ -150,7 +81,13 @@ const RSVPTicket = ({
           <CategoryPill isSmall className={styles.talkDate}>
             {getDayText(sessionDate)}, {scheduledAt}
           </CategoryPill>
-          {renderButton()}
+          <RsvpButton
+            isSelected={isSelected}
+            onSelectTicket={onSelectTicket}
+            isSecured={isSecured}
+            onRemoveSession={onRemoveSession}
+            session={session}
+          />
         </div>
       </div>
     </div>
