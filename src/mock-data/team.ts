@@ -25,15 +25,16 @@ import btsImage from "@/images/team/music/bts.png";
 import akinImage from "@/images/team/akin.png";
 import o2Image from "@/images/team/music/o2.png";
 import idkImage from "@/images/team/music/idk.png";
+import marvinImage from "@/images/team/marvin.png";
 import tobijuImage from "@/images/team/tobiju.png";
 import growImage from "@/images/team/music/grow.png";
+import ollieImage from "@/images/team/music/ollie.png";
 import giantsImage from "@/images/team/music/giants.png";
 import omorinsolaImage from "@/images/team/omorinsola.png";
 import victoryImage from "@/images/team/music/victory.png";
 import babydollImage from "@/images/team/music/babydoll.png";
 import cityBoysImage from "@/images/team/music/city-boys.png";
 import hindsightImage from "@/images/team/music/hindsight.png";
-import noPlaceLikeHopeImage from "@/images/team/music/no-place-like-hope.png";
 
 export type TeamMemberLink = {
   type:
@@ -410,15 +411,16 @@ export const teamMembers: ITeamMember[] = [
     key: "marvin",
     name: "Marvin Ogah",
     role: "Design",
-    comment: "The team is crazy good, thats all I can say.",
+    comment:
+      "The team's Rick & Morty-esque, Everyone is Rick, smart with Incredible abilities, can travel galaxies & break the fabric of time to help their comrades, but will drag that same comrade like tiger gen the next second",
     quote:
       "As we let our own light shine, we unconsciously give other people permission to do the same as we are liberated from our own fears.",
     category: "design",
-    image: nifemiImage,
+    image: marvinImage,
     music: {
-      image: noPlaceLikeHopeImage,
-      name: "No place like hope",
-      artist: "Zachary Knowles",
+      image: ollieImage,
+      name: "Zero to one",
+      artist: "Ollie",
       url: "https://open.spotify.com/track/5ttql4WZYAh4LGUSMhQcJc?si=37e232f436c54d19",
     },
     links: [
