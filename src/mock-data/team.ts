@@ -174,7 +174,7 @@ export const teamMembers: ITeamMember[] = [
   },
   {
     key: "sebastine",
-    name: "Sebastaine Odeh",
+    name: "Sebastine Odeh",
     role: "Mobile Developer",
     comment: "It was incredible working with these guys!",
     quote: "God Abeg.",
@@ -189,7 +189,7 @@ export const teamMembers: ITeamMember[] = [
     links: [
       {
         type: "twitter",
-        url: "https://twitter.com/H3ndrick",
+        url: "https://twitter.com/H3ndrick_",
       },
       {
         type: "github",
