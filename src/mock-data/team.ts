@@ -193,7 +193,7 @@ export const teamMembers: ITeamMember[] = [
       },
       {
         type: "github",
-        url: ", https://github.com/CoderNamedHendrick",
+        url: "https://github.com/CoderNamedHendrick",
       },
       {
         type: "email",
