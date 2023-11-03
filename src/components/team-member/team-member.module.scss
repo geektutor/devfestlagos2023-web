@@ -199,11 +199,50 @@
   width: 100%;
   height: 10rem;
   border-radius: 2.4rem;
-  background: linear-gradient(90deg, #12c2e9 0%, #c471ed 100%);
+  background: linear-gradient(90deg, #12c2e9 0, #c471ed 100%);
+  background-size: 200% 200%;
   display: flex;
   align-items: center;
   padding: 1.6rem;
   text-decoration: none;
+
+  -webkit-animation: animateBackground 5s ease infinite;
+  -moz-animation: animateBackground 5s ease infinite;
+  animation: animateBackground 5s ease infinite;
+
+  @-webkit-keyframes animateBackground {
+    0% {
+      background-position: 10% 0;
+    }
+    50% {
+      background-position: 91% 100%;
+    }
+    100% {
+      background-position: 10% 0;
+    }
+  }
+  @-moz-keyframes animateBackground {
+    0% {
+      background-position: 10% 0;
+    }
+    50% {
+      background-position: 91% 100%;
+    }
+    100% {
+      background-position: 10% 0;
+    }
+  }
+  @keyframes animateBackground {
+    0% {
+      background-position: 10% 0;
+    }
+    50% {
+      background-position: 91% 100%;
+    }
+    100% {
+      background-position: 10% 0;
+    }
+  }
 
   @include media("<=tablet") {
     border-radius: 0.8rem;
