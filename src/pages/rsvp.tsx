@@ -216,6 +216,37 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
     );
   };
 
+  const renderTalks = () => {
+    if (getSessionsQuery.isLoading) {
+      const talk = currentTalks[0];
+
+      return Array.from({ length: 4 }).map((_, index) => (
+        <RsvpTicket
+          key={`${index}-loading`}
+          onClick={() => onShowTalkDetails(talk)}
+          session={talk}
+          onSelectTicket={() => {}}
+          isSelected={false}
+          isSecured={false}
+          onRemoveSession={() => {}}
+          isLoading
+        />
+      ));
+    }
+
+    return currentTalks.map((talk) => (
+      <RsvpTicket
+        key={talk.sessionId}
+        onClick={() => onShowTalkDetails(talk)}
+        session={talk}
+        isSelected={tickets.has(talk.sessionId)}
+        onSelectTicket={onSelectTicket(talk)}
+        isSecured={getSessionsQuery.data?.sessionIds.has(talk.sessionId)}
+        onRemoveSession={onRemoveSession(talk.sessionId)}
+      />
+    ));
+  };
+
   return (
     <>
       <Menu actionButton={renderMenuButton()} />
@@ -259,19 +290,7 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
             ))}
           </div>
         </div>
-        <section className='rsvp__talks'>
-          {currentTalks.map((talk) => (
-            <RsvpTicket
-              key={talk.sessionId}
-              onClick={() => onShowTalkDetails(talk)}
-              session={talk}
-              isSelected={tickets.has(talk.sessionId)}
-              onSelectTicket={onSelectTicket(talk)}
-              isSecured={getSessionsQuery.data?.sessionIds.has(talk.sessionId)}
-              onRemoveSession={onRemoveSession(talk.sessionId)}
-            />
-          ))}
-        </section>
+        <section className='rsvp__talks'>{renderTalks()}</section>
         <section className='rsvp__pagination'>
           <p className='rsvp__pagination-text'>{rangeText}</p>
           <div className='rsvp__buttons-row'>

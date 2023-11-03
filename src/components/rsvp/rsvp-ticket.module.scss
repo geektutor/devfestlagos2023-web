@@ -18,6 +18,38 @@
   flex-shrink: 0;
   cursor: pointer;
 
+  &.isLoading {
+    background: rgba(255, 255, 255, 0.5);
+
+    @keyframes loading {
+      to {
+        transform: skewX(-10deg) translateX(200%);
+      }
+    }
+
+    &::after {
+      width: 50%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      content: "";
+      background: linear-gradient(
+        90deg,
+        transparent,
+        //rgba(255, 255, 255, 0.9),
+        rgba(238, 238, 238, 0.8),
+        transparent
+      );
+      transform: skewX(-10deg) translateX(-100%);
+      position: absolute;
+      animation: loading 1s infinite;
+    }
+
+    > * {
+      opacity: 0;
+    }
+  }
+
   &:hover {
     .seeSession {
       display: block;

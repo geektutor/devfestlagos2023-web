@@ -4,6 +4,7 @@ import styles from "./rsvp-ticket.module.scss";
 import CategoryPill from "../category-pill/category-pill";
 import { Session } from "@/types/Session";
 import RsvpButton from "@/components/rsvp/rsvp-button/rsvp-button";
+import { classNames } from "@/utils/classNames";
 
 type RSVPTicketProps = {
   onClick: () => void;
@@ -12,6 +13,7 @@ type RSVPTicketProps = {
   isSelected: boolean;
   isSecured?: boolean;
   onRemoveSession: () => void;
+  isLoading?: boolean;
 };
 
 const getDayText = (date: string) =>
@@ -24,6 +26,7 @@ const RSVPTicket = ({
   onSelectTicket,
   isSecured,
   onRemoveSession,
+  isLoading,
 }: RSVPTicketProps) => {
   const {
     category,
@@ -39,7 +42,7 @@ const RSVPTicket = ({
   const backgroundColor = "#FFF";
 
   return (
-    <div className={styles.ticket} onClick={onClick}>
+    <div className={classNames(styles.ticket, isLoading && styles.isLoading)} onClick={onClick}>
       <div
         className={styles.speakerDetails}
         style={{
