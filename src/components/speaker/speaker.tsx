@@ -25,7 +25,7 @@ interface SpeakerCardProps {
   speaker: Speaker;
 }
 
-const getDayText = (day: 1 | 2) => (day === 1 ? "24th Novemeber" : "25th November");
+const getDayText = (day: 1 | 2) => (day === 1 ? "24th November" : "25th November");
 
 export default function SpeakerCard({
   speaker,

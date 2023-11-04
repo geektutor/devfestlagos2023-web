@@ -33,6 +33,7 @@ body {
   letter-spacing: calc(-0.025 * 16px);
   color: $grey-0;
   height: 100dvh;
+  background-color: $bg-shade-1;
 
   &.no-scroll {
     overflow: hidden;
@@ -64,6 +65,26 @@ button {
     100% {
       transform: translate3d(-50%, 0, 0);
     }
+  }
+}
+
+[data-line-animation] {
+  overflow: hidden;
+
+  > span {
+    display: inline-flex;
+    overflow: hidden;
+  }
+}
+
+[data-animate-sentences] {
+  > span {
+    overflow: hidden;
+    display: inline-flex;
+  }
+
+  span span {
+    display: inline-flex;
   }
 }
 

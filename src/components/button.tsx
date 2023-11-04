@@ -9,6 +9,7 @@ type Props = {
   variant: "primary" | "secondary" | "tertiary";
   href?: string;
   isExternal?: boolean;
+  type?: "button" | "submit" | "reset";
 };
 
 const Button: FC<PropsWithChildren<Props>> = ({
@@ -16,6 +17,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
   variant,
   href,
   isExternal,
+  type,
   ...props
 }) => {
   const className = classNames("c-button", `c-button--${variant}`, props.className);
@@ -30,14 +32,18 @@ const Button: FC<PropsWithChildren<Props>> = ({
 
   if (href && !isExternal) {
     return (
-      <Link href={href} className={className}>
+      <Link {...props} href={href} className={className}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button {...props} className={classNames("c-button", `c-button--${variant}`, props.className)}>
+    <button
+      {...props}
+      className={classNames("c-button", `c-button--${variant}`, props.className)}
+      type={type}
+    >
       {children}
     </button>
   );

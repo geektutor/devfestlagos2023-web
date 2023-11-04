@@ -43,10 +43,10 @@ export default function Home() {
   return (
     <>
       <SEO
-        title='Devfest Lagos 2023 | Early Bird Tickets'
+        title='Devfest Lagos 2023 | Grab Your Tickets'
         description='Welcome to the official Coming Soon website for DevFest Lagos 2023. DevFest Lagos is an annual  tech conference hosted by Google Developer Groups Lagos. Be there 🫵🏾'
         keywords='gdg lagos, devfest, devfest lagos, devfest lagos 2023'
-        image='/og-images/coming-soon.png'
+        image='/og-images/home-page.png'
       />
       <main className='c-home'>
         <section className='c-home__intro'>
@@ -68,7 +68,7 @@ export default function Home() {
             yet. Get ready for DevFest Lagos 2023.
           </p>
           <TertiaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
-            Grab Your Early Bird Tickets
+            Grab Your Tickets
           </TertiaryButton>
         </section>
         <section className='c-home__marquee-wrapper'>
