@@ -5,6 +5,143 @@
     padding-top: 60px;
   }
 
+  &__memoji-1 {
+    position: absolute;
+    top: 14.6rem;
+    left: 13.1%;
+    --size: 11rem;
+    width: var(--size);
+    height: var(--size);
+    background-color: rgba(13, 105, 212, 0.2);
+    border-radius: 50%;
+
+    @include media("<=desktop-sm") {
+      --size: 6.39rem;
+      left: 12.9%;
+      top: 10rem;
+    }
+
+    @include media("<=tablet") {
+      --size: 7.2rem;
+      left: -10px;
+      top: 14.4rem;
+    }
+  }
+
+  &__memoji-2 {
+    position: absolute;
+    top: 18.2rem;
+    right: 20%;
+    --size: 12rem;
+    width: var(--size);
+    height: var(--size);
+    background-color: $secondary-yellow;
+    border-radius: 50%;
+
+    @include media("<=desktop-sm") {
+      --size: 6.97rem;
+      right: 16.6%;
+      top: 11.5rem;
+    }
+
+    @include media("<=tablet") {
+      --size: 6.1rem;
+      right: -10px;
+      top: 13.4rem;
+    }
+  }
+
+  &__repeat {
+    position: absolute;
+    top: 13.5rem;
+    right: 26%;
+    width: 8.46rem;
+    height: auto;
+
+    @include media("<=desktop-sm") {
+      width: 4.9rem;
+      top: 10rem;
+    }
+
+    @include media("<=tablet") {
+      display: none;
+    }
+  }
+
+  &__dots {
+    position: absolute;
+    right: 27.5%;
+    top: 30.6rem;
+    width: 8rem;
+    height: auto;
+
+    @include media("<=desktop-sm") {
+      width: 4.66rem;
+      top: 19.2rem;
+    }
+
+    @include media("<=tablet") {
+      right: 17.4%;
+      width: 5.2rem;
+      top: 12.7rem;
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 12.8rem;
+    left: 28.5%;
+    width: 14.7rem;
+    height: auto;
+    transform: rotate(-21.494deg);
+
+    @include media("<=desktop-sm") {
+      width: 8.54rem;
+      top: 9.5rem;
+    }
+
+    @include media("<=tablet") {
+      left: 9%;
+      width: 8.82rem;
+      top: 13.7rem;
+    }
+  }
+
+  &__logic {
+    position: absolute;
+    top: 27.4rem;
+    left: 13.75%;
+    width: 19.1rem;
+    height: auto;
+
+    @include media("<=desktop-sm") {
+      width: 11.1rem;
+      top: 17rem;
+    }
+
+    @include media("<=tablet") {
+      left: -33px;
+      width: 10.5rem;
+      top: 23.7rem;
+    }
+  }
+
+  &__people {
+    position: absolute;
+    top: 21.2rem;
+    right: 1%;
+    width: 12.3rem;
+    height: auto;
+
+    @include media("<=desktop-sm") {
+      width: 7.15rem;
+    }
+
+    @include media("<=tablet") {
+      display: none;
+    }
+  }
+
   &__title {
     @include heading-1;
     color: $grey-0;
@@ -33,6 +170,7 @@
 
     @include media("<=tablet") {
       @include body-4;
+      max-width: 262px;
     }
 
     @include media("<=phone") {

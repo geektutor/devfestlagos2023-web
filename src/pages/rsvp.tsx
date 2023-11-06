@@ -20,6 +20,14 @@ import RSVPSignIn from "@/components/rsvp/rsvp-sign-in/rsvp-sign-in";
 import { addSessionsToRSVP, fetchRSVPS } from "@/requests/rsvp";
 import ArrowLeftDark from "@/images/arrow-left-dark.svg";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
+import repeatDoodle from "@/images/repeat-doodle.png";
+import dotsDoodle from "@/images/landing/doodles/dots.png";
+import logicDoodle from "@/images/logic.png";
+import arrowDoodle from "@/images/arrow-doodle.png";
+import peopleDoodle from "@/images/people-doodle.png";
+import Image from "next/image";
+import memoji1 from "@/images/beanie-memoji.png";
+import memoji2 from "@/images/wink-memoji.png";
 
 const pageSize = 6;
 
@@ -251,6 +259,13 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
     <>
       <Menu actionButton={renderMenuButton()} />
       <div className='rsvp'>
+        <Image src={arrowDoodle} alt='Arrow Doodle' className='rsvp__arrow' />
+        <Image src={repeatDoodle} alt='Repeat Doodle' className='rsvp__repeat' />
+        <Image src={dotsDoodle} alt='Dots Doodle' className='rsvp__dots' />
+        <Image src={logicDoodle} alt='Logic Doodle' className='rsvp__logic' />
+        <Image src={peopleDoodle} alt='People Doodle' className='rsvp__people' />
+        <Image src={memoji1} alt='Memoji' className='rsvp__memoji-1' />
+        <Image src={memoji2} alt='Memoji' className='rsvp__memoji-2' />
         <h1 className={classNames("rsvp__title", activeTab === TABS.BOOKMARKS && "bookmarked")}>
           {activeTab === TABS.GENERAL ? "RSVP" : "Your Booked Sessions"}
         </h1>
