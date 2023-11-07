@@ -30,6 +30,8 @@ import memoji1 from "@/images/beanie-memoji.png";
 import memoji2 from "@/images/wink-memoji.png";
 import { toast } from "react-toastify";
 import { ErrorAlert, SuccessAlert } from "@/components/alert/alert";
+import LeftIcon from "@/images/chevron-left.svg";
+import RightIcon from "@/images/chevron-right.svg";
 
 const pageSize = 6;
 
@@ -269,6 +271,43 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
     ));
   };
 
+  const categoriesRef = useRef<HTMLDivElement>(null);
+
+  const scrollCategories = (direction: "left" | "right") => () => {
+    const div = categoriesRef.current;
+    if (!div) return;
+
+    const categories = Array.from(div.children) as Array<HTMLDivElement>;
+    const scroll = div.scrollLeft;
+
+    const closestCategory = categories.find((category) => category.offsetLeft - 8 > scroll);
+    if (!closestCategory) return;
+
+    let scrollTarget = div.scrollLeft;
+    if (direction === "left") {
+      let targetElement;
+
+      if (closestCategory.previousElementSibling?.previousElementSibling) {
+        targetElement = closestCategory.previousElementSibling
+          ?.previousElementSibling as HTMLDivElement;
+      } else {
+        targetElement = closestCategory.previousElementSibling as HTMLDivElement;
+      }
+
+      scrollTarget = targetElement?.offsetLeft - 8 || scrollTarget;
+    } else {
+      const targetElement = closestCategory.nextElementSibling
+        ?.nextElementSibling as HTMLDivElement;
+
+      scrollTarget = targetElement?.offsetLeft || scrollTarget;
+    }
+
+    div.scrollTo({
+      left: scrollTarget,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <Menu actionButton={renderMenuButton()} />
@@ -301,7 +340,13 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
           ))}
         </div>
         <div className='rsvp__categories'>
-          <div className='rsvp__categories__inner'>
+          <button className='rsvp__categories__left-button' onClick={scrollCategories("left")}>
+            <LeftIcon />
+          </button>
+          <button className='rsvp__categories__right-button' onClick={scrollCategories("right")}>
+            <RightIcon />
+          </button>
+          <div className='rsvp__categories__inner' ref={categoriesRef}>
             {categoriesWithAll.map((category) => (
               <CategoryPill
                 className={classNames(

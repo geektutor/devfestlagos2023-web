@@ -208,6 +208,7 @@
   &__categories {
     margin: 24px 0 40px;
     padding: 0 8.6%;
+    position: relative;
 
     @include media("<=tablet") {
       margin-bottom: 24px;
@@ -217,10 +218,10 @@
     &__inner {
       display: flex;
       flex-wrap: nowrap;
-      //overflow-x: hidden;
+      overflow-x: hidden;
       width: 100%;
       position: relative;
-      overflow: auto;
+      //overflow: auto;
 
       @include media("<=phone") {
         flex-wrap: wrap;
@@ -241,6 +242,29 @@
       //  top: 0;
       //  content: "";
       //}
+    }
+
+    %button {
+      position: absolute;
+      background: transparent;
+      border: none;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+
+      @include media("<=phone") {
+        display: none;
+      }
+    }
+
+    &__left-button {
+      @extend %button;
+      left: 6%;
+    }
+
+    &__right-button {
+      @extend %button;
+      right: 6%;
     }
   }
 
