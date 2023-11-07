@@ -1,0 +1,400 @@
+@import "utils/mixins";
+@import "utils/breakpoints";
+@import "core/typography";
+@import "core/variables";
+
+.dp_gen_section {
+  width: 850px;
+  height: 850px;
+  margin: 0 auto;
+  padding: 7rem;
+
+  @include media("<=desktop-sm") {
+    width: 700px;
+    height: 700px;
+    padding: 5rem;
+  }
+
+  @include media("<=phone") {
+    width: 350px;
+    height: 350px;
+    padding: 2rem;
+  }
+
+  .overlay {
+    // margin: 10rem 0;
+    position: relative;
+    background-color: #ffffff;
+    fill: #fff;
+    filter: drop-shadow(4px 4px 100px rgba(0, 0, 0, 0.25));
+    display: flex;
+    justify-content: center;
+    height: calc(100% - 60px);
+
+    @include media("<=phone") {
+      height: calc(100% - 20px);
+    }
+
+    .box1 {
+      width: 30px;
+      height: 30px;
+      left: -30px;
+      bottom: -30px;
+
+      @include media("<=phone") {
+        width: 10px;
+        height: 10px;
+        left: -10px;
+        bottom: -10px;
+      }
+    }
+
+    .box2 {
+      width: 40px;
+      height: 40px;
+      right: -40px;
+      bottom: -100px;
+
+      @include media("<=phone") {
+        width: 15px;
+        height: 15px;
+        right: -15px;
+        bottom: -35px;
+      }
+    }
+
+    .box1,
+    .box2 {
+      background-color: #ffffff;
+      position: absolute;
+      display: block;
+    }
+
+    &::after {
+      background-color: #ffffff;
+      content: "";
+      position: absolute;
+      width: calc(100% - 60px);
+      height: 60px;
+      display: block;
+      bottom: -60px;
+      left: 60px;
+
+      @include media("<=phone") {
+        width: calc(100% - 20px);
+        height: 20px;
+        display: block;
+        bottom: -20px;
+        left: 20px;
+      }
+    }
+
+    .content {
+      padding: 3.5rem 1rem 0;
+
+      @include media("<=phone") {
+        padding: 1rem 0;
+      }
+
+      .img_holder {
+        border-radius: 50%;
+        width: 330px;
+        height: 330px;
+        position: relative;
+        margin: 0 auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
+        @include media("<=desktop-sm") {
+          width: 250px;
+          height: 250px;
+        }
+
+        @include media("<=phone") {
+          width: 115px;
+          height: 115px;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          border-width: 8px 8px 20px 20px;
+          border-style: solid;
+          border-radius: 50%;
+          background: transparent;
+          z-index: 1;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+
+          @include media("<=desktop-sm") {
+            border-width: 5px 5px 15px 15px !important;
+          }
+
+          @include media("<=phone") {
+            border-width: 2px 2px 5px 5px !important;
+            // width: 100%;
+            // height: 100%;
+          }
+        }
+
+        // img {
+        //   border-radius: 50%;
+        //   object-fit: cover !important;
+        //   max-width: 100%;
+        //   height: 330px;
+        //   width: 330px;
+        // }
+
+        %doodle {
+          @include ratio(134, 235.005);
+          position: absolute !important;
+          width: 100px;
+          z-index: 3;
+
+          @include media("<=phone") {
+            width: 50px;
+          }
+        }
+
+        .doodle_1 {
+          @extend %doodle;
+          top: -6rem;
+          right: 0;
+
+          @include media("<=phone") {
+            top: -3rem;
+          }
+        }
+
+        .doodle_2 {
+          @extend %doodle;
+          left: -40px;
+          top: 100px;
+
+          @include media("<=phone") {
+            left: -28px;
+            top: 40px;
+          }
+        }
+
+        .doodle_3 {
+          @extend %doodle;
+          bottom: 50px;
+          right: -30px;
+          transform: rotate(20deg);
+
+          @include media("<=phone") {
+            width: 50px;
+          }
+        }
+
+        .name {
+          position: absolute;
+          bottom: -20px;
+          transform: rotate(5.306deg);
+          background-color: #ffe6cc;
+          color: #1c1c1c;
+          padding: 0.6rem 1.2rem;
+          border-radius: 4.8rem;
+          width: 100%;
+          text-align: center;
+          @include heading-5;
+          z-index: 2;
+
+          @include media("<=desktop-sm") {
+            @include title-2;
+            width: 350px;
+            left: 50%;
+            margin-left: -175px;
+          }
+
+          @include media("<=phone") {
+            padding: 0.4rem 0.8rem;
+            width: 200px;
+            margin-left: -100px;
+            bottom: -15px;
+            @include body-5;
+          }
+        }
+      }
+
+      .be_there {
+        text-align: center;
+        @include body-3;
+        font-weight: 400;
+        margin: 3rem 0 4rem;
+        letter-spacing: 6px;
+
+        @include media("<=desktop-sm") {
+          margin: 2.5rem 0;
+        }
+
+        @include media("<=phone") {
+          font-size: 0.8rem;
+          letter-spacing: 2.5px;
+          margin: 2rem 0 1.5rem;
+        }
+      }
+
+      .logo {
+        display: block;
+        width: 170px;
+        text-align: center !important;
+        margin: 0 auto !important;
+
+        @include media("<=desktop-sm") {
+          width: 140px;
+        }
+
+        @include media("<=phone") {
+          width: 88px;
+        }
+      }
+
+      .group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        margin-top: 4rem;
+        position: relative;
+        z-index: 5;
+
+        @include media("<=phone") {
+          margin-top: 2rem;
+        }
+
+        .list {
+          padding: 1.2rem 2rem;
+          border: 2px solid #000;
+
+          @include media("<=desktop-sm") {
+            padding: 1rem 1.6rem;
+          }
+
+          @include media("<=phone") {
+            padding: 0.6rem 0.6rem 0.4rem;
+            border-width: 0.5px;
+          }
+
+          &:first-child {
+            border-width: 2px 0 2px 2px;
+
+            @include media("<=phone") {
+              border-width: 0.5px 0 0.5px 0.5px;
+            }
+          }
+
+          &:last-child {
+            border-width: 2px 2px 2px 0;
+
+            @include media("<=phone") {
+              border-width: 0.5px 0.5px 0.5px 0;
+            }
+          }
+
+          .name {
+            @include body-5;
+            font-weight: 400;
+
+            @include media("<=phone") {
+              font-size: 0.8rem;
+            }
+          }
+
+          .value {
+            @include body-3;
+
+            @include media("<=phone") {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.green {
+  background-image: url("../../images/dp-generator/green-bg.png");
+
+  .img_holder {
+    &::after {
+      border-color: #34a853;
+    }
+  }
+}
+
+.blue {
+  background-image: url("../../images/dp-generator/blue-bg.png");
+
+  .img_holder {
+    &::after {
+      border-color: #4285f4;
+    }
+  }
+}
+
+.yellow {
+  background-image: url("../../images/dp-generator/yellow-bg.png");
+
+  .img_holder {
+    &::after {
+      border-color: #f9ab00;
+    }
+  }
+}
+
+.red {
+  background-image: url("../../images/dp-generator/red-bg.png");
+
+  .img_holder {
+    &::after {
+      border-color: #ea4335;
+    }
+  }
+}
+
+.action_section {
+  background-color: #050505;
+  padding: 5rem 0;
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 850px;
+
+    @include media("<=phone") {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    button {
+      gap: 0.8rem;
+
+      @include media("<=phone") {
+        max-width: fit-content;
+        width: fit-content;
+        min-width: unset;
+        height: unset;
+        padding: 0.8rem 2.4rem;
+      }
+    }
+
+    .btn_solid {
+      background: #fffefa;
+      color: #050505;
+    }
+
+    .btn_outline {
+      background: transparent;
+      border: 2px solid #fffefa;
+    }
+  }
+}
