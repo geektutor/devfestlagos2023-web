@@ -349,6 +349,7 @@
       transform: translateY(10px);
       opacity: 0;
       transition: 300ms;
+      z-index: 2;
 
       &.is-active {
         transform: translateY(0px);

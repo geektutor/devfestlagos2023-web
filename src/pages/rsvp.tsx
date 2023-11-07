@@ -28,6 +28,8 @@ import peopleDoodle from "@/images/people-doodle.png";
 import Image from "next/image";
 import memoji1 from "@/images/beanie-memoji.png";
 import memoji2 from "@/images/wink-memoji.png";
+import { toast } from "react-toastify";
+import { ErrorAlert, SuccessAlert } from "@/components/alert/alert";
 
 const pageSize = 6;
 
@@ -41,6 +43,8 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
   const [showLogin, setShowLogin] = React.useState<boolean>(false);
   const [tickets, setTickets] = React.useState<Set<string>>(new Set());
   const [userToken, setUserToken] = React.useState<string | null>(null);
+
+  const [hasCheckedInitialSession, setHasCheckedInitialSession] = React.useState<boolean>(false);
 
   const [activeTab, setActiveTab] = React.useState<string>(TABS.GENERAL);
   const [showRSVPPopup, setShowRSVPPopup] = React.useState<boolean>(false);
@@ -68,8 +72,13 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
       });
 
       setTickets(new Set());
+
+      toast(<SuccessAlert>Successfully added sessions</SuccessAlert>);
     },
     onError: () => {
+      toast(<ErrorAlert>Failed to save sessions. Kindly try again</ErrorAlert>, {
+        autoClose: 3000,
+      });
       console.log("I failed you Master Bruce");
     },
   });
@@ -78,6 +87,7 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
     queryKey: ["getSessions", user?.email],
     queryFn: async () => {
       if (!user || !userToken) return;
+      setHasCheckedInitialSession(true);
 
       return fetchRSVPS(userToken);
     },
@@ -122,6 +132,8 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
       if (user) {
         const token = await user.getIdToken();
         setUserToken(token);
+      } else {
+        setHasCheckedInitialSession(true);
       }
     });
   }, []);
@@ -208,7 +220,9 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
   const renderMenuButton = () => {
     return (
       <div className='rsvp__menu'>
-        <TertiaryButton onClick={onClickMenuButton}>Hi, Omo Ologo</TertiaryButton>
+        <TertiaryButton onClick={onClickMenuButton}>
+          {user ? "Hi, Omo Ologo" : "Login"}
+        </TertiaryButton>
         <div className={classNames("rsvp__menu__inner", showRSVPPopup && "is-active")}>
           <button className='rsvp__menu__button' onClick={onClickMenu(TABS.GENERAL)}>
             All Sessions
@@ -225,7 +239,7 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
   };
 
   const renderTalks = () => {
-    if (getSessionsQuery.isLoading) {
+    if (getSessionsQuery.isLoading || !hasCheckedInitialSession) {
       const talk = currentTalks[0];
 
       return Array.from({ length: 4 }).map((_, index) => (

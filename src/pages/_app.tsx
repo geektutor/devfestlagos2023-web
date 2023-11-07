@@ -1,3 +1,4 @@
+import "react-toastify/dist/ReactToastify.css";
 import "@/styles/index.scss";
 import type { AppProps } from "next/app";
 import localFont from "next/font/local";
@@ -7,6 +8,7 @@ import React from "react";
 import GeneralLayout from "@/layouts/general-layout";
 import { NextPage } from "next";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastContainer } from "react-toastify";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -54,6 +56,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           <link rel='alternate icon' href='/favicon.ico' type='image/x-icon' />
           <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         </Head>
+        <ToastContainer autoClose={3000} hideProgressBar />
         {Component.disableLayout ? (
           <Component {...pageProps} />
         ) : (

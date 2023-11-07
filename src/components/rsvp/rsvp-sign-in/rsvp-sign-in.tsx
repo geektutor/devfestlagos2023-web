@@ -9,6 +9,8 @@ import { classNames } from "@/utils/classNames";
 import { ticketsUrl } from "@/utils/urls";
 import { firebaseAuth } from "@/firebase/app";
 import firebase from "firebase/compat/app";
+import { toast } from "react-toastify";
+import { ErrorAlert, SuccessAlert } from "@/components/alert/alert";
 
 type RSVPSignInProps = {
   onClose: () => void;
@@ -86,12 +88,37 @@ const RSVPSignIn = ({ onClose, modalIsOpen, onLogin }: RSVPSignInProps) => {
 
       setIsLoggingIn(false);
 
+      toast(<SuccessAlert>Successfully logged in</SuccessAlert>);
       if (firebaseAuth.currentUser) {
         onLogin(firebaseAuth.currentUser);
       }
-    } catch (e) {
-      console.error(e);
-      // Todo: Handle errors bleh
+    } catch (_e) {
+      const e = _e as { code: string };
+
+      let errorMessage;
+
+      switch (e.code) {
+        case "auth/wrong-password": {
+          errorMessage = "Wrong password. Kindly verify your ticket number and try again.";
+          break;
+        }
+
+        case "auth/user-not-found": {
+          errorMessage = "User not found. Kindly verify your email address and try again.";
+          break;
+        }
+
+        default:
+          errorMessage = "Something went wrong trying to log you in. Kindly try again.";
+      }
+
+      toast(<ErrorAlert>{errorMessage}</ErrorAlert>, {
+        autoClose: false,
+        progress: undefined,
+        hideProgressBar: true,
+      });
+    } finally {
+      setIsLoggingIn(false);
     }
   };
 
