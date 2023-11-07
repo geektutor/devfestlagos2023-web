@@ -235,7 +235,7 @@
         @include media("<=phone") {
           font-size: 0.8rem;
           letter-spacing: 2.5px;
-          margin: 2rem 0 1.5rem;
+          margin: 2rem 0 1rem;
         }
       }
 
@@ -250,7 +250,7 @@
         }
 
         @include media("<=phone") {
-          width: 88px;
+          width: 100px !important;
         }
       }
 
