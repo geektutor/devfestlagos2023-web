@@ -19,21 +19,41 @@ interface Props {
 }
 
 export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate }) => {
-  const sectionRef = React.useRef(null);
+  const sectionRef = React.useRef<HTMLElement | null>(null);
 
   const handleDownload = () => {
     if (sectionRef.current) {
       const sectionElement = sectionRef.current;
 
-      // Use html2canvas to capture the section content as an image
-      html2canvas(sectionElement, { scale: 2 }).then((canvas) => {
-        const image = canvas.toDataURL("image/png");
+      const loadImages = () => {
+        const imageElements = Array.from(sectionElement.querySelectorAll("img, svg"));
 
-        // Create a download link for the captured image
-        const downloadLink = document.createElement("a");
-        downloadLink.href = image;
-        downloadLink.download = `${name}-devfest-2023.png`;
-        downloadLink.click();
+        return Promise.allSettled<void>(
+          imageElements.map((img) => {
+            return new Promise<void>((resolve) => {
+              if (img instanceof HTMLImageElement || img instanceof SVGImageElement) {
+                img.onload = () => resolve();
+                img.dispatchEvent(new Event("load"));
+              } else {
+                resolve();
+              }
+            });
+          }),
+        );
+      };
+
+      loadImages().then(() => {
+        // All images have loaded, proceed to capture the section with html2canvas
+        html2canvas(sectionElement, { scale: 3, useCORS: true }).then((canvas) => {
+          // Get the canvas as a data URL with maximum quality
+          const image = canvas.toDataURL("image/png", 1.0);
+
+          // Create a download link for the captured image
+          const downloadLink = document.createElement("a");
+          downloadLink.href = image;
+          downloadLink.download = `${name}-devfest-2023.png`;
+          downloadLink.click();
+        });
       });
     }
   };
@@ -83,6 +103,7 @@ export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate })
               <div className={styles.name}>😌 {name}</div>
             </div>
             <div className={styles.be_there}>WILL BE AT</div>
+
             <Logo className={styles.logo} />
 
             <ul className={styles.group}>
