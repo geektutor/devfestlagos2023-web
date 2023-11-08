@@ -53,7 +53,7 @@
       background-color: rgba(253, 226, 147, 0.5);
       border-radius: 50%;
       bottom: 25%;
-      right: -5%;
+      right: 2%;
 
       @include media("<=desktop-sm") {
         right: 0;
@@ -69,8 +69,8 @@
       @extend %avatar;
       background-color: #e6e6e6;
       border-radius: 50%;
-      bottom: 40%;
-      left: -10% !important;
+      bottom: 30%;
+      left: -1% !important;
 
       @include media("<=desktop-sm") {
         left: 0 !important;

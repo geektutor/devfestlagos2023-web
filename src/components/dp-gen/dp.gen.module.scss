@@ -101,6 +101,7 @@
         width: 330px;
         height: 330px;
         position: relative;
+        display: block;
         margin: 0 auto;
         background-repeat: no-repeat;
         background-size: cover;
@@ -239,18 +240,41 @@
         }
       }
 
-      .logo {
-        display: block;
-        width: 170px;
+      // .img_logo {
+      //   display: block;
+      //   margin: 0 auto;
+      //   // object-fit: cover;
+      //   // color: transparent;
+      //   background-image: url("../../images/dp-generator/devfest-logo-2023.png");
+      //   background-repeat: no-repeat;
+      //   background-position: center;
+      //   background-size: contain;
+      //   max-width: 100%;
+      //   width: 200px;
+      //   height: 85px;
+
+      //   @include media("<=phone") {
+      //     width: 110px;
+      //     height: 60px;
+      //   }
+      // }
+
+      .logo_container {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
         text-align: center !important;
-        margin: 0 auto !important;
 
-        @include media("<=desktop-sm") {
-          width: 140px;
-        }
+        .logo {
+          width: 170px;
 
-        @include media("<=phone") {
-          width: 120px !important;
+          @include media("<=desktop-sm") {
+            width: 140px;
+          }
+
+          @include media("<=phone") {
+            width: 120px !important;
+          }
         }
       }
 
