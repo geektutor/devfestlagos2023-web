@@ -1,6 +1,6 @@
 import Logo from "@/images/logo.svg";
 import { socialMediaLinks } from "@/utils/social-media";
-import UploaderIcon from "@/images/dp-generator/bytesize_upload.png";
+// import UploaderIcon from "@/images/dp-generator/bytesize_upload.png";
 import Image from "next/image";
 import * as React from "react";
 import { PrimaryButton } from "@/components/button";
@@ -10,6 +10,7 @@ import Avatar2 from "@/images/speakers-page/avatars/sp_avatar_2.png";
 import RefreshDoodle from "@/images/repeat-doodle.png";
 import Cup from "@/images/cup-code.png";
 import Globe from "@/images/globe-doodle.png";
+// import CropImage from "@/components/crop-image/crop-image";
 
 export default function DpGenerator() {
   const inputRef = React.useRef<HTMLInputElement | null>(null);
@@ -34,15 +35,19 @@ export default function DpGenerator() {
     }
   };
 
-  const handleClick = () => {
-    if (inputRef.current) {
-      inputRef.current.click();
-    }
-  };
+  // const handleClick = () => {
+  //   if (inputRef.current) {
+  //     inputRef.current.click();
+  //   }
+  // };
 
   const handleSubmit = () => {
     setIsPreview(!isPreview);
   };
+
+  // const getCroppedImage = (cropped_img: string) => {
+  //   setProfilePicture(cropped_img)
+  // };
 
   return (
     <>
@@ -110,24 +115,29 @@ export default function DpGenerator() {
                     accept='image/*'
                   />
 
-                  <div onClick={handleClick} className='dp_gen_page__customize_form_group_uploader'>
+                  {/* <CropImage onCroppedImage={getCroppedImage} /> */}
+
+                  {/* <div onClick={handleClick} className='dp_gen_page__customize_form_group_uploader'>
                     <div className='dp_gen_page__customize_form_group_uploader_content'>
-                      {/* <UploaderIcon />  */}
-                      <Image src={UploaderIcon} alt='icon' width={"50"} height={"50"} />
+              
+
                       {!profilePicture ? (
-                        <div className='dp_gen_page__customize_form_group_uploader_content_text'>
-                          Drag and drop to upload or <span>browse</span>
-                        </div>
+                        <>
+                          <Image src={UploaderIcon} alt='icon' width={"50"} height={"50"} />
+                          <div className='dp_gen_page__customize_form_group_uploader_content_text'>
+                            Drag and drop to upload or <span>browse</span>
+                          </div>
+                        </>
                       ) : (
                         <div className='dp_gen_page__customize_form_group_uploader_content_photo'>
-                          <Image src={profilePicture} width={"180"} height={"90"} alt='photo' />
+                          <Image src={profilePicture} width={"100"} height={"100"} alt='photo' />
                           <div className='dp_gen_page__customize_form_group_uploader_content_photo_change'>
                             Change
                           </div>
                         </div>
                       )}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className='dp_gen_page__customize_form_group'>

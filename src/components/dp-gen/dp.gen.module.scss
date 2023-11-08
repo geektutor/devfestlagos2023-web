@@ -24,12 +24,13 @@
   .overlay {
     // margin: 10rem 0;
     position: relative;
-    background-color: #ffffff;
+    background-color: #ffffff !important;
     fill: #fff;
     filter: drop-shadow(4px 4px 100px rgba(0, 0, 0, 0.25));
     display: flex;
     justify-content: center;
     height: calc(100% - 60px);
+    z-index: 1;
 
     @include media("<=phone") {
       height: calc(100% - 20px);
@@ -107,6 +108,9 @@
         background-size: cover;
         background-position: center;
 
+        img {
+          image-rendering: optimizeQuality;
+        }
         @include media("<=desktop-sm") {
           width: 250px;
           height: 250px;
