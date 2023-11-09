@@ -14,8 +14,6 @@ import SpotifyLyricIcon from "@/images/landing/spotify.svg";
 import scribbleImage from "@/images/landing/scribble.png";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 import SpeakerCard from "@/components/speaker/speaker";
-import { speakers } from "@/mock-data";
-import { Speaker } from "@/types/Speaker";
 import { Talks } from "@/components/talks-section/talks";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import CategoryPill from "@/components/category-pill/category-pill";
@@ -31,10 +29,11 @@ import { YoutubePlayer } from "@/components/youtube-player";
 import LandingPage from "@/animations/components/Landing";
 import Menu from "@/components/menu/menu";
 import Footer from "@/components/footer";
-import { fetchCategories, fetchSessions } from "@/requests/general";
+import { fetchCategories, fetchSessions, fetchSpeakers } from "@/requests/general";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Session } from "@/types/Session";
 import { Category } from "@/types/Category";
+import { Speaker } from "@/types/Speaker";
 
 const topics = [
   [
@@ -102,7 +101,10 @@ const topics = [
   ],
 ];
 
-export default function Landing({ sessions }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Landing({
+  sessions,
+  speakers,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
   const isInitialized = useRef(false);
 
@@ -351,7 +353,7 @@ export default function Landing({ sessions }: InferGetStaticPropsType<typeof get
               data-add-span
               data-easing='SPEAKERS_TITLE'
             >
-              41
+              {speakers.length}
             </p>
           </div>
           <div className='landing-page__speakers__speakers-wrapper'>
@@ -450,12 +452,17 @@ export default function Landing({ sessions }: InferGetStaticPropsType<typeof get
 }
 
 export const getStaticProps = (async () => {
-  const [sessions, categories] = await Promise.all([fetchSessions(), fetchCategories()]);
+  const [sessions, categories, speakers] = await Promise.all([
+    fetchSessions(),
+    fetchCategories(),
+    fetchSpeakers(),
+  ]);
 
-  return { props: { sessions, categories } };
+  return { props: { sessions, categories, speakers } };
 }) satisfies GetStaticProps<{
   sessions: Session[];
   categories: Category[];
+  speakers: Speaker[];
 }>;
 
 Landing.disableLayout = true;

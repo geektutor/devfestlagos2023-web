@@ -100,7 +100,7 @@ export default class LandingPage extends Component {
       {
         root: null,
         rootMargin: "0px",
-        threshold: 0.7,
+        threshold: 0.3,
       },
     );
 
@@ -492,6 +492,7 @@ export default class LandingPage extends Component {
   }
 
   animateSpeakers() {
+    console.log("animate speakers");
     const { speakersDoodle, speakersMemoji, speakerCards, speakerButton } = this.elements;
 
     GSAP.to(speakersDoodle, {

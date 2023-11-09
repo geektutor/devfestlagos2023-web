@@ -12,8 +12,8 @@ import ArrowLeft from "@/images/arrow-left-dark.svg";
 import { PrimaryButton, SecondaryButton } from "@/components/button";
 import { createPortal } from "react-dom";
 import { classNames } from "@/utils/classNames";
-import { Speaker } from "@/types/Speaker";
 import CategoryPill from "@/components/category-pill/category-pill";
+import { Speaker } from "@/types/Speaker";
 
 interface SpeakerCardProps {
   modalIsOpen?: boolean;
@@ -25,7 +25,20 @@ interface SpeakerCardProps {
   speaker: Speaker;
 }
 
-const getDayText = (day: 1 | 2) => (day === 1 ? "24th November" : "25th November");
+// const getDayText = (day: 1 | 2) => (day === 1 ? "24th November" : "25th November");
+
+const backgroundColors = [
+  "#F6EEEE",
+  "#EEF3F6",
+  "#FFF1CC",
+  "#EDCCFF",
+  "#F6EEEE",
+  "#F6FEEE",
+  "#EEF4F6",
+  "#FFF2CC",
+  "#EDCDFF",
+  "#F6EDEE",
+];
 
 export default function SpeakerCard({
   speaker,
@@ -38,7 +51,10 @@ export default function SpeakerCard({
 }: SpeakerCardProps) {
   const [portalWrapper, setPortalWrapper] = useState<Element | null>();
 
-  const { name, image, role, company, backgroundColor } = speaker;
+  //generate random color
+  const backgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
+
+  const { name, role, avatar } = speaker;
   useEffect(() => {
     setPortalWrapper(document.querySelector(".app-wrapper")!);
   }, []);
@@ -58,13 +74,11 @@ export default function SpeakerCard({
         </figure>
         <div className={styles.modalDetails}>
           <div className={styles.modalSpeakerImage}>
-            <Image src={image} alt={name} fill style={{ objectFit: "cover" }} />
+            <Image src={avatar} alt={name} fill style={{ objectFit: "cover" }} />
           </div>
           <div>
             <h3 className={styles.modalSpeakerName}>{name}</h3>
-            <p className={styles.modalSpeakerCredits}>
-              {role}, {company}
-            </p>
+            <p className={styles.modalSpeakerCredits}>{role}</p>
             <p className={styles.modalLinksHeader}>LINKS</p>
             <div className={styles.modalLinks}>
               <a className={styles.modalLink}>
@@ -81,14 +95,14 @@ export default function SpeakerCard({
         </div>
         <div className={styles.modalTags}>
           <CategoryPill className={styles.modalCategory} isSmall>
-            {speaker.talk!.category}
+            {speaker.category}
           </CategoryPill>
           <CategoryPill isSmall isActive activeBgColor='#34a853' activeTextColor='#FFF'>
-            {getDayText(speaker.day)}, {speaker.talk!.date}
+            {/*{getDayText(speaker.day)}, {speaker.talk!.date}*/}
           </CategoryPill>
         </div>
-        <h3 className={styles.modalTitle}>{speaker.talk!.title}</h3>
-        <p className={styles.modalDescription}>{speaker.talk!.description}</p>
+        {/*<h3 className={styles.modalTitle}>{speaker.talk!.title}</h3>*/}
+        {/*<p className={styles.modalDescription}>{speaker.talk!.description}</p>*/}
         <div className={styles.modalButtons}>
           {hasPrevious && (
             <SecondaryButton onClick={() => onClickButton("previous")}>
@@ -111,7 +125,7 @@ export default function SpeakerCard({
     <>
       <div className={styles.speaker} onClick={onClick}>
         <div className={styles.speakerImage}>
-          <Image className={styles.speakerImageInner} src={image} alt={name} fill />
+          <Image className={styles.speakerImageInner} src={avatar} alt={name} fill />
         </div>
         <div
           className={styles.speakerTextContainer}
@@ -120,9 +134,7 @@ export default function SpeakerCard({
           }}
         >
           <h4 className={styles.speakerFullName}>{name}</h4>
-          <p className={styles.speakerCompany}>
-            {role}, <span>{company}</span>
-          </p>
+          <p className={styles.speakerCompany}>{role}</p>
         </div>
       </div>
       {portalWrapper && createPortal(modalContent, portalWrapper)}

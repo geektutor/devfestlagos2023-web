@@ -12,6 +12,7 @@ type Props = {
 const getDayText = (day: 1 | 2) => (day === 1 ? "24th November" : "25th November");
 
 export const Talk: FC<Props> = ({ animationDelay = 0, session }) => {
+  console.log(session.speakerImage);
   return (
     <article className={styles.talk}>
       <div className={styles.portrait}>

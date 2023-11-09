@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import LandmarkFrontage from "@/images/speakers-page/landmark-frontage.png";
 import SpeakerCard from "@/components/speaker/speaker";
-import { speakers } from "@/mock-data";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import FaqSection from "@/components/faq-section/faq-section";
 import { Talks } from "@/components/talks-section/talks";
@@ -18,12 +17,27 @@ import ArrowDoodle from "@/images/arrow-doodle.png";
 import LogicDoodle from "@/images/Logic.png";
 import PeopleDoodle from "@/images/people-doodle.png";
 import RefreshDoodle from "@/images/repeat-doodle.png";
-import { Speaker } from "@/types/Speaker";
-import { fetchSessions } from "@/requests/general";
+import { fetchSessions, fetchSpeakers } from "@/requests/general";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Session } from "@/types/Session";
+import { Speaker } from "@/types/Speaker";
 
-export default function Speakers({ sessions }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Speakers({
+  sessions,
+  speakers,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
+
+  const handleChangeSpeaker = (index: number) => (direction: "next" | "previous") => {
+    if (direction === "next") {
+      setActiveSpeaker(speakers[index + 1]);
+    }
+
+    if (direction === "previous") {
+      setActiveSpeaker(speakers[index - 1]);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -141,16 +155,16 @@ export default function Speakers({ sessions }: InferGetStaticPropsType<typeof ge
             <DaysTab />
           </div>
           <div className='speakers_page__speakers_list'>
-            {speakers.map((speaker: Speaker, index: number) => (
+            {speakers.map((speaker, index: number) => (
               <SpeakerCard
                 key={index}
                 speaker={speaker}
-                hasNext
-                hasPrevious
-                onClick={() => console.log("Click")}
-                onClickButton={() => console.log("Button Clicked")}
-                modalIsOpen={false}
-                onClose={() => console.log("Close")}
+                onClick={() => setActiveSpeaker(speaker)}
+                onClose={() => setActiveSpeaker(null)}
+                hasNext={index < speakers.length - 1}
+                hasPrevious={index > 0}
+                onClickButton={handleChangeSpeaker(index)}
+                modalIsOpen={activeSpeaker === speaker}
               />
             ))}
           </div>
@@ -195,9 +209,10 @@ const DaysTab = () => {
 };
 
 export const getStaticProps = (async () => {
-  const [sessions] = await Promise.all([fetchSessions()]);
+  const [sessions, speakers] = await Promise.all([fetchSessions(), fetchSpeakers()]);
 
-  return { props: { sessions } };
+  return { props: { sessions, speakers } };
 }) satisfies GetStaticProps<{
   sessions: Session[];
+  speakers: Speaker[];
 }>;
