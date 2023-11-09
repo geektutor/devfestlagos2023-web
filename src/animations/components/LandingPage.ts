@@ -14,7 +14,6 @@ export default class LandingPage extends Component {
       },
     });
 
-    console.log(this.elements);
     this.marquee = new Marquee({
       element: this.elements.marqueeList,
       elements: {

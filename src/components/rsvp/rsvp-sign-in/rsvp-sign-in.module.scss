@@ -23,7 +23,7 @@
     }
 
     .modalContent {
-      transform: scale(1) translateY(0);
+      transform: translateY(0);
       opacity: 1;
     }
   }
@@ -50,6 +50,11 @@
   border-right: 8px solid #211212;
   border-bottom: 8px solid #211212;
   border-left: 1px solid #211212;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: 300ms;
+  max-height: 100vh;
+  overflow: auto;
 
   @include media("<=tablet") {
     margin: 0;

@@ -13,20 +13,20 @@
   align-items: center;
   justify-content: flex-end;
   z-index: 16;
-  // pointer-events: none;
+  pointer-events: none;
 
-  // &.active {
-  //   pointer-events: auto;
+  &.active {
+    pointer-events: auto;
 
-  .modalOverlay {
-    opacity: 1;
+    .modalOverlay {
+      opacity: 1;
+    }
+
+    .modalContent {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
-
-  .modalContent {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-  // }
 }
 
 .modalOverlay {
@@ -43,16 +43,21 @@
 .modalContent {
   margin: 0 auto;
   padding: 2.4rem;
-  max-width: 43.6rem;
+  max-width: min(43.6rem, 94vw);
   background-color: $bg-shade-1;
   border-radius: 24px;
   border-top: 2px solid #211212;
   border-right: 8px solid #211212;
   border-bottom: 8px solid #211212;
   border-left: 1px solid #211212;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: 300ms;
+  max-height: 90vh;
+  overflow: auto;
 
   @include media("<=tablet") {
-    margin: 0;
+    margin: 0 auto;
     padding: 1.8rem;
   }
 
@@ -60,6 +65,17 @@
   //   margin: 0;
   //   padding: 2rem;
   // }
+}
+
+.modalClose {
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  display: block;
+
+  @include media("<=tablet") {
+    margin-bottom: 1.6rem;
+  }
 }
 
 .topButtons {
@@ -207,9 +223,4 @@
     @include body-3;
     margin-bottom: 1.6rem;
   }
-}
-
-.bookASeat {
-  width: 100%;
-  background-color: $grey-0;
 }
