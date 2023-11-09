@@ -15,11 +15,14 @@ export const fetchSessions = async () => {
     return sessions.map((s) => {
       const sessionDate = s.sessionDate.split("T")[0];
 
+      const day = new Date(s.sessionDate).getDate() === 24 ? 1 : 2;
+
       return {
         ...s,
+        day,
         sessionDate,
       };
-    });
+    }) as Session[];
   } catch (e) {}
 
   return [];

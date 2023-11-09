@@ -1,23 +1,23 @@
 import React, { FC } from "react";
 import Image from "next/image";
 import styles from "./talk.module.scss";
-import { TalkType } from "@/types/Talk";
 import CategoryPill from "@/components/category-pill/category-pill";
+import { Session } from "@/types/Session";
 
 type Props = {
-  talk: TalkType;
   animationDelay?: number;
+  session: Session;
 };
 
-const getDayText = (day: 1 | 2) => (day === 1 ? "24th Novemeber" : "25th November");
+const getDayText = (day: 1 | 2) => (day === 1 ? "24th November" : "25th November");
 
-export const Talk: FC<Props> = ({ talk, animationDelay = 0 }) => {
+export const Talk: FC<Props> = ({ animationDelay = 0, session }) => {
   return (
     <article className={styles.talk}>
       <div className={styles.portrait}>
         <Image
-          src={talk.speaker.image}
-          alt={talk.speaker.name}
+          src={session.speakerImage}
+          alt={session.owner}
           fill
           style={{ objectFit: "cover" }}
           data-fade-in
@@ -34,10 +34,10 @@ export const Talk: FC<Props> = ({ talk, animationDelay = 0 }) => {
           data-delay={0.333 + animationDelay}
         >
           <CategoryPill isSmall className={styles.category}>
-            {talk.category}
+            {session.category}
           </CategoryPill>
           <CategoryPill activeBgColor='#FDE293' isActive isSmall>
-            {getDayText(talk.speaker.day)}, {talk.date}
+            {getDayText(session.day)}, {session.scheduledAt}
           </CategoryPill>
         </div>
         <p
@@ -46,7 +46,7 @@ export const Talk: FC<Props> = ({ talk, animationDelay = 0 }) => {
           data-easing='LANDING_TITLE'
           data-delay={0.417 + animationDelay}
         >
-          {talk.title}
+          {session.title}
         </p>
         <div
           className={styles.footer}
@@ -54,9 +54,9 @@ export const Talk: FC<Props> = ({ talk, animationDelay = 0 }) => {
           data-easing='LANDING_TITLE'
           data-delay={0.583 + animationDelay}
         >
-          <span>{talk.speaker.name}</span>
+          <span>{session.owner}</span>
           <span className={styles.ellipse}></span>
-          <span>{talk.speaker.role}</span>
+          <span>{session.tagLine}</span>
         </div>
       </div>
     </article>

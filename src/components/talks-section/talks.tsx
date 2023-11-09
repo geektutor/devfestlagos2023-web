@@ -6,34 +6,44 @@ import styles from "./talks.module.scss";
 import { PrimaryButton } from "@/components/button";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 import CategoryPill from "@/components/category-pill/category-pill";
-
-const talkCategories = ["All Talks", "Design", "Blockchain", "Mobile Development"] as const;
-
-type Category = (typeof talkCategories)[number];
+import { Session } from "@/types/Session";
 
 type Props = {
   hasDayToggle?: boolean;
+  sessions: Session[];
+  disableAnimation?: boolean;
 };
 
-export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
-  const [activeCategory, setActiveCategory] = useState<Category>(talkCategories[0]);
+const MAX_VISIBLE_TALKS = 5;
+
+export const Talks: FC<Props> = ({ hasDayToggle = false, sessions, disableAnimation }) => {
   const [activeDay, setActiveDay] = useState<1 | 2>(1);
+
+  const croppedTalks = sessions.slice(0, MAX_VISIBLE_TALKS);
+
+  const talkCategories = ["All Talks"].concat(
+    Array.from(new Set(croppedTalks.map((talk) => talk.category))),
+  );
+  const [activeCategory, setActiveCategory] = useState<string>(talkCategories[0]);
 
   const validTalks = useMemo(() => {
     let categoryTalks;
     if (activeCategory === "All Talks") {
-      categoryTalks = talks.slice(0, 3);
+      categoryTalks = croppedTalks;
     } else {
-      categoryTalks = talks.filter((talk) => talk.category === activeCategory).slice(0, 3);
+      categoryTalks = croppedTalks.filter((talk) => talk.category === activeCategory).slice(0, 3);
     }
 
     if (!hasDayToggle) return categoryTalks;
 
-    return categoryTalks.filter((talk) => talk.speaker.day === activeDay);
-  }, [activeCategory, activeDay, hasDayToggle]);
+    return categoryTalks.filter((talk) => talk.day === activeDay);
+  }, [activeCategory, activeDay, hasDayToggle, croppedTalks]);
 
   return (
-    <section className={styles.talks} data-section-delay='.6'>
+    <section
+      className={classNames(styles.talks, disableAnimation && styles.disableAnimation)}
+      data-section-delay='.6'
+    >
       <canvas data-animate-canvas className={styles.talkCanvas} />
       <div className={styles.talksTop}>
         <div>
@@ -106,7 +116,7 @@ export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
       <div className={styles.talksGrid}>
         {validTalks.map((talk, index) => (
           <div key={index}>
-            <Talk talk={talk} key={index} animationDelay={index * 0.084} />
+            <Talk session={talk} key={index} animationDelay={index * 0.084} />
             {index < talks.length - 1 && (
               <hr className={styles.talksDivider} data-fade-in data-delay={0.084 * index} />
             )}

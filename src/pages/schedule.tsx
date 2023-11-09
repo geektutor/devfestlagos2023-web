@@ -10,8 +10,11 @@ import { ScheduleCard } from "@/components/schedule-card";
 import { Talks } from "@/components/talks-section/talks";
 import FaqSection from "@/components/faq-section/faq-section";
 import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
+import { fetchSessions } from "@/requests/general";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { Session } from "@/types/Session";
 
-export default function Schedule() {
+export default function Schedule({ sessions }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [selectedDay, setSelectedDay] = useState<number>(1);
 
   return (
@@ -68,9 +71,17 @@ export default function Schedule() {
           </section>
         </div>
       </header>
-      <Talks />
+      <Talks sessions={sessions} disableAnimation />
       <FaqSection />
       <NoMatterWhat />
     </div>
   );
 }
+
+export const getStaticProps = (async () => {
+  const [sessions] = await Promise.all([fetchSessions()]);
+
+  return { props: { sessions } };
+}) satisfies GetStaticProps<{
+  sessions: Session[];
+}>;

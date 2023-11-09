@@ -31,6 +31,10 @@ import { YoutubePlayer } from "@/components/youtube-player";
 import LandingPage from "@/animations/components/Landing";
 import Menu from "@/components/menu/menu";
 import Footer from "@/components/footer";
+import { fetchCategories, fetchSessions } from "@/requests/general";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { Session } from "@/types/Session";
+import { Category } from "@/types/Category";
 
 const topics = [
   [
@@ -98,7 +102,7 @@ const topics = [
   ],
 ];
 
-export default function Landing() {
+export default function Landing({ sessions }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
   const isInitialized = useRef(false);
 
@@ -436,7 +440,7 @@ export default function Landing() {
             </div>
           </div>
         </section>
-        <Talks />
+        <Talks sessions={sessions} />
         <FaqSection />
         <NoMatterWhat />
         <Footer />
@@ -444,5 +448,14 @@ export default function Landing() {
     </>
   );
 }
+
+export const getStaticProps = (async () => {
+  const [sessions, categories] = await Promise.all([fetchSessions(), fetchCategories()]);
+
+  return { props: { sessions, categories } };
+}) satisfies GetStaticProps<{
+  sessions: Session[];
+  categories: Category[];
+}>;
 
 Landing.disableLayout = true;

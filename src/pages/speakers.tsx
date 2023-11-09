@@ -19,8 +19,11 @@ import LogicDoodle from "@/images/Logic.png";
 import PeopleDoodle from "@/images/people-doodle.png";
 import RefreshDoodle from "@/images/repeat-doodle.png";
 import { Speaker } from "@/types/Speaker";
+import { fetchSessions } from "@/requests/general";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { Session } from "@/types/Session";
 
-export default function Speakers() {
+export default function Speakers({ sessions }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <Head>
@@ -152,7 +155,7 @@ export default function Speakers() {
             ))}
           </div>
         </section>
-        <Talks />
+        <Talks sessions={sessions} disableAnimation />
         <FaqSection />
         <NoMatterWhat />
       </main>
@@ -190,3 +193,11 @@ const DaysTab = () => {
     </div>
   );
 };
+
+export const getStaticProps = (async () => {
+  const [sessions] = await Promise.all([fetchSessions()]);
+
+  return { props: { sessions } };
+}) satisfies GetStaticProps<{
+  sessions: Session[];
+}>;
