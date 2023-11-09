@@ -2,7 +2,6 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import danielImage from "@/images/team/daniel.png";
 import ijeomaImage from "@/images/team/ijeoma.png";
 import iyinImage from "@/images/team/iyin.png";
-import joelImage from "@/images/team/joel.png";
 import lereImage from "@/images/team/lere.png";
 import lukmonImage from "@/images/team/lukmon.png";
 import maryannImage from "@/images/team/maryann.png";
@@ -33,7 +32,6 @@ import giantsImage from "@/images/team/music/giants.png";
 import omorinsolaImage from "@/images/team/omorinsola.png";
 import victoryImage from "@/images/team/music/victory.png";
 import babydollImage from "@/images/team/music/babydoll.png";
-import cityBoysImage from "@/images/team/music/city-boys.png";
 import hindsightImage from "@/images/team/music/hindsight.png";
 
 export type TeamMemberLink = {
@@ -150,27 +148,6 @@ export const teamMembers: ITeamMember[] = [
       artist: "BTS",
       url: "https://open.spotify.com/track/6BskTMfDjXVzeqQHOau5Vi?si=8e3e304df34f476c",
     },
-  },
-  {
-    key: "joel",
-    name: "Joel Adewole",
-    role: "Content Writer/QA",
-    comment: "Great teamwork",
-    quote: "Don't be too sweet, or people will eat you",
-    category: "content",
-    image: joelImage,
-    music: {
-      image: cityBoysImage,
-      name: "City Boys",
-      artist: "Burna Boy",
-      url: "https://open.spotify.com/track/1OX1aWd5WTavFuOXZ7k6Q5?si=00d21b47a78c46c9",
-    },
-    links: [
-      {
-        type: "twitter",
-        url: "https://twitter.com/wolz_codelife",
-      },
-    ],
   },
   {
     key: "sebastine",
