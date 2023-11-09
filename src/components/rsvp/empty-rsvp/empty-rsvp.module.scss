@@ -1,5 +1,6 @@
 @import "core/typography";
 @import "core/variables";
+@import "utils/breakpoints";
 
 .emptyRSVP {
   display: flex;
@@ -19,4 +20,8 @@
   max-width: 600px;
   margin: 16px 0;
   text-align: center;
+
+  @include media("<=tablet") {
+    max-width: 80%;
+  }
 }

@@ -379,11 +379,11 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
     <>
       <Menu actionButton={renderMenuButton()} />
       <div className='rsvp'>
-        <Image src={dotsDoodle} alt='Dots Doodle' className='rsvp__dots' />
         <Image src={logicDoodle} alt='Logic Doodle' className='rsvp__logic' />
         <Image src={peopleDoodle} alt='People Doodle' className='rsvp__people' />
         {activeTab === TABS.GENERAL && (
           <>
+            <Image src={dotsDoodle} alt='Dots Doodle' className='rsvp__dots' />
             <Image src={repeatDoodle} alt='Repeat Doodle' className='rsvp__repeat' />
             <Image src={arrowDoodle} alt='Arrow Doodle' className='rsvp__arrow' />
             <Image src={memoji1} alt='Memoji' className='rsvp__memoji-1' />
