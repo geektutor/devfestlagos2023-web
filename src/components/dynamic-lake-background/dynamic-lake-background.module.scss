@@ -1,0 +1,47 @@
+@import "utils/mixins";
+@import "utils/breakpoints";
+@import "core/variables";
+
+$boat-tilt: 0.5deg;
+$boat-translate: 1px;
+
+@keyframes rock-boat {
+  25%,
+  70% {
+    transform: rotate($boat-tilt) translateX($boat-translate) translateY($boat-translate);
+  }
+  50%,
+  100% {
+    transform: rotate(-$boat-tilt) translateX(-$boat-translate) translateY(-$boat-translate);
+  }
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+}
+
+.fishermanIllustration {
+  height: calc(100% / 2.8);
+  aspect-ratio: 339 / 329; // The aspect ratio mixin kinda adds some padding so I just use the regular aspect ratio property
+  position: absolute;
+  bottom: 20.5%;
+  animation: rock-boat 15s infinite;
+  transform: rotate(-$boat-tilt) translateX(-$boat-translate) translateY(-$boat-translate);
+  @include media("<=phone") {
+    bottom: 10%;
+    height: calc(100% / 4);
+  }
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $bg-shade-1;
+}

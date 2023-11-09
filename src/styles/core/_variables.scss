@@ -26,10 +26,11 @@ $bg-shade-2: #fffefa;
 $bg-3: #050505;
 
 $overlay-1: rgba(10, 10, 10, 0.5);
+$overlay-2: rgba(30, 30, 30, 0.2);
 
 %page {
   width: 100vw;
-  min-height: 100vh;
+  flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
 }

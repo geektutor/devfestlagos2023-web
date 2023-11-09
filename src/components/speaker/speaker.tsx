@@ -25,7 +25,7 @@ interface SpeakerCardProps {
   speaker: Speaker;
 }
 
-const getDayText = (day: 1 | 2) => (day === 1 ? "24th Novemeber" : "25th November");
+const getDayText = (day: 1 | 2) => (day === 1 ? "24th November" : "25th November");
 
 export default function SpeakerCard({
   speaker,
@@ -81,14 +81,14 @@ export default function SpeakerCard({
         </div>
         <div className={styles.modalTags}>
           <CategoryPill className={styles.modalCategory} isSmall>
-            {speaker.talk.category}
+            {speaker.talk!.category}
           </CategoryPill>
           <CategoryPill isSmall isActive activeBgColor='#34a853' activeTextColor='#FFF'>
-            {getDayText(speaker.day)}, {speaker.talk.date}
+            {getDayText(speaker.day)}, {speaker.talk!.date}
           </CategoryPill>
         </div>
-        <h3 className={styles.modalTitle}>{speaker.talk.title}</h3>
-        <p className={styles.modalDescription}>{speaker.talk.description}</p>
+        <h3 className={styles.modalTitle}>{speaker.talk!.title}</h3>
+        <p className={styles.modalDescription}>{speaker.talk!.description}</p>
         <div className={styles.modalButtons}>
           {hasPrevious && (
             <SecondaryButton onClick={() => onClickButton("previous")}>

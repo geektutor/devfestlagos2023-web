@@ -1,8 +1,9 @@
 import { TalkType } from "@/types/Talk";
+import { StaticImageData } from "next/image";
 
 export type Speaker = {
   id: number;
-  image: string;
+  image: string | StaticImageData;
   name: string;
   role: string;
   company: string;
@@ -13,5 +14,5 @@ export type Speaker = {
     instagram?: string | undefined;
     website?: string | undefined;
   };
-  talk: TalkType;
+  talk?: TalkType;
 };

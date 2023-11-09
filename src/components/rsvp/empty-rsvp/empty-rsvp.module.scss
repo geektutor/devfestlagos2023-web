@@ -1,0 +1,27 @@
+@import "core/typography";
+@import "core/variables";
+@import "utils/breakpoints";
+
+.emptyRSVP {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 0 150px;
+}
+
+.image {
+  width: 150px;
+  height: 150px;
+}
+
+.title {
+  @include title-2;
+  color: $grey-30;
+  max-width: 600px;
+  margin: 16px 0;
+  text-align: center;
+
+  @include media("<=tablet") {
+    max-width: 80%;
+  }
+}

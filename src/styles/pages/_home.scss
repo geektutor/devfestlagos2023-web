@@ -171,6 +171,16 @@
     }
   }
 
+  &__apply__form__section {
+    display: flex;
+    justify-content: center;
+    padding: 48px 0;
+
+    iframe {
+      min-height: calc(100vh - 300px);
+    }
+  }
+
   &__marquee-wrapper {
     background: $primary-yellow;
   }
@@ -305,22 +315,25 @@
 
     &__image-1 {
       @extend %recap-image;
-      left: 8.4%;
-      bottom: -60px;
-      @include ratio(735, 932);
+      left: 6.875%;
+      bottom: -67px;
+      @include ratio(317, 398);
       width: 27.6vw;
       transform: rotate(9.816deg);
       z-index: 2;
 
-      @include media("<=tablet") {
-        left: -10px;
-        width: 238px;
+      @include media("<=desktop-sm") {
+        left: 0;
+        bottom: -39px;
+        width: 254.55px;
+        transform: rotate(10.066deg);
       }
 
-      @include media("<=tablet") {
-        left: -7.3vw;
-        bottom: -27px;
+      @include media("<=phone") {
+        left: -7.4vw;
+        bottom: -30px;
         width: 160.341px;
+        transform: rotate(9.816deg);
       }
     }
 
@@ -328,107 +341,118 @@
       @extend %recap-image;
       left: 16.18%;
       bottom: 100px;
-      @include ratio(3, 4);
+      @include ratio(317, 422);
       width: 29.3vw;
       transform: rotate(-8.738deg);
       z-index: 1;
 
-      @include media("<=tablet") {
-        left: 8.46vw;
-        width: 253.6px;
-        bottom: 90px;
+      @include media("<=desktop-sm") {
+        left: 11.07vw;
+        width: 270.37px;
+        bottom: 65px;
+        transform: rotate(-8.963deg);
       }
 
-      @include media("<=tablet") {
-        left: 8.89vw;
+      @include media("<=phone") {
+        left: 4.88vw;
         bottom: 28px;
         width: 170.28px;
+        transform: rotate(-8.738deg);
       }
     }
 
     &__image-3 {
       @extend %recap-image;
       left: 34.3%;
-      bottom: -30px;
-      @include ratio(319, 659);
+      bottom: -61px;
+      @include ratio(200, 413);
       width: 28.68vw;
       transform: rotate(-8.433deg);
       z-index: 5;
 
-      @include media("<=tablet") {
-        left: 24.34vw;
-        width: 380px;
+      @include media("<=desktop-sm") {
+        left: 32.8125vw;
+        bottom: -48px;
+        width: 264px;
+        transform: rotate(-8.652deg);
       }
 
-      @include media("<=tablet") {
+      @include media("<=phone") {
         left: 29.3vw;
-        bottom: -24px;
+        bottom: -36px;
         width: 166.384px;
+        transform: rotate(-8.433deg);
       }
     }
 
     &__image-4 {
       @extend %recap-image;
-      left: 43.3%;
-      bottom: 90px;
-      @include ratio(73, 115);
+      left: 39.375%;
+      bottom: 100px;
+      @include ratio(63.5, 100);
       width: 27.78vw;
-      transform: rotate(15.248deg);
+      transform: rotate(15.25deg);
 
-      @include media("<=tablet") {
-        left: 42.06vw;
-        width: 240px;
-        bottom: 108px;
+      @include media("<=desktop-sm") {
+        left: 38.93vw;
+        width: 255.5px;
+        bottom: 65.5px;
+        transform: rotate(15.594deg);
       }
 
-      @include media("<=tablet") {
-        left: 46.6vw;
-        bottom: 25px;
+      @include media("<=phone") {
+        left: 39vw;
+        bottom: 30px;
         width: 161.146px;
+        transform: rotate(15.25deg);
       }
     }
 
     &__image-5 {
       @extend %recap-image;
       left: 61.25%;
-      bottom: -66px;
-      @include ratio(394, 523);
+      bottom: -64px;
+      @include ratio(267, 357);
       width: 24.8vw;
       transform: rotate(7.82deg);
       z-index: 4;
 
-      @include media("<=tablet") {
-        left: 59.11vw;
-        width: 267px;
-        bottom: -37px;
+      @include media("<=desktop-sm") {
+        left: 65.23vw;
+        width: 228.39px;
+        bottom: -39px;
+        transform: rotate(8.025deg);
       }
 
-      @include media("<=tablet") {
-        left: 65.34vw;
-        bottom: -26px;
+      @include media("<=phone") {
+        left: 68vw;
+        bottom: -30px;
         width: 143.823px;
+        transform: rotate(7.82deg);
       }
     }
 
     &__image-6 {
       @extend %recap-image;
-      left: 68%;
-      bottom: 60px;
+      left: 64.72%;
+      bottom: -4px;
       @include ratio(276, 327);
       width: 22.708vw;
       transform: rotate(-14.061deg);
       z-index: 3;
 
-      @include media("<=tablet") {
-        left: 69.27vw;
-        width: 196.2px;
-        bottom: 108px;
+      @include media("<=desktop-sm") {
+        left: 69.4vw;
+        width: 208.973px;
+        bottom: -10px;
+        transform: rotate(-14.388deg);
       }
 
-      @include media("<=tablet") {
-        left: 70.46vw;
+      @include media("<=phone") {
+        left: 77.9vw;
         bottom: -5px;
         width: 131.737px;
+        transform: rotate(-14.061deg);
       }
     }
   }
