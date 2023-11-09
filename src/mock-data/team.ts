@@ -505,7 +505,8 @@ export const teamMembers: ITeamMember[] = [
     key: "funmi",
     name: "Funmilayo Kanmodi",
     role: "Content Writer",
-    comment: "Planning for Devfest this year has been fun and exciting with this team!",
+    comment:
+      "Planning DevFest this year has been fun and exciting with this team! We put in the work to make sure you have the best experience.",
     quote: "Tough times never last, Only tough people do brrrrrrrrrr!!!!!!!!!",
     category: "content",
     image: funmiImage,
