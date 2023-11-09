@@ -32,6 +32,7 @@ import { toast } from "react-toastify";
 import { ErrorAlert, SuccessAlert } from "@/components/alert/alert";
 import LeftIcon from "@/images/chevron-left.svg";
 import RightIcon from "@/images/chevron-right.svg";
+import { EmptyRsvp } from "@/components/rsvp/empty-rsvp/empty-rsvp";
 
 const pageSize = 6;
 
@@ -308,37 +309,13 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
     });
   };
 
-  return (
-    <>
-      <Menu actionButton={renderMenuButton()} />
-      <div className='rsvp'>
-        <Image src={arrowDoodle} alt='Arrow Doodle' className='rsvp__arrow' />
-        <Image src={repeatDoodle} alt='Repeat Doodle' className='rsvp__repeat' />
-        <Image src={dotsDoodle} alt='Dots Doodle' className='rsvp__dots' />
-        <Image src={logicDoodle} alt='Logic Doodle' className='rsvp__logic' />
-        <Image src={peopleDoodle} alt='People Doodle' className='rsvp__people' />
-        <Image src={memoji1} alt='Memoji' className='rsvp__memoji-1' />
-        <Image src={memoji2} alt='Memoji' className='rsvp__memoji-2' />
-        <h1 className={classNames("rsvp__title", activeTab === TABS.BOOKMARKS && "bookmarked")}>
-          {activeTab === TABS.GENERAL ? "RSVP" : "Your Booked Sessions"}
-        </h1>
-        {activeTab === TABS.GENERAL && (
-          <p className='rsvp__subtitle'>
-            Rice and Soup very plenty 🤩 <br /> JK JK, Below you can select the sessions you’re
-            interested in.
-          </p>
-        )}
-        <div className='rsvp__days' ref={daysSectionRef}>
-          {Array.from({ length: 2 }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => onChangeDay(index)}
-              className={classNames("rsvp__days__day", index === activeDay && "is-active")}
-            >
-              Day {index + 1}
-            </button>
-          ))}
-        </div>
+  const renderBody = () => {
+    if (currentTalks.length === 0) {
+      return <EmptyRsvp onClick={() => setActiveTab(TABS.GENERAL)} />;
+    }
+
+    return (
+      <>
         <div className='rsvp__categories'>
           <button className='rsvp__categories__left-button' onClick={scrollCategories("left")}>
             <LeftIcon />
@@ -394,6 +371,46 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
             </div>
           </div>
         </section>
+      </>
+    );
+  };
+
+  return (
+    <>
+      <Menu actionButton={renderMenuButton()} />
+      <div className='rsvp'>
+        <Image src={dotsDoodle} alt='Dots Doodle' className='rsvp__dots' />
+        <Image src={logicDoodle} alt='Logic Doodle' className='rsvp__logic' />
+        <Image src={peopleDoodle} alt='People Doodle' className='rsvp__people' />
+        {activeTab === TABS.GENERAL && (
+          <>
+            <Image src={repeatDoodle} alt='Repeat Doodle' className='rsvp__repeat' />
+            <Image src={arrowDoodle} alt='Arrow Doodle' className='rsvp__arrow' />
+            <Image src={memoji1} alt='Memoji' className='rsvp__memoji-1' />
+            <Image src={memoji2} alt='Memoji' className='rsvp__memoji-2' />
+          </>
+        )}
+        <h1 className={classNames("rsvp__title", activeTab === TABS.BOOKMARKS && "bookmarked")}>
+          {activeTab === TABS.GENERAL ? "RSVP" : "Your Booked Sessions"}
+        </h1>
+        {activeTab === TABS.GENERAL && (
+          <p className='rsvp__subtitle'>
+            Rice and Soup very plenty 🤩 <br /> JK JK, Below you can select the sessions you’re
+            interested in.
+          </p>
+        )}
+        <div className='rsvp__days' ref={daysSectionRef}>
+          {Array.from({ length: 2 }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => onChangeDay(index)}
+              className={classNames("rsvp__days__day", index === activeDay && "is-active")}
+            >
+              Day {index + 1}
+            </button>
+          ))}
+        </div>
+        {renderBody()}
         <FaqSection />
         <NoMatterWhat />
         <RSVPTicketDetails
