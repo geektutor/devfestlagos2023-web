@@ -21,6 +21,12 @@ const nextConfig = {
         port: "",
         pathname: "/dpgdjfckl/image/upload/**",
       },
+      {
+        protocol: "https",
+        hostname: "sessionize.com",
+        port: "",
+        pathname: "/image/**",
+      },
     ],
   },
   sassOptions: {

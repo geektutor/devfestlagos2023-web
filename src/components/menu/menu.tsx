@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import Link from "next/link";
 
 import styles from "./menu.module.scss";
@@ -10,7 +10,11 @@ import Hamburger from "@/images/hamburger-menu.svg";
 import RightArrow from "@/images/arrow-right-bg-light.svg";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
-const Menu = () => {
+type Props = {
+  actionButton?: React.ReactNode;
+};
+
+const Menu: FC<Props> = ({ actionButton }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const toggleMenu = () => {
@@ -28,10 +32,12 @@ const Menu = () => {
         <nav className={styles.nav}>
           <NavItems />
         </nav>
-        <Button variant='primary' className={styles.cta} data-animate-button>
-          <span>Register Now</span>
-          <RightArrow className={styles.ctaIcon} />
-        </Button>
+        {actionButton || (
+          <Button variant='primary' className={styles.cta} data-animate-button>
+            <span>Register Now</span>
+            <RightArrow className={styles.ctaIcon} />
+          </Button>
+        )}
       </div>
       <button className={styles.hamburger} onClick={toggleMenu}>
         <Hamburger />
@@ -59,7 +65,12 @@ const Menu = () => {
 
 const NavItems = () => {
   return (
-    <ul className={styles.navItems} data-animate-y-children-full data-delay=".083" data-easing="MENU_ITEMS">
+    <ul
+      className={styles.navItems}
+      data-animate-y-children-full
+      data-delay='.083'
+      data-easing='MENU_ITEMS'
+    >
       <li className={styles.navItem}>
         <Link href='/speakers' className={styles.link}>
           Speakers

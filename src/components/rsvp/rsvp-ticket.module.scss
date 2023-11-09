@@ -4,7 +4,6 @@
 @import "utils/mixins";
 
 .ticket {
-  margin: 3.2rem;
   max-width: 58.8rem;
   display: flex;
   justify-content: space-between;
@@ -19,15 +18,37 @@
   flex-shrink: 0;
   cursor: pointer;
 
+  &.isLoading {
+    background: rgba(255, 255, 255, 0.5);
+
+    @keyframes loading {
+      to {
+        transform: skewX(-10deg) translateX(200%);
+      }
+    }
+
+    &::after {
+      width: 50%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      content: "";
+      background: linear-gradient(90deg, transparent, rgba(238, 238, 238, 0.8), transparent);
+      transform: skewX(-10deg) translateX(-100%);
+      position: absolute;
+      animation: loading 1s infinite;
+    }
+
+    > * {
+      opacity: 0;
+    }
+  }
+
   &:hover {
     .seeSession {
       display: block;
     }
   }
-
-  // @include media("<=tablet") {
-  //   width: 10rem;
-  // }
 
   @include media("<=phone") {
     width: 100%;
@@ -105,7 +126,7 @@
   color: $grey-0;
 
   @include media("<=tablet") {
-    @include body-4;
+    @include body-2;
   }
 
   @include media("<=phone") {
@@ -116,13 +137,14 @@
 .speakerCompany {
   @include body-4;
   color: $grey-30;
-  padding-top: 1.4rem;
+  margin-top: 1.4rem;
 
   @include media("<=tablet") {
     font-size: 8px;
     font-style: normal;
     font-weight: 500;
     line-height: 11px;
+    margin-top: 0.8rem;
   }
 
   @include media("<=phone") {
@@ -158,12 +180,34 @@
   font-size: 1.4rem !important;
   font-weight: lighter !important;
   color: $grey-0;
+  text-transform: capitalize;
+}
+
+.talkAvailability {
+  color: $grey-10;
+  @include body-4;
+
+  @include media("<=tablet") {
+    @include body-5;
+  }
+
+  @include media("<=phone") {
+    @include body-4;
+  }
 }
 
 .talkTitle {
   @include body-1;
   font-weight: 400;
   padding-bottom: 1.6rem;
+
+  @include media("<=tablet") {
+    @include body-5;
+  }
+
+  @include media("<=phone") {
+    @include body-1;
+  }
 }
 
 .talkDate {
@@ -173,19 +217,7 @@
   background-color: $secondary-yellow;
   border: 0;
 
-  @include media("<=phone") {
+  @include media("<=tablet") {
     font-size: 1.4rem !important;
-  }
-}
-
-.bookASeat {
-  background-color: $grey-0;
-
-  @include media("<=phone") {
-    min-width: 204px;
-    width: -moz-fit-content;
-    width: fit-content;
-    height: 66px;
-    color: $grey-100;
   }
 }
