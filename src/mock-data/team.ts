@@ -22,11 +22,13 @@ import somewhereImage from "@/images/team/music/somewhere.png";
 import tearsImage from "@/images/team/music/tears.png";
 import btsImage from "@/images/team/music/bts.png";
 import akinImage from "@/images/team/akin.png";
+import funmiImage from "@/images/team/funmi.png";
 import o2Image from "@/images/team/music/o2.png";
 import idkImage from "@/images/team/music/idk.png";
 import marvinImage from "@/images/team/marvin.png";
 import tobijuImage from "@/images/team/tobiju.png";
 import growImage from "@/images/team/music/grow.png";
+import dDayImage from "@/images/team/music/d-day.png";
 import ollieImage from "@/images/team/music/ollie.png";
 import giantsImage from "@/images/team/music/giants.png";
 import omorinsolaImage from "@/images/team/omorinsola.png";
@@ -496,6 +498,43 @@ export const teamMembers: ITeamMember[] = [
       {
         type: "medium",
         url: "https://tobiju.medium.com/",
+      },
+    ],
+  },
+  {
+    key: "funmi",
+    name: "Funmilayo Kanmodi",
+    role: "Content Writer",
+    comment: "Planning for Devfest this year has been fun and exciting with this team!",
+    quote: "Tough times never last, Only tough people do brrrrrrrrrr!!!!!!!!!",
+    category: "content",
+    image: funmiImage,
+    music: {
+      image: dDayImage,
+      name: "D-Day",
+      artist: "Agust D",
+      url: "https://open.spotify.com/track/22W6wI4hDTjMAYKKBQW9dU?si=cdd19fc1b5d04fec",
+    },
+    links: [
+      {
+        type: "email",
+        url: "Kanmodihqmat@gmail.com",
+      },
+      {
+        type: "instagram",
+        url: "https://www.instagram.com/fooomey/",
+      },
+      {
+        type: "twitter",
+        url: "https://twitter.com/Fooomey",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/funmilayo-kanmodi-589915153/",
+      },
+      {
+        type: "medium",
+        url: "https://funmilayokanmodi.medium.com/",
       },
     ],
   },
