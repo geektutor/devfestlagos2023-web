@@ -156,7 +156,7 @@ export const teamMembers: ITeamMember[] = [
     name: "Sebastine Odeh",
     role: "Mobile Developer",
     comment: "It was incredible working with these guys!",
-    quote: "God Abeg.",
+    quote: "Learn as if you will live forever, live like you will die tomorrow. - Mahatma Gandhi",
     category: "dev",
     image: sebastineImage,
     music: {
