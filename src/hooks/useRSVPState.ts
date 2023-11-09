@@ -21,11 +21,12 @@ export const useRSVPState = ({ sessions, pageSize, categories, scrollToTalks }: 
   }>({ isOpen: false, session: null });
 
   //Data
-  const categoriesWithAll: Category[] = [{ name: "All", imageUrl: "" }, ...categories];
-
-  const currentPageTalks = useMemo(() => {
+  const currentDayTalks = useMemo(() => {
     return sessions.filter((session) => {
-      if (activeCategory !== "All" && session.category !== activeCategory) {
+      if (
+        activeCategory !== "All" &&
+        session.category.toLowerCase() !== activeCategory.toLowerCase()
+      ) {
         return false;
       }
 
@@ -39,14 +40,34 @@ export const useRSVPState = ({ sessions, pageSize, categories, scrollToTalks }: 
     });
   }, [activeCategory, activeDay, sessions]);
 
-  const totalTalks = currentPageTalks.length;
+  const categoriesWithAll: Category[] = useMemo(() => {
+    const allCategories = [{ name: "All", imageUrl: "" }, ...categories];
+
+    const dayTalks = sessions.filter((session) => {
+      const day = new Date(session.sessionDate).getDate();
+
+      if (activeDay === 0) {
+        return day === 24;
+      } else {
+        return day === 25;
+      }
+    });
+
+    const validCategories = new Set(dayTalks.map((session) => session.category));
+
+    return allCategories.filter(
+      (category) => validCategories.has(category.name) || category.name === "All",
+    );
+  }, [activeDay, categories, sessions]);
+
+  const totalTalks = currentDayTalks.length;
 
   const currentTalks = useMemo(() => {
     const talksStart = (talksPage - 1) * pageSize;
     const talksEnd = talksPage * pageSize;
 
-    return currentPageTalks.slice(talksStart, talksEnd);
-  }, [currentPageTalks, pageSize, talksPage]);
+    return currentDayTalks.slice(talksStart, talksEnd);
+  }, [currentDayTalks, pageSize, talksPage]);
 
   const rangeText = useMemo(() => {
     const start = (talksPage - 1) * pageSize + 1;
@@ -69,6 +90,7 @@ export const useRSVPState = ({ sessions, pageSize, categories, scrollToTalks }: 
     setActiveDay(day);
     setTalksPage(1);
     scrollToTalks();
+    setActiveCategory("All");
   };
 
   const onShowTalkDetails = (session: Session) => {
