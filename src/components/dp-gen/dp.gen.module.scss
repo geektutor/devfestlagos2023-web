@@ -3,6 +3,11 @@
 @import "core/typography";
 @import "core/variables";
 
+.main_container {
+  position: relative;
+  overflow-x: auto;
+}
+
 .dp_gen_section {
   width: 850px;
   height: 850px;

@@ -62,7 +62,7 @@ export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate })
   const handleRedo = () => handleRegenerate(false);
 
   return (
-    <>
+    <div className={styles.main_container}>
       <section
         ref={sectionRef}
         className={`
@@ -164,6 +164,6 @@ export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate })
           </PrimaryButton>
         </div>
       </section>
-    </>
+    </div>
   );
 };

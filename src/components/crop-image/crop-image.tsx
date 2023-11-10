@@ -39,14 +39,19 @@ const CropImage: React.FC<CropImageProps> = ({ onCroppedImage, croppedImage }) =
     if (cropperRef.current) {
       const cropper = cropperRef.current?.cropper;
       const resultImage = cropper.getCroppedCanvas().toDataURL();
-      // setCroppedImageUrl(resultImage);
       onCroppedImage(resultImage as string);
-      // console.log(cropper.getCroppedCanvas().toDataURL());
     }
   };
 
   const useCroppedImage = () => {
-    // onCroppedImage(croppedImageUrl as string);
+    if (cropperRef.current) {
+      const cropper = cropperRef.current?.cropper;
+      if (typeof cropperRef.current?.cropper !== "undefined") {
+        const resultImage = cropper.getCroppedCanvas().toDataURL();
+        onCroppedImage(resultImage as string);
+      }
+    }
+
     setHideCropper(!hideCropper);
   };
 
@@ -64,10 +69,12 @@ const CropImage: React.FC<CropImageProps> = ({ onCroppedImage, croppedImage }) =
           <Cropper
             ref={cropperRef}
             src={image}
-            style={{ height: 400, width: "100%" }}
+            className={styles.cropper_container}
             aspectRatio={1} // Set aspectRatio to 1 for a square crop
             guides={true}
             crop={onCrop}
+            responsive={true}
+            checkOrientation={false}
           />
 
           <button type='button' className={styles.save_btn} onClick={useCroppedImage}>
