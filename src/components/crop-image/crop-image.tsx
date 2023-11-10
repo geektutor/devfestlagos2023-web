@@ -75,6 +75,7 @@ const CropImage: React.FC<CropImageProps> = ({ onCroppedImage, croppedImage }) =
             crop={onCrop}
             responsive={true}
             checkOrientation={false}
+            zoomable={false}
           />
 
           <button type='button' className={styles.save_btn} onClick={useCroppedImage}>
