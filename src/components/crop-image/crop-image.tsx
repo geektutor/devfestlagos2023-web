@@ -1,123 +1,84 @@
-import React from "react";
-// import React, { useState, useEffect, ChangeEvent } from "react";
-// import Image from "next/image";
-// import UploaderIcon from "@/images/dp-generator/bytesize_upload.png";
-// import Cropper from "react-easy-crop";
-// // import { Area } from "react-easy-crop/types";
+import React, { useState, useRef } from "react";
+import Cropper, { ReactCropperElement } from "react-cropper";
+import "cropperjs/dist/cropper.css";
+import Image from "next/image";
+import UploaderIcon from "@/images/dp-generator/bytesize_upload.png";
+import styles from "./styles.module.scss";
 
 interface CropImageProps {
-  onCroppedImage?: (croppedImage: string) => void; // Callback to return the cropped image
+  onCroppedImage: (croppedImage: string) => void;
+  croppedImage: string | null;
 }
 
-const CropImage: React.FC<CropImageProps> = () => {
-  //   const inputRef = React.useRef<HTMLInputElement | null>(null);
-  //   const [src, setSrc] = useState<string | null>(null);
-  // //   const [crop, setCrop] = useState<Area>({ x: 0, y: 0 });
-  //   const [croppedImageUrl, setCroppedImageUrl] = useState<string | null>(null);
+const CropImage: React.FC<CropImageProps> = ({ onCroppedImage, croppedImage }) => {
+  const inputRef = React.useRef<HTMLInputElement | null>(null);
+  const cropperRef = useRef<ReactCropperElement>(null);
+  const [image, setImage] = useState<string | null>(null);
+  const [hideCropper, setHideCropper] = useState<boolean>(false);
 
-  //   useEffect(() => {
-  //     setCroppedImageUrl(null); // Clear the previous cropped image when a new image is loaded
-  //   }, [src]);
+  const handleClick = () => {
+    if (inputRef.current) {
+      inputRef.current.click();
+    }
+  };
 
-  //   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //     if (e.target.files && e.target.files[0]) {
-  //       const file = e.target.files[0];
-  //       const reader = new FileReader();
-  //       reader.onload = () => {
-  //         console.log(reader.result);
-  //         setSrc(reader.result as string);
-  //       };
-  //       reader.readAsDataURL(file);
-  //     }
-  //   };
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        // setSrc(reader.result as string);
+        setImage(reader.result as string);
+        // setCroppedImageUrl(null);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
-  //   const handleClick = () => {
-  //     if (inputRef.current) {
-  //       inputRef.current.click();
-  //     }
-  //   };
+  const onCrop = () => {
+    if (cropperRef.current) {
+      const cropper = cropperRef.current?.cropper;
+      const resultImage = cropper.getCroppedCanvas().toDataURL();
+      // setCroppedImageUrl(resultImage);
+      onCroppedImage(resultImage as string);
+      // console.log(cropper.getCroppedCanvas().toDataURL());
+    }
+  };
 
-  //   const onCropChange = (area: Area) => {
-  //     setCrop(area);
-  //   };
-
-  //   const handleSaveCroppedImage = async () => {
-  //     if (src) {
-  //       const img = new Image() as HTMLImageElement; // Cast it to HTMLImageElement
-  //       img.src = src;
-  //       img.onload = () => {
-  //         const canvas = document.createElement("canvas");
-  //         const scaleX = img.naturalWidth / img.width;
-  //         const scaleY = img.naturalHeight / img.height;
-
-  //         canvas.width = 50; // Set the desired width of the cropped image
-  //         canvas.height = 50; // Set the desired height of the cropped image
-
-  //         const ctx = canvas.getContext("2d");
-
-  //         if (ctx) {
-  //           ctx.drawImage(
-  //             img,
-  //             crop.x * scaleX,
-  //             crop.y * scaleY,
-  //             crop.width * scaleX,
-  //             crop.height * scaleY,
-  //             0,
-  //             0,
-  //             100, // Set the desired width of the cropped image
-  //             100, // Set the desired height of the cropped image
-  //           );
-
-  //           const croppedImage = canvas.toDataURL("image/jpeg"); // Change format if needed
-  //           setCroppedImageUrl(croppedImage);
-  //           onCroppedImage(croppedImage);
-  //         }
-  //       };
-  //     }
-  //   };
+  const useCroppedImage = () => {
+    // onCroppedImage(croppedImageUrl as string);
+    setHideCropper(!hideCropper);
+  };
 
   return (
-    <div style={{ position: "relative" }}>
-      {/* <input
+    <div>
+      <input
         style={{ display: "none" }}
         ref={inputRef}
         type='file'
         accept='image/*'
         onChange={handleFileChange}
       />
-
-      {src && (
-        <div
-          style={{
-            position: "absolute",
-            zIndex: 50,
-            width: "100%",
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-          }}
-        >
+      {image && !hideCropper && (
+        <>
           <Cropper
-            image={src}
-            crop={crop}
-            aspect={1}
-            onCropChange={onCropChange}
-            showGrid={false}
+            ref={cropperRef}
+            src={image}
+            style={{ height: 400, width: "100%" }}
+            aspectRatio={1} // Set aspectRatio to 1 for a square crop
+            guides={true}
+            crop={onCrop}
           />
 
-          <div>
-            <img src={croppedImageUrl as string} alt='Cropped' />
-            <button type='button' onClick={handleSaveCroppedImage}>
-              Save Cropped Image
-            </button>
-          </div>
-        </div>
+          <button type='button' className={styles.save_btn} onClick={useCroppedImage}>
+            Save cropped image
+          </button>
+        </>
       )}
 
       <div onClick={handleClick} className='dp_gen_page__customize_form_group_uploader'>
         <div className='dp_gen_page__customize_form_group_uploader_content'>
-          {!croppedImageUrl ? (
+          {!croppedImage ? (
             <>
               <Image src={UploaderIcon} alt='icon' width={50} height={50} />
               <div className='dp_gen_page__customize_form_group_uploader_content_text'>
@@ -126,14 +87,14 @@ const CropImage: React.FC<CropImageProps> = () => {
             </>
           ) : (
             <div className='dp_gen_page__customize_form_group_uploader_content_photo'>
-              <Image src={croppedImageUrl} width={100} height={100} alt='photo' />
+              <Image src={croppedImage as string} width={100} height={100} alt='photo' />
               <div className='dp_gen_page__customize_form_group_uploader_content_photo_change'>
                 Change
               </div>
             </div>
           )}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

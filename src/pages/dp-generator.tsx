@@ -10,7 +10,7 @@ import Avatar2 from "@/images/speakers-page/avatars/sp_avatar_2.png";
 import RefreshDoodle from "@/images/repeat-doodle.png";
 import Cup from "@/images/cup-code.png";
 import Globe from "@/images/globe-doodle.png";
-// import CropImage from "@/components/crop-image/crop-image";
+import CropImage from "@/components/crop-image/crop-image";
 
 export default function DpGenerator() {
   const inputRef = React.useRef<HTMLInputElement | null>(null);
@@ -20,7 +20,6 @@ export default function DpGenerator() {
   const [isPreview, setIsPreview] = React.useState<boolean>(false);
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(event.target.value);
     setSelectedColor(event.target.value);
   };
 
@@ -35,19 +34,13 @@ export default function DpGenerator() {
     }
   };
 
-  // const handleClick = () => {
-  //   if (inputRef.current) {
-  //     inputRef.current.click();
-  //   }
-  // };
-
   const handleSubmit = () => {
     setIsPreview(!isPreview);
   };
 
-  // const getCroppedImage = (cropped_img: string) => {
-  //   setProfilePicture(cropped_img)
-  // };
+  const getCroppedImage = (cropped_img: string) => {
+    setProfilePicture(cropped_img);
+  };
 
   return (
     <>
@@ -115,29 +108,7 @@ export default function DpGenerator() {
                     accept='image/*'
                   />
 
-                  {/* <CropImage onCroppedImage={getCroppedImage} /> */}
-
-                  {/* <div onClick={handleClick} className='dp_gen_page__customize_form_group_uploader'>
-                    <div className='dp_gen_page__customize_form_group_uploader_content'>
-              
-
-                      {!profilePicture ? (
-                        <>
-                          <Image src={UploaderIcon} alt='icon' width={"50"} height={"50"} />
-                          <div className='dp_gen_page__customize_form_group_uploader_content_text'>
-                            Drag and drop to upload or <span>browse</span>
-                          </div>
-                        </>
-                      ) : (
-                        <div className='dp_gen_page__customize_form_group_uploader_content_photo'>
-                          <Image src={profilePicture} width={"100"} height={"100"} alt='photo' />
-                          <div className='dp_gen_page__customize_form_group_uploader_content_photo_change'>
-                            Change
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div> */}
+                  <CropImage croppedImage={profilePicture} onCroppedImage={getCroppedImage} />
                 </div>
 
                 <div className='dp_gen_page__customize_form_group'>
@@ -153,7 +124,7 @@ export default function DpGenerator() {
                         type='radio'
                         onChange={handleRadioChange}
                         name='radioGroup'
-                        //   checked={selectedColor === "green"}
+                        checked={selectedColor === "green"}
                         value='green'
                       />
                       <span className='radio-button'></span>
@@ -168,7 +139,7 @@ export default function DpGenerator() {
                         type='radio'
                         onChange={handleRadioChange}
                         name='radioGroup'
-                        //   checked={selectedColor === "blue"}
+                        checked={selectedColor === "blue"}
                         value='blue'
                       />
                       <span className='radio-button'></span>
@@ -183,7 +154,7 @@ export default function DpGenerator() {
                         type='radio'
                         onChange={handleRadioChange}
                         name='radioGroup'
-                        //   checked={selectedColor === "yellow"}
+                        checked={selectedColor === "yellow"}
                         value='yellow'
                       />
                       <span className='radio-button'></span>
@@ -198,7 +169,7 @@ export default function DpGenerator() {
                         type='radio'
                         onChange={handleRadioChange}
                         name='radioGroup'
-                        //   checked={selectedColor === "red"}
+                        checked={selectedColor === "red"}
                         value='red'
                       />
                       <span className='radio-button'></span>
