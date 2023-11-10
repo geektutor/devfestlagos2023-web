@@ -27,6 +27,7 @@ import o2Image from "@/images/team/music/o2.png";
 import idkImage from "@/images/team/music/idk.png";
 import marvinImage from "@/images/team/marvin.png";
 import tobijuImage from "@/images/team/tobiju.png";
+import solomonImage from "@/images/team/solomon.png";
 import growImage from "@/images/team/music/grow.png";
 import dDayImage from "@/images/team/music/d-day.png";
 import ollieImage from "@/images/team/music/ollie.png";
@@ -35,6 +36,7 @@ import omorinsolaImage from "@/images/team/omorinsola.png";
 import victoryImage from "@/images/team/music/victory.png";
 import babydollImage from "@/images/team/music/babydoll.png";
 import hindsightImage from "@/images/team/music/hindsight.png";
+import inControlImage from "@/images/team/music/in-control.png";
 
 export type TeamMemberLink = {
   type:
@@ -536,6 +538,43 @@ export const teamMembers: ITeamMember[] = [
       {
         type: "medium",
         url: "https://funmilayokanmodi.medium.com/",
+      },
+    ],
+  },
+  {
+    key: "solomon",
+    name: "Solomon Ayodele Ogunbowale",
+    role: "Backend Developer",
+    comment: "The work has been interesting and fun",
+    quote: "In everything, do to others what you would have them to do to you",
+    category: "dev",
+    image: solomonImage,
+    music: {
+      image: inControlImage,
+      name: "In Control",
+      artist: "Hillsong Worship",
+      url: "https://open.spotify.com/track/2XXXk54soacKXmnUYUbMKE?si=7fdeeeeba1194b2ac",
+    },
+    links: [
+      {
+        type: "facebook",
+        url: "https://web.facebook.com/solomon.ayodele.o",
+      },
+      {
+        type: "instagram",
+        url: "https://www.instagram.com/solomonayodeleo/",
+      },
+      {
+        type: "twitter",
+        url: "https://x.com/_dev_solo",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/solomonayodeleo/",
+      },
+      {
+        type: "website",
+        url: "https://linktr.ee/solomonayodeleo",
       },
     ],
   },
