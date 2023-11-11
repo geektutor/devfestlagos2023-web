@@ -87,9 +87,10 @@ export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate })
 
   return (
     <>
-      <p className={styles.preview_text}>
+      <h6 className={styles.preview_text}>
         If the preview does not display on your browser, please proceed to download your DP.
-      </p>
+        It&apos;s like ✨ magic✨ 👌🏾🫵🏾.
+      </h6>
 
       <div className={styles.main_container}>
         <section
