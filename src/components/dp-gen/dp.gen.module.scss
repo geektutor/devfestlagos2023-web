@@ -8,6 +8,20 @@
   overflow-x: auto;
 }
 
+.preview_text {
+  @include body-2;
+  display: none;
+
+  @include media("<=phone") {
+    text-align: center;
+    margin: 1.5rem 0.8rem 1.6rem;
+    background: transparent;
+    display: block;
+    @include body-5;
+    color: #4d4d4d;
+  }
+}
+
 .dp_gen_section {
   width: 850px;
   height: 850px;
@@ -29,7 +43,7 @@
   .overlay {
     // margin: 10rem 0;
     position: relative;
-    background-color: #ffffff !important;
+    background: #ffffff !important;
     fill: #fff;
     filter: drop-shadow(4px 4px 100px rgba(0, 0, 0, 0.25));
     display: flex;
@@ -78,7 +92,7 @@
     }
 
     &::after {
-      background-color: #ffffff;
+      background: #ffffff !important;
       content: "";
       position: absolute;
       width: calc(100% - 60px);
@@ -203,7 +217,7 @@
           position: absolute;
           bottom: -20px;
           transform: rotate(5.306deg);
-          background-color: #ffe6cc;
+          background: #ffe6cc;
           color: #1c1c1c;
           padding: 0.6rem 1.2rem;
           border-radius: 4.8rem;

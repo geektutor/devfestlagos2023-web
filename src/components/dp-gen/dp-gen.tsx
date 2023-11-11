@@ -7,7 +7,7 @@ import Move from "@/images/move-icon.png";
 import Cup from "@/images/cup-code.png";
 import DownloadIcon from "@/images/download-icon.svg";
 import RedoIcon from "@/images/redo-icon.svg";
-import ShareIcon from "@/images/share-icon.svg";
+// import ShareIcon from "@/images/share-icon.svg";
 import { PrimaryButton } from "@/components/button";
 import html2canvas from "html2canvas";
 
@@ -20,9 +20,7 @@ interface Props {
 
 export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate }) => {
   const sectionRef = React.useRef<HTMLElement | null>(null);
-  const description = `I ${name}, will be at the devFest Lagos 2023🤭🥳. Be there🫵🏾`;
-
-  console.log("tracking photo", photo);
+  // const description = `I ${name} will be at the devFest Lagos 2023🤭🥳. Be there🫵🏾`;
 
   // HTML2canvas implementation
   const handleDownload = () => {
@@ -64,36 +62,39 @@ export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate })
 
   const handleRedo = () => handleRegenerate(false);
 
-  const handleShareOnWhatsApp = () => {
-    const blob = base64ToBlob(photo as string);
-    const blobUrl = URL.createObjectURL(blob);
+  // const handleShareOnWhatsApp = () => {
+  //   const blob = base64ToBlob(photo as string);
+  //   const blobUrl = URL.createObjectURL(blob);
 
-    console.log(blobUrl);
+  //   const text = encodeURIComponent(`${description}\n${blobUrl}`);
+  //   const whatsAppShareUrl = `https://wa.me/?text=${text}`;
 
-    const text = encodeURIComponent(`${description}\n${blobUrl}`);
-    const whatsAppShareUrl = `https://wa.me/?text=${text}`;
-
-    window.open(whatsAppShareUrl, "_blank");
-  };
+  //   window.open(whatsAppShareUrl, "_blank");
+  // };
 
   // Function to convert base64 to Blob
-  const base64ToBlob = (base64String: string) => {
-    const byteCharacters = atob(base64String);
-    const byteNumbers = new Array(byteCharacters.length);
+  // const base64ToBlob = (base64String: string) => {
+  //   const byteCharacters = atob(base64String);
+  //   const byteNumbers = new Array(byteCharacters.length);
 
-    for (let i = 0; i < byteCharacters.length; i++) {
-      byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
+  //   for (let i = 0; i < byteCharacters.length; i++) {
+  //     byteNumbers[i] = byteCharacters.charCodeAt(i);
+  //   }
 
-    const byteArray = new Uint8Array(byteNumbers);
-    return new Blob([byteArray], { type: "image/png" }); // Adjust the type based on your image format
-  };
+  //   const byteArray = new Uint8Array(byteNumbers);
+  //   return new Blob([byteArray], { type: "image/png" }); // Adjust the type based on your image format
+  // };
 
   return (
-    <div className={styles.main_container}>
-      <section
-        ref={sectionRef}
-        className={`
+    <>
+      <p className={styles.preview_text}>
+        If the preview does not display on your browser, please proceed to download your DP.
+      </p>
+
+      <div className={styles.main_container}>
+        <section
+          ref={sectionRef}
+          className={`
      ${styles.dp_gen_section}
      ${
        theme === "green"
@@ -107,91 +108,92 @@ export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate })
          : ""
      }
      `}
-      >
-        <div className={styles.overlay}>
-          <div className={styles.box1}></div>
-          <div className={styles.box2}></div>
-          <div className={styles.content}>
-            <div
-              // style={{
-              //   backgroundImage: `url(${photo})`,
-              // }}
-              className={styles.img_holder}
-            >
-              <div className={styles.doodle_1}>
-                <Image src={Doodle} alt='Doodle' />
-              </div>
-              <div className={styles.doodle_2}>
-                <Image src={Move} alt='Move' />
-              </div>
-              <figure className={styles.doodle_3}>
-                <Image src={Cup} alt='Cup' />
-              </figure>
-              {photo && (
-                <>
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      objectPosition: "center",
-                    }}
-                  >
-                    <Image
-                      width={340}
-                      height={340}
+        >
+          <div className={styles.overlay}>
+            <div className={styles.box1}></div>
+            <div className={styles.box2}></div>
+            <div className={styles.content}>
+              <div
+                // style={{
+                //   backgroundImage: `url(${photo})`,
+                // }}
+                className={styles.img_holder}
+              >
+                <div className={styles.doodle_1}>
+                  <Image src={Doodle} alt='Doodle' />
+                </div>
+                <div className={styles.doodle_2}>
+                  <Image src={Move} alt='Move' />
+                </div>
+                <figure className={styles.doodle_3}>
+                  <Image src={Cup} alt='Cup' />
+                </figure>
+                {photo && (
+                  <>
+                    <div
                       style={{
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
                         objectPosition: "center",
-                        borderRadius: "50%",
                       }}
-                      src={photo as string}
-                      alt={name}
-                    />
-                  </div>
-                </>
-              )}
-              <div className={styles.name}>😌 {name}</div>
-            </div>
-            <div className={styles.be_there}>WILL BE AT</div>
+                    >
+                      <Image
+                        width={340}
+                        height={340}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          objectPosition: "center",
+                          borderRadius: "50%",
+                        }}
+                        src={photo as string}
+                        alt={name}
+                      />
+                    </div>
+                  </>
+                )}
+                <div className={styles.name}>😌 {name}</div>
+              </div>
+              <div className={styles.be_there}>WILL BE AT</div>
 
-            <div className={styles.logo_container}>
-              <Logo className={styles.logo} />
-            </div>
+              <div className={styles.logo_container}>
+                <Logo className={styles.logo} />
+              </div>
 
-            <ul className={styles.group}>
-              <li className={styles.list}>
-                <div className={styles.name}>Get tickets at</div>
-                <div className={styles.value}>devfestlagos.com</div>
-              </li>
-              <li className={styles.list}>
-                <div className={styles.name}>Date</div>
-                <div className={styles.value}>24-25th Nov</div>
-              </li>
-              <li className={styles.list}>
-                <div className={styles.name}>Venue</div>
-                <div className={styles.value}>Landmark Event Center</div>
-              </li>
-            </ul>
+              <ul className={styles.group}>
+                <li className={styles.list}>
+                  <div className={styles.name}>Get tickets at</div>
+                  <div className={styles.value}>devfestlagos.com</div>
+                </li>
+                <li className={styles.list}>
+                  <div className={styles.name}>Date</div>
+                  <div className={styles.value}>24-25th Nov</div>
+                </li>
+                <li className={styles.list}>
+                  <div className={styles.name}>Venue</div>
+                  <div className={styles.value}>Landmark Event Center</div>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className={styles.action_section}>
-        <div className={styles.content}>
-          <PrimaryButton className={styles.btn_solid} onClick={handleShareOnWhatsApp}>
+        <section className={styles.action_section}>
+          <div className={styles.content}>
+            {/* <PrimaryButton className={styles.btn_solid}>
             <ShareIcon /> Share
-          </PrimaryButton>
-          <PrimaryButton onClick={handleDownload} className={styles.btn_outline}>
-            <DownloadIcon /> Download
-          </PrimaryButton>
-          <PrimaryButton onClick={handleRedo} className={styles.btn_outline}>
-            <RedoIcon /> Regenerate
-          </PrimaryButton>
-        </div>
-      </section>
-    </div>
+          </PrimaryButton> */}
+            <PrimaryButton onClick={handleDownload} className={styles.btn_outline}>
+              <DownloadIcon /> Download
+            </PrimaryButton>
+            <PrimaryButton onClick={handleRedo} className={styles.btn_outline}>
+              <RedoIcon /> Regenerate
+            </PrimaryButton>
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
