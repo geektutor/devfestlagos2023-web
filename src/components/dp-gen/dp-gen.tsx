@@ -20,6 +20,7 @@ interface Props {
 
 export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate }) => {
   const sectionRef = React.useRef<HTMLElement | null>(null);
+  const description = `I ${name}, will be at the devFest Lagos 2023🤭🥳. Be there🫵🏾`;
 
   console.log("tracking photo", photo);
 
@@ -62,6 +63,13 @@ export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate })
   };
 
   const handleRedo = () => handleRegenerate(false);
+
+  const handleShareOnWhatsApp = () => {
+    const text = encodeURIComponent(`${description}\n${photo}`);
+    const whatsAppShareUrl = `https://wa.me/?text=${text}`;
+
+    window.open(whatsAppShareUrl, "_blank");
+  };
 
   return (
     <div className={styles.main_container}>
@@ -155,7 +163,7 @@ export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate })
 
       <section className={styles.action_section}>
         <div className={styles.content}>
-          <PrimaryButton className={styles.btn_solid}>
+          <PrimaryButton className={styles.btn_solid} onClick={handleShareOnWhatsApp}>
             <ShareIcon /> Share
           </PrimaryButton>
           <PrimaryButton onClick={handleDownload} className={styles.btn_outline}>
