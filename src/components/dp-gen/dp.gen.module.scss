@@ -35,7 +35,8 @@
     display: flex;
     justify-content: center;
     height: calc(100% - 60px);
-    z-index: 1;
+    width: 100%;
+    z-index: 2;
 
     @include media("<=phone") {
       height: calc(100% - 20px);
@@ -113,9 +114,6 @@
         background-size: cover;
         background-position: center;
 
-        img {
-          image-rendering: optimizeQuality;
-        }
         @include media("<=desktop-sm") {
           width: 250px;
           height: 250px;

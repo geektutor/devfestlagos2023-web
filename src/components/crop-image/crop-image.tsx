@@ -7,14 +7,14 @@ import styles from "./styles.module.scss";
 
 interface CropImageProps {
   onCroppedImage: (croppedImage: string) => void;
-  croppedImage: string | null;
 }
 
-const CropImage: React.FC<CropImageProps> = ({ onCroppedImage, croppedImage }) => {
+const CropImage: React.FC<CropImageProps> = ({ onCroppedImage }) => {
   const inputRef = React.useRef<HTMLInputElement | null>(null);
   const cropperRef = useRef<ReactCropperElement>(null);
   const [image, setImage] = useState<string | null>(null);
   const [hideCropper, setHideCropper] = useState<boolean>(false);
+  const [imgUrl, setImgUrl] = useState<string | null>(null);
 
   const handleClick = () => {
     if (inputRef.current) {
@@ -38,8 +38,10 @@ const CropImage: React.FC<CropImageProps> = ({ onCroppedImage, croppedImage }) =
   const onCrop = () => {
     if (cropperRef.current) {
       const cropper = cropperRef.current?.cropper;
-      const resultImage = cropper.getCroppedCanvas().toDataURL();
-      onCroppedImage(resultImage as string);
+      if (typeof cropperRef.current?.cropper !== "undefined") {
+        const resultImage = cropper.getCroppedCanvas().toDataURL();
+        setImgUrl(resultImage as string);
+      }
     }
   };
 
@@ -86,7 +88,7 @@ const CropImage: React.FC<CropImageProps> = ({ onCroppedImage, croppedImage }) =
 
       <div onClick={handleClick} className='dp_gen_page__customize_form_group_uploader'>
         <div className='dp_gen_page__customize_form_group_uploader_content'>
-          {!croppedImage ? (
+          {!imgUrl ? (
             <>
               <Image src={UploaderIcon} alt='icon' width={50} height={50} />
               <div className='dp_gen_page__customize_form_group_uploader_content_text'>
@@ -95,7 +97,7 @@ const CropImage: React.FC<CropImageProps> = ({ onCroppedImage, croppedImage }) =
             </>
           ) : (
             <div className='dp_gen_page__customize_form_group_uploader_content_photo'>
-              <Image src={croppedImage as string} width={100} height={100} alt='photo' />
+              <Image src={imgUrl as string} width={100} height={100} alt='photo' />
               <div className='dp_gen_page__customize_form_group_uploader_content_photo_change'>
                 Change
               </div>

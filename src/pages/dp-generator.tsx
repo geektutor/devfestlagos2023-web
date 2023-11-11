@@ -108,7 +108,7 @@ export default function DpGenerator() {
                     accept='image/*'
                   />
 
-                  <CropImage croppedImage={profilePicture} onCroppedImage={getCroppedImage} />
+                  <CropImage onCroppedImage={getCroppedImage} />
                 </div>
 
                 <div className='dp_gen_page__customize_form_group'>

@@ -21,6 +21,8 @@ interface Props {
 export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate }) => {
   const sectionRef = React.useRef<HTMLElement | null>(null);
 
+  console.log("tracking photo", photo);
+
   // HTML2canvas implementation
   const handleDownload = () => {
     if (sectionRef.current) {
