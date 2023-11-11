@@ -65,10 +65,28 @@ export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate })
   const handleRedo = () => handleRegenerate(false);
 
   const handleShareOnWhatsApp = () => {
-    const text = encodeURIComponent(`${description}\n${photo}`);
+    const blob = base64ToBlob(photo as string);
+    const blobUrl = URL.createObjectURL(blob);
+
+    console.log(blobUrl);
+
+    const text = encodeURIComponent(`${description}\n${blobUrl}`);
     const whatsAppShareUrl = `https://wa.me/?text=${text}`;
 
     window.open(whatsAppShareUrl, "_blank");
+  };
+
+  // Function to convert base64 to Blob
+  const base64ToBlob = (base64String: string) => {
+    const byteCharacters = atob(base64String);
+    const byteNumbers = new Array(byteCharacters.length);
+
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], { type: "image/png" }); // Adjust the type based on your image format
   };
 
   return (
