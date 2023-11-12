@@ -17,6 +17,9 @@ export default function Schedule() {
 
   return (
     <>
+      <div className='sc__nav'>
+        <Menu />
+      </div>
       <header className='sc__header'>
         <div className='container'>
           <h3 className='sc__header__title'>Schedule</h3>
