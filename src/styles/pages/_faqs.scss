@@ -1,3 +1,8 @@
+
+.faq__page {
+  background: $bg-shade-1;
+}
+
 .fq__header {
   background: $bg-shade-1;
   position: relative;
@@ -137,6 +142,8 @@
   display: flex;
   flex-direction: column;
   gap: 2.4rem 0;
+  background-color: #fff;
+
 
   &--dark {
     @extend .fq__list;
@@ -147,6 +154,9 @@
     &__heading {
       @include heading-5;
       color: $secondary-yellow;
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
     }
   }
 

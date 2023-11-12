@@ -1,12 +1,13 @@
 import Logo from "@/images/logo.svg";
 import StarIcon from "@/images/home/star.svg";
+import Link from "next/link";
 import Image from "next/image";
 import globeDoodle from "@/images/globe-doodle.png";
 import repeatDoodle from "@/images/repeat-doodle.png";
 import peopleDoodle from "@/images/people-doodle.png";
 import videoDoodle from "@/images/cup-code.png";
 import arrowDoodle from "@/images/arrow-doodle.png";
-import { TertiaryButton } from "@/components/button";
+import { SecondaryButton, TertiaryButton } from "@/components/button";
 import recap1 from "@/images/home/recap/recap-1.png";
 import recap2 from "@/images/home/recap/recap-2.png";
 import recap3 from "@/images/home/recap/recap-3.png";
@@ -27,7 +28,7 @@ import { socialMediaLinks } from "@/utils/social-media";
 import React, { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
 import HighlightIcon from "@/images/home/highlight.svg";
-import { ticketsUrl } from "@/utils/urls";
+import { ticketsUrl, callForVolunteersURL } from "@/utils/urls";
 import { SEO } from "@/components/seo";
 
 export default function Home() {
@@ -44,7 +45,9 @@ export default function Home() {
     <>
       <SEO
         title='Devfest Lagos 2023 | Grab Your Tickets'
-        description='Welcome to the official Coming Soon website for DevFest Lagos 2023. DevFest Lagos is an annual  tech conference hosted by Google Developer Groups Lagos. Be there 🫵🏾'
+
+        description='DevFest Lagos 2023 is an annual developer festival organized by GDG Lagos. It will take place on Friday November 24, 2023 and Saturday, November 25, 2023 at the Landmark Event Centre, Lagos. DevFest Lagos will feature speaker-led sessions, workshops, code-labs, and more on a variety of topics such as Web, Flutter, AI & ML, blockchain, design and many others. Join us! 🫵🏾'
+
         keywords='gdg lagos, devfest, devfest lagos, devfest lagos 2023'
         image='/og-images/home-page.png'
       />
@@ -64,12 +67,20 @@ export default function Home() {
           </figure>
           <h1 className='c-home__intro__title'>Are you ready for 23x?</h1>
           <p className='c-home__intro__subtext'>
-            We&apos;re back! and it&apos;s about to be the most memorable tech festival <br />
-            yet. Get ready for DevFest Lagos 2023.
+            2 days with 40+ speakers across Artificial Intelligence, Machine Learning, Mobile,
+            Cloud, Intellectual Property and Startup Funding, Policy & Governance, and so much more!
+            <br /> DevFest Lagos 2023 is about to be the most memorable tech festival yet.
           </p>
-          <TertiaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
-            Grab Your Tickets
-          </TertiaryButton>
+
+          <div className='c-home__intro__buttons'>
+            <TertiaryButton href={ticketsUrl} isExternal>
+              Grab Your Tickets
+            </TertiaryButton>
+            <SecondaryButton href={callForVolunteersURL} isExternal>
+              Apply To Volunteer
+            </SecondaryButton>
+          </div>
+
         </section>
         <section className='c-home__marquee-wrapper'>
           <div className='c-home__marquee' data-marquee>
@@ -164,6 +175,9 @@ export default function Home() {
         <ComingSoonCountdown />
         <section className='c-home__footer'>
           <ul className='c-home__footer__links'>
+            <li className='c-home__footer__links__link'>
+              <Link href='/faq'>FAQ</Link>
+            </li>
             <li className='c-home__footer__links__link'>
               <a href='https://gdg.community.dev/gdg-lagos/' target='_blank'>
                 Join the community

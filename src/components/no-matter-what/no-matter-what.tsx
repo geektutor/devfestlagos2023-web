@@ -5,6 +5,7 @@ import { TertiaryButton } from "@/components/button";
 
 export const NoMatterWhat = () => {
   return (
+
     <section className={styles.noMatterWhat} data-nmw>
       <h4
         className={styles.title}
@@ -29,6 +30,7 @@ export const NoMatterWhat = () => {
       <TertiaryButton className={styles.button} data-animate-button data-delay='.7'>
         I will be there no matter what
       </TertiaryButton>
+
     </section>
   );
 };

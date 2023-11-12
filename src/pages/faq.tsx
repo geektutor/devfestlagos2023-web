@@ -1,9 +1,14 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
+import Logo from "@/images/logo.svg";
 import FAQ from "@/components/faq/FAQ";
 import Memojis from "@/images/faqs/memojis.png";
 import MenuDoodle from "@/images/faqs/menu-doodle.png";
 import MoveDoodle from "@/images/faqs/move-doodle.png";
+
+import { socialMediaLinks } from "@/utils/social-media";
+
 import Accordion from "@/components/accordion/accordion";
 import { faqs, paidDevFestQuestions } from "@/data/faqs";
 import CloudDoodle from "@/images/landing/doodles/cloud.png";
@@ -15,11 +20,16 @@ import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
 
 export default function Faqs() {
   return (
-    <main className='faqs__page'>
+
+    <main className='faq__page'>
+      <nav className='c-home__nav'>
+        <Logo className='c-home__nav__logo' />
+      </nav>
       <header className='fq__header'>
         <div className='container'>
           <h1 className='fq__header__title'>
-            {"Top questions about\nDevfest"}
+            {"Top questions about\nDevFest Lagos"}
+
             <Image
               alt='FAQs'
               quality={100}
@@ -84,6 +94,38 @@ export default function Faqs() {
         </p>
       </div>
       <NoMatterWhat />
+
+      <section className='c-home__footer'>
+        <ul className='c-home__footer__links'>
+          <li className='c-home__footer__links__link'>
+            <Link href='/faq'>FAQ</Link>
+          </li>
+          <li className='c-home__footer__links__link'>
+            <a href='https://gdg.community.dev/gdg-lagos/' target='_blank'>
+              Join the community
+            </a>
+          </li>
+          <li className='c-home__footer__links__link'>
+            <a href='https://policies.google.com/privacy' target='_blank'>
+              Privacy policy
+            </a>
+          </li>
+        </ul>
+        <Logo className='c-home__footer__logo' />
+        <div className='c-home__footer__social-media'>
+          <p className='c-home__footer__social-media__title'>Follow us on:</p>
+          <ul className='c-home__footer__social-media__links'>
+            {socialMediaLinks.map((link) => (
+              <li key={link.link}>
+                <a href={link.link} target='_blank' className='c-home__footer__social-media__link'>
+                  {link.icon}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
     </main>
   );
 }

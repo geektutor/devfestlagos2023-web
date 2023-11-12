@@ -55,7 +55,9 @@ export const ComingSoonCountdown = () => {
           <span className='c-countdown__clock__slot__label'>Seconds</span>
         </div>
       </div>
+
       <TertiaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
+
         Grab Your Tickets
       </TertiaryButton>
     </section>

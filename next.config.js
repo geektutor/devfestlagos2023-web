@@ -13,6 +13,7 @@ const nextConfig = {
     return config;
   },
   transpilePackages: ["gsap"],
+
   images: {
     remotePatterns: [
       {
@@ -23,6 +24,7 @@ const nextConfig = {
       },
     ],
   },
+
   sassOptions: {
     includePaths: [path.join(__dirname, "src/styles")],
   },
