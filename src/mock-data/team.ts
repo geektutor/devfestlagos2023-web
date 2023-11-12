@@ -335,6 +335,20 @@ export const teamMembers: ITeamMember[] = [
       artist: "Asake",
       url: "https://open.spotify.com/track/16aRxdbEl0smktrm0hK0eX?si=b3986e29b1db4c9d",
     },
+    links: [
+      {
+        type: "twitter",
+        url: "https://twitter.com/mastersam_",
+      },
+      {
+        type: "github",
+        url: "https://github.com/mastersam07",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/abada-samuel",
+      },
+    ],
   },
   {
     key: "naza",
