@@ -10,12 +10,16 @@ import { ScheduleCard } from "@/components/schedule-card";
 import { Talks } from "@/components/talks-section/talks";
 import FaqSection from "@/components/faq-section/faq-section";
 import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
+import Menu from "@/components/menu/menu";
 
 export default function Schedule() {
   const [selectedDay, setSelectedDay] = useState<number>(1);
 
   return (
-    <div className='schedule__page'>
+    <>
+      <div className='sc__nav'>
+        <Menu />
+      </div>
       <header className='sc__header'>
         <div className='container'>
           <h3 className='sc__header__title'>Schedule</h3>
@@ -71,6 +75,6 @@ export default function Schedule() {
       <Talks />
       <FaqSection />
       <NoMatterWhat />
-    </div>
+    </>
   );
 }
