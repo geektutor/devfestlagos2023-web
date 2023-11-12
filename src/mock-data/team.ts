@@ -130,6 +130,16 @@ export const teamMembers: ITeamMember[] = [
       artist: "Kelechi",
       url: "https://open.spotify.com/track/2MAz9mZH3n9nVGZWUC2VUh?si=817536ce2a6a4fc4",
     },
+    links: [
+      {
+        type: "instagram",
+        url: "https://instagram.com/zia_tiffah",
+      },
+      {
+        type: "twitter",
+        url: "https://www.twitter.com/zia_tiffah",
+      },
+    ],
   },
   {
     key: "maryann",
