@@ -21,6 +21,7 @@ import johaImage from "@/images/team/music/joha.png";
 import somewhereImage from "@/images/team/music/somewhere.png";
 import tearsImage from "@/images/team/music/tears.png";
 import btsImage from "@/images/team/music/bts.png";
+import jdImage from "@/images/team/jd.png";
 import akinImage from "@/images/team/akin.png";
 import funmiImage from "@/images/team/funmi.png";
 import karenImage from "@/images/team/karen.png";
@@ -35,6 +36,7 @@ import ollieImage from "@/images/team/music/ollie.png";
 import giantsImage from "@/images/team/music/giants.png";
 import omorinsolaImage from "@/images/team/omorinsola.png";
 import victoryImage from "@/images/team/music/victory.png";
+import championImage from "@/images/team/music/champion.png";
 import babydollImage from "@/images/team/music/babydoll.png";
 import hindsightImage from "@/images/team/music/hindsight.png";
 import inControlImage from "@/images/team/music/in-control.png";
@@ -657,6 +659,35 @@ export const teamMembers: ITeamMember[] = [
       {
         type: "website",
         url: "https://www.katwiganddale.com/team ",
+      },
+    ],
+  },
+  {
+    key: "jd",
+    name: "Jesudetan Onasanya",
+    role: "Co-organizer",
+    comment: "",
+    quote: '"The best way to predict the future is to create it." - Abraham Lincoln',
+    category: "gdg-team",
+    image: jdImage,
+    music: {
+      image: championImage,
+      name: "Champion",
+      artist: "Dante Bowe",
+      url: "https://open.spotify.com/track/2YRx8jviX9HnvxD0uDIOma?si=de5bf724ffa744f9",
+    },
+    links: [
+      {
+        type: "twitter",
+        url: "https://twitter.com/jaydeecassidy",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/jesudetan-onasanya/",
+      },
+      {
+        type: "instagram",
+        url: "https://www.instagram.com/jaydee_cassidy/",
       },
     ],
   },
