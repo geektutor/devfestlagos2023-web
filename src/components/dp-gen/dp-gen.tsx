@@ -20,7 +20,6 @@ interface Props {
 
 export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate }) => {
   const sectionRef = React.useRef<HTMLElement | null>(null);
-  // const description = `I ${name} will be at the devFest Lagos 2023🤭🥳. Be there🫵🏾`;
 
   // HTML2canvas implementation
   const handleDownload = () => {
@@ -62,29 +61,6 @@ export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate })
 
   const handleRedo = () => handleRegenerate(false);
 
-  // const handleShareOnWhatsApp = () => {
-  //   const blob = base64ToBlob(photo as string);
-  //   const blobUrl = URL.createObjectURL(blob);
-
-  //   const text = encodeURIComponent(`${description}\n${blobUrl}`);
-  //   const whatsAppShareUrl = `https://wa.me/?text=${text}`;
-
-  //   window.open(whatsAppShareUrl, "_blank");
-  // };
-
-  // Function to convert base64 to Blob
-  // const base64ToBlob = (base64String: string) => {
-  //   const byteCharacters = atob(base64String);
-  //   const byteNumbers = new Array(byteCharacters.length);
-
-  //   for (let i = 0; i < byteCharacters.length; i++) {
-  //     byteNumbers[i] = byteCharacters.charCodeAt(i);
-  //   }
-
-  //   const byteArray = new Uint8Array(byteNumbers);
-  //   return new Blob([byteArray], { type: "image/png" }); // Adjust the type based on your image format
-  // };
-
   return (
     <>
       <h6 className={styles.preview_text}>
@@ -114,12 +90,7 @@ export const DpGen: React.FC<Props> = ({ name, photo, theme, handleRegenerate })
             <div className={styles.box1}></div>
             <div className={styles.box2}></div>
             <div className={styles.content}>
-              <div
-                // style={{
-                //   backgroundImage: `url(${photo})`,
-                // }}
-                className={styles.img_holder}
-              >
+              <div className={styles.img_holder}>
                 <div className={styles.doodle_1}>
                   <Image src={Doodle} alt='Doodle' />
                 </div>
