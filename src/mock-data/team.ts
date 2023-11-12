@@ -296,6 +296,28 @@ export const teamMembers: ITeamMember[] = [
       artist: "Ko’rale",
       url: "https://open.spotify.com/track/72cRQRzXJLUM3Rbf1vyxtz?si=2c36f621104c4d79",
     },
+    links: [
+      {
+        type: "twitter",
+        url: "https://twitter.com/Dev_Tsticks",
+      },
+      {
+        type: "instagram",
+        url: "https://www.instagram.com/dev_tsticks/",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/otp/",
+      },
+      {
+        type: "email",
+        url: "oluwatobilobapeterschem@gmail.com",
+      },
+      {
+        type: "github",
+        url: "https://github.com/Tobipeters",
+      },
+    ],
   },
   {
     key: "samuel",
