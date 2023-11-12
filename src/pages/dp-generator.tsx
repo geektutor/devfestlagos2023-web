@@ -11,6 +11,8 @@ import RefreshDoodle from "@/images/repeat-doodle.png";
 import Cup from "@/images/cup-code.png";
 import Globe from "@/images/globe-doodle.png";
 import CropImage from "@/components/crop-image/crop-image";
+import { SEO } from "@/components/seo";
+// import SeoImage from "@/images/dp-generator/pepper_dem_dp.png";
 
 export default function DpGenerator() {
   const inputRef = React.useRef<HTMLInputElement | null>(null);
@@ -44,6 +46,12 @@ export default function DpGenerator() {
 
   return (
     <>
+      <SEO
+        title='Generate Your DevFest Lagos 2023 DP'
+        description='Create and Share your DevFest Lagos 2023 DP with friends and on your socials'
+        keywords='gdg lagos, devfest, devfest lagos, devfest lagos 2023'
+        image='/og-images/home-page.png'
+      />
       <nav className='c-home__nav'>
         <Logo className='c-home__nav__logo' />
       </nav>
