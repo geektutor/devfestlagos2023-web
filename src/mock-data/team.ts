@@ -23,6 +23,7 @@ import tearsImage from "@/images/team/music/tears.png";
 import btsImage from "@/images/team/music/bts.png";
 import jdImage from "@/images/team/jd.png";
 import akinImage from "@/images/team/akin.png";
+import femiImage from "@/images/team/femi.png";
 import funmiImage from "@/images/team/funmi.png";
 import karenImage from "@/images/team/karen.png";
 import o2Image from "@/images/team/music/o2.png";
@@ -40,6 +41,7 @@ import championImage from "@/images/team/music/champion.png";
 import babydollImage from "@/images/team/music/babydoll.png";
 import hindsightImage from "@/images/team/music/hindsight.png";
 import inControlImage from "@/images/team/music/in-control.png";
+import canTellMeNothingImage from "@/images/team/music/cant-tell-me-nothing.png";
 import beneathYourBeautifulImage from "@/images/team/music/beneath-your-beautiful.png";
 
 export type TeamMemberLink = {
@@ -659,6 +661,43 @@ export const teamMembers: ITeamMember[] = [
       {
         type: "website",
         url: "https://www.katwiganddale.com/team ",
+      },
+    ],
+  },
+  {
+    key: "femi",
+    name: "Oluwafemi Peters",
+    role: "Sidekick",
+    comment: "",
+    quote: "Be gentle.",
+    category: "gdg-team",
+    image: femiImage,
+    music: {
+      image: canTellMeNothingImage,
+      name: "Can't tell me nothing",
+      artist: "Kanye West",
+      url: "https://open.spotify.com/track/0mEdbdeRFQwBhN4xfyIeUM?si=8a5bda1f13b8418a",
+    },
+    links: [
+      {
+        type: "github",
+        url: "https://github.com/olayinkapeter",
+      },
+      {
+        type: "medium",
+        url: "https://medium.com/@olayinkapeter",
+      },
+      {
+        type: "twitter",
+        url: "https://twitter.com/olayinkapeter_",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/olayinkapeter/",
+      },
+      {
+        type: "website",
+        url: "https://coffeewithpeter.com",
       },
     ],
   },
