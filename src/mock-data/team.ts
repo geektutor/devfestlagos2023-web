@@ -589,7 +589,7 @@ export const teamMembers: ITeamMember[] = [
   },
   {
     key: "solomon",
-    name: "Solomon Ayodele Ogunbowale",
+    name: "Solomon Ayodele",
     role: "Backend Developer",
     comment: "The work has been interesting and fun",
     quote: "In everything, do to others what you would have them to do to you",
