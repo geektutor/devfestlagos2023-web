@@ -23,6 +23,7 @@ import tearsImage from "@/images/team/music/tears.png";
 import btsImage from "@/images/team/music/bts.png";
 import akinImage from "@/images/team/akin.png";
 import funmiImage from "@/images/team/funmi.png";
+import karenImage from "@/images/team/karen.png";
 import o2Image from "@/images/team/music/o2.png";
 import idkImage from "@/images/team/music/idk.png";
 import marvinImage from "@/images/team/marvin.png";
@@ -37,6 +38,7 @@ import victoryImage from "@/images/team/music/victory.png";
 import babydollImage from "@/images/team/music/babydoll.png";
 import hindsightImage from "@/images/team/music/hindsight.png";
 import inControlImage from "@/images/team/music/in-control.png";
+import beneathYourBeautifulImage from "@/images/team/music/beneath-your-beautiful.png";
 
 export type TeamMemberLink = {
   type:
@@ -621,6 +623,40 @@ export const teamMembers: ITeamMember[] = [
       {
         type: "website",
         url: "https://linktr.ee/solomonayodeleo",
+      },
+    ],
+  },
+  {
+    key: "karen",
+    name: "Karen Chukwu",
+    role: "Co-Organiser (Partnerships & Legal Team Lead)",
+    comment:
+      "I've had an amazing time on the team identifying and working with our strategic partners and sponsors. My goal everyday is to ensure that our work is sustained by working with our partners and sponsors to ensure that our objectives at GDG Lagos are met. I love how my role cuts across two things I am passionate about, People & Law. ",
+    quote: `"SUCCESS ISN'T ALWAYS ABOUT GREATNESS. IT'S ABOUT CONSISTENCY.`,
+    category: "gdg-team",
+    image: karenImage,
+    music: {
+      image: beneathYourBeautifulImage,
+      name: "Beneath your Beautiful",
+      artist: "Labrinth ft Emeli Sandé",
+      url: "https://open.spotify.com/track/2EcsgXlxz99UMDSPg5T8RF?si=30d2699a5470473a",
+    },
+    links: [
+      {
+        type: "instagram",
+        url: "https://www.instagram.com/Karen_Amarii/",
+      },
+      {
+        type: "twitter",
+        url: "https://twitter.com/Karen_Amarii",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/karen-chukwu",
+      },
+      {
+        type: "website",
+        url: "https://www.katwiganddale.com/team ",
       },
     ],
   },
