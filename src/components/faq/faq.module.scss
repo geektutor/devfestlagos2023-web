@@ -4,10 +4,13 @@
 
 .faq {
   display: inline-flex;
-  flex-direction: column;
+
   row-gap: 0.8rem;
+  flex-direction: column;
   cursor: pointer;
   width: 100%;
+  overflow: hidden;
+
   max-width: 1440px;
   margin: 0 auto;
 }

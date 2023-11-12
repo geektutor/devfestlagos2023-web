@@ -1,0 +1,78 @@
+@import "core/variables";
+@import "core/typography";
+@import "utils/breakpoints";
+@import "utils/mixins";
+
+.faq {
+  padding: 4.8rem 0;
+  background-color: $bg-shade-2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  scroll-margin-top: 80px;
+
+  @include media("<=tablet") {
+    padding: 2.4rem 0 1.6rem;
+  }
+
+  @include media("<=phone") {
+    padding: 2.4rem 2.4rem 2rem;
+  }
+}
+
+.faqTitle {
+  max-width: 54rem;
+  color: $grey-0;
+  @include heading-4;
+  margin-bottom: 1.6rem;
+  text-align: center;
+
+  @include media("<=tablet") {
+    max-width: 27rem;
+    @include title-2;
+    margin-bottom: 0;
+  }
+
+  @include media("<=phone") {
+    max-width: unset;
+    @include heading-5;
+    margin-bottom: 0.8rem;
+    text-align: left;
+  }
+}
+
+.faqSubtext {
+  max-width: 45.2rem;
+  color: $grey-40;
+  margin-bottom: 1.6rem;
+  text-align: center;
+  @include title-2;
+
+  @include media("<=tablet") {
+    max-width: 22.6rem;
+    @include body-5;
+  }
+
+  @include media("<=phone") {
+    margin-bottom: 2.4rem;
+    @include body-1;
+    max-width: unset;
+    text-align: left;
+  }
+}
+
+.faqQuestions {
+  @include flex-gap(1.6rem, 0);
+  max-width: 70.6rem;
+
+  @include media("<=tablet") {
+    max-width: 35.3rem;
+    @include flex-gap(0.8rem, 0);
+  }
+
+  @include media("<=phone") {
+    max-width: unset;
+    @include flex-gap(1.6rem, 0);
+  }
+}

@@ -2,7 +2,10 @@ import "@/styles/index.scss";
 import type { AppProps } from "next/app";
 import localFont from "next/font/local";
 import Head from "next/head";
-import Script from "next/script";
+import { classNames } from "@/utils/classNames";
+import React from "react";
+import GeneralLayout from "@/layouts/general-layout";
+import { NextPage } from "next";
 
 export const googleSans = localFont({
   src: [
@@ -24,24 +27,29 @@ export const googleSans = localFont({
   ],
 });
 
-export default function App({ Component, pageProps }: AppProps) {
+export type NextPageWithLayout<P = NonNullable<unknown>, IP = P> = NextPage<P, IP> & {
+  disableLayout?: boolean;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
-    <div className={googleSans.className}>
+    <div className={classNames(googleSans.className, "app-wrapper")}>
       <Head>
         <link rel='icon' href='/favicon.svg' type='image/svg+xml' />
         <link rel='alternate icon' href='/favicon.ico' type='image/x-icon' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       </Head>
-      <Script src='https://www.googletagmanager.com/gtag/js?id=G-26MR8PNK9R' />
-      <Script id='google-analytics'>
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-26MR8PNK9R');
-        `}
-      </Script>
-      <Component {...pageProps} />
+      {Component.disableLayout ? (
+        <Component {...pageProps} />
+      ) : (
+        <GeneralLayout>
+          <Component {...pageProps} />
+        </GeneralLayout>
+      )}
     </div>
   );
 }

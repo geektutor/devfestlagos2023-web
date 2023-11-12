@@ -1,0 +1,195 @@
+@import "core/variables";
+@import "core/typography";
+@import "utils/breakpoints";
+@import "utils/mixins";
+
+.talks {
+  padding: 4.8rem 0 4.8rem 8.6vw;
+  scroll-margin-top: 0 !important;
+  position: relative;
+
+  @include media("<=tablet") {
+    padding: 3.2rem 0 2.4rem 3.2rem;
+  }
+
+  @include media("<=phone") {
+    padding: 2.4rem 0 2.4rem 2.4rem;
+  }
+}
+
+.talkCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.talksTop {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 4.8rem;
+  padding-right: 8.6vw;
+
+  @include media("<=phone") {
+    flex-direction: column;
+    padding-right: 3.2rem;
+    align-items: flex-start;
+    margin-bottom: 3.2rem;
+  }
+}
+
+.talksTitle {
+  color: $grey-100;
+  @include heading-4;
+  max-width: 47rem;
+  margin-bottom: 1.6rem;
+
+  @include media("<=tablet") {
+    @include title-2;
+    max-width: 23.7rem;
+  }
+
+  @include media("<=phone") {
+    @include heading-5;
+    max-width: unset;
+  }
+}
+
+.talksDescription {
+  color: $grey-80;
+  @include title-2;
+
+  @include media("<=tablet") {
+    @include body-5;
+    max-width: 20.7rem;
+  }
+
+  @include media("<=phone") {
+    @include body-1;
+    max-width: unset;
+  }
+}
+
+.talksCtaButton {
+  background-color: $bg-shade-1;
+  color: $grey-20;
+
+  svg {
+    color: $bg-shade-1;
+  }
+
+  @include media("<=phone") {
+    display: none;
+  }
+}
+
+.talksDayToggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+
+  @include media("<=phone") {
+    display: none;
+  }
+
+  &.active {
+    .talksDayLine {
+      transform: translateX(100%);
+    }
+  }
+}
+
+.talksDayLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  transition: 300ms;
+  height: 0.2rem;
+  border-radius: 0.8rem;
+  background: $grey-100;
+  display: block;
+  transform-origin: left;
+}
+
+.talksDay {
+  height: 4rem;
+  width: 9.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include body-2;
+  color: $grey-70;
+  border: none;
+  background: transparent;
+  transition: 300ms;
+
+  &.active {
+    color: $grey-100;
+  }
+}
+
+.talksTags {
+  display: flex;
+  @include flex-gap(0, 1.6rem);
+  margin-bottom: 4.8rem;
+  flex-wrap: nowrap;
+}
+
+.talksTag {
+  padding: 1.2rem 1.6rem;
+  border-radius: 4.8rem;
+  border: 0.15rem solid $grey-40;
+  color: $grey-40;
+  @include title-2;
+  cursor: pointer;
+  transition: 300ms;
+  flex-shrink: 0;
+
+  @include media("<=tablet") {
+    padding: 0.6rem 0.8rem;
+    border-radius: 2.4rem;
+    @include body-5;
+  }
+
+  @include media("<=phone") {
+    padding: 0.8rem;
+    border-radius: 4.8rem;
+    @include body-2;
+  }
+}
+
+.talksTagActive {
+  color: $grey-10;
+  border-color: $bg-shade-1;
+  background-color: $bg-shade-1;
+}
+
+.talksGrid {
+  padding-right: 8.6vw;
+
+  @include media("<=phone") {
+    padding-right: 2.4rem;
+  }
+}
+
+.talksDivider {
+  display: block;
+  width: 100%;
+  height: 0.4rem;
+  border-radius: 0.8rem;
+  background-color: $secondary-grey;
+  margin: 3.2rem 0;
+  border: none;
+
+  @include media("<=tablet") {
+    margin: 1.6rem 0;
+  }
+
+  @include media("<=phone") {
+    margin: 2.4rem 0;
+  }
+}

@@ -13,6 +13,18 @@ const nextConfig = {
     return config;
   },
   transpilePackages: ["gsap"],
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/dpgdjfckl/image/upload/**",
+      },
+    ],
+  },
+
   sassOptions: {
     includePaths: [path.join(__dirname, "src/styles")],
   },

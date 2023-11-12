@@ -12,11 +12,14 @@ const Accordion = ({ children, title }: AccordionProps) => {
       <Arrow
         onClick={() => setShow(!show)}
         className={classNames(styles.icon, !show ? styles.hidden : "")}
+
       />
       <div className={styles.content}>
         <p
           onClick={() => setShow(!show)}
+
           className={classNames(styles.title, show ? styles.active : "")}
+
         >
           {title}
         </p>

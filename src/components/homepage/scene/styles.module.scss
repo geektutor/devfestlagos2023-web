@@ -1,0 +1,102 @@
+@import "utils/mixins";
+@import "utils/breakpoints";
+
+.sceneWrapper {
+  position: relative;
+  margin: -6.2rem auto 0;
+  width: 58%;
+  max-width: 83.4rem;
+
+  @include media("<=tablet") {
+    margin-top: 0.4rem;
+    max-width: 60rem;
+    width: 90%;
+  }
+
+  @include media("<=phone") {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 60rem;
+    width: 130%;
+    bottom: -14rem;
+  }
+}
+
+.scene {
+  @include ratio(576, 834);
+  width: 100%;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+%doodle {
+  position: absolute !important;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.kiteLeft {
+  top: 8.256%;
+  left: 11.52%;
+  transform: rotate(39.066deg);
+  width: 15.49%;
+  @include ratio(88, 129);
+  @extend %doodle;
+
+  @include media("<=tablet") {
+    display: none;
+  }
+}
+
+.kiteRight {
+  top: 8.256%;
+  right: 14.97%;
+  transform: rotate(145.333deg);
+  width: 15.49%;
+  @include ratio(88, 129);
+  @extend %doodle;
+
+  @include media("<=tablet") {
+    display: none;
+  }
+}
+
+.rewind {
+  left: 0.808%;
+  top: 32.9%;
+  width: 10.15%;
+  @include ratio(74, 84.6);
+  @extend %doodle;
+
+  @include media("<=tablet") {
+    width: 50px;
+    left: -25px;
+  }
+}
+
+.arrow {
+  right: 2.84%;
+  top: 36.1%;
+  width: 21.97%;
+  @include ratio(100, 184);
+  @extend %doodle;
+
+  @include media("<=tablet") {
+    width: 80px;
+    right: 7%;
+  }
+
+  @include media("<=phone") {
+    width: 124px;
+    right: 30%;
+    top: 10px;
+  }
+}

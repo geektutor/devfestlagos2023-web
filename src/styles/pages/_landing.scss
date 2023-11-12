@@ -1,0 +1,1126 @@
+.landing-page {
+  width: 100vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  //scroll-snap-type: y mandatory;
+  height: 100vh;
+  opacity: 0;
+
+  &.is-active {
+    opacity: 1;
+  }
+
+  > section,
+  header {
+    scroll-snap-align: start;
+  }
+
+  > section {
+    scroll-margin-top: 60px;
+  }
+
+  &__intro {
+    background-color: $bg-shade-1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-top: 8.2rem;
+    position: relative;
+    scroll-snap-align: start;
+    scroll-margin-top: 0;
+
+    @include media("<=phone") {
+      padding-bottom: 26rem;
+    }
+
+    &__title {
+      position: relative;
+      width: fit-content;
+      margin-bottom: 0.8rem;
+
+      @include media("<=tablet") {
+        margin-bottom: 4.5rem;
+      }
+
+      @include media("<=phone") {
+        margin-bottom: 1.6rem;
+      }
+
+      &__text {
+        @include heading-1;
+        line-height: 7.2rem;
+        color: $grey-0;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        max-width: 272px;
+
+        > span {
+          display: flex;
+          overflow: hidden;
+          height: 76px;
+        }
+
+        @include media("<=tablet") {
+          @include heading-4;
+          width: 153px;
+        }
+      }
+
+      &__dots {
+        position: absolute;
+        bottom: calc(100% + 0.8rem);
+        right: 0.6rem;
+        width: 8.0198rem;
+        height: 5.6rem;
+
+        @include media("<=tablet") {
+          width: 4.81rem;
+          height: 3.36rem;
+          right: unset;
+          left: 3rem;
+        }
+
+        @include media("<=phone") {
+          display: none;
+        }
+      }
+
+      &__cloud-left {
+        position: absolute;
+        bottom: 0.2rem;
+        right: calc(100% + 4rem);
+        width: 11.7333rem;
+        height: 8rem;
+
+        @include media("<=tablet") {
+          width: 7.04rem;
+          height: 4.8rem;
+        }
+
+        @include media("<=phone") {
+          width: 5.87rem;
+          height: 4rem;
+        }
+      }
+
+      &__cloud-right {
+        position: absolute;
+        top: 0;
+        left: calc(100% + 2.5rem);
+        width: 11.7333rem;
+        height: 8rem;
+
+        @include media("<=tablet") {
+          width: 7.04rem;
+          height: 4.8rem;
+        }
+
+        @include media("<=phone") {
+          width: 5.87rem;
+          height: 4rem;
+        }
+      }
+
+      &__presents {
+        padding: 0.8rem 1.6rem;
+        border-radius: 0.8rem;
+        background: $primary-green;
+        color: $grey-100;
+        @include title-1;
+        position: absolute;
+        bottom: calc(100% - 3.5rem);
+        transform: translateX(-50%) rotate(-10deg);
+        width: max-content;
+
+        @include media("<=tablet") {
+          @include body-3;
+          transform: translateX(-90%) rotate(-10deg);
+          bottom: calc(100% - 2rem);
+        }
+
+        @include media("<=phone") {
+          @include body-2;
+          transform: translateX(-50%) rotate(-10deg);
+        }
+      }
+    }
+
+    &__description {
+      color: $grey-40;
+      @include title-2;
+      margin-bottom: 3.2rem;
+      max-width: 45.2rem;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+
+      @include media("<=tablet") {
+        @include body-2;
+        margin-bottom: 4rem;
+        max-width: 39.7rem;
+      }
+
+      @include media("<=phone") {
+        @include body-1;
+        max-width: 38.2rem;
+        margin-bottom: 2.4rem;
+      }
+    }
+
+    &__memoji {
+      position: absolute;
+      left: calc(100% + 3px);
+      top: -20px;
+      width: 9.6rem;
+      height: 9.6rem;
+      transform: rotate(15.051deg);
+      border-radius: 50%;
+      background: rgba(242, 139, 130, 0.3);
+
+      img {
+        width: 8rem;
+        height: 8rem;
+        left: 0.5rem;
+        top: 0.381rem;
+        position: relative;
+      }
+
+      @include media("<=tablet") {
+        display: none;
+      }
+    }
+
+    &__sponsor-cta {
+      @include ratio(1, 1);
+      width: 13.2rem;
+      position: absolute;
+      bottom: 3.8rem;
+      right: 12.4rem;
+
+      img {
+        width: 100%;
+      }
+
+      @include media("<=tablet") {
+        display: none;
+      }
+
+      @include media("<=phone") {
+        display: block;
+        position: relative;
+        bottom: unset;
+        right: unset;
+        width: 8.4rem;
+        margin: 2.4rem 2.4rem 0 auto;
+      }
+    }
+  }
+
+  &__better {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4.8rem 0;
+    position: relative;
+    z-index: 3;
+    background: white;
+    scroll-snap-align: end;
+
+    @include media("<=tablet") {
+      padding: 3.2rem 0;
+    }
+
+    &__title {
+      color: $grey-0;
+      @include heading-4;
+      max-width: 54rem;
+      text-align: center;
+      margin-bottom: 0.8rem;
+
+      .green {
+        color: $primary-green;
+      }
+
+      @include media("<=tablet") {
+        @include body-1;
+        margin-bottom: 0;
+      }
+
+      @include media("<=phone") {
+        @include heading-5;
+        margin-bottom: 0.8rem;
+        max-width: 38.2rem;
+      }
+    }
+
+    &__subtext {
+      color: $grey-40;
+      @include title-2;
+      margin-bottom: 6.2rem;
+
+      @include media("<=tablet") {
+        @include body-5;
+        margin-bottom: 1.6rem;
+      }
+
+      @include media("<=phone") {
+        @include body-1;
+        margin-bottom: 3.2rem;
+      }
+    }
+
+    &__sponsors {
+      display: flex;
+      @include flex-gap(0, 4.8rem);
+      align-items: center;
+      justify-content: center;
+      flex-wrap: nowrap;
+      max-width: 77rem;
+      margin: 0 auto;
+      width: 80%;
+      overflow: hidden;
+
+      @include media("<=tablet") {
+        max-width: 41.5rem;
+      }
+
+      @include media("<=phone") {
+        @include flex-gap(0, 2rem);
+        width: 100%;
+        max-width: unset;
+        padding: 0 2.4rem;
+        row-gap: 2rem;
+      }
+
+      svg {
+        flex-grow: 1;
+        height: 4.8rem;
+
+        @include media("<=tablet") {
+          height: 2.6rem;
+        }
+      }
+    }
+  }
+
+  &__hype {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 4.8rem 8.6%;
+    align-items: flex-start;
+    position: relative;
+    //background-color: $grey-0;
+    grid-column-gap: 1.6rem;
+    scroll-margin-top: 0 !important;
+
+    @include media("<=tablet") {
+      padding: 2.4rem 3.2rem;
+      column-gap: 15%;
+    }
+
+    @media (max-width: 600px) {
+      display: block;
+    }
+
+    @include media("<=phone") {
+      padding: 3.2rem 2.4rem 1.6rem;
+    }
+
+    &__canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    &__yarns {
+      padding: 4rem 3.2rem;
+      background-color: $secondary-grey;
+      border-radius: 3.2rem;
+
+      @include media("<=tablet") {
+        padding: 2rem 1.6rem;
+        border-radius: 1.6rem;
+      }
+
+      @include media("<=phone") {
+        padding: 1.6rem;
+        border-radius: 3.2rem;
+
+        .c-button {
+          width: 100%;
+        }
+      }
+
+      &__lyric {
+        padding: 2.4rem 2.6rem;
+        background: #c72f3e;
+        border-radius: 2.4rem;
+        margin-bottom: 3.2rem;
+
+        @include media("<=tablet") {
+          margin-bottom: 2.4rem;
+          border-radius: 1.2rem;
+        }
+
+        @include media("<=phone") {
+          padding: 1.6rem;
+          border-radius: 2.4rem;
+        }
+
+        &__song-deets {
+          display: flex;
+          align-items: center;
+          @include flex-gap(0, 0.8rem);
+          margin-bottom: 2.4rem;
+
+          @include media("<=tablet") {
+            @include flex-gap(0, 0.4rem);
+            margin-bottom: 1.2rem;
+          }
+
+          @include media("<=phone") {
+            @include flex-gap(0, 0.8rem);
+            margin-bottom: 1.6rem;
+          }
+        }
+
+        &__cover-image {
+          @include ratio(1, 1);
+          width: 6.4rem;
+
+          @include media("<=tablet") {
+            width: 3.2rem;
+          }
+
+          @include media("<=phone") {
+            width: 5.4rem;
+          }
+        }
+
+        &__spotify {
+          @include ratio(3.2rem, 10.3rem);
+          width: 10.3rem;
+
+          @include media("<=tablet") {
+            width: 5.1rem;
+          }
+
+          @include media("<=phone") {
+            width: 7.7rem;
+          }
+        }
+
+        &__title {
+          color: $grey-100;
+          @include title-2;
+
+          @include media("<=tablet") {
+            font-size: 1.2rem;
+            font-weight: 500;
+            line-height: normal;
+          }
+
+          @include media("<=phone") {
+            @include body-2;
+          }
+        }
+
+        &__artist {
+          color: $grey-100;
+          @include body-2;
+
+          @include media("<=tablet") {
+            font-size: 0.9rem;
+            font-weight: 500;
+            line-height: normal;
+          }
+
+          @include media("<=phone") {
+            @include body-3;
+          }
+        }
+
+        &__line {
+          color: $grey-100;
+          @include title-1;
+          margin-bottom: 2.4rem;
+
+          @include media("<=tablet") {
+            font-size: 1.3rem;
+            font-weight: 500;
+            line-height: normal;
+          }
+
+          @include media("<=phone") {
+            @include body-1;
+          }
+
+          .twennyone {
+            position: relative;
+            display: inline-block;
+
+            .scribble {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              width: 1.4741rem;
+              height: 4rem;
+              transform: translate(-50%, -50%) rotate(-90deg);
+
+              @include media("<=tablet") {
+                width: 0.731rem;
+              }
+            }
+
+            &::after {
+              content: "23";
+              position: absolute;
+              top: 0;
+              left: 50%;
+              transform: translate(-50%, -80%);
+            }
+
+            &.second {
+              @include media("<=phone") {
+                .scribble {
+                  left: 0.8rem;
+                  transform: translate(0, -50%) rotate(-90deg);
+                }
+
+                &::after {
+                  top: 0;
+                  left: 0;
+                  transform: translate(0, 0);
+                  position: relative;
+                  content: " (23)";
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &__intro {
+        color: $grey-100;
+        @include heading-4;
+        margin-bottom: 1.6rem;
+
+        @include media("<=tablet") {
+          @include title-2;
+          margin-bottom: 0.4rem;
+        }
+
+        @include media("<=phone") {
+          @include heading-5;
+          margin-bottom: 0.8rem;
+        }
+      }
+
+      &__subtext {
+        color: $grey-70;
+        @include title-2;
+        margin-bottom: 2.4rem;
+        max-width: 400px;
+
+        @include media("<=tablet") {
+          @include body-5;
+          max-width: 200px;
+        }
+
+        @include media("<=phone") {
+          @include body-1;
+          color: $grey-40;
+          margin-bottom: 3.2rem;
+          max-width: unset;
+        }
+      }
+
+      .c-button {
+        background-color: $bg-shade-1;
+        color: $grey-20;
+
+        svg {
+          color: $bg-shade-1;
+        }
+      }
+    }
+
+    &__categories {
+      padding: 4rem 0 4rem 3.2rem;
+      max-height: 63.7rem;
+      overflow-y: hidden;
+      background-color: $bg-shade-1;
+      border-radius: 3.2rem;
+
+      @include media("<=tablet") {
+        padding: 2rem 0 2rem 1.6rem;
+        border-radius: 1.6rem;
+      }
+
+      @include media("<=phone") {
+        margin-top: 2.4rem;
+        padding: 1.6rem 0 0;
+        border-radius: 3.2rem;
+
+        .c-button {
+          width: 100%;
+        }
+      }
+
+      &__title {
+        max-width: 45rem;
+        color: $grey-0;
+        @include heading-4;
+        margin-bottom: 1.6rem;
+
+        @include media("<=tablet") {
+          @include title-2;
+          margin-bottom: 1.2rem;
+          max-width: 26rem;
+        }
+
+        @include media("<=phone") {
+          padding: 0 1.6rem;
+          max-width: unset;
+          @include heading-5;
+          margin-bottom: 0.8rem;
+        }
+      }
+
+      &__subtext {
+        max-width: 41.4rem;
+        color: $grey-30;
+        @include title-2;
+        margin-bottom: 2.4rem;
+
+        @include media("<=tablet") {
+          @include body-5;
+        }
+
+        @include media("<=phone") {
+          @include body-1;
+          margin-bottom: 3.2rem;
+          padding: 0 1.6rem;
+        }
+      }
+
+      &__button-wrapper {
+        @include media("<=phone") {
+          padding: 0 1.6rem;
+        }
+      }
+
+      .c-button {
+        margin-bottom: 4.8rem;
+
+        @include media("<=tablet") {
+          margin-bottom: 2.7rem;
+        }
+      }
+
+      &__topics-row {
+        display: flex;
+        align-items: center;
+        @include flex-gap(0, 1.6rem);
+        flex-wrap: nowrap;
+        overflow: hidden;
+        width: 100%;
+
+        & + & {
+          margin-top: 1.6rem;
+        }
+
+        @include media("<=phone") {
+          @include flex-gap(0, 0.8rem);
+          flex-wrap: nowrap;
+
+          & + & {
+            margin-top: 0.8rem;
+          }
+        }
+      }
+
+      &__topic {
+        //display: flex;
+        //padding: 1.2rem 1.6rem;
+        //border-radius: 4.8rem;
+        @include flex-gap(0, 0.8rem);
+        color: $grey-10;
+        //@include title-2;
+        flex-shrink: 0;
+
+        @include media("<=tablet") {
+          padding: 0.6rem 0.8rem;
+          @include body-5;
+        }
+      }
+    }
+  }
+
+  &__recap {
+    padding: 4.8rem 8.6%;
+    background-color: $bg-shade-1;
+
+    @include media("<=tablet") {
+      padding: 2.4rem 4.4rem;
+    }
+
+    @include media("<=phone") {
+      padding: 1.6rem 2.4rem;
+    }
+
+    &__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4.8rem;
+
+      @include media("<=phone") {
+        flex-direction: column;
+        @include flex-gap(0.8rem, 0);
+        margin-bottom: 3.2rem;
+        align-items: flex-start;
+      }
+    }
+
+    &__title {
+      @include heading-4;
+      color: $grey-0;
+      max-width: 55rem;
+
+      @include media("<=tablet") {
+        max-width: 35.3rem;
+        @include title-2;
+      }
+
+      @include media("<=phone") {
+        max-width: unset;
+        @include heading-5;
+      }
+    }
+
+    &__subtext {
+      @include title-2;
+      color: $grey-40;
+      max-width: 45.2rem;
+
+      @include media("<=tablet") {
+        max-width: 24.8rem;
+        @include body-4;
+      }
+
+      @include media("<=phone") {
+        max-width: unset;
+        @include body-1;
+      }
+    }
+
+    &__video {
+      @include ratio(669, 1191);
+      width: 100%;
+
+      @include media("<=phone") {
+        @include ratio(288, 382);
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__speakers {
+    padding: 10.1rem 0 4.6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+
+    @include media("<=tablet") {
+      padding: 5.1rem 0 3.7rem;
+    }
+
+    @include media("<=phone") {
+      padding-bottom: 4rem;
+    }
+
+    &__count {
+      @include heading-2;
+      color: $grey-0;
+      position: relative;
+
+      @include media("<=tablet") {
+        @include heading-5;
+      }
+
+      @include media("<=phone") {
+        @include heading-4;
+      }
+    }
+
+    &__sparkle {
+      width: 8.8rem;
+      height: 8.8rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(40%, -40%) rotate(26.742deg);
+
+      @include media("<=tablet") {
+        width: 4.4rem;
+        height: 4.4rem;
+        transform: translate(40%, -50%) rotate(26.742deg);
+      }
+
+      @include media("<=phone") {
+        width: 5.6rem;
+        height: 5.6rem;
+        transform: translate(40%, -50%) rotate(26.742deg);
+      }
+    }
+
+    &__speakers-wrapper {
+      position: relative;
+      margin-bottom: 1.6rem;
+
+      @include media("<=tablet") {
+        margin-bottom: 1rem;
+      }
+
+      @include media("<=phone") {
+        margin-bottom: 0.8rem;
+      }
+    }
+
+    &__speakers-text {
+      @include heading-4;
+      color: $grey-0;
+      position: relative;
+
+      @include media("<=tablet") {
+        @include body-2;
+        margin-bottom: 1rem;
+      }
+
+      @include media("<=phone") {
+        @include heading-5;
+        margin-bottom: 0.8rem;
+      }
+    }
+
+    &__subtext {
+      color: $grey-40;
+      @include title-2;
+      margin-bottom: 8rem;
+      position: relative;
+
+      @include media("<=tablet") {
+        @include body-5;
+        margin-bottom: 4rem;
+      }
+
+      @include media("<=phone") {
+        @include body-1;
+        margin-bottom: 5.2rem;
+      }
+    }
+
+    &__memoji-left {
+      bottom: -5.2rem;
+      right: calc(8.2rem + 100%);
+      width: 12rem;
+      height: 12rem;
+      position: absolute;
+
+      @include media("<=tablet") {
+        width: 5.6rem;
+        height: 5.6rem;
+        bottom: -1.4rem;
+      }
+      @include media("<=phone") {
+        width: 8.8rem;
+        height: 8.8rem;
+        bottom: 1.2rem;
+        right: calc(2rem + 100%);
+      }
+    }
+
+    &__memoji-right {
+      bottom: -4.3rem;
+      left: calc(6rem + 100%);
+      width: 12rem;
+      height: 12rem;
+      position: absolute;
+
+      @include media("<=tablet") {
+        width: 5.6rem;
+        height: 5.6rem;
+        bottom: -1.2rem;
+      }
+
+      @include media("<=phone") {
+        width: 8.8rem;
+        height: 8.8rem;
+        bottom: 1.2rem;
+        left: calc(2rem + 100%);
+      }
+    }
+
+    &__repeat {
+      position: absolute;
+      top: -0.8rem;
+      right: calc(100% + 12rem);
+      width: 8.46rem;
+      height: 7.4rem;
+
+      @include media("<=tablet") {
+        display: none;
+      }
+    }
+
+    &__cloud {
+      position: absolute;
+      top: 100%;
+      right: -8rem;
+      width: 11.7rem;
+      height: 8rem;
+
+      @include media("<=tablet") {
+        display: none;
+      }
+    }
+
+    &__speakers {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      //@include flex-gap(0, 1.6rem);
+      overflow: hidden;
+      flex-wrap: nowrap;
+      margin-bottom: 4.8rem;
+      position: relative;
+
+      .inner {
+        display: flex;
+        //padding-left: 8.7vw;
+      }
+
+      @include media("<=phone") {
+        margin-bottom: 3.2rem;
+      }
+
+      [data-marquee-item] {
+        margin-left: 1.6rem;
+      }
+    }
+
+    &__hype-banner {
+      margin-top: 8.1rem;
+      height: 4.4rem;
+      position: relative;
+      width: 100%;
+
+      @include media("<=tablet") {
+        margin-top: 4.4rem;
+        height: 2.2rem;
+      }
+
+      @include media("<=phone") {
+        margin-top: 8.6rem;
+        height: 4.4rem;
+      }
+
+      &__item {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: $grey-0;
+        display: flex;
+        height: 100%;
+        @include flex-gap(0, 3.2rem);
+        flex-wrap: nowrap;
+        align-items: center;
+        @include button-text;
+        color: $grey-100;
+        width: 100%;
+
+        @include media("<=tablet") {
+          font-size: 0.8rem;
+          font-style: normal;
+          font-weight: 700;
+          width: 101%;
+        }
+
+        @include media("<=phone") {
+          @include button-text;
+          width: 107%;
+          left: -1.5rem;
+        }
+
+        &.visible {
+          transform: rotate(4.05deg);
+          z-index: 2;
+
+          @include media("<=phone") {
+            transform: rotate(15deg);
+          }
+        }
+
+        &.faded {
+          transform: rotate(-4.05deg);
+          opacity: 0.2;
+
+          @include media("<=phone") {
+            transform: rotate(-15deg);
+          }
+        }
+
+        span {
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
+
+  &__talks {
+    padding: 4.8rem 0 4.8rem 8.6vw;
+    background-color: $grey-0;
+
+    @include media("<=tablet") {
+      padding: 3.2rem 0 2.4rem 3.2rem;
+    }
+
+    @include media("<=phone") {
+      padding: 2.4rem 0 2.4rem 1.6rem;
+    }
+
+    &__top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 4.8rem;
+      padding-right: 8.6vw;
+
+      @include media("<=phone") {
+        flex-direction: column;
+        padding-right: 3.2rem;
+        align-items: flex-start;
+        margin-bottom: 3.2rem;
+      }
+    }
+
+    &__title {
+      color: $grey-100;
+      @include heading-4;
+      max-width: 47rem;
+      margin-bottom: 1.6rem;
+
+      @include media("<=tablet") {
+        @include title-2;
+        max-width: 23.7rem;
+      }
+
+      @include media("<=phone") {
+        @include heading-5;
+        max-width: unset;
+      }
+    }
+
+    &__description {
+      color: $grey-80;
+      @include title-2;
+
+      @include media("<=tablet") {
+        @include body-5;
+        max-width: 20.7rem;
+      }
+
+      @include media("<=phone") {
+        @include body-1;
+        max-width: unset;
+      }
+    }
+
+    &__cta-button {
+      background-color: $bg-shade-1;
+      color: $grey-20;
+
+      svg {
+        color: $bg-shade-1;
+      }
+
+      @include media("<=phone") {
+        display: none;
+      }
+    }
+
+    &__tags {
+      display: flex;
+      @include flex-gap(0, 1.6rem);
+      margin-bottom: 4.8rem;
+      flex-wrap: nowrap;
+    }
+
+    &__tag {
+      padding: 1.2rem 1.6rem;
+      border-radius: 4.8rem;
+      border: 0.15rem solid $grey-40;
+      color: $grey-40;
+      @include title-2;
+      cursor: pointer;
+      transition: 300ms;
+      flex-shrink: 0;
+
+      @include media("<=tablet") {
+        padding: 0.6rem 0.8rem;
+        border-radius: 2.4rem;
+        @include body-5;
+      }
+
+      @include media("<=phone") {
+        padding: 0.8rem;
+        border-radius: 4.8rem;
+        @include body-2;
+      }
+
+      &--active {
+        color: $grey-10;
+        border-color: $bg-shade-1;
+        background-color: $bg-shade-1;
+      }
+    }
+
+    &__talks {
+      padding-right: 8.6vw;
+
+      @include media("<=phone") {
+        padding-right: 1.6rem;
+      }
+    }
+
+    &__divider {
+      display: block;
+      width: 100%;
+      height: 0.4rem;
+      border-radius: 0.8rem;
+      background-color: $secondary-grey;
+      margin: 3.2rem 0;
+      border: none;
+
+      @include media("<=tablet") {
+        margin: 1.6rem 0;
+      }
+
+      @include media("<=phone") {
+        margin: 2.4rem 0;
+      }
+    }
+  }
+}

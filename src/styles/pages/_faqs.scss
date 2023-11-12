@@ -1,3 +1,4 @@
+
 .faq__page {
   background: $bg-shade-1;
 }
@@ -143,6 +144,7 @@
   gap: 2.4rem 0;
   background-color: #fff;
 
+
   &--dark {
     @extend .fq__list;
     background:
@@ -172,6 +174,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1.6rem 0;
+  background: $bg-shade-1;
   padding: 13.7rem 0 12.9rem;
 
   @include media("<=tablet") {

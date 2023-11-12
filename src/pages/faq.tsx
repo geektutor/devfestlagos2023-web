@@ -6,7 +6,9 @@ import FAQ from "@/components/faq/FAQ";
 import Memojis from "@/images/faqs/memojis.png";
 import MenuDoodle from "@/images/faqs/menu-doodle.png";
 import MoveDoodle from "@/images/faqs/move-doodle.png";
+
 import { socialMediaLinks } from "@/utils/social-media";
+
 import Accordion from "@/components/accordion/accordion";
 import { faqs, paidDevFestQuestions } from "@/data/faqs";
 import CloudDoodle from "@/images/landing/doodles/cloud.png";
@@ -18,6 +20,7 @@ import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
 
 export default function Faqs() {
   return (
+
     <main className='faq__page'>
       <nav className='c-home__nav'>
         <Logo className='c-home__nav__logo' />
@@ -26,6 +29,7 @@ export default function Faqs() {
         <div className='container'>
           <h1 className='fq__header__title'>
             {"Top questions about\nDevFest Lagos"}
+
             <Image
               alt='FAQs'
               quality={100}
@@ -90,6 +94,7 @@ export default function Faqs() {
         </p>
       </div>
       <NoMatterWhat />
+
       <section className='c-home__footer'>
         <ul className='c-home__footer__links'>
           <li className='c-home__footer__links__link'>
@@ -120,6 +125,7 @@ export default function Faqs() {
           </ul>
         </div>
       </section>
+
     </main>
   );
 }

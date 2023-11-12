@@ -45,14 +45,13 @@ export default function Home() {
     <>
       <SEO
         title='Devfest Lagos 2023 | Grab Your Tickets'
+
         description='DevFest Lagos 2023 is an annual developer festival organized by GDG Lagos. It will take place on Friday November 24, 2023 and Saturday, November 25, 2023 at the Landmark Event Centre, Lagos. DevFest Lagos will feature speaker-led sessions, workshops, code-labs, and more on a variety of topics such as Web, Flutter, AI & ML, blockchain, design and many others. Join us! 🫵🏾'
+
         keywords='gdg lagos, devfest, devfest lagos, devfest lagos 2023'
         image='/og-images/home-page.png'
       />
       <main className='c-home'>
-        <nav className='c-home__nav'>
-          <Logo className='c-home__nav__logo' />
-        </nav>
         <section className='c-home__intro'>
           <figure className='c-home__intro__globe-doodle'>
             <Image src={globeDoodle} alt='People Doodle' fill quality={100} />
@@ -72,6 +71,7 @@ export default function Home() {
             Cloud, Intellectual Property and Startup Funding, Policy & Governance, and so much more!
             <br /> DevFest Lagos 2023 is about to be the most memorable tech festival yet.
           </p>
+
           <div className='c-home__intro__buttons'>
             <TertiaryButton href={ticketsUrl} isExternal>
               Grab Your Tickets
@@ -80,6 +80,7 @@ export default function Home() {
               Apply To Volunteer
             </SecondaryButton>
           </div>
+
         </section>
         <section className='c-home__marquee-wrapper'>
           <div className='c-home__marquee' data-marquee>
