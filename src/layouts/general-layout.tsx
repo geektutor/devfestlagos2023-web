@@ -12,10 +12,10 @@ export const GeneralLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <div className={styles.menuAndContentwrapper}>
-        {pathname !== "/dp-generator" && <Menu />}
+        {pathname !== "/" && <Menu />}
         {children}
       </div>
-      {pathname !== "/dp-generator" && <Footer />}
+      {pathname !== "/" && <Footer />}
     </>
   );
 };
