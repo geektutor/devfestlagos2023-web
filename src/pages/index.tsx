@@ -28,7 +28,7 @@ import { socialMediaLinks } from "@/utils/social-media";
 import React, { useEffect, useRef } from "react";
 import Homepage from "@/animations/components/Homepage";
 import HighlightIcon from "@/images/home/highlight.svg";
-import { ticketsUrl, callForVolunteersURL } from "@/utils/urls";
+import { ticketsUrl, dpGeneratorURL } from "@/utils/urls";
 import { SEO } from "@/components/seo";
 
 export default function Home() {
@@ -76,8 +76,8 @@ export default function Home() {
             <TertiaryButton href={ticketsUrl} isExternal>
               Grab Your Tickets
             </TertiaryButton>
-            <SecondaryButton href={callForVolunteersURL} isExternal>
-              Apply To Volunteer
+            <SecondaryButton href={dpGeneratorURL} isExternal>
+              Generate Your DP
             </SecondaryButton>
           </div>
         </section>
