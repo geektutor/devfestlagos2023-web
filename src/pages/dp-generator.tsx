@@ -5,7 +5,7 @@ export const DpGenerator = () => {
     const router = useRouter();
   
     React.useEffect(() => {
-      router.replace("dpGeneratorURL");
+      router.replace(`${dpGeneratorURL}`);
     }, [router]);
   
     return <div></div>;
