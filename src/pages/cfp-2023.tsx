@@ -23,7 +23,7 @@ export default function ApplyToSpeak() {
             marginHeight={0}
             marginWidth={0}
           >
-            Loading…
+            Loading....
           </iframe>
         </section>
 
