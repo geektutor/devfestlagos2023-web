@@ -1,213 +1,242 @@
 import Logo from "@/images/logo.svg";
-import StarIcon from "@/images/home/star.svg";
-import Link from "next/link";
-import Image from "next/image";
-import globeDoodle from "@/images/globe-doodle.png";
-import repeatDoodle from "@/images/repeat-doodle.png";
-import peopleDoodle from "@/images/people-doodle.png";
-import videoDoodle from "@/images/cup-code.png";
-import arrowDoodle from "@/images/arrow-doodle.png";
-import { SecondaryButton, TertiaryButton } from "@/components/button";
-import recap1 from "@/images/home/recap/recap-1.png";
-import recap2 from "@/images/home/recap/recap-2.png";
-import recap3 from "@/images/home/recap/recap-3.png";
-import recap4 from "@/images/home/recap/recap-4.png";
-import recap5 from "@/images/home/recap/recap-5.png";
-import recap6 from "@/images/home/recap/recap-6.png";
-import topTweet1 from "@/images/home/tweets/t-1.png";
-import topTweet2 from "@/images/home/tweets/t-2.png";
-import topTweet3 from "@/images/home/tweets/t-3.png";
-import topTweet4 from "@/images/home/tweets/t-4.png";
-import bottomTweet1 from "@/images/home/tweets/b-1.png";
-import bottomTweet2 from "@/images/home/tweets/b-2.png";
-import bottomTweet3 from "@/images/home/tweets/b-3.png";
-import bottomTweet4 from "@/images/home/tweets/b-4.png";
-import { YoutubePlayer } from "@/components/youtube-player";
-import { ComingSoonCountdown } from "@/components/coming-soon-countdown";
 import { socialMediaLinks } from "@/utils/social-media";
-import React, { useEffect, useRef } from "react";
-import Homepage from "@/animations/components/Homepage";
-import HighlightIcon from "@/images/home/highlight.svg";
-import { ticketsUrl, callForVolunteersURL } from "@/utils/urls";
+// import UploaderIcon from "@/images/dp-generator/bytesize_upload.png";
+import Image from "next/image";
+import * as React from "react";
+import { PrimaryButton } from "@/components/button";
+import { DpGen } from "@/components/dp-gen/dp-gen";
+import Avatar1 from "@/images/speakers-page/avatars/sp_avatar_1.png";
+import Avatar2 from "@/images/speakers-page/avatars/sp_avatar_2.png";
+import RefreshDoodle from "@/images/repeat-doodle.png";
+import Cup from "@/images/cup-code.png";
+import Globe from "@/images/globe-doodle.png";
+import CropImage from "@/components/crop-image/crop-image";
 import { SEO } from "@/components/seo";
+// import SeoImage from "@/images/dp-generator/pepper_dem_dp.png";
 
-export default function Home() {
-  const hasInitializedAnimation = useRef(false);
+export default function DpGenerator() {
+  const inputRef = React.useRef<HTMLInputElement | null>(null);
+  const [name, setName] = React.useState("");
+  const [selectedColor, setSelectedColor] = React.useState("");
+  const [profilePicture, setProfilePicture] = React.useState<string | null>("");
+  const [isPreview, setIsPreview] = React.useState<boolean>(false);
 
-  useEffect(() => {
-    if (hasInitializedAnimation.current) return;
+  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedColor(event.target.value);
+  };
 
-    hasInitializedAnimation.current = true;
-    new Homepage();
-  }, []);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProfilePicture(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = () => {
+    setIsPreview(!isPreview);
+  };
+
+  const getCroppedImage = (cropped_img: string) => {
+    setProfilePicture(cropped_img);
+  };
 
   return (
     <>
       <SEO
-        title='Devfest Lagos 2023 | Grab Your Tickets'
-
-        description='DevFest Lagos 2023 is an annual developer festival organized by GDG Lagos. It will take place on Friday November 24, 2023 and Saturday, November 25, 2023 at the Landmark Event Centre, Lagos. DevFest Lagos will feature speaker-led sessions, workshops, code-labs, and more on a variety of topics such as Web, Flutter, AI & ML, blockchain, design and many others. Join us! 🫵🏾'
-
+        title='Generate Your DevFest Lagos 2023 DP'
+        description='Create and Share your DevFest Lagos 2023 DP with friends and on your socials'
         keywords='gdg lagos, devfest, devfest lagos, devfest lagos 2023'
         image='/og-images/home-page.png'
       />
-      <main className='c-home'>
-        <section className='c-home__intro'>
-          <figure className='c-home__intro__globe-doodle'>
-            <Image src={globeDoodle} alt='People Doodle' fill quality={100} />
-          </figure>
-          <figure className='c-home__intro__people-doodle'>
-            <Image src={peopleDoodle} alt='People Doodle' fill quality={100} />
-          </figure>
-          <figure className='c-home__intro__repeat-doodle'>
-            <Image src={repeatDoodle} alt='Repeat Doodle' fill quality={100} />
-          </figure>
-          <figure className='c-home__intro__video-doodle'>
-            <Image src={videoDoodle} alt='Video Doodle' fill quality={100} />
-          </figure>
-          <h1 className='c-home__intro__title'>Are you ready for 23x?</h1>
-          <p className='c-home__intro__subtext'>
-            2 days with 40+ speakers across Artificial Intelligence, Machine Learning, Mobile,
-            Cloud, Intellectual Property and Startup Funding, Policy & Governance, and so much more!
-            <br /> DevFest Lagos 2023 is about to be the most memorable tech festival yet.
+      <nav className='c-home__nav'>
+        <Logo className='c-home__nav__logo' />
+      </nav>
+      <main className='dp_gen_page'>
+        <header className='dp_gen_page__header'>
+          <h2 className='dp_gen_page__header_title'>Pepper demmm!🥳</h2>
+          <p className='dp_gen_page__header_details'>
+            Generate and share your unique Devfest Lagos 2023 DP
           </p>
 
-          <div className='c-home__intro__buttons'>
-            <TertiaryButton href={ticketsUrl} isExternal>
-              Grab Your Tickets
-            </TertiaryButton>
-            <SecondaryButton href={callForVolunteersURL} isExternal>
-              Apply To Volunteer
-            </SecondaryButton>
-          </div>
+          <figure className='dp_gen_page__header_avatar1'>
+            <Image src={Avatar1} alt='Meemoji devfest' quality={100} />
+          </figure>
+          <figure className='dp_gen_page__header_avatar2'>
+            <Image src={Avatar2} alt='Meemoji devfest' quality={100} />
+          </figure>
 
-        </section>
-        <section className='c-home__marquee-wrapper'>
-          <div className='c-home__marquee' data-marquee>
-            {Array.from({ length: 32 }).map((_, index) => (
-              <div className='c-home__marquee__item' key={index} data-marquee-item>
-                <StarIcon className='c-home__marquee__icon' />
-                <p className='c-home__marquee__text'>Watch this space for more information soon</p>
-              </div>
-            ))}
-          </div>
-        </section>
-        <section className='c-home__recap'>
-          <div className='c-home__recap__title'>
-            Let&apos;s recap DevFest Lagos 2022
-            <figure className='c-home__recap__arrow'>
-              <Image src={arrowDoodle} alt='Recap' fill />
-            </figure>
-          </div>
-          <figure className='c-home__recap__image-1' data-recap-image>
-            <Image src={recap1} alt='Recap Image' fill quality={100} />
+          <figure className={"dp_gen_page__header_doodle_1"}>
+            <Image src={RefreshDoodle} alt='Doodle' quality={100} />
           </figure>
-          <figure className='c-home__recap__image-2' data-recap-image>
-            <Image src={recap2} alt='Recap Image' fill quality={100} />
+          <figure className={"dp_gen_page__header_doodle_2"}>
+            <Image src={Globe} alt='Move' quality={100} />
           </figure>
-          <figure className='c-home__recap__image-3' data-recap-image>
-            <Image src={recap3} alt='Recap Image' fill quality={100} />
+          <figure className={"dp_gen_page__header_doodle_3"}>
+            <Image src={Cup} alt='Cup' quality={100} />
           </figure>
-          <figure className='c-home__recap__image-4' data-recap-image>
-            <Image src={recap4} alt='Recap Image' fill quality={100} />
-          </figure>
-          <figure className='c-home__recap__image-5' data-recap-image>
-            <Image src={recap5} alt='Recap Image' fill quality={100} />
-          </figure>
-          <figure className='c-home__recap__image-6' data-recap-image>
-            <Image src={recap6} alt='Recap Image' fill quality={100} />
-          </figure>
-        </section>
-        <section className='c-home__feedback'>
-          <p className='c-home__feedback__title'>We do not make empty promises ✋🏾😌🤚🏾</p>
-          <div className='c-home__feedback__body'>
-            <div className='c-home__feedback__body-content'>
-              <div className='c-home__feedback__body__quotes-row' data-marquee>
-                {Array.from({ length: 4 }).map(() => (
-                  <>
-                    <div className='c-home__feedback__body__feedback-t-1'>
-                      <Image src={topTweet1} alt='Devfest Feedback' fill priority />
+        </header>
+
+        {!isPreview ? (
+          <section className='dp_gen_page__customize'>
+            <div className='dp_gen_page__customize_container'>
+              <h4 className='dp_gen_page__customize_title'>Customise your Devfest DP</h4>
+              <form className='dp_gen_page__customize_form'>
+                <div className='dp_gen_page__customize_form_group'>
+                  <label className='dp_gen_page__customize_form_group_label'>
+                    <div>Name</div>
+                    <div>Nickname, first name, how you want it</div>
+                  </label>
+                  <input
+                    className='dp_gen_page__customize_form_group_input'
+                    type='text'
+                    placeholder='Enter name'
+                    value={name}
+                    name='name'
+                    maxLength={15}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+
+                <div className='dp_gen_page__customize_form_group'>
+                  <label className='dp_gen_page__customize_form_group_label'>
+                    <div>Photo</div>
+                    <div>Preferrably in a square resolution</div>
+                  </label>
+
+                  <input
+                    className='dp_gen_page__customize_form_group_input'
+                    placeholder='Enter name'
+                    type='file'
+                    ref={inputRef}
+                    onChange={handleFileChange}
+                    accept='image/*'
+                  />
+
+                  <CropImage onCroppedImage={getCroppedImage} />
+                </div>
+
+                <div className='dp_gen_page__customize_form_group'>
+                  <label className='dp_gen_page__customize_form_group_label'>
+                    Select preferred color
+                  </label>
+
+                  <div className='dp_gen_page__customize_form_group_radio_group'>
+                    <div className='form-check green'>
+                      <input
+                        className='form-check-input'
+                        id='radio1'
+                        type='radio'
+                        onChange={handleRadioChange}
+                        name='radioGroup'
+                        checked={selectedColor === "green"}
+                        value='green'
+                      />
+                      <span className='radio-button'></span>
+                      <label className='form-check-label' htmlFor='radio1'>
+                        Green
+                      </label>
                     </div>
-                    <div className='c-home__feedback__body__feedback-t-2'>
-                      <Image src={topTweet2} alt='Devfest Feedback' fill priority />
+                    <div className='form-check blue'>
+                      <input
+                        className='form-check-input'
+                        id='radio2'
+                        type='radio'
+                        onChange={handleRadioChange}
+                        name='radioGroup'
+                        checked={selectedColor === "blue"}
+                        value='blue'
+                      />
+                      <span className='radio-button'></span>
+                      <label className='form-check-label' htmlFor='radio2'>
+                        Blue
+                      </label>
                     </div>
-                    <div className='c-home__feedback__body__feedback-t-3'>
-                      <Image src={topTweet3} alt='Devfest Feedback' fill priority />
+                    <div className='form-check yellow'>
+                      <input
+                        className='form-check-input'
+                        id='radio3'
+                        type='radio'
+                        onChange={handleRadioChange}
+                        name='radioGroup'
+                        checked={selectedColor === "yellow"}
+                        value='yellow'
+                      />
+                      <span className='radio-button'></span>
+                      <label className='form-check-label' htmlFor='radio3'>
+                        Yellow
+                      </label>
                     </div>
-                    <div className='c-home__feedback__body__feedback-t-4'>
-                      <Image src={topTweet4} alt='Devfest Feedback' fill priority />
+                    <div className='form-check red'>
+                      <input
+                        className='form-check-input'
+                        id='radio4'
+                        type='radio'
+                        onChange={handleRadioChange}
+                        name='radioGroup'
+                        checked={selectedColor === "red"}
+                        value='red'
+                      />
+                      <span className='radio-button'></span>
+                      <label className='form-check-label' htmlFor='radio4'>
+                        Red
+                      </label>
                     </div>
-                  </>
-                ))}
-              </div>
-              <div className='c-home__feedback__body__quotes-row' data-marquee>
-                {Array.from({ length: 4 }).map(() => (
-                  <>
-                    <div className='c-home__feedback__body__feedback-b-1'>
-                      <Image src={bottomTweet1} alt='Devfest Feedback' fill />
-                    </div>
-                    <div className='c-home__feedback__body__feedback-b-2'>
-                      <Image src={bottomTweet2} alt='Devfest Feedback' />
-                    </div>
-                    <div className='c-home__feedback__body__feedback-b-3'>
-                      <Image src={bottomTweet3} alt='Devfest Feedback' />
-                    </div>
-                    <div className='c-home__feedback__body__feedback-b-4'>
-                      <Image src={bottomTweet4} alt='Devfest Feedback' />
-                    </div>
-                  </>
-                ))}
-              </div>
+                  </div>
+                </div>
+
+                <PrimaryButton
+                  onClick={handleSubmit}
+                  className='speakers_page__info_cards_details_button'
+                  type='button'
+                  disabled={!name || !selectedColor || !profilePicture}
+                >
+                  Generate your dp
+                  {/* <ArrowRight /> */}
+                </PrimaryButton>
+              </form>
             </div>
-          </div>
-        </section>
-        <section className='c-home__highlights'>
-          <div className='c-home__highlights__body'>
-            <p className='c-home__highlights__title'>
-              Check out the highlights of DevFest Lagos 2022😎
-            </p>
-            <div className='c-home__highlights__youtube'>
-              <HighlightIcon className='c-home__highlights__youtube__highlight-icon' />
-              <YoutubePlayer videoId='7kat5HlPtzU' />
-            </div>
-          </div>
-        </section>
-        <ComingSoonCountdown />
-        <section className='c-home__footer'>
-          <ul className='c-home__footer__links'>
-            <li className='c-home__footer__links__link'>
-              <Link href='/faq'>FAQ</Link>
-            </li>
-            <li className='c-home__footer__links__link'>
-              <a href='https://gdg.community.dev/gdg-lagos/' target='_blank'>
-                Join the community
-              </a>
-            </li>
-            <li className='c-home__footer__links__link'>
-              <a href='https://policies.google.com/privacy' target='_blank'>
-                Privacy policy
-              </a>
-            </li>
-          </ul>
-          <Logo className='c-home__footer__logo' />
-          <div className='c-home__footer__social-media'>
-            <p className='c-home__footer__social-media__title'>Follow us on:</p>
-            <ul className='c-home__footer__social-media__links'>
-              {socialMediaLinks.map((link) => (
-                <li key={link.link}>
-                  <a
-                    href={link.link}
-                    target='_blank'
-                    className='c-home__footer__social-media__link'
-                  >
-                    {link.icon}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+          </section>
+        ) : (
+          <DpGen
+            handleRegenerate={setIsPreview}
+            name={name}
+            theme={selectedColor}
+            photo={profilePicture}
+          />
+        )}
       </main>
+
+      <footer className='c-home__footer'>
+        <ul className='c-home__footer__links'>
+          <li className='c-home__footer__links__link'>
+            <a href='https://gdg.community.dev/gdg-lagos/' target='_blank'>
+              Join the community
+            </a>
+          </li>
+          <li className='c-home__footer__links__link'>
+            <a href='https://policies.google.com/privacy' target='_blank'>
+              Privacy policy
+            </a>
+          </li>
+        </ul>
+        <Logo className='c-home__footer__logo' />
+        <div className='c-home__footer__social-media'>
+          <p className='c-home__footer__social-media__title'>Follow us on:</p>
+          <ul className='c-home__footer__social-media__links'>
+            {socialMediaLinks.map((link) => (
+              <li key={link.link}>
+                <a href={link.link} target='_blank' className='c-home__footer__social-media__link'>
+                  {link.icon}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </footer>
     </>
   );
 }
