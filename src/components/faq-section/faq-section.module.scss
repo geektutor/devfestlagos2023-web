@@ -9,6 +9,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
+  scroll-margin-top: 80px;
 
   @include media("<=tablet") {
     padding: 2.4rem 0 1.6rem;

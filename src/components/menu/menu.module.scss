@@ -24,6 +24,12 @@
 .logo {
   width: 12.5rem;
   min-width: 12.5rem;
+  overflow: hidden;
+  display: flex;
+
+  svg {
+    width: 100%;
+  }
 
   @include b.media("<=desktop-sm") {
     width: 9.4rem;
@@ -41,6 +47,10 @@
   display: flex;
   align-items: center;
   column-gap: 3.2rem;
+}
+
+.navItems {
+  overflow: hidden;
 }
 
 .items {
@@ -71,6 +81,8 @@
 
 .navItem {
   list-style: none;
+  display: flex;
+  overflow: hidden;
 }
 
 .link {
@@ -89,6 +101,13 @@
   display: flex;
   column-gap: 0.8rem;
 
+  path:first-child {
+    transform-origin: center;
+  }
+
+  path:last-child {
+    transform-origin: left;
+  }
   @include b.media("<=desktop-sm") {
     height: 5.9rem;
 

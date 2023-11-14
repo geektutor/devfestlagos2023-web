@@ -1,0 +1,226 @@
+@import "core/variables";
+@import "core/typography";
+@import "utils/breakpoints";
+@import "utils/mixins";
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 16;
+  pointer-events: none;
+
+  &.active {
+    pointer-events: auto;
+
+    .modalOverlay {
+      opacity: 1;
+    }
+
+    .modalContent {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+.modalOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: $overlay-2;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: 300ms;
+}
+
+.modalContent {
+  margin: 0 auto;
+  padding: 2.4rem;
+  max-width: min(43.6rem, 94vw);
+  background-color: $bg-shade-1;
+  border-radius: 24px;
+  border-top: 2px solid #211212;
+  border-right: 8px solid #211212;
+  border-bottom: 8px solid #211212;
+  border-left: 1px solid #211212;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: 300ms;
+  max-height: 90vh;
+  overflow: auto;
+
+  @include media("<=tablet") {
+    margin: 0 auto;
+    padding: 1.8rem;
+  }
+
+  // @include media("<=phone") {
+  //   margin: 0;
+  //   padding: 2rem;
+  // }
+}
+
+.modalClose {
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  display: block;
+
+  @include media("<=tablet") {
+    margin-bottom: 1.6rem;
+  }
+}
+
+.topButtons {
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.timeAndSeatCount {
+  display: flex;
+  align-items: center;
+}
+
+.time {
+  @include body-3;
+  color: $grey-0;
+  padding: 4px 8px;
+  margin-right: 8px;
+  background-color: $secondary-green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.seatCount {
+  @include body-3;
+  color: $grey-30;
+  padding: 4px 8px;
+  background-color: $grey-90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+
+  span {
+    margin-left: 4px;
+  }
+}
+
+.talkTitle {
+  margin-bottom: 1.6rem;
+}
+
+.speakerHeading {
+  @include body-4;
+  color: $grey-30;
+  margin-bottom: 8px;
+}
+
+.speakerSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.8rem;
+}
+
+.speakerImage {
+  object-fit: cover;
+  @include ratio(32, 32);
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  border: 2px solid $primary-green;
+}
+
+.speakerImageInner {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.speakerButton {
+  @include body-5;
+  font-size: 12px !important;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 8px;
+  background: $primary-green;
+  color: $grey-100;
+}
+
+.speakerName {
+  @include body-2;
+  color: $grey-10;
+  margin-bottom: 8px;
+}
+
+.speakerRole {
+  @include body-3;
+  font-weight: 400;
+  color: $grey-30;
+  margin-bottom: 1.4rem;
+}
+
+.talkDateAndLocation {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2.4rem;
+}
+
+.talkDate {
+  @include body-3;
+  font-weight: 400;
+  color: $grey-0;
+  padding: 4px 8px;
+  background-color: $secondary-yellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+}
+
+.location {
+  @include body-3;
+  font-weight: 400;
+  color: $grey-0;
+  padding: 4px 8px;
+  background-color: $secondary-yellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+}
+
+.descriptionSection {
+  margin-bottom: 5rem;
+}
+
+.descriptionHeading {
+  @include body-4;
+  margin-bottom: 8px;
+}
+
+.finalCTA {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  span {
+    @include body-3;
+    margin-bottom: 1.6rem;
+  }
+}

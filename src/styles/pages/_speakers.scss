@@ -1,0 +1,691 @@
+.speakers_page {
+  position: relative;
+  overflow-x: hidden;
+
+  &__hero {
+    background: $bg-shade-1;
+    width: 100vw;
+    height: 90vh;
+    padding: 4rem 2rem;
+
+    @media screen and (max-width: 1100px) and (max-height: 750) {
+      height: 1000px !important;
+    }
+
+    @include media("<=desktop-sm") {
+      height: 60vh;
+    }
+
+    @include media("<=tablet") {
+      height: 85vh;
+    }
+
+    @include media("<=phone") {
+      height: 85vh;
+    }
+  }
+
+  &__hero__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+
+    @include media("<=desktop-sm") {
+      padding: 5rem 0;
+    }
+
+    @include media("<=phone") {
+      padding: 0;
+    }
+
+    %avatar {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 110px;
+        height: 110px;
+      }
+
+      @include media("<=desktop-sm") {
+        width: 100px !important;
+        height: 100px !important;
+
+        img {
+          width: 50px !important;
+          height: 50px !important;
+        }
+      }
+
+      @include media("<=phone") {
+        width: 60px !important;
+        height: 60px !important;
+
+        img {
+          width: 35px !important;
+          height: 35px !important;
+        }
+      }
+    }
+
+    &_avatar1 {
+      @extend %avatar;
+      background-color: rgba(253, 226, 147, 0.5);
+      border-radius: 50%;
+      top: 18%;
+      left: 12%;
+
+      @include media("<=desktop-sm") {
+        top: calc(10% + 5rem) !important;
+        left: 5% !important;
+      }
+
+      @include media("<=tablet") {
+        left: -3% !important;
+      }
+
+      @include media("<=phone") {
+        top: 16% !important;
+        left: -6% !important;
+      }
+    }
+
+    &_avatar2 {
+      @extend %avatar;
+      background-color: #e6e6e6;
+      border-radius: 50%;
+      top: 27%;
+      right: 10% !important;
+
+      @include media("<=desktop-sm") {
+        top: calc(18% + 5rem) !important;
+        right: 10% !important;
+      }
+
+      @include media("<=tablet") {
+        top: 25% !important;
+        right: -5% !important;
+      }
+
+      @include media("<=phone") {
+        top: 17% !important;
+        right: -6% !important;
+      }
+    }
+
+    &_avatar3 {
+      @extend %avatar;
+      background-color: #cbded3;
+      border-radius: 50%;
+      bottom: 0;
+      left: 50%;
+      margin-left: -75px;
+
+      img {
+        width: 130px !important;
+        height: 130px !important;
+      }
+
+      @include media("<=desktop-sm") {
+        bottom: 15% !important;
+      }
+
+      @include media("<=tablet") {
+        bottom: -5% !important;
+      }
+
+      @include media("<=phone") {
+        bottom: 20% !important;
+        left: 30% !important;
+        margin-left: 0 !important;
+      }
+    }
+
+    %doodle {
+      position: absolute;
+      animation: float 3s ease-in-out infinite;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    &__arrow-doodle {
+      @extend %doodle;
+      @include ratio(109, 118);
+      width: 100px;
+      top: -12%;
+      left: 13%;
+
+      @include media("<=desktop-sm") {
+        width: 88.2px;
+        top: calc(-12% + 5rem);
+      }
+
+      @include media("<=tablet") {
+        width: 70px;
+        left: 7%;
+        top: -1%;
+      }
+
+      @include media("<=phone") {
+        width: 60px;
+        top: -8%;
+        left: -30px;
+      }
+    }
+
+    &__logic-doodle {
+      @extend %doodle;
+      @include ratio(134, 235.005);
+      width: 190px;
+      left: 33%;
+      bottom: 5%;
+
+      @include media("<=desktop-sm") {
+        width: 120px;
+        left: 25%;
+        bottom: calc(13% + 5rem);
+      }
+
+      @include media("<=tablet") {
+        bottom: 5%;
+        left: 2%;
+      }
+
+      @include media("<=phone") {
+        width: 100px;
+        left: 0;
+        bottom: 25%;
+      }
+    }
+
+    &__refresh-doodle {
+      @extend %doodle;
+      @include ratio(134, 190);
+      width: 75px;
+      right: 29%;
+      bottom: 35%;
+
+      @include media("<=desktop-sm") {
+        width: 60.2px;
+        right: 22%;
+        bottom: calc(40% + 5rem);
+      }
+
+      @include media("<=tablet") {
+        bottom: calc(30% + 5rem);
+        right: 15%;
+      }
+
+      @include media("<=phone") {
+        width: 50px;
+        right: 30%;
+        bottom: 32%;
+      }
+    }
+
+    &__dots-doodle {
+      @extend %doodle;
+      @include ratio(134, 235.005);
+      width: 80px;
+      left: 50%;
+      margin-left: -40px;
+      top: -7%;
+
+      @include media("<=desktop-sm") {
+        width: 70px;
+        margin-left: -35px;
+        top: calc(-7% + 5rem);
+      }
+
+      @include media("<=tablet") {
+        width: 60px;
+        margin-left: -30px;
+        top: -5%;
+      }
+
+      @include media("<=phone") {
+        width: 60px;
+        margin-left: -30px;
+        top: -5%;
+      }
+    }
+
+    &__people-doodle {
+      @extend %doodle;
+      @include ratio(134, 235.005);
+      width: 123px;
+      right: 20%;
+      top: 15%;
+
+      @include media("<=desktop-sm") {
+        width: 100px;
+        right: 13%;
+        top: calc(10% + 5rem);
+      }
+
+      @include media("<=tablet") {
+        top: calc(5% + 5rem);
+        right: 0;
+      }
+
+      @include media("<=phone") {
+        top: -6%;
+        right: 0;
+        width: 70px;
+      }
+    }
+
+    &_title {
+      @include heading-1;
+      color: $grey-0;
+      width: 70%;
+
+      @include media("<=desktop-sm") {
+        width: 75% !important;
+        @include heading-4;
+      }
+
+      @include media("<=tablet") {
+        width: 65% !important;
+        @include heading-3;
+      }
+
+      @include media("<=phone") {
+        width: 80% !important;
+        @include heading-4;
+      }
+    }
+
+    &_desc {
+      @include title-2;
+      margin: 2rem 0;
+      width: 30%;
+      color: $grey-40;
+
+      @include media("<=desktop-sm") {
+        @include body-1;
+        width: 45%;
+      }
+
+      @include media("<=tablet") {
+        width: 50% !important;
+        @include body-2;
+      }
+
+      @include media("<=phone") {
+        width: 70% !important;
+        @include body-4;
+      }
+    }
+  }
+
+  &__info {
+    background-color: $bg-shade-2;
+    padding: 5rem 0 7rem;
+
+    @include media("<=tablet") {
+      padding: 2rem 0 5rem;
+    }
+
+    @include media("<=phone") {
+      padding: 0rem 0 5rem;
+    }
+
+    &_marquee {
+      height: 250px;
+      position: relative;
+      overflow: hidden;
+      padding: 10rem 0;
+
+      @include media("<=tablet") {
+        padding: 5rem 0;
+        height: 150px;
+      }
+
+      @include media("<=phone") {
+        padding: 5rem 0;
+        height: 150px;
+      }
+
+      .diagonal_one,
+      .diagonal_two {
+        position: absolute;
+        height: 43px;
+        left: 0;
+        right: 0;
+      }
+
+      .diagonal_one {
+        transform: rotate(7deg);
+
+        @include media("<=phone") {
+          transform: rotate(15deg);
+        }
+      }
+
+      .diagonal_two {
+        transform: rotate(-7deg);
+
+        @include media("<=phone") {
+          transform: rotate(-15deg);
+        }
+      }
+
+      &_front {
+        height: 43px;
+        display: flex;
+        align-items: center;
+        background: $grey-0;
+        color: $grey-100;
+
+        @include media("<=tablet") {
+          height: 40px !important;
+        }
+
+        @include media("<=phone") {
+          height: 32px !important;
+        }
+
+        &__text {
+          color: #fff;
+          font-size: 1rem;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+
+          @include media("<=tablet") {
+            font-size: 0.9rem !important;
+          }
+        }
+      }
+
+      &_back {
+        height: 43px;
+        display: flex;
+        align-items: center;
+        background: $grey-90;
+        color: $grey-50;
+
+        @include media("<=tablet") {
+          height: 40px !important;
+        }
+
+        @include media("<=phone") {
+          height: 32px !important;
+        }
+
+        &__text {
+          color: #fff;
+          font-size: 1rem;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+
+          @include media("<=tablet") {
+            font-size: 0.9rem !important;
+          }
+        }
+      }
+    }
+
+    .card_container {
+      position: relative;
+    }
+
+    &_cards {
+      display: flex;
+      // align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+      list-style: none;
+      margin-top: 2rem;
+
+      @include media("<=tablet") {
+        margin-top: 0rem;
+      }
+
+      @include media("<=phone") {
+        flex-direction: column;
+        margin-top: 0rem;
+      }
+
+      &_note {
+        @include body-1;
+        background-color: $primary-green;
+        padding: 0.75rem 1.15rem;
+        width: fit-content;
+        color: $grey-100;
+        border-radius: 10px;
+        transform: rotate(350deg);
+        position: absolute;
+        top: -3.5rem;
+        left: 0rem;
+
+        @include media("<=tablet") {
+          @include body-5;
+          transform: rotate(346deg);
+          top: -2.5rem;
+        }
+
+        @include media("<=phone") {
+          @include body-5;
+          transform: rotate(346deg);
+          top: -2.5rem;
+        }
+      }
+
+      %details_card {
+        padding: 2.5rem 2.75rem;
+        border-radius: 24px;
+        width: 49%;
+        height: 386px;
+        display: flex;
+        flex-direction: column;
+
+        @include media("<=desktop-sm") {
+          padding: 2rem 2.5rem;
+          border-radius: 16px;
+          height: unset;
+        }
+
+        @include media("<=phone") {
+          width: 100%;
+          padding: 2rem !important;
+        }
+      }
+
+      &_details {
+        @extend %details_card;
+        background-color: $secondary-grey;
+
+        &_caption {
+          @include body-1;
+          color: $grey-50;
+          margin-bottom: 1.5rem;
+
+          @include media("<=tablet") {
+            @include body-5;
+          }
+        }
+
+        &_month {
+          @include title-2;
+          color: $grey-100;
+          margin-bottom: 1.75rem;
+
+          @include media("<=tablet") {
+            @include body-4;
+            margin-bottom: 1rem;
+          }
+
+          @include media("<=phone") {
+            @include body-5;
+          }
+        }
+
+        &_day {
+          @include heading-2;
+          color: $grey-100;
+
+          @include media("<=desktop-sm") {
+            @include heading-4;
+          }
+
+          @include media("<=tablet") {
+            @include heading-3;
+          }
+
+          @include media("<=phone") {
+            @include heading-5;
+          }
+        }
+
+        &_subtext {
+          @include title-2;
+          justify-self: end;
+          color: $grey-70;
+          width: 80%;
+          margin: 1rem 0 2.25rem;
+
+          @include media("<=desktop-sm") {
+            @include body-4;
+            width: 75%;
+            margin: 1rem 0 1.25rem;
+          }
+
+          @include media("<=tablet") {
+            width: 90%;
+          }
+        }
+
+        &_button {
+          background-color: $grey-100;
+          color: $grey-0;
+          margin: 1rem 0;
+
+          @include media("<=phone") {
+            width: 100%;
+            margin: 0;
+          }
+        }
+      }
+
+      &_venue {
+        @extend %details_card;
+        background-color: $secondary-green;
+        // gap: 1rem;
+
+        &_image {
+          object-fit: cover;
+          height: 219px;
+
+          @include media("<=desktop-sm") {
+            height: 140px;
+          }
+
+          @include media("<=tablet") {
+            height: 110px;
+          }
+
+          @include media("<=phone") {
+            height: 140px;
+          }
+        }
+
+        &_caption {
+          @include body-1;
+          color: $grey-20;
+          margin: 2.5rem 0 0.75rem;
+
+          @include media("<=tablet") {
+            @include body-4;
+          }
+
+          @include media("<=phone") {
+            margin: 1rem 0 1.5rem;
+            @include body-4;
+          }
+        }
+
+        &_text {
+          @include heading-4;
+
+          @include media("<=tablet") {
+            @include title-1;
+            width: 90%;
+          }
+
+          @include media("<=phone") {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  &__speakers {
+    display: flex;
+    flex-direction: column;
+    padding: 4.8rem 0 4.8rem 8.6vw;
+    background: $bg-shade-1;
+
+    &_header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-right: 2rem;
+      margin: 2rem 0;
+
+      h1 {
+        @include heading-4;
+      }
+    }
+
+    &_list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 1200px;
+    }
+  }
+
+  &__farewell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: $grey-0;
+    color: $grey-100;
+    padding: 2rem;
+    padding-top: 3rem;
+
+    h1 {
+      @include heading-4;
+    }
+
+    p {
+      @include title-2;
+      color: $grey-70;
+    }
+  }
+}
+
+.container {
+  height: 100%;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}

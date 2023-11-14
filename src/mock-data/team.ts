@@ -2,7 +2,6 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import danielImage from "@/images/team/daniel.png";
 import ijeomaImage from "@/images/team/ijeoma.png";
 import iyinImage from "@/images/team/iyin.png";
-import joelImage from "@/images/team/joel.png";
 import lereImage from "@/images/team/lere.png";
 import lukmonImage from "@/images/team/lukmon.png";
 import maryannImage from "@/images/team/maryann.png";
@@ -22,19 +21,28 @@ import johaImage from "@/images/team/music/joha.png";
 import somewhereImage from "@/images/team/music/somewhere.png";
 import tearsImage from "@/images/team/music/tears.png";
 import btsImage from "@/images/team/music/bts.png";
+import jdImage from "@/images/team/jd.png";
 import akinImage from "@/images/team/akin.png";
+import femiImage from "@/images/team/femi.png";
+import funmiImage from "@/images/team/funmi.png";
+import karenImage from "@/images/team/karen.png";
 import o2Image from "@/images/team/music/o2.png";
 import idkImage from "@/images/team/music/idk.png";
 import marvinImage from "@/images/team/marvin.png";
 import tobijuImage from "@/images/team/tobiju.png";
+import solomonImage from "@/images/team/solomon.png";
 import growImage from "@/images/team/music/grow.png";
+import dDayImage from "@/images/team/music/d-day.png";
 import ollieImage from "@/images/team/music/ollie.png";
 import giantsImage from "@/images/team/music/giants.png";
 import omorinsolaImage from "@/images/team/omorinsola.png";
 import victoryImage from "@/images/team/music/victory.png";
+import championImage from "@/images/team/music/champion.png";
 import babydollImage from "@/images/team/music/babydoll.png";
-import cityBoysImage from "@/images/team/music/city-boys.png";
 import hindsightImage from "@/images/team/music/hindsight.png";
+import inControlImage from "@/images/team/music/in-control.png";
+import canTellMeNothingImage from "@/images/team/music/cant-tell-me-nothing.png";
+import beneathYourBeautifulImage from "@/images/team/music/beneath-your-beautiful.png";
 
 export type TeamMemberLink = {
   type:
@@ -128,6 +136,16 @@ export const teamMembers: ITeamMember[] = [
       artist: "Kelechi",
       url: "https://open.spotify.com/track/2MAz9mZH3n9nVGZWUC2VUh?si=817536ce2a6a4fc4",
     },
+    links: [
+      {
+        type: "instagram",
+        url: "https://instagram.com/zia_tiffah",
+      },
+      {
+        type: "twitter",
+        url: "https://www.twitter.com/zia_tiffah",
+      },
+    ],
   },
   {
     key: "maryann",
@@ -152,32 +170,11 @@ export const teamMembers: ITeamMember[] = [
     },
   },
   {
-    key: "joel",
-    name: "Joel Adewole",
-    role: "Content Writer/QA",
-    comment: "Great teamwork",
-    quote: "Don't be too sweet, or people will eat you",
-    category: "content",
-    image: joelImage,
-    music: {
-      image: cityBoysImage,
-      name: "City Boys",
-      artist: "Burna Boy",
-      url: "https://open.spotify.com/track/1OX1aWd5WTavFuOXZ7k6Q5?si=00d21b47a78c46c9",
-    },
-    links: [
-      {
-        type: "twitter",
-        url: "https://twitter.com/wolz_codelife",
-      },
-    ],
-  },
-  {
     key: "sebastine",
     name: "Sebastine Odeh",
     role: "Mobile Developer",
     comment: "It was incredible working with these guys!",
-    quote: "God Abeg.",
+    quote: "Learn as if you will live forever, live like you will die tomorrow. - Mahatma Gandhi",
     category: "dev",
     image: sebastineImage,
     music: {
@@ -305,6 +302,28 @@ export const teamMembers: ITeamMember[] = [
       artist: "Ko’rale",
       url: "https://open.spotify.com/track/72cRQRzXJLUM3Rbf1vyxtz?si=2c36f621104c4d79",
     },
+    links: [
+      {
+        type: "twitter",
+        url: "https://twitter.com/Dev_Tsticks",
+      },
+      {
+        type: "instagram",
+        url: "https://www.instagram.com/dev_tsticks/",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/otp/",
+      },
+      {
+        type: "email",
+        url: "oluwatobilobapeterschem@gmail.com",
+      },
+      {
+        type: "github",
+        url: "https://github.com/Tobipeters",
+      },
+    ],
   },
   {
     key: "samuel",
@@ -322,6 +341,20 @@ export const teamMembers: ITeamMember[] = [
       artist: "Asake",
       url: "https://open.spotify.com/track/16aRxdbEl0smktrm0hK0eX?si=b3986e29b1db4c9d",
     },
+    links: [
+      {
+        type: "twitter",
+        url: "https://twitter.com/mastersam_",
+      },
+      {
+        type: "github",
+        url: "https://github.com/mastersam07",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/abada-samuel",
+      },
+    ],
   },
   {
     key: "naza",
@@ -519,6 +552,181 @@ export const teamMembers: ITeamMember[] = [
       {
         type: "medium",
         url: "https://tobiju.medium.com/",
+      },
+    ],
+  },
+  {
+    key: "funmi",
+    name: "Funmilayo Kanmodi",
+    role: "Content Writer",
+    comment:
+      "Planning DevFest this year has been fun and exciting with this team! We put in the work to make sure you have the best experience.",
+    quote: "Tough times never last, Only tough people do brrrrrrrrrr!!!!!!!!!",
+    category: "content",
+    image: funmiImage,
+    music: {
+      image: dDayImage,
+      name: "D-Day",
+      artist: "Agust D",
+      url: "https://open.spotify.com/track/22W6wI4hDTjMAYKKBQW9dU?si=cdd19fc1b5d04fec",
+    },
+    links: [
+      {
+        type: "email",
+        url: "Kanmodihqmat@gmail.com",
+      },
+      {
+        type: "instagram",
+        url: "https://www.instagram.com/fooomey/",
+      },
+      {
+        type: "twitter",
+        url: "https://twitter.com/Fooomey",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/funmilayo-kanmodi-589915153/",
+      },
+      {
+        type: "medium",
+        url: "https://funmilayokanmodi.medium.com/",
+      },
+    ],
+  },
+  {
+    key: "solomon",
+    name: "Solomon Ayodele",
+    role: "Backend Developer",
+    comment: "The work has been interesting and fun",
+    quote: "In everything, do to others what you would have them to do to you",
+    category: "dev",
+    image: solomonImage,
+    music: {
+      image: inControlImage,
+      name: "In Control",
+      artist: "Hillsong Worship",
+      url: "https://open.spotify.com/track/2XXXk54soacKXmnUYUbMKE?si=7fdeeeeba1194b2ac",
+    },
+    links: [
+      {
+        type: "facebook",
+        url: "https://web.facebook.com/solomon.ayodele.o",
+      },
+      {
+        type: "instagram",
+        url: "https://www.instagram.com/solomonayodeleo/",
+      },
+      {
+        type: "twitter",
+        url: "https://x.com/_dev_solo",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/solomonayodeleo/",
+      },
+      {
+        type: "website",
+        url: "https://linktr.ee/solomonayodeleo",
+      },
+    ],
+  },
+  {
+    key: "karen",
+    name: "Karen Chukwu",
+    role: "Co-Organiser (Partnerships & Legal Team Lead)",
+    comment:
+      "I've had an amazing time on the team identifying and working with our strategic partners and sponsors. My goal everyday is to ensure that our work is sustained by working with our partners and sponsors to ensure that our objectives at GDG Lagos are met. I love how my role cuts across two things I am passionate about, People & Law. ",
+    quote: `"SUCCESS ISN'T ALWAYS ABOUT GREATNESS. IT'S ABOUT CONSISTENCY.`,
+    category: "gdg-team",
+    image: karenImage,
+    music: {
+      image: beneathYourBeautifulImage,
+      name: "Beneath your Beautiful",
+      artist: "Labrinth ft Emeli Sandé",
+      url: "https://open.spotify.com/track/2EcsgXlxz99UMDSPg5T8RF?si=30d2699a5470473a",
+    },
+    links: [
+      {
+        type: "instagram",
+        url: "https://www.instagram.com/Karen_Amarii/",
+      },
+      {
+        type: "twitter",
+        url: "https://twitter.com/Karen_Amarii",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/karen-chukwu",
+      },
+      {
+        type: "website",
+        url: "https://www.katwiganddale.com/team ",
+      },
+    ],
+  },
+  {
+    key: "femi",
+    name: "Oluwafemi Peters",
+    role: "Sidekick",
+    comment: "",
+    quote: "Be gentle.",
+    category: "gdg-team",
+    image: femiImage,
+    music: {
+      image: canTellMeNothingImage,
+      name: "Can't tell me nothing",
+      artist: "Kanye West",
+      url: "https://open.spotify.com/track/0mEdbdeRFQwBhN4xfyIeUM?si=8a5bda1f13b8418a",
+    },
+    links: [
+      {
+        type: "github",
+        url: "https://github.com/olayinkapeter",
+      },
+      {
+        type: "medium",
+        url: "https://medium.com/@olayinkapeter",
+      },
+      {
+        type: "twitter",
+        url: "https://twitter.com/olayinkapeter_",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/olayinkapeter/",
+      },
+      {
+        type: "website",
+        url: "https://coffeewithpeter.com",
+      },
+    ],
+  },
+  {
+    key: "jd",
+    name: "Jesudetan Onasanya",
+    role: "Co-organizer",
+    comment: "",
+    quote: '"The best way to predict the future is to create it." - Abraham Lincoln',
+    category: "gdg-team",
+    image: jdImage,
+    music: {
+      image: championImage,
+      name: "Champion",
+      artist: "Dante Bowe",
+      url: "https://open.spotify.com/track/2YRx8jviX9HnvxD0uDIOma?si=de5bf724ffa744f9",
+    },
+    links: [
+      {
+        type: "twitter",
+        url: "https://twitter.com/jaydeecassidy",
+      },
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/jesudetan-onasanya/",
+      },
+      {
+        type: "instagram",
+        url: "https://www.instagram.com/jaydee_cassidy/",
       },
     ],
   },

@@ -19,6 +19,7 @@ export default function CategoryPill({
   className,
   isSmall,
   onClick,
+  ...props
 }: ICategoryPillProps) {
   const styleText = {
     "--active-bg-color": `${activeBgColor}`,
@@ -35,6 +36,7 @@ export default function CategoryPill({
         className,
         onClick && styles.isClickable,
       )}
+      {...props}
       // @ts-ignore
       style={styleText}
     >

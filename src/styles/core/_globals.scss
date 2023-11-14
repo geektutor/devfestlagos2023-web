@@ -33,6 +33,7 @@ body {
   letter-spacing: calc(-0.025 * 16px);
   color: $grey-0;
   height: 100dvh;
+  background-color: $bg-shade-1;
 
   &.no-scroll {
     overflow: hidden;
@@ -67,6 +68,26 @@ button {
   }
 }
 
+[data-line-animation] {
+  overflow: hidden;
+
+  > span {
+    display: inline-flex;
+    overflow: hidden;
+  }
+}
+
+[data-animate-sentences] {
+  > span {
+    overflow: hidden;
+    display: inline-flex;
+  }
+
+  span span {
+    display: inline-flex;
+  }
+}
+
 .container {
   width: 100%;
   padding: 0 24px;
@@ -81,4 +102,27 @@ button {
   @include media("<=tablet") {
     max-width: 720px;
   }
+}
+
+.Toastify__toast {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.Toastify__toast-body {
+  padding: 0;
+}
+
+.Toastify__close-button {
+  position: absolute;
+  z-index: 1;
+  right: 6px;
+  top: 8px;
+}
+
+.Toastify__toast-container {
+  min-width: 320px;
+  max-width: 400px;
+  width: unset;
 }

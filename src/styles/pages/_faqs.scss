@@ -1,0 +1,209 @@
+.fq__header {
+  background: $bg-shade-1;
+  position: relative;
+  height: 50rem;
+  padding-top: 13rem;
+
+  @include media("<=tablet") {
+    height: 75vh;
+    padding-top: 35vh;
+  }
+
+  &__title {
+    @include heading-1;
+    position: relative;
+    width: fit-content;
+    color: $grey-0;
+    text-align: center;
+    margin: 0 auto;
+    white-space: pre-wrap;
+    z-index: 1;
+
+    @include media("<=tablet") {
+      @include heading-4;
+    }
+
+    &__svg {
+      position: absolute;
+      top: -11.7rem;
+      left: -5.8rem;
+
+      @include media("<=tablet") {
+        top: -4.1rem;
+        left: -3rem;
+        width: 8.1rem;
+        height: 6.7rem;
+      }
+    }
+  }
+
+  &__menu-doodle {
+    @include ratio(190, 212);
+    position: absolute;
+    top: 34%;
+    left: 12.16%;
+    width: 8.19rem;
+    transform: rotate(13deg);
+
+    @include media("<=tablet") {
+      width: 6.14rem;
+      top: 36%;
+      left: 9.29%;
+    }
+  }
+
+  &__move-doodle {
+    @include ratio(116, 136);
+    position: absolute;
+    left: 29.5%;
+    bottom: 12%;
+    width: 8.6rem;
+
+    @include media("<=tablet") {
+      width: 6.45rem;
+      bottom: 26.167%;
+      left: initial;
+      right: 27.145%;
+    }
+  }
+
+  &__logic-doodle {
+    @include ratio(512, 1117);
+    position: absolute;
+    width: 13.77rem;
+    top: 9.4%;
+    left: 45.24%;
+
+    @include media("<=tablet") {
+      width: 10.33rem;
+      top: 31.64%;
+      right: 38.89583%;
+    }
+  }
+
+  &__people-doodle {
+    @include ratio(512, 787);
+    position: absolute;
+    width: 12.81rem;
+    bottom: 6.724%;
+    right: 24.8%;
+
+    @include media("<=tablet") {
+      display: none;
+    }
+  }
+
+  &__transfer-doodle {
+    @include ratio(152, 299);
+    position: absolute;
+    width: 14.44rem;
+    top: 33%;
+    right: 11.164%;
+
+    @include media("<=tablet") {
+      display: none;
+    }
+  }
+
+  &__cloud-doodle {
+    display: none;
+    @include ratio(160, 235);
+    position: absolute;
+    width: 8.07rem;
+    bottom: 26.167%;
+    left: 27.865%;
+
+    @include media("<=tablet") {
+      display: block;
+    }
+  }
+
+  &__refresh-doodle {
+    display: none;
+    @include ratio(512, 588);
+    position: absolute;
+    width: 6.29rem;
+    top: 38.28%;
+    right: 11.862%;
+
+    @include media("<=tablet") {
+      display: block;
+    }
+  }
+}
+
+.fq__list {
+  padding: 10rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem 0;
+
+  &--dark {
+    @extend .fq__list;
+    background:
+      url("../../images/noise-and-texture.png") center/cover repeat,
+      #050505;
+
+    &__heading {
+      @include heading-5;
+      color: $secondary-yellow;
+    }
+  }
+
+  @include media("<=tablet") {
+    padding: 4.2rem 3.2rem;
+  }
+
+  @include media("<=phone") {
+    padding: 5rem 1.6rem;
+  }
+}
+
+.fq__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem 0;
+  background: $bg-shade-1;
+  padding: 13.7rem 0 12.9rem;
+
+  @include media("<=tablet") {
+    padding: 8rem 0 7rem;
+  }
+
+  &__image {
+    @include media("<=tablet") {
+      height: 7.5rem;
+      width: 18.75rem;
+    }
+  }
+
+  &__title {
+    @include heading-4;
+    text-align: center;
+
+    @include media("<=tablet") {
+      max-width: 27rem;
+      @include title-2;
+    }
+  }
+
+  &__text {
+    max-width: 45rem;
+    @include title-2;
+    color: $grey-40;
+    text-align: center;
+    letter-spacing: 0.5px;
+
+    @include media("<=tablet") {
+      max-width: 22.6rem;
+      @include body-5;
+      letter-spacing: normal;
+    }
+
+    &__highlight {
+      color: $primary-green;
+      text-decoration: none;
+    }
+  }
+}
