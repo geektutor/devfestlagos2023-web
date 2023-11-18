@@ -82,6 +82,7 @@ export const teamMembers: ITeamMember[] = [
     key: "sodiq",
     name: "Sodiq Akinjobi",
     role: "Product Manager",
+    isLead: true,
     comment:
       "Working with this team was an amazing journey for me! Here’s is to more wins. #BigPurr",
     links: [
