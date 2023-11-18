@@ -68,6 +68,8 @@
   &__dream {
     padding: 4.8rem 12.4rem 6.4rem;
     background: $bg-3;
+    position: relative;
+    min-height: 100vh;
 
     @include media("<=tablet") {
       padding: 4.8rem 3.2rem;
@@ -81,6 +83,7 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
+      position: relative;
 
       @include media("<=phone") {
         flex-direction: column;
@@ -188,6 +191,7 @@
   }
 
   &__grid {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.6rem;

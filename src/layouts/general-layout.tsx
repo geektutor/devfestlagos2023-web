@@ -7,11 +7,11 @@ import styles from "./general-layout.module.scss";
 export const GeneralLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
-      <div className={styles.menuAndContentwrapper}>
+      <div key='menu-and-content' className={styles.menuAndContentwrapper}>
         <Menu />
         {children}
       </div>
-      <Footer />
+      <Footer key='footer' />
     </>
   );
 };

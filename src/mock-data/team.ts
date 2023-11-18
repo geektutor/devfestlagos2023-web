@@ -503,7 +503,7 @@ export const teamMembers: ITeamMember[] = [
     comment:
       "I'm grateful to the FE team and the design team. I got to express myself creatively through the excellent design and great codebase and infrastructure that the other Devs had worked on.",
     quote: "Jesus saved my life",
-    category: "QA",
+    category: "dev",
     image: akinImage,
     music: {
       image: hindsightImage,

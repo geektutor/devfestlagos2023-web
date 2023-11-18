@@ -5,6 +5,7 @@ import { classNames } from "@/utils/classNames";
 import FaqSection from "@/components/faq-section/faq-section";
 import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
 import { TeamPills } from "@/components/team-pills/team-pills";
+import NoiseBackground from "@/components/noise-background/noise-background";
 
 const categories = [
   {
@@ -98,6 +99,7 @@ const Team = () => {
         <TeamPills />
       </div>
       <div className='team__dream'>
+        <NoiseBackground />
         <div className='team__dream__top'>
           <div>
             <h3 className='team__dream__header'>⭐ The Dream Team</h3>
