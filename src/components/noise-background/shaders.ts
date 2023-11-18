@@ -12,7 +12,8 @@ export const NOISE_VERTEX_SHADER = `
 export const NOISE_FRAGMENT_SHADER = `
     precision mediump float;
 
-    uniform vec3 u_pixelColor;
+    uniform vec3 u_color1;
+    uniform vec3 u_color2;
     uniform vec2 u_resolution;
 
     float rand(vec2 co){
@@ -25,8 +26,8 @@ export const NOISE_FRAGMENT_SHADER = `
         val *= 10.0;
 
         vec3 color = vec3(mix(
-            0.0,
-            0.1,
+            u_color1,
+            u_color2,
             rand(val)
         ));
 

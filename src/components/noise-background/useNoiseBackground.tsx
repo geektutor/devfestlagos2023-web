@@ -3,17 +3,20 @@ import { initialise } from "./functions";
 
 interface useNoiseBackgroundArgs {
   // The background color in rgb.
-  backgroundColorRgba: { r: number; g: number; b: number };
+  colorRange: { r: number; g: number; b: number }[];
 }
 
-const useNoiseBackground = ({ backgroundColorRgba }: useNoiseBackgroundArgs) => {
-  const { r, g, b } = backgroundColorRgba;
-  const colorInShaderForm = Float32Array.from([r / 255, g / 255, b / 255]);
+const useNoiseBackground = ({ colorRange }: useNoiseBackgroundArgs) => {
+  const [color1, color2] = colorRange;
+  const color1InShaderForm = Float32Array.from([color1.r / 255, color1.g / 255, color1.b / 255]);
+  const color2InShaderForm = Float32Array.from([color2.r / 255, color2.g / 255, color2.b / 255]);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [loaded] = useState(false);
 
   if (canvasRef.current) {
-    initialise(canvasRef.current, colorInShaderForm).then((render) => render());
+    initialise(canvasRef.current, color1InShaderForm, color2InShaderForm).then((render) =>
+      render(),
+    );
   }
 
   return {

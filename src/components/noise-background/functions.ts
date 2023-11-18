@@ -7,7 +7,11 @@ import {
 } from "@/utils/webgl-utility";
 import { NOISE_FRAGMENT_SHADER, NOISE_VERTEX_SHADER } from "./shaders";
 
-export const initialise = async (canvas: HTMLCanvasElement, color: Float32Array) => {
+export const initialise = async (
+  canvas: HTMLCanvasElement,
+  color1: Float32Array,
+  color2: Float32Array,
+) => {
   const gl = canvas.getContext("webgl");
   if (!gl) throw new Error("Failed to inistialise WebGL");
 
@@ -21,7 +25,8 @@ export const initialise = async (canvas: HTMLCanvasElement, color: Float32Array)
   if (!program) throw new Error("Failed to create noise background program");
 
   const projectionMatrixLocation = gl.getUniformLocation(program, "u_projectionMatrix");
-  const pixelColorUniformLocation = gl.getUniformLocation(program, "u_pixelColor");
+  const color1UniformLocation = gl.getUniformLocation(program, "u_color1");
+  const color2UniformLocation = gl.getUniformLocation(program, "u_color2");
   const resolutionUniformLocation = gl.getUniformLocation(program, "u_resolution");
 
   const positionAttributeLocation = gl.getAttribLocation(program, "a_position");
@@ -42,7 +47,10 @@ export const initialise = async (canvas: HTMLCanvasElement, color: Float32Array)
 
     gl.uniformMatrix3fv(projectionMatrixLocation, false, projectionMatrix);
 
-    gl.uniform3fv(pixelColorUniformLocation, color);
+    gl.uniform3fv(color1UniformLocation, color1);
+
+    gl.uniform3fv(color2UniformLocation, color2);
+
     gl.uniform2fv(
       resolutionUniformLocation,
       Float32Array.from([gl.canvas.width, gl.canvas.height]),
