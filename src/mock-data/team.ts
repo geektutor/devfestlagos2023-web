@@ -1,41 +1,41 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
-import danielImage from "@/images/team/daniel.png";
-import ijeomaImage from "@/images/team/ijeoma.png";
-import iyinImage from "@/images/team/iyin.png";
-import lereImage from "@/images/team/lere.png";
-import lukmonImage from "@/images/team/lukmon.png";
-import maryannImage from "@/images/team/maryann.png";
-import nazaImage from "@/images/team/naza.png";
-import nifemiImage from "@/images/team/nifemi.png";
-import samuelImage from "@/images/team/samuel.png";
-import sebastineImage from "@/images/team/sebastine.png";
-import sodiqImage from "@/images/team/sodiq.png";
-import tobiImage from "@/images/team/tobi.png";
-import ziaImage from "@/images/team/zia.png";
+import danielImage from "@/images/team/daniel.jpg";
+import ijeomaImage from "@/images/team/ijeoma.jpg";
+import iyinImage from "@/images/team/iyin.jpg";
+import lereImage from "@/images/team/lere.jpg";
+import lukmonImage from "@/images/team/lukmon.jpg";
+import maryannImage from "@/images/team/maryann.jpg";
+import nazaImage from "@/images/team/naza.jpg";
+import nifemiImage from "@/images/team/nifemi.jpg";
+import samuelImage from "@/images/team/samuel.jpg";
+import sebastineImage from "@/images/team/sebastine.jpg";
+import sodiqImage from "@/images/team/sodiq.jpg";
+import tobiImage from "@/images/team/tobi.jpg";
+import ziaImage from "@/images/team/zia.jpg";
 import asakeImage from "@/images/team/music/asake.png";
 import tokyoImage from "@/images/team/music/tokyo.png";
 import commandoImage from "@/images/team/music/commando.png";
-import convictImage from "@/images/team/music/convict.png";
+import obinigweImage from "@/images/team/music/obinigwe.jpeg";
 import creatureImage from "@/images/team/music/creature.png";
 import johaImage from "@/images/team/music/joha.png";
 import somewhereImage from "@/images/team/music/somewhere.png";
 import tearsImage from "@/images/team/music/tears.png";
 import btsImage from "@/images/team/music/bts.png";
-import jdImage from "@/images/team/jd.png";
-import akinImage from "@/images/team/akin.png";
-import femiImage from "@/images/team/femi.png";
-import funmiImage from "@/images/team/funmi.png";
-import karenImage from "@/images/team/karen.png";
+import jdImage from "@/images/team/jd.jpg";
+import akinImage from "@/images/team/akin.jpg";
+import femiImage from "@/images/team/femi.jpg";
+import funmiImage from "@/images/team/funmi.jpg";
+import karenImage from "@/images/team/karen.jpg";
 import o2Image from "@/images/team/music/o2.png";
 import idkImage from "@/images/team/music/idk.png";
-import marvinImage from "@/images/team/marvin.png";
-import tobijuImage from "@/images/team/tobiju.png";
-import solomonImage from "@/images/team/solomon.png";
+import marvinImage from "@/images/team/marvin.jpg";
+import tobijuImage from "@/images/team/tobiju.jpg";
+import solomonImage from "@/images/team/solomon.jpg";
 import growImage from "@/images/team/music/grow.png";
 import dDayImage from "@/images/team/music/d-day.png";
 import ollieImage from "@/images/team/music/ollie.png";
 import giantsImage from "@/images/team/music/giants.png";
-import omorinsolaImage from "@/images/team/omorinsola.png";
+import omorinsolaImage from "@/images/team/omorinsola.jpg";
 import victoryImage from "@/images/team/music/victory.png";
 import championImage from "@/images/team/music/champion.png";
 import babydollImage from "@/images/team/music/babydoll.png";
@@ -91,14 +91,15 @@ export const teamMembers: ITeamMember[] = [
         url: "https://twitter.com/Geektutor",
       },
     ],
-    quote: "Always be kind to others regardless",
+    quote:
+      "When I go out today, my steps do not end in dark narrow passages nor do I waste time making wrong turns. Amen.",
     category: "gdg-team",
     image: sodiqImage,
     music: {
-      image: convictImage,
-      name: "Ex-Convict",
-      artist: "Shallipopi",
-      url: "https://open.spotify.com/track/3Q4oVlA6z9TH0jhaDl6aNT?si=16425e0484e84a4f",
+      image: obinigweImage,
+      name: "Obinigwe",
+      artist: "Minister GUC",
+      url: "https://open.spotify.com/track/1zyQByOXDyQlFYzqTuax5l?si=e75d4aa93b3543e8",
     },
   },
   {

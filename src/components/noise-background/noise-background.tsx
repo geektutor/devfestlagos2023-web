@@ -1,12 +1,13 @@
 import classes from "./noise-background.module.scss";
-import useNoiseBackground from "./useNoiseBackground";
+import useNoiseBackground, { UseNoiseBackgroundArgs } from "./useNoiseBackground";
 
-const NoiseBackground: React.FC = () => {
+interface Props {
+  colorRange: UseNoiseBackgroundArgs["colorRange"];
+}
+
+const NoiseBackground: React.FC<Props> = ({ colorRange }) => {
   const { canvasRef } = useNoiseBackground({
-    colorRange: [
-      { r: 0, g: 0, b: 0 },
-      { r: 25.5, g: 25.5, b: 25.5 },
-    ],
+    colorRange,
   });
   return <canvas ref={canvasRef} className={classes.container} />;
 };

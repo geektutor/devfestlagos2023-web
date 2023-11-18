@@ -99,7 +99,12 @@ const Team = () => {
         <TeamPills />
       </div>
       <div className='team__dream'>
-        <NoiseBackground />
+        <NoiseBackground
+          colorRange={[
+            { r: 0, g: 0, b: 0 },
+            { r: 25.5, g: 25.5, b: 25.5 },
+          ]}
+        />
         <div className='team__dream__top'>
           <div>
             <h3 className='team__dream__header'>⭐ The Dream Team</h3>
