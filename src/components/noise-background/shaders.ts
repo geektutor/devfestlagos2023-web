@@ -24,12 +24,10 @@ export const NOISE_FRAGMENT_SHADER = `
 
         val *= 10.0;
 
-        vec2 ipos = fract(val);
-
         vec3 color = vec3(mix(
             0.0,
             0.1,
-            rand(ipos)
+            rand(val)
         ));
 
         gl_FragColor = vec4(color, 1.0);
