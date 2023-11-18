@@ -492,7 +492,6 @@ export default class LandingPage extends Component {
   }
 
   animateSpeakers() {
-    console.log("animate speakers");
     const { speakersDoodle, speakersMemoji, speakerCards, speakerButton } = this.elements;
 
     GSAP.to(speakersDoodle, {
