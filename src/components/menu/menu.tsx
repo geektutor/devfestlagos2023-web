@@ -26,7 +26,9 @@ const Menu: FC<Props> = ({ actionButton }) => {
   return (
     <header className={styles.menu}>
       <div className={styles.logo}>
-        <Logo data-animate-y-full data-easing='LOGO' />
+        <Link href='/'>
+          <Logo data-animate-y-full data-easing='LOGO' />
+        </Link>
       </div>
       <div className={styles.items}>
         <nav className={styles.nav}>
