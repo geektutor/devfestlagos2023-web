@@ -1,16 +1,14 @@
 import React, { useEffect, useRef } from "react";
-import CategoryPill from "@/components/category-pill/category-pill";
 import RsvpTicket from "@/components/rsvp/rsvp-ticket";
 import { SecondaryButton, TertiaryButton } from "@/components/button";
 import FaqSection from "@/components/faq-section/faq-section";
 import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
 import Menu from "@/components/menu/menu";
 import Footer from "@/components/footer";
-import { fetchCategories, fetchSessions } from "@/requests/general";
+import { fetchSessions, fetchSpeakers } from "@/requests/general";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Session } from "@/types/Session";
 import { classNames } from "@/utils/classNames";
-import { Category } from "@/types/Category";
 import RSVPTicketDetails from "@/components/rsvp/rsvp-details/rsvp-ticket-details";
 import { useRSVPState } from "@/hooks/useRSVPState";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -30,9 +28,8 @@ import memoji1 from "@/images/beanie-memoji.png";
 import memoji2 from "@/images/wink-memoji.png";
 import { toast } from "react-toastify";
 import { ErrorAlert, SuccessAlert } from "@/components/alert/alert";
-import LeftIcon from "@/images/chevron-left.svg";
-import RightIcon from "@/images/chevron-right.svg";
 import { EmptyRsvp } from "@/components/rsvp/empty-rsvp/empty-rsvp";
+import { Speaker } from "@/types/Speaker";
 
 const pageSize = 6;
 
@@ -41,7 +38,7 @@ const TABS = {
   BOOKMARKS: "BOOKMARKS",
 };
 
-const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [user, setUser] = React.useState<firebase.User | null>(null);
   const [showLogin, setShowLogin] = React.useState<boolean>(false);
   const [tickets, setTickets] = React.useState<Set<string>>(new Set());
@@ -109,7 +106,6 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
   const {
     talksPage,
     activeDay,
-    activeCategory,
     talkModalState,
     onClickNext,
     onClickPrev,
@@ -118,12 +114,9 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
     onCloseTalkDetails,
     currentTalks,
     rangeText,
-    categoriesWithAll,
     totalTalks,
-    setActiveCategory,
   } = useRSVPState({
     sessions: activeTab === TABS.GENERAL ? sessions : getSessionsQuery.data?.sessions || [],
-    categories,
     scrollToTalks,
     pageSize,
   });
@@ -220,6 +213,14 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
     });
   };
 
+  const getSessionImageURL = (session: Session) => {
+    const speaker = speakers.find((speaker) => speaker.name === session.owner);
+
+    if (speaker) return speaker.avatar;
+
+    return session.speakerImage;
+  };
+
   const renderMenuButton = () => {
     return (
       <div className='rsvp__menu'>
@@ -254,6 +255,7 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
           isSelected={false}
           isSecured={false}
           onRemoveSession={() => {}}
+          image=''
           isLoading
         />
       ));
@@ -261,52 +263,16 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
 
     return currentTalks.map((talk) => (
       <RsvpTicket
-        key={talk.sessionId}
+        key={talk.owner || talk.sessionId}
         onClick={() => onShowTalkDetails(talk)}
         session={talk}
         isSelected={tickets.has(talk.sessionId)}
         onSelectTicket={onSelectTicket(talk)}
         isSecured={getSessionsQuery.data?.sessionIds.has(talk.sessionId)}
         onRemoveSession={onRemoveSession(talk.sessionId)}
+        image={getSessionImageURL(talk)}
       />
     ));
-  };
-
-  const categoriesRef = useRef<HTMLDivElement>(null);
-
-  const scrollCategories = (direction: "left" | "right") => () => {
-    const div = categoriesRef.current;
-    if (!div) return;
-
-    const categories = Array.from(div.children) as Array<HTMLDivElement>;
-    const scroll = div.scrollLeft;
-
-    const closestCategory = categories.find((category) => category.offsetLeft - 8 > scroll);
-    if (!closestCategory) return;
-
-    let scrollTarget = div.scrollLeft;
-    if (direction === "left") {
-      let targetElement;
-
-      if (closestCategory.previousElementSibling?.previousElementSibling) {
-        targetElement = closestCategory.previousElementSibling
-          ?.previousElementSibling as HTMLDivElement;
-      } else {
-        targetElement = closestCategory.previousElementSibling as HTMLDivElement;
-      }
-
-      scrollTarget = targetElement?.offsetLeft - 8 || scrollTarget;
-    } else {
-      const targetElement = closestCategory.nextElementSibling
-        ?.nextElementSibling as HTMLDivElement;
-
-      scrollTarget = targetElement?.offsetLeft || scrollTarget;
-    }
-
-    div.scrollTo({
-      left: scrollTarget,
-      behavior: "smooth",
-    });
   };
 
   const renderBody = () => {
@@ -316,31 +282,6 @@ const RSVP = ({ sessions, categories }: InferGetStaticPropsType<typeof getStatic
 
     return (
       <>
-        <div className='rsvp__categories'>
-          <button className='rsvp__categories__left-button' onClick={scrollCategories("left")}>
-            <LeftIcon />
-          </button>
-          <button className='rsvp__categories__right-button' onClick={scrollCategories("right")}>
-            <RightIcon />
-          </button>
-          <div className='rsvp__categories__inner' ref={categoriesRef}>
-            {categoriesWithAll.map((category) => (
-              <CategoryPill
-                className={classNames(
-                  "rsvp__category",
-                  activeCategory !== category.name && "is-inactive",
-                )}
-                activeTextColor='#FFF'
-                activeBgColor='#000'
-                key={category.name}
-                isActive={activeCategory === category.name}
-                onClick={() => setActiveCategory(category.name)}
-              >
-                {category.name}
-              </CategoryPill>
-            ))}
-          </div>
-        </div>
         <section className='rsvp__talks'>{renderTalks()}</section>
         <section className='rsvp__pagination'>
           <p className='rsvp__pagination-text'>{rangeText}</p>
@@ -434,10 +375,10 @@ RSVP.disableLayout = true;
 export default RSVP;
 
 export const getStaticProps = (async () => {
-  const [sessions, categories] = await Promise.all([fetchSessions(), fetchCategories()]);
+  const [sessions, speakers] = await Promise.all([fetchSessions(), fetchSpeakers()]);
 
-  return { props: { sessions, categories } };
+  return { props: { sessions, speakers } };
 }) satisfies GetStaticProps<{
   sessions: Session[];
-  categories: Category[];
+  speakers: Speaker[];
 }>;

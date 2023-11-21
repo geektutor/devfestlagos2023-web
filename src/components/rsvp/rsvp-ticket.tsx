@@ -14,7 +14,21 @@ type RSVPTicketProps = {
   isSecured?: boolean;
   onRemoveSession: () => void;
   isLoading?: boolean;
+  image: string;
 };
+
+const backgroundColors = [
+  "#F6EEEE",
+  "#EEF3F6",
+  "#FFF1CC",
+  "#EDCCFF",
+  "#F6EEEE",
+  "#F6FEEE",
+  "#EEF4F6",
+  "#FFF2CC",
+  "#EDCDFF",
+  "#F6EDEE",
+];
 
 const getDayText = (date: string) =>
   new Date(date).getDate() === 24 ? "24th November" : "25th November";
@@ -27,19 +41,12 @@ const RSVPTicket = ({
   isSecured,
   onRemoveSession,
   isLoading,
+  image,
 }: RSVPTicketProps) => {
-  const {
-    category,
-    title,
-    sessionDate,
-    availableSeats,
-    scheduledAt,
-    tagLine,
-    owner,
-    speakerImage,
-  } = session;
+  const { title, sessionDate, availableSeats, scheduledAt, tagLine, owner } = session;
 
-  const backgroundColor = "#FFF";
+  //generate random color
+  const backgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
 
   return (
     <div className={classNames(styles.ticket, isLoading && styles.isLoading)} onClick={onClick}>
@@ -50,7 +57,7 @@ const RSVPTicket = ({
         }}
       >
         <div className={styles.speakerImage}>
-          <Image className={styles.speakerImageInner} src={speakerImage} alt={owner} fill />
+          <Image className={styles.speakerImageInner} src={image} alt={owner} fill />
         </div>
         <div className={styles.speakerInfo}>
           <p className={styles.seeSession}>Tap to See Session</p>
@@ -63,9 +70,6 @@ const RSVPTicket = ({
       </div>
       <div className={styles.talkDetails}>
         <div className={styles.talkCategoryAndAvailability}>
-          <CategoryPill className={styles.talkCategory} isSmall>
-            {category}
-          </CategoryPill>
           <span className={styles.talkAvailability}>
             Seats:{" "}
             <span
