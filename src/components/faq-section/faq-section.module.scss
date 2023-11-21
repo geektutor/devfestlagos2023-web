@@ -65,6 +65,7 @@
 .faqQuestions {
   @include flex-gap(1.6rem, 0);
   max-width: 70.6rem;
+  margin-bottom: 3.2rem;
 
   @include media("<=tablet") {
     max-width: 35.3rem;
