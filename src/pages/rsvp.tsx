@@ -362,6 +362,7 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
           onRemoveSession={onRemoveSession(talkModalState.session?.sessionId || "")}
           isSecured={getSessionsQuery.data?.sessionIds.has(talkModalState.session?.sessionId || "")}
           onSelectTicket={onSelectTicket(talkModalState.session || ({} as Session))}
+          speakerImage={talkModalState.session ? getSessionImageURL(talkModalState.session) : ""}
         />
         <RSVPSignIn modalIsOpen={showLogin} onLogin={onLogin} onClose={() => setShowLogin(false)} />
       </div>

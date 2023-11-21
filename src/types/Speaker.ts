@@ -14,4 +14,5 @@ export type Speaker = {
   currentSessionId: string;
   sessionDate: string;
   category: string;
+  scheduledAt: string;
 };

@@ -104,12 +104,11 @@ export default function SpeakerCard({
         <div className={styles.modalTags}>
           {session && (
             <CategoryPill isSmall isActive activeBgColor='#34a853' activeTextColor='#FFF'>
-              {getDayText(session.sessionDate)}, {session.scheduledAt}
+              {getDayText(session.sessionDate)}, {session.scheduledAt || speaker.scheduledAt}
             </CategoryPill>
           )}
         </div>
         <h3 className={styles.modalTitle}>{session?.title}</h3>
-        <p className={styles.modalDescription}>{session?.description}</p>
         <div className={styles.modalButtons}>
           {hasPrevious && (
             <SecondaryButton onClick={() => onClickButton("previous")}>

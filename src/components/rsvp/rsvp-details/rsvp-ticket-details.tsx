@@ -20,6 +20,7 @@ type RSVPTicketDetailsProps = {
   isSelected: boolean;
   isSecured?: boolean;
   onRemoveSession: () => void;
+  speakerImage: string;
 };
 
 const getDayText = (date: string) =>
@@ -33,23 +34,14 @@ const RSVPTicketDetails = ({
   onSelectTicket,
   isSecured,
   onRemoveSession,
+  speakerImage,
 }: RSVPTicketDetailsProps) => {
   const timeLeft = "30"; //todo: Actually calculate this using the scheduledAt and sessionDate
 
   const renderContent = () => {
     if (!session) return null;
 
-    const {
-      title,
-      sessionDate,
-      availableSeats,
-      scheduledAt,
-      tagLine,
-      owner,
-      speakerImage,
-      description,
-      hall,
-    } = session;
+    const { title, sessionDate, availableSeats, scheduledAt, tagLine, owner, hall } = session;
 
     return (
       <>
@@ -74,11 +66,8 @@ const RSVPTicketDetails = ({
           <div className={styles.speakerImage}>
             <Image className={styles.speakerImageInner} src={speakerImage} alt={owner} fill />
           </div>
-          <CategoryPill isSmall className={styles.speakerButton}>
-            See Speaker Page
-          </CategoryPill>
+          <h3 className={styles.speakerName}>{owner}</h3>
         </div>
-        <h3 className={styles.speakerName}>{owner}</h3>
         <p className={styles.speakerRole}>{tagLine}</p>
         <div className={styles.talkDateAndLocation}>
           <CategoryPill className={styles.talkDate}>
@@ -89,12 +78,8 @@ const RSVPTicketDetails = ({
           </CategoryPill>
           <CategoryPill className={styles.location}>
             <Location />
-            <span>{`Hall ${hall}`}</span>
+            <span>{hall}</span>
           </CategoryPill>
-        </div>
-        <div className={styles.descriptionSection}>
-          <h3 className={styles.descriptionHeading}>DESCRIPTION</h3>
-          <p className={styles.description}>{description}</p>
         </div>
         <div className={styles.finalCTA}>
           <span>
