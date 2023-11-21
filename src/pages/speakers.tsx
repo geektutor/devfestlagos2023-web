@@ -40,8 +40,6 @@ export default function Speakers({
     }
   };
 
-  console.log(speakers);
-
   const daySpeakers = useMemo(() => {
     const targetDay = selectedDay === 1 ? 24 : 25;
     return speakers.filter((speakers) => new Date(speakers.sessionDate).getDate() === targetDay);

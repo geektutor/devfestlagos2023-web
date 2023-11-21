@@ -136,7 +136,6 @@ export const fetchAgenda = async () => {
     const agenda = response.data.data as Schedule[];
     const agendaSorted = agenda.sort((speaker, speakerB) => speaker.order - speakerB.order);
 
-    console.log(agendaSorted.filter((agenda) => agenda.isbreakout));
     const day1 = processAgenda(agendaSorted.filter((item) => new Date(item.day).getDate() === 24));
     const day2 = processAgenda(agendaSorted.filter((item) => new Date(item.day).getDate() === 25));
 
