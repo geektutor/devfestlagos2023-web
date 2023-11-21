@@ -22,6 +22,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Session } from "@/types/Session";
 import { Speaker } from "@/types/Speaker";
 import DaysToggle from "@/components/days-toggle/days-toggle";
+import { getSpeakerSession } from "@/utils/getSpeakerSession";
 
 export default function Speakers({
   sessions,
@@ -32,11 +33,11 @@ export default function Speakers({
 
   const handleChangeSpeaker = (index: number) => (direction: "next" | "previous") => {
     if (direction === "next") {
-      setActiveSpeaker(speakers[index + 1]);
+      setActiveSpeaker(daySpeakers[index + 1]);
     }
 
     if (direction === "previous") {
-      setActiveSpeaker(speakers[index - 1]);
+      setActiveSpeaker(daySpeakers[index - 1]);
     }
   };
 
@@ -168,10 +169,12 @@ export default function Speakers({
                 speaker={speaker}
                 onClick={() => setActiveSpeaker(speaker)}
                 onClose={() => setActiveSpeaker(null)}
-                hasNext={index < speakers.length - 1}
+                hasNext={index < daySpeakers.length - 1}
                 hasPrevious={index > 0}
                 onClickButton={handleChangeSpeaker(index)}
                 modalIsOpen={activeSpeaker === speaker}
+                session={getSpeakerSession({ speaker, sessions })}
+                className='speakers_page__speakers__speaker'
               />
             ))}
           </div>

@@ -35,6 +35,7 @@ import { Session } from "@/types/Session";
 import { Category } from "@/types/Category";
 import { Speaker } from "@/types/Speaker";
 import { ticketsUrl } from "@/utils/urls";
+import { getSpeakerSession } from "@/utils/getSpeakerSession";
 
 const topics = [
   [
@@ -414,6 +415,7 @@ export default function Landing({
                     hasPrevious={index > 0}
                     onClickButton={handleChangeSpeaker(index)}
                     modalIsOpen={activeSpeaker === speaker}
+                    session={getSpeakerSession({ speaker, sessions })}
                   />
                 </div>
               ))}

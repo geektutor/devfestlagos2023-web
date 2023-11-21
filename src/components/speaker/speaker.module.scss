@@ -199,6 +199,10 @@
   border-bottom: 0.4rem solid $grey-10;
   margin-right: 2rem;
 
+  img {
+    object-position: 0 10%;
+  }
+
   @include media("<=tablet") {
     @include ratio(14.2rem, 11.8rem);
     width: 11.8rem;
@@ -290,7 +294,7 @@
 }
 
 .modalTitle {
-  @include heading-4;
+  @include heading-5;
   color: $grey-0;
   margin-bottom: 1.6rem;
 

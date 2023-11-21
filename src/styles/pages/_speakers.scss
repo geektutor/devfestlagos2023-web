@@ -634,6 +634,11 @@
     padding: 4.8rem 0 4.8rem 8.6vw;
     background: $bg-shade-1;
 
+    @include media("<=phone") {
+      padding-left: 0;
+      padding: 0 2.4rem;
+    }
+
     &_header {
       display: flex;
       align-items: center;
@@ -641,8 +646,19 @@
       padding-right: 12rem;
       margin: 2rem 0;
 
+      @include media("<=phone") {
+        flex-direction: column;
+        row-gap: 2.4rem;
+        padding-right: 0;
+        align-items: flex-start;
+      }
+
       h1 {
         @include heading-4;
+
+        @include media("<=phone") {
+          @include heading-5;
+        }
       }
     }
 
@@ -651,6 +667,16 @@
       flex-wrap: wrap;
       gap: 20px;
       max-width: 1200px;
+
+      @include media("<=phone") {
+        justify-content: center;
+      }
+    }
+
+    &__speaker {
+      @include media("<=phone") {
+        width: 100% !important;
+      }
     }
   }
 

@@ -4,9 +4,6 @@ import styles from "./speaker.module.scss";
 import CloseCircle from "@/images/close-circle.svg";
 import topImage from "@/images/speaker/top-image.png";
 import topImageMobile from "@/images/speaker/top-image-mobile.png";
-import TwitterIcon from "@/images/speaker/twitter.svg";
-import LinkedinIcon from "@/images/speaker/linkedin.svg";
-import WebsiteIcon from "@/images/speaker/website.svg";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import ArrowLeft from "@/images/arrow-left-dark.svg";
 import { PrimaryButton, SecondaryButton } from "@/components/button";
@@ -14,6 +11,8 @@ import { createPortal } from "react-dom";
 import { classNames } from "@/utils/classNames";
 import CategoryPill from "@/components/category-pill/category-pill";
 import { Speaker } from "@/types/Speaker";
+import { Session } from "@/types/Session";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 interface SpeakerCardProps {
   modalIsOpen?: boolean;
@@ -23,9 +22,11 @@ interface SpeakerCardProps {
   hasPrevious: boolean;
   onClick: () => void;
   speaker: Speaker;
+  session: Session | undefined;
+  className?: string;
 }
 
-// const getDayText = (day: 1 | 2) => (day === 1 ? "24th November" : "25th November");
+const getDayText = (date: string) => (new Date(date).getDay() === 24 ? "Friday" : "Saturday");
 
 const backgroundColors = [
   "#F6EEEE",
@@ -48,6 +49,8 @@ export default function SpeakerCard({
   onClickButton,
   hasNext,
   hasPrevious,
+  session,
+  className,
 }: SpeakerCardProps) {
   const [portalWrapper, setPortalWrapper] = useState<Element | null>();
 
@@ -58,6 +61,11 @@ export default function SpeakerCard({
   useEffect(() => {
     setPortalWrapper(document.querySelector(".app-wrapper")!);
   }, []);
+
+  useEffect(() => {
+    if (modalIsOpen) disableBodyScroll(document.body);
+    else enableBodyScroll(document.body);
+  }, [modalIsOpen]);
 
   const modalContent = (
     <div className={classNames(styles.modal, modalIsOpen && styles.active)}>
@@ -79,30 +87,29 @@ export default function SpeakerCard({
           <div>
             <h3 className={styles.modalSpeakerName}>{name}</h3>
             <p className={styles.modalSpeakerCredits}>{role}</p>
-            <p className={styles.modalLinksHeader}>LINKS</p>
-            <div className={styles.modalLinks}>
-              <a className={styles.modalLink}>
-                <TwitterIcon />
-              </a>
-              <a className={styles.modalLink}>
-                <LinkedinIcon />
-              </a>
-              <a className={styles.modalLink}>
-                <WebsiteIcon />
-              </a>
-            </div>
+            {/*<p className={styles.modalLinksHeader}>LINKS</p>*/}
+            {/*<div className={styles.modalLinks}>*/}
+            {/*  <a className={styles.modalLink}>*/}
+            {/*    <TwitterIcon />*/}
+            {/*  </a>*/}
+            {/*  <a className={styles.modalLink}>*/}
+            {/*    <LinkedinIcon />*/}
+            {/*  </a>*/}
+            {/*  <a className={styles.modalLink}>*/}
+            {/*    <WebsiteIcon />*/}
+            {/*  </a>*/}
+            {/*</div>*/}
           </div>
         </div>
         <div className={styles.modalTags}>
-          <CategoryPill className={styles.modalCategory} isSmall>
-            {speaker.category}
-          </CategoryPill>
-          <CategoryPill isSmall isActive activeBgColor='#34a853' activeTextColor='#FFF'>
-            {/*{getDayText(speaker.day)}, {speaker.talk!.date}*/}
-          </CategoryPill>
+          {session && (
+            <CategoryPill isSmall isActive activeBgColor='#34a853' activeTextColor='#FFF'>
+              {getDayText(session.sessionDate)}, {session.scheduledAt}
+            </CategoryPill>
+          )}
         </div>
-        {/*<h3 className={styles.modalTitle}>{speaker.talk!.title}</h3>*/}
-        {/*<p className={styles.modalDescription}>{speaker.talk!.description}</p>*/}
+        <h3 className={styles.modalTitle}>{session?.title}</h3>
+        <p className={styles.modalDescription}>{session?.description}</p>
         <div className={styles.modalButtons}>
           {hasPrevious && (
             <SecondaryButton onClick={() => onClickButton("previous")}>
@@ -123,7 +130,7 @@ export default function SpeakerCard({
 
   return (
     <>
-      <div className={styles.speaker} onClick={onClick}>
+      <div className={classNames(styles.speaker, className)} onClick={onClick}>
         <div className={styles.speakerImage}>
           <Image className={styles.speakerImageInner} src={avatar} alt={name} fill />
         </div>
