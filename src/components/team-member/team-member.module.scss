@@ -1,0 +1,282 @@
+@import "core/variables";
+@import "core/typography";
+@import "utils/breakpoints";
+@import "utils/mixins";
+
+.teamMember {
+  padding: 1.6rem;
+  border-radius: 2.4rem;
+  background: $grey-0;
+  display: flex;
+  flex-direction: column;
+
+  @include media("<=tablet") {
+    padding: 0.8rem;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 25fr 29fr;
+  gap: 1.6rem;
+  margin-bottom: 1.6rem;
+
+  @include media("<=tablet") {
+    margin-bottom: 0.8rem;
+  }
+
+  @include media("<=phone") {
+    grid-template-columns: 1fr;
+  }
+}
+
+.imageRow {
+  @include media("<=phone") {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: unset;
+  }
+}
+
+%section {
+  padding: 1.6rem;
+  border-radius: 2.4rem;
+  background: $secondary-grey;
+
+  @include media("<=tablet") {
+    padding: 0.8rem;
+    border-radius: 1.08rem;
+  }
+
+  @include media("<=phone") {
+    padding: 1.6rem;
+    border-radius: 2.4rem;
+  }
+}
+
+.leftColumn {
+  display: flex;
+  @include flex-gap(1.6rem, 0);
+  flex-direction: column;
+}
+
+.name {
+  @extend %section;
+  @include heading-5;
+  color: $grey-100;
+  margin-top: 0;
+  @include flex-gap(0.8rem, 0);
+  flex-direction: column;
+
+  span {
+    display: block;
+  }
+
+  @include media("<=tablet") {
+    @include body-3;
+  }
+
+  @include media("<=phone") {
+    @include title-2;
+  }
+}
+
+.role {
+  @extend %section;
+  @include body-1;
+  color: $grey-80;
+
+  @include media("<=tablet") {
+    @include body-5;
+  }
+
+  @include media("<=phone") {
+    @include body-1;
+  }
+}
+
+.comment {
+  @extend %section;
+  @include body-3;
+  color: $grey-40;
+  flex-grow: 1;
+  overflow: auto;
+
+  @include media("<=tablet") {
+    font-size: 0.8rem;
+    line-height: normal;
+  }
+
+  @include media("<=phone") {
+    @include body-3;
+  }
+}
+
+.sectionHeader {
+  @include body-3;
+  color: $grey-40;
+  margin-bottom: 1.6rem;
+
+  @include media("<=tablet") {
+    font-size: 0.8rem;
+    line-height: normal;
+    margin-bottom: 0.4rem;
+  }
+
+  @include media("<=phone") {
+    @include body-3;
+    margin-bottom: 1.6rem;
+  }
+}
+
+.linksSection {
+  @extend %section;
+  height: 10rem;
+
+  @include media("<=phone") {
+    min-height: 10rem;
+    height: unset;
+  }
+}
+
+.links {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); //todo: make this break into seperate lines on mobile
+  column-gap: 1.6rem;
+
+  @include media("<=tablet") {
+    column-gap: 0.8rem;
+  }
+
+  @include media("<=phone") {
+    column-gap: 2.8rem;
+  }
+}
+
+.link {
+  @include ratio(1, 1);
+  width: 100%;
+  display: block;
+
+  svg {
+    width: 100%;
+  }
+}
+
+.quote {
+  @extend %section;
+  @include heading-4;
+  color: $grey-100;
+  flex-grow: 1;
+
+  @include media("<=tablet") {
+    @include body-1;
+  }
+
+  @include media("<=phone") {
+    @include title-2;
+  }
+}
+
+.picture {
+  @include ratio(360, 290);
+  width: 100%;
+  border-radius: 2.4rem;
+
+  @include media("<=tablet") {
+    @include ratio(172.5, 145);
+    border-radius: 0.8rem;
+  }
+
+  @include media("<=phone") {
+    @include ratio(1, 1);
+    border-radius: 2.4rem;
+    margin-bottom: 1.6rem;
+  }
+}
+
+.music {
+  width: 100%;
+  height: 10rem;
+  border-radius: 2.4rem;
+  background: linear-gradient(90deg, #12c2e9 0, #c471ed 100%);
+  background-size: 200% 200%;
+  display: flex;
+  align-items: center;
+  padding: 1.6rem;
+  text-decoration: none;
+
+  -webkit-animation: animateBackground 5s ease infinite;
+  -moz-animation: animateBackground 5s ease infinite;
+  animation: animateBackground 5s ease infinite;
+
+  @-webkit-keyframes animateBackground {
+    0% {
+      background-position: 10% 0;
+    }
+    50% {
+      background-position: 91% 100%;
+    }
+    100% {
+      background-position: 10% 0;
+    }
+  }
+  @-moz-keyframes animateBackground {
+    0% {
+      background-position: 10% 0;
+    }
+    50% {
+      background-position: 91% 100%;
+    }
+    100% {
+      background-position: 10% 0;
+    }
+  }
+  @keyframes animateBackground {
+    0% {
+      background-position: 10% 0;
+    }
+    50% {
+      background-position: 91% 100%;
+    }
+    100% {
+      background-position: 10% 0;
+    }
+  }
+
+  @include media("<=tablet") {
+    border-radius: 0.8rem;
+  }
+}
+
+.musicInner {
+  height: 7rem;
+  display: flex;
+  width: 100%;
+}
+
+.albumArt {
+  @include ratio(1, 1);
+  width: 7rem;
+  margin-right: 0.8rem;
+}
+
+.musicTitle {
+  @include body-1;
+  color: $grey-100;
+  margin-bottom: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 14rem;
+}
+
+.artist {
+  @include body-3;
+  color: $grey-100;
+}
+
+.playIcon {
+  display: block;
+  margin-left: auto;
+}

@@ -9,7 +9,7 @@ type Props = {
   animationDelay?: number;
 };
 
-const getDayText = (day: 1 | 2) => (day === 1 ? "24th Novemeber" : "25th November");
+const getDayText = (day: 1 | 2) => (day === 1 ? "24th November" : "25th November");
 
 export const Talk: FC<Props> = ({ talk, animationDelay = 0 }) => {
   return (

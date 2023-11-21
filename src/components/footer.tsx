@@ -15,8 +15,22 @@ const footerLinks = [
 const Footer = () => {
   const followText = (
     <li className='c-footer__list__group__item c-footer__follow__container'>
-      <span className='c-footer__follow__container__title' data-animate-y-full data-add-span data-delay=".25" data-easing="FOOTER">Follow us:</span>
-      <div className='c-footer__follow__container__icons' data-animate-y-children-full data-delay=".333" data-stagger=".084" data-easing="FOOTER">
+      <span
+        className='c-footer__follow__container__title'
+        data-animate-y-full
+        data-add-span
+        data-delay='.25'
+        data-easing='FOOTER'
+      >
+        Follow us:
+      </span>
+      <div
+        className='c-footer__follow__container__icons'
+        data-animate-y-children-full
+        data-delay='.333'
+        data-stagger='.084'
+        data-easing='FOOTER'
+      >
         <XLightIcon />
         <InstagramLightIcon />
         <FacebookLightIcon />
@@ -32,7 +46,7 @@ const Footer = () => {
       <div>
         <div className='c-footer__container'>
           <figure className='c-footer__logo'>
-            <Logo alt='DevFest Lagos 2023 Logo' data-animate-y-full data-easing="FOOTER" />
+            <Logo alt='DevFest Lagos 2023 Logo' data-animate-y-full data-easing='FOOTER' />
           </figure>
 
           {footerLinks.map((group, index) => (
@@ -41,7 +55,14 @@ const Footer = () => {
                 link === "Follow us" ? (
                   followText
                 ) : (
-                  <li key={index} className='c-footer__list__group__item' data-animate-y-full data-add-span data-delay={.083 * (index + 1)} data-easing="FOOTER">
+                  <li
+                    key={index}
+                    className='c-footer__list__group__item'
+                    data-animate-y-full
+                    data-add-span
+                    data-delay={0.083 * (index + 1)}
+                    data-easing='FOOTER'
+                  >
                     {link}
                   </li>
                 ),
@@ -50,7 +71,13 @@ const Footer = () => {
           ))}
         </div>
 
-        <div className='c-footer__note' data-animate-y-full data-add-span data-delay=".25" data-easing="FOOTER">
+        <div
+          className='c-footer__note'
+          data-animate-y-full
+          data-add-span
+          data-delay='.25'
+          data-easing='FOOTER'
+        >
           &copy; {new Date().getFullYear()} Devfest Lagos. All Rights Reserved.
         </div>
       </div>
