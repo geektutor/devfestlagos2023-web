@@ -178,44 +178,13 @@ export default function Speakers({
             ))}
           </div>
         </section>
-        <Talks sessions={sessions} disableAnimation />
+        <Talks sessions={sessions} speakers={speakers} disableAnimation />
         <FaqSection />
         <NoMatterWhat />
       </main>
     </>
   );
 }
-
-const DaysTab = () => {
-  const Days = ["Day 1", "Day 2"];
-  const [active, setActive] = useState(false);
-  const [tab, setTab] = useState(0);
-
-  const toggle = (tab: number) => {
-    setActive(!active);
-    setTab(tab);
-  };
-
-  const Style = active
-    ? {
-        color: "#111",
-        borderBottom: "2px solid #111",
-        padding: "1rem 3rem",
-      }
-    : {
-        color: "#444",
-        border: "none",
-      };
-  return (
-    <div style={{ display: "flex", gap: "1rem", marginRight: "10rem" }}>
-      {Days.map((item, idx) => (
-        <p style={Style} onClick={() => toggle(tab)} key={idx}>
-          {item}
-        </p>
-      ))}
-    </div>
-  );
-};
 
 export const getStaticProps = (async () => {
   const [sessions, speakers] = await Promise.all([fetchSessions(), fetchSpeakers()]);

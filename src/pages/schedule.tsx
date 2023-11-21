@@ -10,15 +10,17 @@ import { ScheduleCard } from "@/components/schedule-card";
 import { Talks } from "@/components/talks-section/talks";
 import FaqSection from "@/components/faq-section/faq-section";
 import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
-import { fetchAgenda, fetchSessions } from "@/requests/general";
+import { fetchAgenda, fetchSessions, fetchSpeakers } from "@/requests/general";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Session } from "@/types/Session";
 import { Schedule } from "@/types/Schedule";
 import DaysToggle from "@/components/days-toggle/days-toggle";
+import { Speaker } from "@/types/Speaker";
 
 export default function Schedule({
   sessions,
   agenda,
+  speakers,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [selectedDay, setSelectedDay] = useState<number>(1);
 
@@ -73,7 +75,7 @@ export default function Schedule({
           </section>
         </div>
       </header>
-      <Talks sessions={sessions} disableAnimation />
+      <Talks speakers={speakers} sessions={sessions} disableAnimation />
       <FaqSection />
       <NoMatterWhat />
     </div>
@@ -81,10 +83,15 @@ export default function Schedule({
 }
 
 export const getStaticProps = (async () => {
-  const [sessions, agenda] = await Promise.all([fetchSessions(), fetchAgenda()]);
+  const [sessions, agenda, speakers] = await Promise.all([
+    fetchSessions(),
+    fetchAgenda(),
+    fetchSpeakers(),
+  ]);
 
-  return { props: { sessions, agenda } };
+  return { props: { sessions, agenda, speakers } };
 }) satisfies GetStaticProps<{
   sessions: Session[];
   agenda: Schedule[][];
+  speakers: Speaker[];
 }>;

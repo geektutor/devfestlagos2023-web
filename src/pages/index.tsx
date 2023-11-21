@@ -191,7 +191,12 @@ export default function Landing({
             {/*  <Image src={memojiDoodle} alt='doodle' quality={100} />*/}
             {/*</div>*/}
           </p>
-          <PrimaryButton href={ticketsUrl} isExternal data-animate-button className='landing-page__intro__button'>
+          <PrimaryButton
+            href={ticketsUrl}
+            isExternal
+            data-animate-button
+            className='landing-page__intro__button'
+          >
             <span>Get Your Ticket</span>
             <ArrowRight />
           </PrimaryButton>
@@ -272,7 +277,7 @@ export default function Landing({
               We are back to do so much more and we look forward to showing you what we have in
               store.
             </p>
-            <PrimaryButton data-animate-button data-delay='1.2' href={ticketsUrl} isExternal >
+            <PrimaryButton data-animate-button data-delay='1.2' href={ticketsUrl} isExternal>
               <span>Get Your Ticket</span> <ArrowRightDark />
             </PrimaryButton>
           </div>
@@ -443,7 +448,7 @@ export default function Landing({
             </div>
           </div>
         </section>
-        <Talks sessions={sessions} />
+        <Talks speakers={speakers} sessions={sessions} />
         <FaqSection />
         <NoMatterWhat />
         <Footer />

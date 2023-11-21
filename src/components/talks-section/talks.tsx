@@ -1,40 +1,46 @@
-import React, { FC, useEffect, useMemo, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import { classNames } from "@/utils/classNames";
 import { Talk } from "@/components/homepage/talk/talk";
-import { talks } from "@/mock-data";
 import styles from "./talks.module.scss";
 import { PrimaryButton } from "@/components/button";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 import { Session } from "@/types/Session";
-import { fetchSessions } from "@/requests/general";
+import { Speaker } from "@/types/Speaker";
 
 type Props = {
   hasDayToggle?: boolean;
   sessions: Session[];
   disableAnimation?: boolean;
+  speakers: Speaker[];
 };
 
 const MAX_VISIBLE_TALKS = 5;
 
-export const Talks: FC<Props> = ({ hasDayToggle = false, sessions, disableAnimation }) => {
+export const Talks: FC<Props> = ({
+  hasDayToggle = false,
+  sessions,
+  disableAnimation,
+  speakers,
+}) => {
   const [activeDay, setActiveDay] = useState<1 | 2>(1);
 
-  // const croppedTalks = sessions.filter(session => session.owner).slice(9, MAX_VISIBLE_TALKS + 9);
-  //todo: shuffle
   const croppedTalks = sessions
     .filter((session) => session.owner && session.sessionId && session.title)
     .slice(0, MAX_VISIBLE_TALKS);
-
-  console.log(croppedTalks);
-  useEffect(() => {
-    fetchSessions();
-  }, []);
 
   const validTalks = useMemo(() => {
     if (!hasDayToggle) return croppedTalks;
 
     return croppedTalks.filter((talk) => talk.day === activeDay);
   }, [activeDay, hasDayToggle, croppedTalks]);
+
+  const getImageURL = (session: Session) => {
+    const speaker = speakers.find((speaker) => speaker.name === session.owner);
+
+    if (speaker) return speaker.avatar;
+
+    return session.speakerImage;
+  };
 
   return (
     <section
@@ -92,10 +98,15 @@ export const Talks: FC<Props> = ({ hasDayToggle = false, sessions, disableAnimat
         )}
       </div>
       <div className={styles.talksGrid}>
-        {validTalks.map((talk, index) => (
+        {validTalks.map((session, index) => (
           <div key={index}>
-            <Talk session={talk} key={index} animationDelay={index * 0.084} />
-            {index < talks.length - 1 && (
+            <Talk
+              image={getImageURL(session)}
+              session={session}
+              key={index}
+              animationDelay={index * 0.084}
+            />
+            {index < croppedTalks.length - 1 && (
               <hr className={styles.talksDivider} data-fade-in data-delay={0.084 * index} />
             )}
           </div>

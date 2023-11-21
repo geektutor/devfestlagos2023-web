@@ -7,16 +7,17 @@ import { Session } from "@/types/Session";
 type Props = {
   animationDelay?: number;
   session: Session;
+  image: string;
 };
 
 const getDayText = (day: 1 | 2) => (day === 1 ? "24th November" : "25th November");
 
-export const Talk: FC<Props> = ({ animationDelay = 0, session }) => {
+export const Talk: FC<Props> = ({ animationDelay = 0, session, image }) => {
   return (
     <article className={styles.talk}>
       <div className={styles.portrait}>
         <Image
-          src={session.speakerImage}
+          src={image}
           alt={session.owner}
           fill
           style={{ objectFit: "cover" }}
