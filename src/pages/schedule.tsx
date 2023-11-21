@@ -14,6 +14,7 @@ import { fetchAgenda, fetchSessions } from "@/requests/general";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Session } from "@/types/Session";
 import { Schedule } from "@/types/Schedule";
+import DaysToggle from "@/components/days-toggle/days-toggle";
 
 export default function Schedule({
   sessions,
@@ -52,19 +53,12 @@ export default function Schedule({
           </figure>
 
           <section className='schedule_container'>
-            <div className='schedule_container__day_selection'>
-              {[1, 2].map((number, index) => (
-                <div
-                  onClick={() => setSelectedDay(number)}
-                  key={index}
-                  className={`schedule_container__day_selection__number ${
-                    selectedDay === number && "schedule_container__day_selection__active"
-                  }`}
-                >
-                  Day {number}
-                </div>
-              ))}
-            </div>
+            <DaysToggle
+              isCentered
+              hasMargin
+              selectedDay={selectedDay}
+              setSelectedDay={setSelectedDay}
+            />
             <div className='schedule_container__date_tag'>
               {selectedDay === 1 ? "24th" : "25th"} November, 2023
             </div>

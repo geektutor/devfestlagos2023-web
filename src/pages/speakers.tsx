@@ -1,7 +1,7 @@
 import { PrimaryButton } from "@/components/button";
 import { ticketsUrl } from "@/utils/urls";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import LandmarkFrontage from "@/images/speakers-page/landmark-frontage.png";
 import SpeakerCard from "@/components/speaker/speaker";
@@ -21,12 +21,14 @@ import { fetchSessions, fetchSpeakers } from "@/requests/general";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Session } from "@/types/Session";
 import { Speaker } from "@/types/Speaker";
+import DaysToggle from "@/components/days-toggle/days-toggle";
 
 export default function Speakers({
   sessions,
   speakers,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
+  const [selectedDay, setSelectedDay] = useState<number>(1);
 
   const handleChangeSpeaker = (index: number) => (direction: "next" | "previous") => {
     if (direction === "next") {
@@ -37,6 +39,13 @@ export default function Speakers({
       setActiveSpeaker(speakers[index - 1]);
     }
   };
+
+  console.log(speakers);
+
+  const daySpeakers = useMemo(() => {
+    const targetDay = selectedDay === 1 ? 24 : 25;
+    return speakers.filter((speakers) => new Date(speakers.sessionDate).getDate() === targetDay);
+  }, [selectedDay, speakers]);
 
   return (
     <>
@@ -152,10 +161,10 @@ export default function Speakers({
         <section className='speakers_page__speakers'>
           <div className='speakers_page__speakers_header'>
             <h1>Our speakers for this years DevFest</h1>
-            <DaysTab />
+            <DaysToggle selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
           </div>
           <div className='speakers_page__speakers_list'>
-            {speakers.map((speaker, index: number) => (
+            {daySpeakers.map((speaker, index: number) => (
               <SpeakerCard
                 key={index}
                 speaker={speaker}
