@@ -1,6 +1,7 @@
 import React from "react";
 import FAQ from "@/components/faq/FAQ";
 import styles from "./faq-section.module.scss";
+import { faqs } from "@/data/faqs";
 
 const FaqSection = () => {
   return (
@@ -12,13 +13,8 @@ const FaqSection = () => {
         Check out our most asked questions here, mfjpm 😑🤚🏾
       </p>
       <div className={styles.faqQuestions}>
-        {Array.from({ length: 4 }).map((_, index) => (
-          <FAQ
-            question='How can we get TSticks to do giveaway by morning?'
-            answer='Threaten him ez'
-            key={index}
-            index={index}
-          />
+        {faqs.map((faq) => (
+          <FAQ key={faq.question} question={faq.question} answer={faq.answer} />
         ))}
       </div>
     </section>
