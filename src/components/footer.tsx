@@ -27,9 +27,6 @@ const footerLinks: Link[][] = [
   ],
   [
     {
-      text: "Apply as a sponsor",
-    },
-    {
       text: "Join the community",
       link: "https://gdg.community.dev/gdg-lagos/",
     },
@@ -39,9 +36,6 @@ const footerLinks: Link[][] = [
     },
   ],
   [
-    {
-      text: "Privacy policy",
-    },
     {
       text: "Contact us",
       link: "https://twitter.com/gdglagos",
