@@ -52,8 +52,12 @@ export const Talk: FC<Props> = ({ animationDelay = 0, session }) => {
           data-delay={0.583 + animationDelay}
         >
           <span>{session.owner}</span>
-          <span className={styles.ellipse}></span>
-          <span>{session.tagLine}</span>
+          {session.tagLine && (
+            <>
+              <span className={styles.ellipse}></span>
+              <span>{session.tagLine}</span>
+            </>
+          )}
         </div>
       </div>
     </article>

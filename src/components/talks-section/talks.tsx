@@ -19,28 +19,22 @@ const MAX_VISIBLE_TALKS = 5;
 export const Talks: FC<Props> = ({ hasDayToggle = false, sessions, disableAnimation }) => {
   const [activeDay, setActiveDay] = useState<1 | 2>(1);
 
-  const croppedTalks = sessions.slice(0, MAX_VISIBLE_TALKS);
+  // const croppedTalks = sessions.filter(session => session.owner).slice(9, MAX_VISIBLE_TALKS + 9);
+  //todo: shuffle
+  const croppedTalks = sessions
+    .filter((session) => session.owner && session.sessionId && session.title)
+    .slice(0, MAX_VISIBLE_TALKS);
 
+  console.log(croppedTalks);
   useEffect(() => {
-    fetchSessions()
-  }, [])
-  const talkCategories = ["All Talks"].concat(
-    Array.from(new Set(croppedTalks.map((talk) => talk.category))),
-  );
-  const [activeCategory, setActiveCategory] = useState<string>(talkCategories[0]);
+    fetchSessions();
+  }, []);
 
   const validTalks = useMemo(() => {
-    let categoryTalks;
-    if (activeCategory === "All Talks") {
-      categoryTalks = croppedTalks;
-    } else {
-      categoryTalks = croppedTalks.filter((talk) => talk.category === activeCategory).slice(0, 3);
-    }
+    if (!hasDayToggle) return croppedTalks;
 
-    if (!hasDayToggle) return categoryTalks;
-
-    return categoryTalks.filter((talk) => talk.day === activeDay);
-  }, [activeCategory, activeDay, hasDayToggle, croppedTalks]);
+    return croppedTalks.filter((talk) => talk.day === activeDay);
+  }, [activeDay, hasDayToggle, croppedTalks]);
 
   return (
     <section
