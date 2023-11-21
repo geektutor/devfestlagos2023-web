@@ -34,6 +34,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Session } from "@/types/Session";
 import { Category } from "@/types/Category";
 import { Speaker } from "@/types/Speaker";
+import { ticketsUrl } from "@/utils/urls";
 
 const topics = [
   [
@@ -190,7 +191,7 @@ export default function Landing({
             {/*  <Image src={memojiDoodle} alt='doodle' quality={100} />*/}
             {/*</div>*/}
           </p>
-          <PrimaryButton data-animate-button>
+          <PrimaryButton href={ticketsUrl} isExternal data-animate-button className='landing-page__intro__button'>
             <span>Get Your Ticket</span>
             <ArrowRight />
           </PrimaryButton>
@@ -271,7 +272,7 @@ export default function Landing({
               We are back to do so much more and we look forward to showing you what we have in
               store.
             </p>
-            <PrimaryButton data-animate-button data-delay='1.2'>
+            <PrimaryButton data-animate-button data-delay='1.2' href={ticketsUrl} isExternal >
               <span>Get Your Ticket</span> <ArrowRightDark />
             </PrimaryButton>
           </div>
@@ -294,7 +295,7 @@ export default function Landing({
               talking groceries 🌚
             </p>
             <div className='landing-page__hype__categories__button-wrapper'>
-              <PrimaryButton data-animate-button data-delay='1.7'>
+              <PrimaryButton data-animate-button data-delay='1.7' href={ticketsUrl} isExternal>
                 <span>Register Now</span>
                 <ArrowRight />
               </PrimaryButton>

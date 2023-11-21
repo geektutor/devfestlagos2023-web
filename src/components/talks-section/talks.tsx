@@ -1,12 +1,12 @@
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { classNames } from "@/utils/classNames";
 import { Talk } from "@/components/homepage/talk/talk";
 import { talks } from "@/mock-data";
 import styles from "./talks.module.scss";
 import { PrimaryButton } from "@/components/button";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
-import CategoryPill from "@/components/category-pill/category-pill";
 import { Session } from "@/types/Session";
+import { fetchSessions } from "@/requests/general";
 
 type Props = {
   hasDayToggle?: boolean;
@@ -21,6 +21,9 @@ export const Talks: FC<Props> = ({ hasDayToggle = false, sessions, disableAnimat
 
   const croppedTalks = sessions.slice(0, MAX_VISIBLE_TALKS);
 
+  useEffect(() => {
+    fetchSessions()
+  }, [])
   const talkCategories = ["All Talks"].concat(
     Array.from(new Set(croppedTalks.map((talk) => talk.category))),
   );
@@ -93,25 +96,6 @@ export const Talks: FC<Props> = ({ hasDayToggle = false, sessions, disableAnimat
             <ArrowRightDark />
           </PrimaryButton>
         )}
-      </div>
-      <div className={styles.talksTags}>
-        {talkCategories.map((category, index) => (
-          <div key={category} style={{ position: "relative", overflow: "hidden", flexShrink: "0" }}>
-            <CategoryPill
-              className={classNames(
-                styles.talksTag,
-                activeCategory === category && styles.talksTagActive,
-              )}
-              isActive={activeCategory === category}
-              onClick={() => setActiveCategory(category)}
-              data-animate-y-full
-              data-easing='SPONSOR_BETTER'
-              data-delay={0.667 + 0.084 * index}
-            >
-              {category}
-            </CategoryPill>
-          </div>
-        ))}
       </div>
       <div className={styles.talksGrid}>
         {validTalks.map((talk, index) => (

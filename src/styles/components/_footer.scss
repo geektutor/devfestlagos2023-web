@@ -41,9 +41,13 @@
     &__item {
       color: $grey-100;
       font-weight: 500;
-      text-decoration: underline;
       cursor: pointer;
       @include body-3;
+
+      a{
+        color: inherit;
+        text-decoration: underline;
+      }
 
       @include media("<=tablet") {
         @include body-5;

@@ -33,9 +33,6 @@ export const Talk: FC<Props> = ({ animationDelay = 0, session }) => {
           data-easing='LANDING_TITLE'
           data-delay={0.333 + animationDelay}
         >
-          <CategoryPill isSmall className={styles.category}>
-            {session.category}
-          </CategoryPill>
           <CategoryPill activeBgColor='#FDE293' isActive isSmall>
             {getDayText(session.day)}, {session.scheduledAt}
           </CategoryPill>

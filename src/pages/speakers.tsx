@@ -54,8 +54,8 @@ export default function Speakers({
               We have selected the best of the best to bring you amazing talks in this year&apos;s
               DevFest
             </p>
-            <PrimaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
-              Apply to speak &emsp; <ArrowRight />
+            <PrimaryButton href={ticketsUrl} isExternal>
+              Get your ticket &emsp; <ArrowRight />
             </PrimaryButton>
 
             <figure className='speakers_page__hero__content_avatar1'>
