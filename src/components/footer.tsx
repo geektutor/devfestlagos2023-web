@@ -103,7 +103,13 @@ const Footer = () => {
                     data-delay={0.083 * (index + 1)}
                     data-easing='FOOTER'
                   >
-                    <Link href={link.link || ""}>{link.text}</Link>
+                    {link.link?.startsWith("/") ? (
+                      <Link href={link.link || ""}>{link.text}</Link>
+                    ) : (
+                      <a target='_blank' href={link.link || ""}>
+                        {link.text}
+                      </a>
+                    )}
                   </li>
                 ),
               )}
