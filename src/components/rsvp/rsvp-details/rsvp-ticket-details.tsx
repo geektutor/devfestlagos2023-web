@@ -9,8 +9,9 @@ import CloseCircle from "@/images/close-circle.svg";
 import CategoryPill from "@/components/category-pill/category-pill";
 import { classNames } from "@/utils/classNames";
 import { Session } from "@/types/Session";
-import React from "react";
+import React, { useEffect } from "react";
 import RsvpButton from "@/components/rsvp/rsvp-button/rsvp-button";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 type RSVPTicketDetailsProps = {
   modalIsOpen?: boolean;
@@ -37,6 +38,11 @@ const RSVPTicketDetails = ({
   speakerImage,
 }: RSVPTicketDetailsProps) => {
   const timeLeft = "30"; //todo: Actually calculate this using the scheduledAt and sessionDate
+
+  useEffect(() => {
+    if (modalIsOpen) disableBodyScroll(document.body);
+    else enableBodyScroll(document.body);
+  }, [modalIsOpen]);
 
   const renderContent = () => {
     if (!session) return null;
