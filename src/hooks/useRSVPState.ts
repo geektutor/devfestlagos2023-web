@@ -21,7 +21,7 @@ export const useRSVPState = ({ sessions, pageSize, scrollToTalks }: Props) => {
   //Data
   const currentDayTalks = useMemo(() => {
     return sessions.filter((session) => {
-      if (!session.availableSeats || !session.owner) return false;
+      if (!session.availableSeats || !session.owner || !session.sessionId) return false;
 
       const day = new Date(session.sessionDate).getDate();
 
