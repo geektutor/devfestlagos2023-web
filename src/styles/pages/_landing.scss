@@ -170,6 +170,10 @@
       }
     }
 
+    &__button {
+      z-index: 3;
+    }
+
     &__memoji {
       position: absolute;
       left: calc(100% + 3px);

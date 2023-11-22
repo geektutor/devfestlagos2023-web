@@ -26,15 +26,17 @@ const Menu: FC<Props> = ({ actionButton }) => {
   return (
     <header className={styles.menu}>
       <div className={styles.logo}>
-        <Logo data-animate-y-full data-easing='LOGO' />
+        <Link href='/'>
+          <Logo data-animate-y-full data-easing='LOGO' />
+        </Link>
       </div>
       <div className={styles.items}>
         <nav className={styles.nav}>
           <NavItems />
         </nav>
         {actionButton || (
-          <Button variant='primary' className={styles.cta} data-animate-button>
-            <span>Register Now</span>
+          <Button variant='primary' className={styles.cta} data-animate-button href='/rsvp'>
+            <span>RSVP</span>
             <RightArrow className={styles.ctaIcon} />
           </Button>
         )}
@@ -52,8 +54,8 @@ const Menu: FC<Props> = ({ actionButton }) => {
           </div>
           <nav className={styles.mobileItems}>
             <NavItems />
-            <Button variant='primary' className={styles.cta}>
-              Register Now
+            <Button variant='primary' className={styles.cta} href='/rsvp'>
+              RSVP
               <RightArrow />
             </Button>
           </nav>

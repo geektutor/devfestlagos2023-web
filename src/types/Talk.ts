@@ -1,4 +1,4 @@
-import { Speaker } from "@/types/Speaker";
+import { SpeakerType } from "@/types/SpeakerType";
 
 export type TalkType = {
   title: string;
@@ -6,7 +6,7 @@ export type TalkType = {
   category: "Design" | "Blockchain" | "Mobile Development" | "Product" | "Design";
   speakerId: number;
   date: string;
-  speaker: Speaker;
+  speaker: SpeakerType;
   seatCount?: number;
   timeLeft?: string;
   hall?: string;

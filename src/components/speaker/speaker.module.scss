@@ -15,6 +15,8 @@
   border-left: 0.1rem solid #211212;
   flex-shrink: 0;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 
   @include media("<=tablet") {
     width: 15.7rem;
@@ -36,6 +38,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 0 10%;
 }
 
 .speakerTextContainer {
@@ -44,6 +47,7 @@
   display: flex;
   flex-direction: column;
   align-content: flex-start;
+  flex-grow: 1;
 
   @include media("<=tablet") {
     padding: 1.2rem 1.2rem 2rem 0.8rem;
@@ -195,6 +199,10 @@
   border-bottom: 0.4rem solid $grey-10;
   margin-right: 2rem;
 
+  img {
+    object-position: 0 10%;
+  }
+
   @include media("<=tablet") {
     @include ratio(14.2rem, 11.8rem);
     width: 11.8rem;
@@ -286,7 +294,7 @@
 }
 
 .modalTitle {
-  @include heading-4;
+  @include heading-5;
   color: $grey-0;
   margin-bottom: 1.6rem;
 

@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { PrimaryButton } from "@/components/button";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import { HomepageScene } from "@/components/homepage/scene/scene";
-import sponsorImage from "@/images/landing/sponsor.png";
 import Image from "next/image";
 import GoogleIcon from "@/images/landing/sponsor/google.svg";
 import SpotifyIcon from "@/images/landing/sponsor/spotify.svg";
@@ -14,8 +13,6 @@ import SpotifyLyricIcon from "@/images/landing/spotify.svg";
 import scribbleImage from "@/images/landing/scribble.png";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 import SpeakerCard from "@/components/speaker/speaker";
-import { speakers } from "@/mock-data";
-import { Speaker } from "@/types/Speaker";
 import { Talks } from "@/components/talks-section/talks";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import CategoryPill from "@/components/category-pill/category-pill";
@@ -31,6 +28,13 @@ import { YoutubePlayer } from "@/components/youtube-player";
 import LandingPage from "@/animations/components/Landing";
 import Menu from "@/components/menu/menu";
 import Footer from "@/components/footer";
+import { fetchCategories, fetchSessions, fetchSpeakers } from "@/requests/general";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { Session } from "@/types/Session";
+import { Category } from "@/types/Category";
+import { Speaker } from "@/types/Speaker";
+import { ticketsUrl } from "@/utils/urls";
+import { getSpeakerSession } from "@/utils/getSpeakerSession";
 
 const topics = [
   [
@@ -98,7 +102,10 @@ const topics = [
   ],
 ];
 
-export default function Landing() {
+export default function Landing({
+  sessions,
+  speakers,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
   const isInitialized = useRef(false);
 
@@ -184,14 +191,16 @@ export default function Landing() {
             {/*  <Image src={memojiDoodle} alt='doodle' quality={100} />*/}
             {/*</div>*/}
           </p>
-          <PrimaryButton data-animate-button>
+          <PrimaryButton
+            href={ticketsUrl}
+            isExternal
+            data-animate-button
+            className='landing-page__intro__button'
+          >
             <span>Get Your Ticket</span>
             <ArrowRight />
           </PrimaryButton>
           <HomepageScene />
-          <div className='landing-page__intro__sponsor-cta' data-sponsor-cta>
-            <Image quality={100} src={sponsorImage} alt='Sponsor' />
-          </div>
         </section>
         <section className='landing-page__better' data-better-section>
           <h3
@@ -265,7 +274,7 @@ export default function Landing() {
               We are back to do so much more and we look forward to showing you what we have in
               store.
             </p>
-            <PrimaryButton data-animate-button data-delay='1.2'>
+            <PrimaryButton data-animate-button data-delay='1.2' href={ticketsUrl} isExternal>
               <span>Get Your Ticket</span> <ArrowRightDark />
             </PrimaryButton>
           </div>
@@ -288,7 +297,7 @@ export default function Landing() {
               talking groceries 🌚
             </p>
             <div className='landing-page__hype__categories__button-wrapper'>
-              <PrimaryButton data-animate-button data-delay='1.7'>
+              <PrimaryButton data-animate-button data-delay='1.7' href={ticketsUrl} isExternal>
                 <span>Register Now</span>
                 <ArrowRight />
               </PrimaryButton>
@@ -347,7 +356,7 @@ export default function Landing() {
               data-add-span
               data-easing='SPEAKERS_TITLE'
             >
-              41
+              {speakers.length}
             </p>
           </div>
           <div className='landing-page__speakers__speakers-wrapper'>
@@ -402,6 +411,7 @@ export default function Landing() {
                     hasPrevious={index > 0}
                     onClickButton={handleChangeSpeaker(index)}
                     modalIsOpen={activeSpeaker === speaker}
+                    session={getSpeakerSession({ speaker, sessions })}
                   />
                 </div>
               ))}
@@ -436,7 +446,7 @@ export default function Landing() {
             </div>
           </div>
         </section>
-        <Talks />
+        <Talks speakers={speakers} sessions={sessions} />
         <FaqSection />
         <NoMatterWhat />
         <Footer />
@@ -444,5 +454,19 @@ export default function Landing() {
     </>
   );
 }
+
+export const getStaticProps = (async () => {
+  const [sessions, categories, speakers] = await Promise.all([
+    fetchSessions(),
+    fetchCategories(),
+    fetchSpeakers(),
+  ]);
+
+  return { props: { sessions, categories, speakers } };
+}) satisfies GetStaticProps<{
+  sessions: Session[];
+  categories: Category[];
+  speakers: Speaker[];
+}>;
 
 Landing.disableLayout = true;

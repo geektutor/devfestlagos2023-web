@@ -1,7 +1,16 @@
+import React, { useEffect, useRef } from "react";
+import { findPath, LOCATIONS } from "@/utils/map";
 import LandmarkMap from "@/components/event-map";
 import Head from "next/head";
 
 const Map = () => {
+  const rendered = useRef(false);
+  useEffect(() => {
+    if (!rendered.current) {
+      rendered.current = true;
+      console.log(findPath(LOCATIONS.EXHIBITION, LOCATIONS.ROOM_3));
+    }
+  }, []);
   return (
     <>
       <Head>

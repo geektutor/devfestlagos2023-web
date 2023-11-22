@@ -8,6 +8,10 @@
   scroll-margin-top: 0 !important;
   position: relative;
 
+  &.disableAnimation {
+    background: black;
+  }
+
   @include media("<=tablet") {
     padding: 3.2rem 0 2.4rem 3.2rem;
   }

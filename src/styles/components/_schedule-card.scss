@@ -5,6 +5,8 @@
   position: relative;
   z-index: 2;
   overflow: hidden;
+  min-height: 76px;
+  height: fit-content;
 
   &__first_level {
     display: flex;
@@ -54,7 +56,6 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 16px;
-    margin: -30px 0 0 88px;
     @include body-2;
 
     @include media("<=phone") {

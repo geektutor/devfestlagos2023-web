@@ -9,8 +9,9 @@ import CloseCircle from "@/images/close-circle.svg";
 import CategoryPill from "@/components/category-pill/category-pill";
 import { classNames } from "@/utils/classNames";
 import { Session } from "@/types/Session";
-import React from "react";
+import React, { useEffect } from "react";
 import RsvpButton from "@/components/rsvp/rsvp-button/rsvp-button";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 type RSVPTicketDetailsProps = {
   modalIsOpen?: boolean;
@@ -20,6 +21,7 @@ type RSVPTicketDetailsProps = {
   isSelected: boolean;
   isSecured?: boolean;
   onRemoveSession: () => void;
+  speakerImage: string;
 };
 
 const getDayText = (date: string) =>
@@ -33,23 +35,19 @@ const RSVPTicketDetails = ({
   onSelectTicket,
   isSecured,
   onRemoveSession,
+  speakerImage,
 }: RSVPTicketDetailsProps) => {
   const timeLeft = "30"; //todo: Actually calculate this using the scheduledAt and sessionDate
+
+  useEffect(() => {
+    if (modalIsOpen) disableBodyScroll(document.body);
+    else enableBodyScroll(document.body);
+  }, [modalIsOpen]);
 
   const renderContent = () => {
     if (!session) return null;
 
-    const {
-      title,
-      sessionDate,
-      availableSeats,
-      scheduledAt,
-      tagLine,
-      owner,
-      speakerImage,
-      description,
-      hall,
-    } = session;
+    const { title, sessionDate, availableSeats, scheduledAt, tagLine, owner, hall } = session;
 
     return (
       <>
@@ -74,11 +72,8 @@ const RSVPTicketDetails = ({
           <div className={styles.speakerImage}>
             <Image className={styles.speakerImageInner} src={speakerImage} alt={owner} fill />
           </div>
-          <CategoryPill isSmall className={styles.speakerButton}>
-            See Speaker Page
-          </CategoryPill>
+          <h3 className={styles.speakerName}>{owner}</h3>
         </div>
-        <h3 className={styles.speakerName}>{owner}</h3>
         <p className={styles.speakerRole}>{tagLine}</p>
         <div className={styles.talkDateAndLocation}>
           <CategoryPill className={styles.talkDate}>
@@ -89,12 +84,8 @@ const RSVPTicketDetails = ({
           </CategoryPill>
           <CategoryPill className={styles.location}>
             <Location />
-            <span>{`Hall ${hall}`}</span>
+            <span>{hall}</span>
           </CategoryPill>
-        </div>
-        <div className={styles.descriptionSection}>
-          <h3 className={styles.descriptionHeading}>DESCRIPTION</h3>
-          <p className={styles.description}>{description}</p>
         </div>
         <div className={styles.finalCTA}>
           <span>

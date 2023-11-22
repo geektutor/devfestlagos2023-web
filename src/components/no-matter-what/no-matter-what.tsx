@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./no-matter-what.module.scss";
 import InviteLogo from "@/images/landing/logo.svg";
 import { TertiaryButton } from "@/components/button";
+import { ticketsUrl } from "@/utils/urls";
 
 export const NoMatterWhat = () => {
   return (
@@ -26,7 +27,13 @@ export const NoMatterWhat = () => {
       >
         Will you be there?
       </p>
-      <TertiaryButton className={styles.button} data-animate-button data-delay='.7'>
+      <TertiaryButton
+        className={styles.button}
+        href={ticketsUrl}
+        isExternal
+        data-animate-button
+        data-delay='.7'
+      >
         I will be there no matter what
       </TertiaryButton>
     </section>

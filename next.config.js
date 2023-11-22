@@ -17,15 +17,21 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "res.cloudinary.com",
+        hostname: "firebasestorage.googleapis.com",
         port: "",
-        pathname: "/dpgdjfckl/image/upload/**",
+        pathname: "/**",
       },
       {
         protocol: "https",
-        hostname: "sessionize.com",
+        hostname: "i.ibb.co",
         port: "",
-        pathname: "/image/**",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "ibb.co",
+        port: "",
+        pathname: "/**",
       },
     ],
   },
