@@ -21,6 +21,6 @@
     },
     "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/utils/gtag.js"],
   "exclude": ["node_modules"]
 }

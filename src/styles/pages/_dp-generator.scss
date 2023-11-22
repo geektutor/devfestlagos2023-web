@@ -1,0 +1,425 @@
+.dp_gen_page {
+  &__header {
+    max-width: 650px;
+    margin: auto;
+    padding: 10rem 0 14rem;
+    text-align: center;
+    position: relative;
+    overflow-x: hidden;
+
+    @include media("<=tablet") {
+      padding: 7rem 3rem;
+    }
+
+    @include media("<=phone") {
+      padding: 5rem 2.5rem;
+    }
+
+    %avatar {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 70px;
+        height: 70px;
+      }
+
+      @include media("<=desktop-sm") {
+        width: 70px !important;
+        height: 70px !important;
+
+        img {
+          width: 50px !important;
+          height: 50px !important;
+        }
+      }
+
+      @include media("<=phone") {
+        width: 60px !important;
+        height: 60px !important;
+
+        img {
+          width: 40px !important;
+          height: 40px !important;
+        }
+      }
+    }
+
+    &_avatar1 {
+      @extend %avatar;
+      background-color: rgba(253, 226, 147, 0.5);
+      border-radius: 50%;
+      bottom: 25%;
+      right: 2%;
+
+      @include media("<=desktop-sm") {
+        right: 0;
+      }
+
+      @include media("<=phone") {
+        right: 1%;
+        bottom: 5%;
+      }
+    }
+
+    &_avatar2 {
+      @extend %avatar;
+      background-color: #e6e6e6;
+      border-radius: 50%;
+      bottom: 30%;
+      left: -1% !important;
+
+      @include media("<=desktop-sm") {
+        left: 0 !important;
+      }
+
+      @include media("<=phone") {
+        top: 1%;
+        left: 1%;
+      }
+    }
+
+    %doodle {
+      position: absolute;
+
+      @include media("<=desktop-sm") {
+        img {
+          width: 50px;
+          height: 50px;
+        }
+      }
+
+      @include media("<=phone") {
+        img {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+
+    &_doodle_1 {
+      @extend %doodle;
+      right: -20%;
+      bottom: 50%;
+
+      @include media("<=desktop-sm") {
+        right: 12%;
+        bottom: 40%;
+      }
+
+      @include media("<=phone") {
+        top: 5%;
+      }
+    }
+
+    &_doodle_2 {
+      @extend %doodle;
+      bottom: 5%;
+      left: 35%;
+
+      @include media("<=desktop-sm") {
+        bottom: 8%;
+      }
+
+      @include media("<=phone") {
+      }
+    }
+
+    &_doodle_3 {
+      @extend %doodle;
+      top: 5%;
+      left: 25%;
+
+      @include media("<=desktop-sm") {
+      }
+
+      @include media("<=phone") {
+      }
+    }
+
+    &_title {
+      @include heading-1;
+
+      @include media("<=tablet") {
+        @include heading-3;
+      }
+
+      @include media("<=phone") {
+        @include heading-4;
+      }
+    }
+
+    &_details {
+      @include title-2;
+      color: $grey-40;
+      width: 60%;
+      margin: 0.5rem auto;
+
+      @include media("<=tablet") {
+        @include body-1;
+        width: 80%;
+      }
+
+      @include media("<=phone") {
+        width: 95%;
+        @include body-3;
+      }
+    }
+  }
+
+  &__customize {
+    background-color: #050505;
+    padding: 5rem 0;
+
+    @include media("<=tablet") {
+      padding: 5rem 3rem;
+    }
+
+    @include media("<=phone") {
+      padding: 5rem 2rem;
+    }
+
+    &_container {
+      max-width: 650px;
+      margin: auto;
+    }
+
+    &_title {
+      @include heading-5;
+      color: #fde293;
+      margin-bottom: 4rem;
+
+      @include media("<=tablet") {
+        @include title-1;
+        text-align: center;
+      }
+    }
+
+    &_form {
+      &_group {
+        margin-bottom: 4.8rem;
+
+        @include media("<=tablet") {
+          margin-bottom: 4rem;
+        }
+
+        @include media("<=phone") {
+          margin-bottom: 3.2rem;
+        }
+
+        &_label {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          color: $grey-60;
+          @include body-3;
+          margin-bottom: 1.2rem;
+
+          @include media("<=tablet") {
+            @include body-4;
+          }
+
+          @include media("<=phone") {
+            @include body-5;
+          }
+        }
+
+        &_input {
+          padding: 2.4rem;
+          border-radius: 16px;
+          border: 1.4px solid $grey-80;
+          background-color: transparent;
+          width: 100%;
+          color: #ffffff;
+
+          @include media("<=tablet") {
+            padding: 2rem;
+            border-radius: 10px;
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        &_input[type="file"] {
+          display: none;
+        }
+
+        &_uploader {
+          border-radius: 16px;
+          background: $bg-shade-1;
+          height: 280px;
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+
+          @include media("<=tablet") {
+            height: 220px;
+            border-radius: 10px;
+          }
+
+          @include media("<=phone") {
+            height: 180px;
+          }
+
+          &::before {
+            position: absolute;
+            top: 1.6rem;
+            left: 1.6rem;
+            right: 1.6rem;
+            bottom: 1.6rem;
+            content: " ";
+            border-radius: 8px;
+            border: 2px dashed $grey-80;
+
+            @include media("<=tablet") {
+              top: 1.2rem;
+              left: 1.2rem;
+              right: 1.2rem;
+              bottom: 1.2rem;
+            }
+          }
+
+          &_content {
+            width: 200px;
+            text-align: center;
+
+            @include media("<=phone") {
+              width: 150px;
+            }
+
+            &_text {
+              @include body-3;
+              color: $grey-30;
+
+              @include media("<=tablet") {
+                @include body-4;
+              }
+
+              @include media("<=phone") {
+                @include body-5;
+              }
+
+              span {
+                color: #34a853;
+              }
+            }
+
+            &_photo {
+              img {
+                border-radius: 12px;
+                object-fit: cover;
+                max-width: 100%;
+              }
+
+              &_change {
+                @include body-5;
+              }
+            }
+          }
+        }
+
+        &_radio_group {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          justify-content: space-between;
+
+          .form-check {
+            display: inline-flex;
+            gap: 0.8rem;
+
+            @include media("<=phone") {
+              gap: 0.5rem;
+            }
+
+            label {
+              @include media("<=phone") {
+                @include body-4;
+              }
+            }
+          }
+
+          .form-check input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 20px;
+            height: 20px;
+            z-index: 1;
+
+            @include media("<=phone") {
+              width: 15px;
+              height: 15px;
+            }
+          }
+
+          //  custom field
+          .form-check .radio-button {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #fff; /* Default border color */
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+            transition: 0.3s all ease;
+
+            @include media("<=phone") {
+              width: 15px;
+              height: 15px;
+            }
+          }
+
+          .form-check input[type="radio"]:checked + .radio-button {
+            background-color: #ffffff !important;
+            border-width: 5px;
+          }
+
+          // customization
+          .green .radio-button {
+            border-color: #34a853;
+          }
+
+          .green .form-check-label {
+            color: #34a853;
+          }
+
+          .blue .radio-button {
+            border-color: #4285f4;
+          }
+
+          .blue .form-check-label {
+            color: #4285f4;
+          }
+
+          .yellow .radio-button {
+            border-color: #f9ab00;
+          }
+
+          .yellow .form-check-label {
+            color: #f9ab00;
+          }
+
+          .red .radio-button {
+            border-color: #ea4335;
+          }
+
+          .red .form-check-label {
+            color: #ea4335;
+          }
+        }
+      }
+
+      button {
+        width: 100%;
+        background: $bg-shade-1;
+      }
+    }
+  }
+}

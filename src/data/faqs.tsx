@@ -1,5 +1,5 @@
-import { FAQ } from "@/components/faq/FAQ";
 import Link from "next/link";
+import { FAQ } from "@/components/faq/FAQ";
 
 export const faqs: FAQ[] = [
   {
