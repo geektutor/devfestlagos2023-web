@@ -1,11 +1,18 @@
 import React, { useMemo, useState } from "react";
-import { findPath, LOCATION_TO_STRING_MAP, STRING_TO_LOCATION_MAP } from "@/utils/map";
+import {
+  DirectionText,
+  findPath,
+  generateDirectionText,
+  LOCATION_TO_STRING_MAP,
+  STRING_TO_LOCATION_MAP,
+} from "@/utils/map";
 import LandmarkMap from "@/components/event-map";
 import Head from "next/head";
 import PinIcon from "@/images/map/pin.svg";
 import DownIcon from "@/images/map/caret-down.svg";
 import { classNames } from "@/utils/classNames";
 import { PrimaryButton } from "@/components/button";
+import Directions from "@/components/event-map/map-directions/directions";
 
 type DropdownProps = {
   value: string | null;
@@ -31,7 +38,8 @@ const Dropdown = ({ value, onChange, placeholder, otherValue, isStart }: Dropdow
   };
 
   const options = useMemo(() => {
-    return Object.entries(LOCATION_TO_STRING_MAP).filter(([value]) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return Object.entries(LOCATION_TO_STRING_MAP).filter(([_, value]) => {
       // Explain: You can't start from the exit
       if (isStart && value === "EXIT") return false;
 
@@ -66,6 +74,7 @@ const Dropdown = ({ value, onChange, placeholder, otherValue, isStart }: Dropdow
 const Map = () => {
   const [currentLocation, setCurrentLocation] = useState<StringToLocation | null>(null);
   const [destination, setDestination] = useState<StringToLocation | null>(null);
+  const [directions, setDirections] = useState<Array<DirectionText>>([]);
 
   const onClickDirectMe = () => {
     if (!currentLocation || !destination) return;
@@ -73,7 +82,10 @@ const Map = () => {
     const currentLocationKey = STRING_TO_LOCATION_MAP[currentLocation];
     const destinationKey = STRING_TO_LOCATION_MAP[destination];
 
-    console.log(findPath(currentLocationKey, destinationKey));
+    const path = findPath(currentLocationKey, destinationKey);
+
+    setDirections(generateDirectionText(path));
+    console.log(generateDirectionText(path));
   };
 
   return (
@@ -83,33 +95,42 @@ const Map = () => {
         <meta name='description' content='Find your way around the event' />
       </Head>
       <main className='map'>
-        <div className='map__form'>
-          <h1 className='map__form__header'>Map</h1>
-          <p className='map__form__subtitle'>
-            Let us help you find your way around Landmark Center
-          </p>
-          <Dropdown
-            isStart
-            value={currentLocation}
-            onChange={setCurrentLocation}
-            placeholder='Your current location'
-            otherValue={destination}
+        {directions.length > 0 ? (
+          <Directions
+            directions={directions}
+            start={currentLocation}
+            end={destination}
+            onClickBack={() => setDirections([])}
           />
-          <span className='map__form__divider' />
-          <Dropdown
-            value={destination}
-            onChange={setDestination}
-            placeholder='Your destination'
-            otherValue={currentLocation}
-          />
-          <PrimaryButton
-            className='map__form__button'
-            isDisabled={!currentLocation || !destination}
-            onClick={onClickDirectMe}
-          >
-            Direct Me
-          </PrimaryButton>
-        </div>
+        ) : (
+          <div className='map__form'>
+            <h1 className='map__form__header'>Map</h1>
+            <p className='map__form__subtitle'>
+              Let us help you find your way around Landmark Center
+            </p>
+            <Dropdown
+              isStart
+              value={currentLocation}
+              onChange={setCurrentLocation}
+              placeholder='Your current location'
+              otherValue={destination}
+            />
+            <span className='map__form__divider' />
+            <Dropdown
+              value={destination}
+              onChange={setDestination}
+              placeholder='Your destination'
+              otherValue={currentLocation}
+            />
+            <PrimaryButton
+              className='map__form__button'
+              isDisabled={!currentLocation || !destination}
+              onClick={onClickDirectMe}
+            >
+              Direct Me
+            </PrimaryButton>
+          </div>
+        )}
         <div className='map__map-wrapper'>
           <LandmarkMap />
         </div>

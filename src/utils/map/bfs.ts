@@ -11,6 +11,8 @@ export const findPathBFS = (start: Room, end: Room) => {
 
     const neighbors = MAP[currentNode];
 
+    if (!neighbors) continue;
+
     neighbors.forEach((neighbor) => {
       if (!visited.includes(neighbor)) {
         visited.push(neighbor);
@@ -34,5 +36,5 @@ export const findPathBFS = (start: Room, end: Room) => {
 
   path.push(start);
 
-  return path.reverse();
+  return path.reverse() as Array<Room>;
 };
