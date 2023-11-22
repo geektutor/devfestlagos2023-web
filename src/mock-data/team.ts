@@ -81,14 +81,30 @@ export const teamMembers: ITeamMember[] = [
   {
     key: "sodiq",
     name: "Sodiq Akinjobi",
-    role: "Product Manager",
+    role: "Project Manager",
     isLead: true,
     comment:
-      "Working with this team was an amazing journey for me! Here’s is to more wins. #BigPurr",
+      "Collaborating with this team was an incredible journey that allowed me to stretch myself and truly enjoy the process. Here’s to more wins and expanding our horizons together! #BigPurr P.S. The camaraderie was so good, it felt like we had a constant supply of N2O in the groups! 🫵🏾🚀",
     links: [
       {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/geektutor/",
+      },
+      {
         type: "twitter",
-        url: "https://twitter.com/Geektutor",
+        url: "https://twitter.com/geektutor",
+      },
+      {
+        type: "instagram",
+        url: "https://www.instagram.com/geektutor/",
+      },
+      {
+        type: "github",
+        url: "https://github.com/github",
+      },
+      {
+        type: "medium",
+        url: "https://medium.com/@geektutor",
       },
     ],
     quote:
@@ -638,7 +654,7 @@ export const teamMembers: ITeamMember[] = [
     role: "Co-Organiser (Partnerships & Legal Team Lead)",
     comment:
       "I've had an amazing time on the team identifying and working with our strategic partners and sponsors. My goal everyday is to ensure that our work is sustained by working with our partners and sponsors to ensure that our objectives at GDG Lagos are met. I love how my role cuts across two things I am passionate about, People & Law. ",
-    quote: `"SUCCESS ISN'T ALWAYS ABOUT GREATNESS. IT'S ABOUT CONSISTENCY.`,
+    quote: `Success isn't always about greatness. It's about consistency.`,
     category: "gdg-team",
     image: karenImage,
     music: {
