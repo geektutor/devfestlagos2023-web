@@ -41,3 +41,32 @@ export const MAP: Record<Room, Array<Room>> = {
   [LOCATIONS.ENTRANCE]: [LOCATIONS.ROOM_1],
   [LOCATIONS.EXIT]: [LOCATIONS.ROOM_2],
 };
+
+export const LOCATION_TO_STRING_MAP = {
+  [LOCATIONS.EXHIBITION]: "Exhibition Area",
+  [LOCATIONS.ROOM_1]: "Room 1",
+  [LOCATIONS.ROOM_2]: "Room 2",
+  [LOCATIONS.STAIRS]: "Stairs",
+  [LOCATIONS.HALLWAY]: "Hallway",
+  [LOCATIONS.SPEAKER_ROOM]: "Speaker Room",
+  [LOCATIONS.TOILET_1]: "Toilet",
+  [LOCATIONS.TOILET_2]: "Toilet",
+  [LOCATIONS.ROOM_3]: "Room 3",
+  [LOCATIONS.ROOM_4]: "Room 4",
+  [LOCATIONS.ENTRANCE]: "Entrance",
+  [LOCATIONS.EXIT]: "Exit",
+};
+
+export const STRING_TO_LOCATION_MAP = {
+  "Exhibition Area": LOCATIONS.EXHIBITION,
+  "Room 1": LOCATIONS.ROOM_1,
+  "Room 2": LOCATIONS.ROOM_2,
+  Stairs: LOCATIONS.STAIRS,
+  Hallway: LOCATIONS.HALLWAY,
+  "Speaker Room": LOCATIONS.SPEAKER_ROOM,
+  Toilet: LOCATIONS.TOILET_1,
+  "Room 3": LOCATIONS.ROOM_3,
+  "Room 4": LOCATIONS.ROOM_4,
+  Entrance: LOCATIONS.ENTRANCE,
+  Exit: LOCATIONS.EXIT,
+};

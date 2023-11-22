@@ -1,11 +1,131 @@
 @import "utils/mixins";
 
-.map__page {
-  padding: 4.8rem 0 0.6rem 8.6%;
+.map {
+  padding: 0 0 0.6rem 8.6%;
   min-height: 800px;
   display: flex;
+
+  &__form {
+    padding-top: 3.6rem;
+    padding-right: 10vw;
+    flex-grow: 1;
+
+    &__header {
+      @include heading-5;
+      color: $grey-10;
+      margin-bottom: 10px;
+    }
+
+    &__subtitle {
+      @include body-3;
+      color: $grey-30;
+      max-width: 314px;
+      margin-bottom: 24px;
+    }
+
+    &__label {
+      @include body-4;
+      color: #0b0a0a;
+      margin-bottom: 8px;
+    }
+
+    &__dropdown {
+      position: relative;
+      width: 100%;
+
+      &__inner {
+        padding: 16px;
+        border: 1px solid $grey-90;
+        border-radius: 16px;
+        background: $bg-shade-1;
+        display: flex;
+        align-items: center;
+        background: transparent;
+        width: 100%;
+      }
+
+      &__pin-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+      }
+
+      &__text {
+        @include body-3;
+        color: $grey-0;
+        margin-right: auto;
+
+        &.is-placeholder {
+          color: $grey-60;
+        }
+      }
+
+      &__options {
+        border: 1px solid $grey-90;
+        border-radius: 16px;
+        background: $bg-shade-1;
+        max-height: 234px;
+        overflow: auto;
+        padding: 16px;
+        position: absolute;
+        width: 100%;
+        top: calc(100% + 16px);
+        transform: translateY(10px);
+        z-index: 3;
+        opacity: 0;
+        pointer-events: none;
+        transition: 300ms;
+        display: flex;
+        flex-direction: column;
+
+        &.is-open {
+          transform: translateY(0px);
+          pointer-events: all;
+          opacity: 1;
+        }
+      }
+
+      &__option {
+        @include body-3;
+        color: $grey-0;
+        border: none;
+        border-bottom: 1px solid #e6e6e6;
+        padding: 8px;
+        cursor: pointer;
+        background: transparent;
+        width: 100%;
+        text-align: left;
+        display: flex;
+        column-gap: 8px;
+        align-items: center;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+
+        &:last-child {
+          border: none;
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    &__divider {
+      height: 44px;
+      margin: 8px 0;
+      width: 0;
+      display: flex;
+      border-left: 1px dashed #b3b3b3;
+    }
+
+    &__button {
+      width: 100%;
+      margin-top: 2.4rem;
+    }
+  }
+
   &__map-wrapper {
     width: 820px;
-    margin-left: auto;
   }
 }
