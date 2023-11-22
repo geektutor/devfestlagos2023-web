@@ -9,7 +9,7 @@ const FaqSection = () => {
   return (
     <section className={styles.faq} data-faq-section>
       <h3 className={styles.faqTitle} data-animate-sentences data-easing='FAQ'>
-        Lets answer some of your burning questions
+        Let us answer some of your burning questions
       </h3>
       <p className={styles.faqSubtext} data-animate-sentences data-delay={0.167} data-easing='FAQ'>
         Check out our most asked questions here, mfjpm 😑🤚🏾
