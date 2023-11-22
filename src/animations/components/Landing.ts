@@ -63,7 +63,6 @@ export default class LandingPage extends Component {
 
         gdgPresents: "[data-gdg-presents]",
         landingDoodles: "[data-landing-doodle]",
-        landingSponsorCTA: "[data-sponsor-cta]",
         speakersDoodle: "[data-speaker-doodle]",
         speakersMemoji: "[data-speaker-memoji]",
         speakerCards: "[data-speaker-card]",
@@ -176,6 +175,49 @@ export default class LandingPage extends Component {
       }
     });
 
+    const triggerAnimation = (
+      elements: HTMLElement[],
+      sectionDelay: string | undefined,
+      observer: IntersectionObserver,
+      section: HTMLElement,
+    ) => {
+      elements.forEach(async (element) => {
+        if (sectionDelay && !element.dataset.animateCanvas) {
+          await sleep(Number(sectionDelay) * 1000);
+        }
+
+        if (element.dataset.animateSentences) {
+          this.animateSentences(element);
+        }
+
+        if (element.dataset.animateYFull) {
+          this.animateYFull(element);
+        }
+
+        if (element.dataset.animateYChildrenFull) {
+          this.animateYChildrenFull(element);
+        }
+
+        if (element.dataset.animateButton) {
+          this.animateButton(element);
+        }
+
+        if (element.dataset.fadeIn) {
+          this.fadeIn(element);
+        }
+
+        if (element.dataset.animateY) {
+          this.animateY(element);
+        }
+
+        if (element.dataset.animateCanvas) {
+          this.animateCanvas(element);
+        }
+      });
+
+      observer.unobserve(section);
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.some((entry) => {
@@ -188,48 +230,23 @@ export default class LandingPage extends Component {
 
             const sectionDelay = section.dataset.sectionDelay;
 
-            elements.forEach(async (element) => {
-              if (sectionDelay && !element.dataset.animateCanvas) {
-                await sleep(Number(sectionDelay) * 1000);
-              }
+            // Check if 30% of the section's height is less than the screen's height
+            const isShorterThanScreen = section.clientHeight * 0.3 <= window.innerHeight;
 
-              if (element.dataset.animateSentences) {
-                this.animateSentences(element);
-              }
-
-              if (element.dataset.animateYFull) {
-                this.animateYFull(element);
-              }
-
-              if (element.dataset.animateYChildrenFull) {
-                this.animateYChildrenFull(element);
-              }
-
-              if (element.dataset.animateButton) {
-                this.animateButton(element);
-              }
-
-              if (element.dataset.fadeIn) {
-                this.fadeIn(element);
-              }
-
-              if (element.dataset.animateY) {
-                this.animateY(element);
-              }
-
-              if (element.dataset.animateCanvas) {
-                this.animateCanvas(element);
-              }
-            });
-
-            observer.unobserve(entry.target);
+            if (isShorterThanScreen && entry.intersectionRatio >= 0.3) {
+              // If 30% of the section height is shorter than the screen height, trigger at 0.3
+              triggerAnimation(elements, sectionDelay, observer, section);
+            } else if (!isShorterThanScreen && entry.intersectionRatio >= 0.1) {
+              // If 30% of the section height is greater than the screen height, trigger at 0.1
+              triggerAnimation(elements, sectionDelay, observer, section);
+            }
           }
         });
       },
       {
         root: null,
         rootMargin: "0px",
-        threshold: [0.3, 0.7],
+        threshold: [0.1, 0.3],
       },
     );
 
@@ -370,7 +387,6 @@ export default class LandingPage extends Component {
     const {
       gdgPresents,
       landingDoodles,
-      landingSponsorCTA,
       speakersDoodle,
       speakersMemoji,
       speakerCards,
@@ -449,10 +465,6 @@ export default class LandingPage extends Component {
       transformOrigin: "left",
     });
 
-    GSAP.set([landingSponsorCTA], {
-      rotate: -540,
-    });
-
     [...animateY].forEach((element) => {
       GSAP.set(element, {
         y: element.dataset.animateY,
@@ -467,19 +479,12 @@ export default class LandingPage extends Component {
   }
 
   animateLanding() {
-    const { gdgPresents, landingDoodles, landingSponsorCTA } = this.elements;
+    const { gdgPresents, landingDoodles } = this.elements;
 
     GSAP.to(gdgPresents, {
       rotate: -10,
       duration: 1,
       ease: easings.GDG_ROTATION,
-    });
-
-    GSAP.to(landingSponsorCTA, {
-      rotate: 0,
-      duration: 0.896,
-      ease: "none",
-      delay: 0.167,
     });
 
     GSAP.to(landingDoodles, {

@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { PrimaryButton } from "@/components/button";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import { HomepageScene } from "@/components/homepage/scene/scene";
-import sponsorImage from "@/images/landing/sponsor.png";
 import Image from "next/image";
 import GoogleIcon from "@/images/landing/sponsor/google.svg";
 import SpotifyIcon from "@/images/landing/sponsor/spotify.svg";
@@ -202,9 +201,6 @@ export default function Landing({
             <ArrowRight />
           </PrimaryButton>
           <HomepageScene />
-          <div className='landing-page__intro__sponsor-cta' data-sponsor-cta>
-            <Image quality={100} src={sponsorImage} alt='Sponsor' />
-          </div>
         </section>
         <section className='landing-page__better' data-better-section>
           <h3
