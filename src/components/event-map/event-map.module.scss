@@ -1,11 +1,11 @@
-@import "utils/mixins";
+@use "../../styles/utils/breakpoints" as b;
 
 .container {
   background-color: #fff0e6;
-  width: 100%;
   padding: 24px;
-  aspect-ratio: 1 / 1;
   color: #4d4d4d;
+  width: 100%;
+  aspect-ratio: 1/1;
 }
 
 .title {
@@ -16,7 +16,54 @@
 .blocks {
   position: relative;
   height: 100%;
-  width: 100%;
-  background-color: red;
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr 30%;
+  padding: 0 36px 100px 54px;
+  @include b.media("<=desktop") {
+    padding: 0;
+    padding-bottom: 40px;
+  }
+}
+
+.emptyCell {
+  grid-column-end: 4;
+}
+
+.roomThreeAndFourWrapper {
+  display: flex;
+}
+
+.stairsAndSpeakers {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 48%;
+  gap: 20px;
+  & > div {
+    height: 100%;
+  }
+}
+
+.toiletsStarsAndHalls {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.toilets {
+  width: 40%;
+  height: fit-content;
+  position: absolute;
+  right: 2%;
+  & > div {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.hallwayWrapper {
+  height: 30%;
+  width: 58%;
+  position: absolute;
+  left: 0;
 }

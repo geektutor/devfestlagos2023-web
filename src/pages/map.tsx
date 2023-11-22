@@ -18,9 +18,11 @@ const Map = () => {
         <meta name='description' content='Find your way around the event' />
       </Head>
       <main className='map__page'>
-        <div>{/* This will hold the input fields */}</div>
         <div className='map__page__map-wrapper'>
           <LandmarkMap />
+        </div>
+        <div className='map__page__left'>
+          <div className='map__page__left__inner'></div>
         </div>
       </main>
     </>

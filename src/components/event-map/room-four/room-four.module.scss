@@ -1,7 +1,7 @@
 @use "../../../styles/utils/breakpoints" as b;
 
 .container {
-  background-color: #ffd9bf;
+  background-color: rgb(226, 208, 212);
   height: 100%;
   width: 100%;
   display: flex;
@@ -9,20 +9,8 @@
   justify-content: center;
   position: relative;
   font-size: 18px;
-  padding: 18px;
-  text-align: center;
-  &::after {
-    position: absolute;
-    right: 0;
-    content: "";
-    display: block;
-    height: 80%;
-    width: 2px;
-    background-color: #808080;
-    top: 0;
-  }
+  font-weight: 500;
   @include b.media("<=desktop") {
     font-size: 12px;
-    padding: 10px;
   }
 }

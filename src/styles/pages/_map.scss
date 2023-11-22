@@ -2,10 +2,34 @@
 
 .map__page {
   padding: 4.8rem 0 0.6rem 8.6%;
-  min-height: 800px;
   display: flex;
+  flex-direction: row-reverse;
+
+  &__left {
+    padding: 20px;
+    flex: 1 1 0;
+    &____inner {
+      min-width: 443px;
+      width: 100%;
+    }
+  }
   &__map-wrapper {
-    width: 820px;
-    margin-left: auto;
+    flex: 1 1 0;
+    @include media("<=desktop") {
+      min-width: 600px;
+    }
+    @include media("<=desktop-sm") {
+      width: 100vw;
+      margin-left: -3.6rem;
+    }
+  }
+
+  @include media("<=desktop") {
+    padding: 4.8rem 0 3.6rem 3.6rem;
+  }
+
+  @include media("<=desktop-sm") {
+    padding: 0 3.6rem;
+    display: block;
   }
 }
