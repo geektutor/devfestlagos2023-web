@@ -159,7 +159,7 @@ export default function Speakers({
         </section>
         <section className='speakers_page__speakers'>
           <div className='speakers_page__speakers_header'>
-            <h1>Our speakers for this year's DevFest</h1>
+            <h1>Our speakers for this year&apos;s DevFest</h1>
             <DaysToggle selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
           </div>
           <div className='speakers_page__speakers_list'>
