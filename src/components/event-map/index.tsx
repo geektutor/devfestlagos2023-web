@@ -6,8 +6,16 @@ const EventMap: React.FC = () => (
   <div className={classes.container}>
     <p className={classes.title}>LANDMARK EVENT CENTER LAYOUT</p>
     <div className={classes.blocks}>
-      <ExhibitionArea />
-      <RoomOne />
+      <div></div>
+      <div></div>
+      <div>
+        <ExhibitionArea />
+      </div>
+      <div>
+        <RoomOne />
+      </div>
+      <div></div>
+      <div></div>
     </div>
   </div>
 );
