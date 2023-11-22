@@ -1,0 +1,11 @@
+@import "utils/mixins";
+
+.map__page {
+  padding: 4.8rem 0 0.6rem 8.6%;
+  min-height: 800px;
+  display: flex;
+  &__map-wrapper {
+    width: 820px;
+    margin-left: auto;
+  }
+}

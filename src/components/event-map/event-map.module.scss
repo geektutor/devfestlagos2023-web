@@ -1,0 +1,22 @@
+@import "utils/mixins";
+
+.container {
+  background-color: #fff0e6;
+  width: 100%;
+  padding: 24px;
+  aspect-ratio: 1 / 1;
+  color: #4d4d4d;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.blocks {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: red;
+  display: grid;
+}
