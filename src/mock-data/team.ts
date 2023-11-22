@@ -654,7 +654,7 @@ export const teamMembers: ITeamMember[] = [
     role: "Co-Organiser (Partnerships & Legal Team Lead)",
     comment:
       "I've had an amazing time on the team identifying and working with our strategic partners and sponsors. My goal everyday is to ensure that our work is sustained by working with our partners and sponsors to ensure that our objectives at GDG Lagos are met. I love how my role cuts across two things I am passionate about, People & Law. ",
-    quote: `"Success isn't always about greatness. It's about consistency.`,
+    quote: `Success isn't always about greatness. It's about consistency.`,
     category: "gdg-team",
     image: karenImage,
     music: {
