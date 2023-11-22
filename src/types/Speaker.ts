@@ -1,18 +1,18 @@
-import { TalkType } from "@/types/Talk";
-import { StaticImageData } from "next/image";
-
 export type Speaker = {
-  id: number;
-  image: string | StaticImageData;
-  name: string;
+  twitter: string;
+  github: string;
   role: string;
-  company: string;
-  backgroundColor: string;
-  day: 1 | 2;
-  links: {
-    twitter?: string | undefined;
-    instagram?: string | undefined;
-    website?: string | undefined;
-  };
-  talk?: TalkType;
+  organization: string;
+  name: string;
+  bio: string;
+  linkedIn: string;
+  avatar: string;
+
+  email: string;
+  order: number;
+  currentSession: string;
+  currentSessionId: string;
+  sessionDate: string;
+  category: string;
+  scheduledAt: string;
 };

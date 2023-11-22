@@ -1,11 +1,10 @@
 import { PrimaryButton } from "@/components/button";
 import { ticketsUrl } from "@/utils/urls";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import LandmarkFrontage from "@/images/speakers-page/landmark-frontage.png";
 import SpeakerCard from "@/components/speaker/speaker";
-import { speakers } from "@/mock-data";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import FaqSection from "@/components/faq-section/faq-section";
 import { Talks } from "@/components/talks-section/talks";
@@ -18,9 +17,35 @@ import ArrowDoodle from "@/images/arrow-doodle.png";
 import LogicDoodle from "@/images/Logic.png";
 import PeopleDoodle from "@/images/people-doodle.png";
 import RefreshDoodle from "@/images/repeat-doodle.png";
+import { fetchSessions, fetchSpeakers } from "@/requests/general";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { Session } from "@/types/Session";
 import { Speaker } from "@/types/Speaker";
+import DaysToggle from "@/components/days-toggle/days-toggle";
+import { getSpeakerSession } from "@/utils/getSpeakerSession";
 
-export default function Speakers() {
+export default function Speakers({
+  sessions,
+  speakers,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
+  const [selectedDay, setSelectedDay] = useState<number>(1);
+
+  const handleChangeSpeaker = (index: number) => (direction: "next" | "previous") => {
+    if (direction === "next") {
+      setActiveSpeaker(daySpeakers[index + 1]);
+    }
+
+    if (direction === "previous") {
+      setActiveSpeaker(daySpeakers[index - 1]);
+    }
+  };
+
+  const daySpeakers = useMemo(() => {
+    const targetDay = selectedDay === 1 ? 24 : 25;
+    return speakers.filter((speakers) => new Date(speakers.sessionDate).getDate() === targetDay);
+  }, [selectedDay, speakers]);
+
   return (
     <>
       <Head>
@@ -37,8 +62,8 @@ export default function Speakers() {
               We have selected the best of the best to bring you amazing talks in this year&apos;s
               DevFest
             </p>
-            <PrimaryButton onClick={() => window.open(ticketsUrl, "_blank")}>
-              Apply to speak &emsp; <ArrowRight />
+            <PrimaryButton href={ticketsUrl} isExternal>
+              Get your ticket &emsp; <ArrowRight />
             </PrimaryButton>
 
             <figure className='speakers_page__hero__content_avatar1'>
@@ -134,25 +159,27 @@ export default function Speakers() {
         </section>
         <section className='speakers_page__speakers'>
           <div className='speakers_page__speakers_header'>
-            <h1>Our speakers for this years DevFest</h1>
-            <DaysTab />
+            <h1>Our speakers for this year&apos;s DevFest</h1>
+            <DaysToggle selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
           </div>
           <div className='speakers_page__speakers_list'>
-            {speakers.map((speaker: Speaker, index: number) => (
+            {daySpeakers.map((speaker, index: number) => (
               <SpeakerCard
                 key={index}
                 speaker={speaker}
-                hasNext
-                hasPrevious
-                onClick={() => console.log("Click")}
-                onClickButton={() => console.log("Button Clicked")}
-                modalIsOpen={false}
-                onClose={() => console.log("Close")}
+                onClick={() => setActiveSpeaker(speaker)}
+                onClose={() => setActiveSpeaker(null)}
+                hasNext={index < daySpeakers.length - 1}
+                hasPrevious={index > 0}
+                onClickButton={handleChangeSpeaker(index)}
+                modalIsOpen={activeSpeaker === speaker}
+                session={getSpeakerSession({ speaker, sessions })}
+                className='speakers_page__speakers__speaker'
               />
             ))}
           </div>
         </section>
-        <Talks />
+        <Talks sessions={sessions} speakers={speakers} disableAnimation />
         <FaqSection />
         <NoMatterWhat />
       </main>
@@ -160,33 +187,11 @@ export default function Speakers() {
   );
 }
 
-const DaysTab = () => {
-  const Days = ["Day 1", "Day 2"];
-  const [active, setActive] = useState(false);
-  const [tab, setTab] = useState(0);
+export const getStaticProps = (async () => {
+  const [sessions, speakers] = await Promise.all([fetchSessions(), fetchSpeakers()]);
 
-  const toggle = (tab: number) => {
-    setActive(!active);
-    setTab(tab);
-  };
-
-  const Style = active
-    ? {
-        color: "#111",
-        borderBottom: "2px solid #111",
-        padding: "1rem 3rem",
-      }
-    : {
-        color: "#444",
-        border: "none",
-      };
-  return (
-    <div style={{ display: "flex", gap: "1rem", marginRight: "10rem" }}>
-      {Days.map((item, idx) => (
-        <p style={Style} onClick={() => toggle(tab)} key={idx}>
-          {item}
-        </p>
-      ))}
-    </div>
-  );
-};
+  return { props: { sessions, speakers } };
+}) satisfies GetStaticProps<{
+  sessions: Session[];
+  speakers: Speaker[];
+}>;

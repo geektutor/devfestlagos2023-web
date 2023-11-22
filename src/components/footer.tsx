@@ -1,15 +1,53 @@
 import Logo from "@/images/logo-white-bg.svg";
 import XLightIcon from "@/images/social-media/twitter-light.svg";
 import InstagramLightIcon from "@/images/social-media/instagram-light.svg";
-import FacebookLightIcon from "@/images/social-media/facebook-light.svg";
-import LinkedInLightIcon from "@/images/social-media/linkedin-light.svg";
 import EmailLightIcon from "@/images/social-media/email-light.svg";
 import YouTubeLightIcon from "@/images/social-media/youtube-light.svg";
+import Link from "next/link";
 
-const footerLinks = [
-  ["Agenda", "Speaker", "FAQs"],
-  ["Apply as a speaker", "Apply as a sponsor", "Join the community", "Community guidelines"],
-  ["Privacy policy", "Contact us", "Follow us"],
+type Link = {
+  text: string;
+  link?: string;
+};
+
+const footerLinks: Link[][] = [
+  [
+    {
+      text: "Schedule",
+      link: "/schedule",
+    },
+    {
+      text: "Speakers",
+      link: "/speakers",
+    },
+    {
+      text: "FAQs",
+      link: "/faq",
+    },
+  ],
+  [
+    {
+      text: "Join the community",
+      link: "https://gdg.community.dev/gdg-lagos/",
+    },
+    {
+      text: "Community guidelines",
+      link: "https://developers.google.com/community-guidelines",
+    },
+    {
+      text: "DP Generator",
+      link: "/dp-generator",
+    },
+  ],
+  [
+    {
+      text: "Contact us",
+      link: "https://twitter.com/gdglagos",
+    },
+    {
+      text: "Follow us",
+    },
+  ],
 ];
 
 const Footer = () => {
@@ -31,12 +69,18 @@ const Footer = () => {
         data-stagger='.084'
         data-easing='FOOTER'
       >
-        <XLightIcon />
-        <InstagramLightIcon />
-        <FacebookLightIcon />
-        <LinkedInLightIcon />
-        <EmailLightIcon />
-        <YouTubeLightIcon />
+        <a href='https://twitter.com/gdglagos' target='_blank'>
+          <XLightIcon />
+        </a>
+        <a href='https://instagram.com/gdglagos' target='_blank'>
+          <InstagramLightIcon />
+        </a>
+        <a href='mailto:team@gdglagos.com'>
+          <EmailLightIcon />
+        </a>
+        <a href='https://www.youtube.com/@GDGLagos' target='_blank'>
+          <YouTubeLightIcon />
+        </a>
       </div>
     </li>
   );
@@ -52,7 +96,7 @@ const Footer = () => {
           {footerLinks.map((group, index) => (
             <ul className='c-footer__list__group' key={index}>
               {group.map((link, index) =>
-                link === "Follow us" ? (
+                link.text === "Follow us" ? (
                   followText
                 ) : (
                   <li
@@ -63,7 +107,13 @@ const Footer = () => {
                     data-delay={0.083 * (index + 1)}
                     data-easing='FOOTER'
                   >
-                    {link}
+                    {link.link?.startsWith("/") ? (
+                      <Link href={link.link || ""}>{link.text}</Link>
+                    ) : (
+                      <a target='_blank' href={link.link || ""}>
+                        {link.text}
+                      </a>
+                    )}
                   </li>
                 ),
               )}

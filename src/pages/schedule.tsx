@@ -10,9 +10,21 @@ import { ScheduleCard } from "@/components/schedule-card";
 import { Talks } from "@/components/talks-section/talks";
 import FaqSection from "@/components/faq-section/faq-section";
 import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
+import { fetchAgenda, fetchSessions, fetchSpeakers } from "@/requests/general";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { Session } from "@/types/Session";
+import { Schedule } from "@/types/Schedule";
+import DaysToggle from "@/components/days-toggle/days-toggle";
+import { Speaker } from "@/types/Speaker";
 
-export default function Schedule() {
+export default function Schedule({
+  sessions,
+  agenda,
+  speakers,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const [selectedDay, setSelectedDay] = useState<number>(1);
+
+  const schedule = agenda[selectedDay - 1];
 
   return (
     <div className='schedule__page'>
@@ -43,34 +55,43 @@ export default function Schedule() {
           </figure>
 
           <section className='schedule_container'>
-            <div className='schedule_container__day_selection'>
-              {[1, 2].map((number, index) => (
-                <div
-                  onClick={() => setSelectedDay(number)}
-                  key={index}
-                  className={`schedule_container__day_selection__number ${
-                    selectedDay === number && "schedule_container__day_selection__active"
-                  }`}
-                >
-                  Day {number}
-                </div>
-              ))}
+            <DaysToggle
+              isCentered
+              hasMargin
+              selectedDay={selectedDay}
+              setSelectedDay={setSelectedDay}
+            />
+            <div className='schedule_container__date_tag'>
+              {selectedDay === 1 ? "24th" : "25th"} November, 2023
             </div>
-            <div className='schedule_container__date_tag'>24th November, 2023</div>
 
             <ul className='schedule_container__list'>
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((number, index) => (
+              {schedule.map((schedule, index) => (
                 <li key={index} className='schedule_container__list__item'>
-                  <ScheduleCard />
+                  <ScheduleCard schedule={schedule} />
                 </li>
               ))}
             </ul>
           </section>
         </div>
       </header>
-      <Talks />
+      <Talks speakers={speakers} sessions={sessions} disableAnimation />
       <FaqSection />
       <NoMatterWhat />
     </div>
   );
 }
+
+export const getStaticProps = (async () => {
+  const [sessions, agenda, speakers] = await Promise.all([
+    fetchSessions(),
+    fetchAgenda(),
+    fetchSpeakers(),
+  ]);
+
+  return { props: { sessions, agenda, speakers } };
+}) satisfies GetStaticProps<{
+  sessions: Session[];
+  agenda: Schedule[][];
+  speakers: Speaker[];
+}>;

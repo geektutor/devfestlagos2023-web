@@ -15,4 +15,5 @@ export type Session = {
   availableSeats: number;
   slot: number;
   sessionDate: string;
+  day: 1 | 2;
 };

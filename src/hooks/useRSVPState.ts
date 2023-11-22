@@ -1,19 +1,17 @@
 import { Session } from "@/types/Session";
 import { useMemo, useState } from "react";
-import { Category } from "@/types/Category";
 
 type Props = {
   sessions: Session[];
   pageSize: number;
-  categories: Category[];
+  // categories: Category[];
   scrollToTalks: () => void;
 };
 
-export const useRSVPState = ({ sessions, pageSize, categories, scrollToTalks }: Props) => {
+export const useRSVPState = ({ sessions, pageSize, scrollToTalks }: Props) => {
   //State
   const [talksPage, setTalksPage] = useState(1);
   const [activeDay, setActiveDay] = useState(0);
-  const [activeCategory, setActiveCategory] = useState<string>("All");
 
   const [talkModalState, setTalkModalState] = useState<{
     isOpen: boolean;
@@ -23,12 +21,7 @@ export const useRSVPState = ({ sessions, pageSize, categories, scrollToTalks }: 
   //Data
   const currentDayTalks = useMemo(() => {
     return sessions.filter((session) => {
-      if (
-        activeCategory !== "All" &&
-        session.category.toLowerCase() !== activeCategory.toLowerCase()
-      ) {
-        return false;
-      }
+      if (!session.availableSeats || !session.owner || !session.sessionId) return false;
 
       const day = new Date(session.sessionDate).getDate();
 
@@ -38,27 +31,7 @@ export const useRSVPState = ({ sessions, pageSize, categories, scrollToTalks }: 
         return day === 25;
       }
     });
-  }, [activeCategory, activeDay, sessions]);
-
-  const categoriesWithAll: Category[] = useMemo(() => {
-    const allCategories = [{ name: "All", imageUrl: "" }, ...categories];
-
-    const dayTalks = sessions.filter((session) => {
-      const day = new Date(session.sessionDate).getDate();
-
-      if (activeDay === 0) {
-        return day === 24;
-      } else {
-        return day === 25;
-      }
-    });
-
-    const validCategories = new Set(dayTalks.map((session) => session.category));
-
-    return allCategories.filter(
-      (category) => validCategories.has(category.name) || category.name === "All",
-    );
-  }, [activeDay, categories, sessions]);
+  }, [activeDay, sessions]);
 
   const totalTalks = currentDayTalks.length;
 
@@ -90,7 +63,6 @@ export const useRSVPState = ({ sessions, pageSize, categories, scrollToTalks }: 
     setActiveDay(day);
     setTalksPage(1);
     scrollToTalks();
-    setActiveCategory("All");
   };
 
   const onShowTalkDetails = (session: Session) => {
@@ -108,7 +80,6 @@ export const useRSVPState = ({ sessions, pageSize, categories, scrollToTalks }: 
   return {
     talksPage,
     activeDay,
-    activeCategory,
     talkModalState,
     onClickNext,
     onClickPrev,
@@ -117,8 +88,6 @@ export const useRSVPState = ({ sessions, pageSize, categories, scrollToTalks }: 
     onCloseTalkDetails,
     currentTalks,
     rangeText,
-    categoriesWithAll,
-    setActiveCategory,
     totalTalks,
   };
 };

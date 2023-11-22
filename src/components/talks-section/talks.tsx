@@ -1,39 +1,52 @@
 import React, { FC, useMemo, useState } from "react";
 import { classNames } from "@/utils/classNames";
 import { Talk } from "@/components/homepage/talk/talk";
-import { talks } from "@/mock-data";
 import styles from "./talks.module.scss";
 import { PrimaryButton } from "@/components/button";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
-import CategoryPill from "@/components/category-pill/category-pill";
-
-const talkCategories = ["All Talks", "Design", "Blockchain", "Mobile Development"] as const;
-
-type Category = (typeof talkCategories)[number];
+import { Session } from "@/types/Session";
+import { Speaker } from "@/types/Speaker";
 
 type Props = {
   hasDayToggle?: boolean;
+  sessions: Session[];
+  disableAnimation?: boolean;
+  speakers: Speaker[];
 };
 
-export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
-  const [activeCategory, setActiveCategory] = useState<Category>(talkCategories[0]);
+const MAX_VISIBLE_TALKS = 5;
+
+export const Talks: FC<Props> = ({
+  hasDayToggle = false,
+  sessions,
+  disableAnimation,
+  speakers,
+}) => {
   const [activeDay, setActiveDay] = useState<1 | 2>(1);
 
+  const croppedTalks = sessions
+    .filter((session) => session.owner && session.sessionId && session.title)
+    .slice(0, MAX_VISIBLE_TALKS);
+
   const validTalks = useMemo(() => {
-    let categoryTalks;
-    if (activeCategory === "All Talks") {
-      categoryTalks = talks.slice(0, 3);
-    } else {
-      categoryTalks = talks.filter((talk) => talk.category === activeCategory).slice(0, 3);
-    }
+    if (!hasDayToggle) return croppedTalks;
 
-    if (!hasDayToggle) return categoryTalks;
+    return croppedTalks.filter((talk) => talk.day === activeDay);
+  }, [activeDay, hasDayToggle, croppedTalks]);
 
-    return categoryTalks.filter((talk) => talk.speaker.day === activeDay);
-  }, [activeCategory, activeDay, hasDayToggle]);
+  const getImageURL = (session: Session) => {
+    const speaker = speakers.find((speaker) => speaker.name === session.owner);
+
+    if (speaker) return speaker.avatar;
+
+    return session.speakerImage;
+  };
 
   return (
-    <section className={styles.talks} data-section-delay='.6'>
+    <section
+      className={classNames(styles.talks, disableAnimation && styles.disableAnimation)}
+      data-section-delay='.6'
+    >
       <canvas data-animate-canvas className={styles.talkCanvas} />
       <div className={styles.talksTop}>
         <div>
@@ -84,30 +97,16 @@ export const Talks: FC<Props> = ({ hasDayToggle = false }) => {
           </PrimaryButton>
         )}
       </div>
-      <div className={styles.talksTags}>
-        {talkCategories.map((category, index) => (
-          <div key={category} style={{ position: "relative", overflow: "hidden", flexShrink: "0" }}>
-            <CategoryPill
-              className={classNames(
-                styles.talksTag,
-                activeCategory === category && styles.talksTagActive,
-              )}
-              isActive={activeCategory === category}
-              onClick={() => setActiveCategory(category)}
-              data-animate-y-full
-              data-easing='SPONSOR_BETTER'
-              data-delay={0.667 + 0.084 * index}
-            >
-              {category}
-            </CategoryPill>
-          </div>
-        ))}
-      </div>
       <div className={styles.talksGrid}>
-        {validTalks.map((talk, index) => (
+        {validTalks.map((session, index) => (
           <div key={index}>
-            <Talk talk={talk} key={index} animationDelay={index * 0.084} />
-            {index < talks.length - 1 && (
+            <Talk
+              image={getImageURL(session)}
+              session={session}
+              key={index}
+              animationDelay={index * 0.084}
+            />
+            {index < croppedTalks.length - 1 && (
               <hr className={styles.talksDivider} data-fade-in data-delay={0.084 * index} />
             )}
           </div>
