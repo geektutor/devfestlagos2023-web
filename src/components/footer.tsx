@@ -24,10 +24,6 @@ const footerLinks: Link[][] = [
       text: "FAQs",
       link: "/faq",
     },
-    {
-      text: "DP Generator",
-      link: "/dp-generator",
-    },
   ],
   [
     {
@@ -37,6 +33,10 @@ const footerLinks: Link[][] = [
     {
       text: "Community guidelines",
       link: "https://developers.google.com/community-guidelines",
+    },
+    {
+      text: "DP Generator",
+      link: "/dp-generator",
     },
   ],
   [
