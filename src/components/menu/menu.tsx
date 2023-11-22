@@ -35,8 +35,8 @@ const Menu: FC<Props> = ({ actionButton }) => {
           <NavItems />
         </nav>
         {actionButton || (
-          <Button variant='primary' className={styles.cta} data-animate-button>
-            <span>Register Now</span>
+          <Button variant='primary' className={styles.cta} data-animate-button href='/rsvp'>
+            <span>RSVP</span>
             <RightArrow className={styles.ctaIcon} />
           </Button>
         )}
@@ -54,8 +54,8 @@ const Menu: FC<Props> = ({ actionButton }) => {
           </div>
           <nav className={styles.mobileItems}>
             <NavItems />
-            <Button variant='primary' className={styles.cta}>
-              Register Now
+            <Button variant='primary' className={styles.cta} href='/rsvp'>
+              RSVP
               <RightArrow />
             </Button>
           </nav>
