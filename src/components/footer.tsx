@@ -78,7 +78,7 @@ const Footer = () => {
         <a href='mailto:team@gdglagos.com'>
           <EmailLightIcon />
         </a>
-        <a href='https://www.youtube.com/@GDGLagos' target='_blank'>
+        <a target='_blank' href='https://www.youtube.com/@GDGLagos'>
           <YouTubeLightIcon />
         </a>
       </div>
