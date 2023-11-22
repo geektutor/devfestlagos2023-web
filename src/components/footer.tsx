@@ -24,6 +24,10 @@ const footerLinks: Link[][] = [
       text: "FAQs",
       link: "/faq",
     },
+    {
+      text: "DP Generator",
+      link: "/dp-generator",
+    },
   ],
   [
     {
