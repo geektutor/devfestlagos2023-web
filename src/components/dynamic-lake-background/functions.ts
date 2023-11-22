@@ -12,7 +12,7 @@ import {
   createTextureToRenderTo,
   resizeCanvasToDisplaySize,
   setQuadVertices,
-} from "./webgl-utility";
+} from "@/utils/webgl-utility";
 
 const loadImage = (url: string) =>
   new Promise<HTMLImageElement>((resolve, reject) => {
@@ -468,10 +468,10 @@ export const initialise = async (canvas: HTMLCanvasElement, fishermanWrapper: HT
   setQuadVertices(gl);
 
   const render = (moveFactor: number) => {
-    gl.clear(gl.COLOR_BUFFER_BIT);
-
     // Clear the canvas AND the depth buffer.
     gl.clearColor(1, 0.9804, 0.9216, 1);
+
+    gl.clear(gl.COLOR_BUFFER_BIT);
 
     const sceneTexture = renderSceneToTexture();
     resizeCanvasToDisplaySize(gl.canvas as HTMLCanvasElement);

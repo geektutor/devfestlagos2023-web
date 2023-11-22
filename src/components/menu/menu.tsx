@@ -85,7 +85,7 @@ const NavItems = () => {
       </li>
       <li className={styles.navItem}>
         <Link href='/team' className={styles.link}>
-          The team
+          Team
         </Link>
       </li>
     </ul>

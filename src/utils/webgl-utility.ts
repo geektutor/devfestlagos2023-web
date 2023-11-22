@@ -124,3 +124,12 @@ export const setQuadVertices = (gl: WebGLRenderingContext, width?: number, heigh
     gl.STATIC_DRAW,
   );
 };
+
+export const getProjectionMatrix = (canvas: HTMLCanvasElement | OffscreenCanvas) => {
+  // prettier-ignore
+  return [
+    2 / canvas.width,           0,          0,
+            0,        (-2 / canvas.height), 0,
+           -1,                  1,          1
+  ];
+};
