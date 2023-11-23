@@ -20,7 +20,7 @@ import ArrowLeftDark from "@/images/arrow-left-dark.svg";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 import repeatDoodle from "@/images/repeat-doodle.png";
 import dotsDoodle from "@/images/landing/doodles/dots.png";
-import logicDoodle from "@/images/logic.png";
+import logicDoodle from "@/images/logic-fixed.png";
 import arrowDoodle from "@/images/arrow-doodle.png";
 import peopleDoodle from "@/images/people-doodle.png";
 import Image from "next/image";
