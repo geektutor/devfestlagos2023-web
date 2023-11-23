@@ -139,6 +139,7 @@
   @include media("<=tablet") {
     padding: 1.6rem;
     width: 90%;
+    max-height: 70vh;
   }
 }
 
