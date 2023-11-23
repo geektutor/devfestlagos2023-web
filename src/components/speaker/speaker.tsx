@@ -131,7 +131,13 @@ export default function SpeakerCard({
     <>
       <div className={classNames(styles.speaker, className)} onClick={onClick}>
         <div className={styles.speakerImage}>
-          <Image className={styles.speakerImageInner} src={avatar} alt={name} fill />
+          <Image
+            className={styles.speakerImageInner}
+            onError={(e) => (e.currentTarget.src = "/user.png")}
+            src={avatar}
+            alt={name}
+            fill
+          />
         </div>
         <div
           className={styles.speakerTextContainer}

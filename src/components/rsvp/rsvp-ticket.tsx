@@ -57,7 +57,13 @@ const RSVPTicket = ({
         }}
       >
         <div className={styles.speakerImage}>
-          <Image className={styles.speakerImageInner} src={image} alt={owner} fill />
+          <Image
+            className={styles.speakerImageInner}
+            src={image}
+            alt={owner}
+            fill
+            onError={(e) => (e.currentTarget.src = "/user.png")}
+          />
         </div>
         <div className={styles.speakerInfo}>
           <p className={styles.seeSession}>Tap to See Session</p>

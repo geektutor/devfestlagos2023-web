@@ -70,7 +70,13 @@ const RSVPTicketDetails = ({
         <p className={styles.speakerHeading}>Speaker</p>
         <div className={styles.speakerSection}>
           <div className={styles.speakerImage}>
-            <Image className={styles.speakerImageInner} src={speakerImage} alt={owner} fill />
+            <Image
+              className={styles.speakerImageInner}
+              src={speakerImage}
+              alt={owner}
+              fill
+              onError={(e) => (e.currentTarget.src = "/user.png")}
+            />
           </div>
           <h3 className={styles.speakerName}>{owner}</h3>
         </div>
