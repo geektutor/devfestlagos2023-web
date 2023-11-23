@@ -145,7 +145,7 @@ export default function SpeakerCard({
           <p className={styles.speakerCompany}>{role}</p>
         </div>
       </div>
-      {modalContent}
+      {/*{modalContent}*/}
     </>
   );
 }
