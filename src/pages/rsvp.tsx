@@ -109,11 +109,11 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
 
   const {
     talksPage,
-    activeDay,
+    // activeDay,
     talkModalState,
     onClickNext,
     onClickPrev,
-    onChangeDay,
+    // onChangeDay,
     onShowTalkDetails,
     onCloseTalkDetails,
     currentTalks,
@@ -270,6 +270,7 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
   };
 
   const renderBody = () => {
+    return null; // Hiding RSVP for now
     if (currentTalks.length === 0) {
       return <EmptyRsvp onClick={() => setActiveTab(RSVP_TABS.GENERAL)} />;
     }
@@ -311,6 +312,7 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
   };
 
   const renderMobileButton = () => {
+    return null;
     if (!user) return null;
 
     return (
@@ -350,15 +352,22 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
         <h1
           className={classNames("rsvp__title", activeTab === RSVP_TABS.BOOKMARKS && "bookmarked")}
         >
-          {activeTab === RSVP_TABS.GENERAL ? "RSVP" : "Your Booked Sessions"}
+          {/* {activeTab === RSVP_TABS.GENERAL ? "RSVP" : "Your Booked Sessions"} */}
+          RSVP
         </h1>
-        {activeTab === RSVP_TABS.GENERAL && (
+        <p
+          className='rsvp__subtitle'
+          style={{ paddingBottom: "80px" }} // Temporary till RSVP is ready
+        >
+          Coming Sooon...
+        </p>
+        {/* {activeTab === RSVP_TABS.GENERAL && (
           <p className='rsvp__subtitle'>
             Rice and Soup very plenty 🤩 <br /> JK JK, Below you can select the sessions you’re
             interested in.
           </p>
-        )}
-        <div className='rsvp__days' ref={daysSectionRef}>
+        )} */}
+        {/* <div className='rsvp__days' ref={daysSectionRef}>
           {Array.from({ length: 2 }).map((_, index) => (
             <button
               key={index}
@@ -368,7 +377,7 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
               Day {index + 1}
             </button>
           ))}
-        </div>
+        </div> */}
         {renderMobileButton()}
         {renderBody()}
         <FaqSection />
