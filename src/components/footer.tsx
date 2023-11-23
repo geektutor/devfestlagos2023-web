@@ -38,6 +38,10 @@ const footerLinks: Link[][] = [
       text: "DP Generator",
       link: "/dp-generator",
     },
+    {
+      text: "Map",
+      link: "/map",
+    },
   ],
   [
     {
