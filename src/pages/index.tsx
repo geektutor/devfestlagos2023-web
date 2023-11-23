@@ -17,6 +17,14 @@ import { Session } from "@/types/Session";
 import { Category } from "@/types/Category";
 import { Speaker } from "@/types/Speaker";
 import Menu from "@/components/menu/menu";
+import Image from "next/image";
+import dotsDoodle from "@/images/landing/doodles/dots.png";
+import cloudsDoodle from "@/images/landing/doodles/cloud.png";
+import { PrimaryButton } from "@/components/button";
+import ArrowRight from "@/images/arrow-right-bg-light.svg";
+import { HomepageScene } from "@/components/homepage/scene/scene";
+import appDownloadImage from "@/images/landing/sponsor.png";
+import { ticketsUrl } from "@/utils/urls";
 
 const topics = [
   [
@@ -149,6 +157,73 @@ export default function Landing({
       />
       <div className='landing-page'>
         <Menu />
+        <section className='landing-page__intro'>
+          <div className='landing-page__intro__title'>
+            <h1 className='landing-page__intro__title__text'>
+              <span>
+                <span data-animate-y-full data-delay='.167' data-easing='LANDING_TITLE'>
+                  DevFest
+                </span>
+              </span>{" "}
+              <span>
+                <span data-animate-y-full data-delay='.167' data-easing='LANDING_TITLE'>
+                  Lagos
+                </span>
+              </span>
+            </h1>
+            <Image
+              src={dotsDoodle}
+              alt='doodle'
+              className='landing-page__intro__title__dots'
+              data-landing-doodle
+            />
+            <Image
+              src={cloudsDoodle}
+              alt='doodle'
+              className='landing-page__intro__title__cloud-left'
+              data-landing-doodle
+            />
+            <Image
+              src={cloudsDoodle}
+              alt='doodle'
+              className='landing-page__intro__title__cloud-right'
+              data-landing-doodle
+            />
+            <div className='landing-page__intro__title__presents' data-fade-in data-gdg-presents>
+              GDG Lagos Presents
+            </div>
+          </div>
+          {/*<span>*/}
+          {/*  </span>*/}
+          <p
+            className='landing-page__intro__description'
+            data-animate-sentences
+            data-delay={0.333}
+            data-easing='LANDING_DESCRIPTION'
+          >
+            The biggest tech event in sub-saharan Africa is back and even bigger and better!
+            {/*<div className='landing-page__intro__memoji'>*/}
+            {/*  <Image src={memojiDoodle} alt='doodle' quality={100} />*/}
+            {/*</div>*/}
+          </p>
+          <PrimaryButton
+            href={ticketsUrl}
+            isExternal
+            data-animate-button
+            className='landing-page__intro__button'
+          >
+            <span>Get Your Ticket</span>
+            <ArrowRight />
+          </PrimaryButton>
+          <HomepageScene />
+          <a href='/app' target='_blank'>
+            <Image
+              src={appDownloadImage}
+              className='landing-page__intro__sponsor-cta'
+              alt='Download Our App'
+            />
+          </a>
+        </section>
       </div>
     </>
   );
