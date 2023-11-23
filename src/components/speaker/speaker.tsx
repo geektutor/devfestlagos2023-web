@@ -5,8 +5,8 @@ import styles from "./speaker.module.scss";
 import CloseCircle from "@/images/close-circle.svg";
 import topImage from "@/images/speaker/top-image.png";
 import topImageMobile from "@/images/speaker/top-image-mobile.png";
-// import ArrowRight from "@/images/arrow-right-bg-light.svg";
-// import ArrowLeft from "@/images/arrow-left-dark.svg";
+import ArrowRight from "@/images/arrow-right-bg-light.svg";
+import ArrowLeft from "@/images/arrow-left-dark.svg";
 // import { PrimaryButton, SecondaryButton } from "@/components/button";
 import { classNames } from "@/utils/classNames";
 import CategoryPill from "@/components/category-pill/category-pill";
@@ -112,14 +112,14 @@ export default function SpeakerCard({
         <div className={styles.modalButtons}>
           {hasPrevious && (
             <button>
-              {/*<ArrowLeft />*/}
+              <ArrowLeft />
               <span>Previous Speaker</span>
             </button>
           )}
           {hasNext && (
             <button className={styles.modalNextButton}>
               <span>Next Speaker</span>
-              {/*<ArrowRight />*/}
+              <ArrowRight />
             </button>
           )}
         </div>
