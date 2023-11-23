@@ -8,6 +8,7 @@ import topImageMobile from "@/images/speaker/top-image-mobile.png";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import ArrowLeft from "@/images/arrow-left-dark.svg";
 // import { PrimaryButton, SecondaryButton } from "@/components/button";
+import { PrimaryButton, SecondaryButton } from "@/components/button";
 import { classNames } from "@/utils/classNames";
 import CategoryPill from "@/components/category-pill/category-pill";
 import { Speaker } from "@/types/Speaker";
@@ -111,10 +112,10 @@ export default function SpeakerCard({
         <h3 className={styles.modalTitle}>{session?.title}</h3>
         <div className={styles.modalButtons}>
           {hasPrevious && (
-            <button>
+            <SecondaryButton>
               <ArrowLeft />
               <span>Previous Speaker</span>
-            </button>
+            </SecondaryButton>
           )}
           {hasNext && (
             <button className={styles.modalNextButton}>
