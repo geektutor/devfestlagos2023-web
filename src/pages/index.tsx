@@ -7,6 +7,7 @@ import Image from "next/image";
 import GoogleIcon from "@/images/landing/sponsor/google.svg";
 import AndelaIcon from "@/images/landing/sponsor/andela.png";
 import BluechipIcon from "@/images/landing/sponsor/bluechip.png";
+import appDownloadImage from "@/images/landing/sponsor.png";
 import GeegpayIcon from "@/images/landing/sponsor/geegpay.png";
 import IntmaxIcon from "@/images/landing/sponsor/intmax.png";
 import KatwigIcon from "@/images/landing/sponsor/katwig.png";
@@ -168,9 +169,8 @@ export default function Landing({
   return (
     <>
       <SEO
-        title='Devfest Lagos 2023 | Grab Your Tickets'
-        description='Welcome to the official Coming Soon website for DevFest Lagos 2023. DevFest Lagos is an annual  tech conference hosted by Google Developer Groups Lagos. Be there 🫵🏾'
-        keywords='gdg lagos, devfest, devfest lagos, devfest lagos 2023'
+        title='Devfest Lagos 2023 | Homepage'
+        description='Welcome to the official website for DevFest Lagos 2023. DevFest Lagos is an annual  tech conference hosted by Google Developer Groups Lagos. Be there 🫵🏾'
         image='/og-images/coming-soon.png'
       />
       <div className='landing-page'>
@@ -234,6 +234,13 @@ export default function Landing({
             <ArrowRight />
           </PrimaryButton>
           <HomepageScene />
+          <a href='/app' target='_blank'>
+            <Image
+              src={appDownloadImage}
+              className='landing-page__intro__sponsor-cta'
+              alt='Download Our App'
+            />
+          </a>
         </section>
         <section className='landing-page__better' data-better-section>
           <h3

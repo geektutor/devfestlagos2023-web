@@ -203,13 +203,10 @@
       position: absolute;
       bottom: 3.8rem;
       right: 12.4rem;
+      height: auto;
 
       img {
         width: 100%;
-      }
-
-      @include media("<=tablet") {
-        display: none;
       }
 
       @include media("<=phone") {
@@ -217,7 +214,7 @@
         position: relative;
         bottom: unset;
         right: unset;
-        width: 8.4rem;
+        width: 10rem;
         margin: 2.4rem 2.4rem 0 auto;
       }
     }
