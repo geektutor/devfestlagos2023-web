@@ -1,0 +1,225 @@
+@import "utils/mixins";
+
+.map__page {
+  padding: 4.8rem 0 0.6rem 8.6%;
+  display: flex;
+
+  flex-direction: row-reverse;
+
+  @include media(">=LGdesktop") {
+    margin: 0 auto;
+    max-width: 120rem;
+  }
+
+  &__mobile-header-and-caption {
+    margin-top: 14px;
+    margin-bottom: 32px;
+    &__header {
+      font-size: 32px;
+      color: $grey-10;
+      @include media("<=tablet") {
+        font-size: 24px;
+      }
+    }
+    &__caption {
+      font-size: 18px;
+      color: $grey-30;
+      @include media("<=tablet") {
+        font-size: 14px;
+      }
+    }
+    @include media("<=tablet") {
+      margin-bottom: 16px;
+    }
+    @include media(">=desktop-sm") {
+      display: none;
+    }
+  }
+
+  &__left {
+    padding: 20px;
+    flex: 1 1 0;
+    @include media("<=desktop-sm") {
+      padding: 50px 0;
+      max-width: 600px;
+      margin: auto;
+    }
+    @include media("<=tablet") {
+      padding: 20px 0;
+      padding-bottom: 50px;
+    }
+    &__inner {
+      width: 100%;
+    }
+  }
+  &__map-wrapper {
+    flex: 1 1 0;
+    @include media("<=desktop-sm") {
+      margin: 0 auto;
+      max-width: 600px;
+    }
+    @include media("<=tablet-sm") {
+      width: 100vw;
+      margin-left: -3.6rem;
+    }
+    @include media("<=tablet-sm") {
+      margin-left: -2.4rem;
+    }
+  }
+
+  &__form {
+    flex-grow: 1;
+    @include media(">=desktop") {
+      max-width: 70%;
+      min-width: 443px;
+    }
+    @include media(">=desktop-sm") {
+      min-width: 400px;
+      max-width: 80%;
+    }
+
+    @include media("<=desktop-sm") {
+      max-width: unset;
+      min-width: unset;
+    }
+
+    &__header-and-subtitle {
+      @include media("<=desktop-sm") {
+        display: none;
+      }
+    }
+
+    &__header {
+      @include heading-5;
+      color: $grey-10;
+      margin-bottom: 10px;
+    }
+
+    &__subtitle {
+      @include body-3;
+      color: $grey-30;
+      max-width: 314px;
+      margin-bottom: 24px;
+    }
+
+    &__label {
+      @include body-4;
+      color: #0b0a0a;
+      margin-bottom: 8px;
+    }
+
+    &__dropdown {
+      position: relative;
+      width: 100%;
+
+      &__label {
+        @include body-4;
+        color: #0b0a0a;
+        margin-bottom: 8px;
+        font-weight: 400;
+      }
+
+      &__inner {
+        padding: 16px;
+        border: 1px solid $grey-90;
+        border-radius: 16px;
+        background: $bg-shade-1;
+        display: flex;
+        align-items: center;
+        background: transparent;
+        width: 100%;
+      }
+
+      &__pin-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+      }
+
+      &__text {
+        @include body-3;
+        color: $grey-0;
+        margin-right: auto;
+
+        &.is-placeholder {
+          color: $grey-60;
+        }
+      }
+
+      &__options {
+        border: 1px solid $grey-90;
+        border-radius: 16px;
+        background: $bg-shade-1;
+        max-height: 234px;
+        overflow: auto;
+        padding: 16px;
+        position: absolute;
+        width: 100%;
+        top: calc(100% + 16px);
+        transform: translateY(10px);
+        z-index: 3;
+        opacity: 0;
+        pointer-events: none;
+        transition: 300ms;
+        display: flex;
+        flex-direction: column;
+
+        &.is-open {
+          transform: translateY(0px);
+          pointer-events: all;
+          opacity: 1;
+        }
+      }
+
+      &__option {
+        @include body-3;
+        color: $grey-0;
+        border: none;
+        border-bottom: 1px solid #e6e6e6;
+        padding: 8px;
+        cursor: pointer;
+        background: transparent;
+        width: 100%;
+        text-align: left;
+        display: flex;
+        column-gap: 8px;
+        align-items: center;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+
+        &:last-child {
+          border: none;
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    &__divider {
+      height: 44px;
+      margin: 8px 0;
+      width: 0;
+      display: flex;
+      border-left: 1px dashed #b3b3b3;
+    }
+
+    &__button {
+      width: 100%;
+      margin-top: 2.4rem;
+    }
+  }
+
+  @include media("<=desktop") {
+    padding: 4.8rem 0 3.6rem 3.6rem;
+  }
+
+  @include media("<=desktop-sm") {
+    padding: 0 3.6rem;
+    display: block;
+  }
+  @include media("<=tablet-sm") {
+    padding: 0 2.4rem;
+  }
+}

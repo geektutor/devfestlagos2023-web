@@ -1,0 +1,15 @@
+@use "../../../styles/utils/breakpoints" as b;
+
+.container {
+  background-color: #ffdbbf;
+  height: 100%;
+  width: 100%;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  @include b.media("<=desktop") {
+    font-size: 8px;
+  }
+}
