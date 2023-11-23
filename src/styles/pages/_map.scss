@@ -3,7 +3,13 @@
 .map__page {
   padding: 4.8rem 0 0.6rem 8.6%;
   display: flex;
+
   flex-direction: row-reverse;
+
+  @include media(">=LGdesktop") {
+    margin: 0 auto;
+    max-width: 120rem;
+  }
 
   &__mobile-header-and-caption {
     margin-top: 14px;
@@ -63,6 +69,19 @@
 
   &__form {
     flex-grow: 1;
+    @include media(">=desktop") {
+      max-width: 70%;
+      min-width: 443px;
+    }
+    @include media(">=desktop-sm") {
+      min-width: 400px;
+      max-width: 80%;
+    }
+
+    @include media("<=desktop-sm") {
+      max-width: unset;
+      min-width: unset;
+    }
 
     &__header-and-subtitle {
       @include media("<=desktop-sm") {
