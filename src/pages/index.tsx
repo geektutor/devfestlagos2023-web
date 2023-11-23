@@ -1,5 +1,5 @@
 import { SEO } from "@/components/seo";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { PrimaryButton } from "@/components/button";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import { HomepageScene } from "@/components/homepage/scene/scene";
@@ -30,6 +30,8 @@ import repeatDoodle from "@/images/landing/doodles/repeat.png";
 import speakerMemojiLeft from "@/images/landing/doodles/speaker-memoji.png";
 import speakerMemojiRight from "@/images/landing/doodles/speaker-memoji-2.png";
 import SparkleIcon from "@/images/landing/doodles/sparkle.svg";
+// import { YoutubePlayer } from "@/components/youtube-player";
+import LandingPage from "@/animations/components/Landing";
 import Menu from "@/components/menu/menu";
 import Footer from "@/components/footer";
 import { fetchCategories, fetchSessions, fetchSpeakers } from "@/requests/general";
@@ -37,7 +39,6 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Session } from "@/types/Session";
 import { Category } from "@/types/Category";
 import { Speaker } from "@/types/Speaker";
-import { ticketsUrl } from "@/utils/urls";
 import { getSpeakerSession } from "@/utils/getSpeakerSession";
 import { classNames } from "@/utils/classNames";
 
@@ -139,7 +140,7 @@ export default function Landing({
   speakers,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
-  // const isInitialized = useRef(false);
+  const isInitialized = useRef(false);
 
   const handleChangeSpeaker = (index: number) => (direction: "next" | "previous") => {
     if (direction === "next") {
@@ -156,13 +157,13 @@ export default function Landing({
     else disableBodyScroll(document.body);
   }, [activeSpeaker]);
 
-  // useEffect(() => {
-  //   if (!isInitialized.current) {
-  //     new LandingPage();
-  //
-  //     isInitialized.current = true;
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!isInitialized.current) {
+      new LandingPage();
+
+      isInitialized.current = true;
+    }
+  }, []);
 
   return (
     <>
@@ -222,7 +223,7 @@ export default function Landing({
             {/*</div>*/}
           </p>
           <PrimaryButton
-            href={ticketsUrl}
+            // href={ticketsUrl}
             isExternal
             data-animate-button
             className='landing-page__intro__button'
@@ -351,7 +352,7 @@ export default function Landing({
               We are back to do so much more and we look forward to showing you what we have in
               store.
             </p>
-            <PrimaryButton data-animate-button data-delay='1.2' href={ticketsUrl} isExternal>
+            <PrimaryButton data-animate-button data-delay='1.2' isExternal>
               <span>Get Your Ticket</span> <ArrowRightDark />
             </PrimaryButton>
           </div>
@@ -374,7 +375,7 @@ export default function Landing({
               talking groceries 🌚
             </p>
             <div className='landing-page__hype__categories__button-wrapper'>
-              <PrimaryButton data-animate-button data-delay='1.7' href={ticketsUrl} isExternal>
+              <PrimaryButton data-animate-button data-delay='1.7' isExternal>
                 <span>Register Now</span>
                 <ArrowRight />
               </PrimaryButton>
