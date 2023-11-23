@@ -33,6 +33,8 @@ import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 import CategoryPill from "@/components/category-pill/category-pill";
 import { YoutubePlayer } from "@/components/youtube-player";
 import SparkleIcon from "@/images/landing/doodles/sparkle.svg";
+import speakerMemojiLeft from "@/images/landing/doodles/speaker-memoji.png";
+import speakerMemojiRight from "@/images/landing/doodles/speaker-memoji-2.png";
 
 const topics = [
   [
@@ -427,6 +429,29 @@ export default function Landing({
               data-easing='SPEAKERS_TITLE'
             >
               {speakers.length}
+            </p>
+          </div>
+          <div className='landing-page__speakers__speakers-wrapper'>
+            <Image
+              src={speakerMemojiLeft}
+              alt='doodle'
+              className='landing-page__speakers__memoji-left'
+              data-speaker-memoji
+            />
+            <Image
+              src={speakerMemojiRight}
+              alt='doodle'
+              className='landing-page__speakers__memoji-right'
+              data-speaker-memoji
+            />
+            <p
+              className='landing-page__speakers__speakers-text'
+              data-animate-y-full
+              data-add-span
+              data-easing='SPEAKERS_TITLE'
+              data-delay='.83'
+            >
+              Speakers
             </p>
           </div>
         </section>
