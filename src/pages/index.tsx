@@ -5,9 +5,14 @@ import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import { HomepageScene } from "@/components/homepage/scene/scene";
 import Image from "next/image";
 import GoogleIcon from "@/images/landing/sponsor/google.svg";
-import SpotifyIcon from "@/images/landing/sponsor/spotify.svg";
-import LyftIcon from "@/images/landing/sponsor/lyft.svg";
-import FacebookIcon from "@/images/landing/sponsor/facebook.svg";
+import AndelaIcon from "@/images/landing/sponsor/andela.png";
+import BluechipIcon from "@/images/landing/sponsor/bluechip.png";
+import GeegpayIcon from "@/images/landing/sponsor/geegpay.png";
+import IntmaxIcon from "@/images/landing/sponsor/intmax.png";
+import KatwigIcon from "@/images/landing/sponsor/katwig.png";
+import OktaIcon from "@/images/landing/sponsor/okta.svg";
+import PaystackIcon from "@/images/landing/sponsor/paystack.svg";
+import PostmanIcon from "@/images/landing/sponsor/postman.svg";
 import songCoverImage from "@/images/landing/song-cover.png";
 import SpotifyLyricIcon from "@/images/landing/spotify.svg";
 import scribbleImage from "@/images/landing/scribble.png";
@@ -35,6 +40,7 @@ import { Category } from "@/types/Category";
 import { Speaker } from "@/types/Speaker";
 import { ticketsUrl } from "@/utils/urls";
 import { getSpeakerSession } from "@/utils/getSpeakerSession";
+import { classNames } from "@/utils/classNames";
 
 const topics = [
   [
@@ -98,6 +104,33 @@ const topics = [
       emoji: "📉",
       topic: "Big Data",
       color: "#EFEFDC",
+    },
+  ],
+];
+
+const sponsors = [
+  [GoogleIcon, PostmanIcon],
+  [
+    OktaIcon,
+    {
+      image: IntmaxIcon,
+    },
+  ],
+  [
+    {
+      image: GeegpayIcon,
+    },
+  ],
+  [
+    PaystackIcon,
+    {
+      image: KatwigIcon,
+    },
+    {
+      image: BluechipIcon,
+    },
+    {
+      image: AndelaIcon,
     },
   ],
 ];
@@ -219,16 +252,54 @@ export default function Landing({
           >
             Here are our headline sponsors
           </p>
-          <div
-            className='landing-page__better__sponsors'
-            data-animate-y-children-full
-            data-delay='.083'
-            data-easing='SPONSOR_BETTER'
-          >
-            <GoogleIcon />
-            <SpotifyIcon />
-            <LyftIcon />
-            <FacebookIcon />
+          <div className='landing-page__better__sponsors'>
+            {sponsors.map((sponsorRow, index) => {
+              const isBronzeRow = index === sponsors.length - 1;
+
+              return (
+                <>
+                  {sponsorRow.map((Sponsor, subIndex) => {
+                    let content;
+                    const delay = 0.25 + 0.104 * index;
+                    const className = classNames(
+                      isBronzeRow && "landing-page__better__sponsors__bronze",
+                    );
+
+                    if (Sponsor.image) {
+                      content = (
+                        <Image
+                          src={Sponsor.image}
+                          alt='Sponsor'
+                          className={className}
+                          data-animate-y-full
+                          data-delay={delay}
+                          data-easing='SPONSOR_BETTER'
+                        />
+                      );
+                    } else {
+                      content = (
+                        <Sponsor
+                          className={className}
+                          data-animate-y-full
+                          data-delay={delay}
+                          data-easing='SPONSOR_BETTER'
+                        />
+                      );
+                    }
+
+                    return (
+                      <span
+                        key={`${index}-${subIndex}`}
+                        className='landing-page__better__sponsors__img-wrapper'
+                      >
+                        {content}
+                      </span>
+                    );
+                  })}
+                  {!isBronzeRow && <span className='break-row'></span>}
+                </>
+              );
+            })}
           </div>
         </section>
         <section className='landing-page__hype' data-section-delay='.6'>
