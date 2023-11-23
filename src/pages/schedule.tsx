@@ -5,7 +5,7 @@ import LogicDoodle from "@/images/schedule/logic-doodles.png";
 import PeopleDoodle from "@/images/schedule/people-doodles.png";
 import RefreshDoodle from "@/images/schedule/refresh-doodles.png";
 import MemojiAvatar from "@/images/schedule/memoji-avatar-schedule.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScheduleCard } from "@/components/schedule-card";
 import { Talks } from "@/components/talks-section/talks";
 import FaqSection from "@/components/faq-section/faq-section";
@@ -26,6 +26,9 @@ export default function Schedule({
 
   const schedule = agenda[selectedDay - 1];
 
+  useEffect(() => {
+    fetchAgenda();
+  }, []);
   return (
     <div className='schedule__page'>
       <header className='sc__header'>
@@ -88,8 +91,6 @@ export const getStaticProps = (async () => {
     fetchAgenda(),
     fetchSpeakers(),
   ]);
-
-  console.log(agenda[0][10].venue, "venue");
 
   return { props: { sessions, agenda, speakers } };
 }) satisfies GetStaticProps<{
