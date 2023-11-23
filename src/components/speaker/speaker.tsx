@@ -63,11 +63,6 @@ export default function SpeakerCard({
     setPortalWrapper(document.querySelector(".app-wrapper")!);
   }, []);
 
-  useEffect(() => {
-    if (modalIsOpen) disableBodyScroll(document.body);
-    else enableBodyScroll(document.body);
-  }, [modalIsOpen]);
-
   const modalContent = (
     <div className={classNames(styles.modal, modalIsOpen && styles.active)}>
       <div className={styles.modalOverlay} onClick={onClose} />
@@ -118,10 +113,10 @@ export default function SpeakerCard({
             </button>
           )}
           {hasNext && (
-            <PrimaryButton className={styles.modalNextButton}>
+            <button className={styles.modalNextButton}>
               <span>Next Speaker</span>
               <ArrowRight />
-            </PrimaryButton>
+            </button>
           )}
         </div>
       </div>
