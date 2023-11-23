@@ -26,6 +26,11 @@ import { HomepageScene } from "@/components/homepage/scene/scene";
 import appDownloadImage from "@/images/landing/sponsor.png";
 import { ticketsUrl } from "@/utils/urls";
 import { classNames } from "@/utils/classNames";
+import songCoverImage from "@/images/landing/song-cover.png";
+import scribbleImage from "@/images/landing/scribble.png";
+import SpotifyLyricIcon from "@/images/landing/spotify.svg";
+import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
+import CategoryPill from "@/components/category-pill/category-pill";
 
 const topics = [
   [
@@ -292,6 +297,94 @@ export default function Landing({
                 </>
               );
             })}
+          </div>
+        </section>
+        <section className='landing-page__hype' data-section-delay='.6'>
+          <canvas className='landing-page__hype__canvas' data-animate-canvas />
+          <div className='landing-page__hype__yarns' data-hide-for-canvas>
+            <div className='landing-page__hype__yarns__lyric' data-fade-in data-animate-y='+50'>
+              <div className='landing-page__hype__yarns__lyric__song-deets'>
+                <div className='landing-page__hype__yarns__lyric__cover-image'>
+                  <Image src={songCoverImage} alt='Rich Flex Cover Image' />
+                </div>
+                <div>
+                  <p className='landing-page__hype__yarns__lyric__title'>Rich Flex</p>
+                  <p className='landing-page__hype__yarns__lyric__artist'>Drake</p>
+                </div>
+              </div>
+              <div className='landing-page__hype__yarns__lyric__line'>
+                <div className='twennyone'>
+                  <Image src={scribbleImage} alt='Scribble' className='scribble' />
+                  21
+                </div>
+                , can you do some’ for me?{" "}
+                <div className='twennyone second'>
+                  <Image src={scribbleImage} alt='Scribble' className='scribble' />
+                  (21)
+                </div>
+              </div>
+              <SpotifyLyricIcon className='landing-page__hype__yarns__lyric__spotify' />
+            </div>
+            <p
+              className='landing-page__hype__yarns__intro'
+              data-animate-sentences
+              data-easing='NO_MATTER_WHAT'
+              data-delay='.417'
+            >
+              After an amazing event last year,
+            </p>
+            <p
+              className='landing-page__hype__yarns__subtext'
+              data-animate-sentences
+              data-easing='NO_MATTER_WHAT'
+              data-delay='.583'
+            >
+              We are back to do so much more and we look forward to showing you what we have in
+              store.
+            </p>
+            <PrimaryButton data-animate-button data-delay='1.2' isExternal>
+              <span>Get Your Ticket</span> <ArrowRightDark />
+            </PrimaryButton>
+          </div>
+          <div className='landing-page__hype__categories' data-fade-in data-animate-y='+50'>
+            <p
+              className='landing-page__hype__categories__title'
+              data-animate-sentences
+              data-easing='HYPE'
+              data-delay='.25'
+            >
+              23x or nothing this year, all out or all home
+            </p>
+            <p
+              className='landing-page__hype__categories__subtext'
+              data-animate-sentences
+              data-easing='HYPE'
+              data-delay='.417'
+            >
+              We have prepared a host of topics and speakers for you! Lots of food and we are not
+              talking groceries 🌚
+            </p>
+            <div className='landing-page__hype__categories__button-wrapper'>
+              <PrimaryButton data-animate-button data-delay='1.7' isExternal>
+                <span>Register Now</span>
+                <ArrowRight />
+              </PrimaryButton>
+            </div>
+            {topics.map((topicRow, i) => (
+              <div key={i} className='landing-page__hype__categories__topics-row'>
+                {topicRow.map((topic) => (
+                  <CategoryPill
+                    isActive
+                    activeBgColor={topic.color}
+                    key={topic.topic}
+                    className='landing-page__hype__categories__topic'
+                  >
+                    <span>{topic.emoji}</span>
+                    <span>{topic.topic}</span>
+                  </CategoryPill>
+                ))}
+              </div>
+            ))}
           </div>
         </section>
       </div>
