@@ -417,8 +417,8 @@ export default function Landing({
           </div>
           <div
             className='landing-page__recap__video'
-            data-fade-in
             data-delay='.35'
+            data-fade-in
             data-animate-y='+200'
             data-easing='RECAP_VIDEO'
           >
