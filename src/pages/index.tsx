@@ -16,6 +16,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Session } from "@/types/Session";
 import { Category } from "@/types/Category";
 import { Speaker } from "@/types/Speaker";
+import Menu from "@/components/menu/menu";
 
 const topics = [
   [
@@ -146,6 +147,9 @@ export default function Landing({
         title='Homepage'
         description='Welcome to the official website for DevFest Lagos 2023. DevFest Lagos is an annual  tech conference hosted by Google Developer Groups Lagos. Be there 🫵🏾'
       />
+      <div className='landing-page'>
+        <Menu />
+      </div>
     </>
   );
 }
