@@ -36,6 +36,8 @@ import SparkleIcon from "@/images/landing/doodles/sparkle.svg";
 import speakerMemojiLeft from "@/images/landing/doodles/speaker-memoji.png";
 import speakerMemojiRight from "@/images/landing/doodles/speaker-memoji-2.png";
 import repeatDoodle from "@/images/landing/doodles/repeat.png";
+import { getSpeakerSession } from "@/utils/getSpeakerSession";
+import SpeakerCard from "@/components/speaker/speaker";
 
 const topics = [
   [
@@ -476,16 +478,16 @@ export default function Landing({
             <div className='active inner' data-marquee-list>
               {speakers.map((speaker, index) => (
                 <div key={index} data-marquee-item data-speaker-card>
-                  {/*<SpeakerCard*/}
-                  {/*  speaker={speaker}*/}
-                  {/*  onClick={() => setActiveSpeaker(speaker)}*/}
-                  {/*  onClose={() => setActiveSpeaker(null)}*/}
-                  {/*  hasNext={index < speakers.length - 1}*/}
-                  {/*  hasPrevious={index > 0}*/}
-                  {/*  onClickButton={handleChangeSpeaker(index)}*/}
-                  {/*  modalIsOpen={activeSpeaker === speaker}*/}
-                  {/*  session={getSpeakerSession({ speaker, sessions })}*/}
-                  {/*/>*/}
+                  <SpeakerCard
+                    speaker={speaker}
+                    onClick={() => setActiveSpeaker(speaker)}
+                    onClose={() => setActiveSpeaker(null)}
+                    hasNext={index < speakers.length - 1}
+                    hasPrevious={index > 0}
+                    onClickButton={handleChangeSpeaker(index)}
+                    modalIsOpen={activeSpeaker === speaker}
+                    session={getSpeakerSession({ speaker, sessions })}
+                  />
                 </div>
               ))}
             </div>

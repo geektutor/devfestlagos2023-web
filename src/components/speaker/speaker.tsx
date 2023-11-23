@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import styles from "./speaker.module.scss";
@@ -7,7 +8,6 @@ import topImageMobile from "@/images/speaker/top-image-mobile.png";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import ArrowLeft from "@/images/arrow-left-dark.svg";
 import { PrimaryButton, SecondaryButton } from "@/components/button";
-import { createPortal } from "react-dom";
 import { classNames } from "@/utils/classNames";
 import CategoryPill from "@/components/category-pill/category-pill";
 import { Speaker } from "@/types/Speaker";
@@ -149,7 +149,7 @@ export default function SpeakerCard({
           <p className={styles.speakerCompany}>{role}</p>
         </div>
       </div>
-      {portalWrapper && createPortal(modalContent, portalWrapper)}
+      {modalContent}
     </>
   );
 }
