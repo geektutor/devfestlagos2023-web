@@ -384,10 +384,10 @@ export default function Landing({
               <div key={i} className='landing-page__hype__categories__topics-row'>
                 {topicRow.map((topic) => (
                   <CategoryPill
+                    className='landing-page__hype__categories__topic'
                     isActive
                     activeBgColor={topic.color}
                     key={topic.topic}
-                    className='landing-page__hype__categories__topic'
                   >
                     <span>{topic.emoji}</span>
                     <span>{topic.topic}</span>
