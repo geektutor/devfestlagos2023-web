@@ -5,6 +5,9 @@ import styles from "./speaker.module.scss";
 import CloseCircle from "@/images/close-circle.svg";
 import topImage from "@/images/speaker/top-image.png";
 import topImageMobile from "@/images/speaker/top-image-mobile.png";
+import ArrowRight from "@/images/arrow-right-bg-light.svg";
+import ArrowLeft from "@/images/arrow-left-dark.svg";
+import { PrimaryButton, SecondaryButton } from "@/components/button";
 import { classNames } from "@/utils/classNames";
 import CategoryPill from "@/components/category-pill/category-pill";
 import { Speaker } from "@/types/Speaker";
@@ -106,20 +109,20 @@ export default function SpeakerCard({
           )}
         </div>
         <h3 className={styles.modalTitle}>{session?.title}</h3>
-        {/*<div className={styles.modalButtons}>*/}
-        {/*  {hasPrevious && (*/}
-        {/*    <SecondaryButton onClick={() => onClickButton("previous")}>*/}
-        {/*      <ArrowLeft />*/}
-        {/*      <span>Previous Speaker</span>*/}
-        {/*    </SecondaryButton>*/}
-        {/*  )}*/}
-        {/*  {hasNext && (*/}
-        {/*    <PrimaryButton className={styles.modalNextButton} onClick={() => onClickButton("next")}>*/}
-        {/*      <span>Next Speaker</span>*/}
-        {/*      <ArrowRight />*/}
-        {/*    </PrimaryButton>*/}
-        {/*  )}*/}
-        {/*</div>*/}
+        <div className={styles.modalButtons}>
+          {hasPrevious && (
+            <SecondaryButton>
+              <ArrowLeft />
+              <span>Previous Speaker</span>
+            </SecondaryButton>
+          )}
+          {hasNext && (
+            <PrimaryButton className={styles.modalNextButton}>
+              <span>Next Speaker</span>
+              <ArrowRight />
+            </PrimaryButton>
+          )}
+        </div>
       </div>
     </div>
   );
