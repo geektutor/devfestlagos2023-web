@@ -169,9 +169,8 @@ export default function Landing({
   return (
     <>
       <SEO
-        title='Devfest Lagos 2023 | Homepage'
+        title='Homepage'
         description='Welcome to the official website for DevFest Lagos 2023. DevFest Lagos is an annual  tech conference hosted by Google Developer Groups Lagos. Be there 🫵🏾'
-        image='/og-images/coming-soon.png'
       />
       <div className='landing-page'>
         <Menu />

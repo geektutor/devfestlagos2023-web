@@ -12,7 +12,15 @@ type Props = {
   }>;
 };
 
-export const SEO: FC<Props> = ({ title, description, keywords, image, tags = [] }) => {
+export const SEO: FC<Props> = ({
+  title: _title,
+  description,
+  keywords = "gdg lagos, devfest, devfest lagos, devfest lagos 2023",
+  image = "/og-images/home-page.png",
+  tags = [],
+}) => {
+  const title = `Devfest Lagos 2023 | ${_title}`;
+
   return (
     <Head>
       <title>{title}</title>

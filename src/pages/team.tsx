@@ -6,6 +6,7 @@ import FaqSection from "@/components/faq-section/faq-section";
 import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
 import { TeamPills } from "@/components/team-pills/team-pills";
 import NoiseBackground from "@/components/noise-background/noise-background";
+import { SEO } from "@/components/seo";
 
 const categories = [
   {
@@ -90,6 +91,10 @@ const Team = () => {
 
   return (
     <div className='team'>
+      <SEO
+        title='Team'
+        description='View the amazing contributors for Devfest Lagos 2023 website, application and project.'
+      />
       <div className='team__intro'>
         <h1 className='team__intro__header'>Without them, there would be no app or website</h1>
         <p className='team__intro__subtext'>

@@ -5,7 +5,7 @@ import LogicDoodle from "@/images/schedule/logic-doodles.png";
 import PeopleDoodle from "@/images/schedule/people-doodles.png";
 import RefreshDoodle from "@/images/schedule/refresh-doodles.png";
 import MemojiAvatar from "@/images/schedule/memoji-avatar-schedule.png";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScheduleCard } from "@/components/schedule-card";
 import { Talks } from "@/components/talks-section/talks";
 import FaqSection from "@/components/faq-section/faq-section";
@@ -16,6 +16,7 @@ import { Session } from "@/types/Session";
 import { Schedule } from "@/types/Schedule";
 import DaysToggle from "@/components/days-toggle/days-toggle";
 import { Speaker } from "@/types/Speaker";
+import { SEO } from "@/components/seo";
 
 export default function Schedule({
   sessions,
@@ -29,8 +30,10 @@ export default function Schedule({
   useEffect(() => {
     fetchAgenda();
   }, []);
+
   return (
     <div className='schedule__page'>
+      <SEO title='Schedule' description='View the schedule for DevFest Lagos 2023.' />
       <header className='sc__header'>
         <div className='container'>
           <h3 className='sc__header__title'>Schedule</h3>

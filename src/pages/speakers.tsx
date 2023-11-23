@@ -1,6 +1,5 @@
 import { PrimaryButton } from "@/components/button";
 import { ticketsUrl } from "@/utils/urls";
-import Head from "next/head";
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import LandmarkFrontage from "@/images/speakers-page/landmark-frontage.png";
@@ -23,6 +22,7 @@ import { Session } from "@/types/Session";
 import { Speaker } from "@/types/Speaker";
 import DaysToggle from "@/components/days-toggle/days-toggle";
 import { getSpeakerSession } from "@/utils/getSpeakerSession";
+import { SEO } from "@/components/seo";
 
 export default function Speakers({
   sessions,
@@ -48,9 +48,7 @@ export default function Speakers({
 
   return (
     <>
-      <Head>
-        <title>Speakers | Devfest Lagos 2023</title>
-      </Head>
+      <SEO title='Speakers' description='View the speakers for Devfest Lagos 2023.' />
 
       <main className='speakers-page'>
         <section className='speakers_page__hero'>

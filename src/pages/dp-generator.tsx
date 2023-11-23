@@ -47,8 +47,6 @@ export default function DpGenerator() {
       <SEO
         title='Generate Your DevFest Lagos 2023 DP'
         description='Create and Share your DevFest Lagos 2023 DP with friends and on your socials'
-        keywords='gdg lagos, devfest, devfest lagos, devfest lagos 2023'
-        image='/og-images/home-page.png'
       />
       <main className='dp_gen_page'>
         <header className='dp_gen_page__header'>

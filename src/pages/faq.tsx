@@ -13,10 +13,15 @@ import TransferDoodle from "@/images/faqs/transfer-doodle.png";
 import PeopleDoodle from "@/images/schedule/people-doodles.png";
 import RefreshDoodle from "@/images/schedule/refresh-doodles.png";
 import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
+import { SEO } from "@/components/seo";
 
 export default function Faqs() {
   return (
     <main className='faq__page'>
+      <SEO
+        title='Frequently asked questions'
+        description='Frequently asked questions about DevFest Lagos 2023.'
+      />
       <header className='fq__header'>
         <div className='container'>
           <h1 className='fq__header__title'>

@@ -32,6 +32,7 @@ import { ErrorAlert, SuccessAlert } from "@/components/alert/alert";
 import { EmptyRsvp } from "@/components/rsvp/empty-rsvp/empty-rsvp";
 import { Speaker } from "@/types/Speaker";
 import Controls from "@/components/rsvp/controls/controls";
+import { SEO } from "@/components/seo";
 
 const pageSize = 6;
 
@@ -332,6 +333,7 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
 
   return (
     <>
+      <SEO title='RSVP' description="Sign up for sessions you're interested in" />
       <Menu actionButton={renderMenuButton()} />
       <div className='rsvp'>
         <Image src={logicDoodle} alt='Logic Doodle' className='rsvp__logic' />

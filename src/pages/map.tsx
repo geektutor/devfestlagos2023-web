@@ -7,12 +7,12 @@ import {
   STRING_TO_LOCATION_MAP,
 } from "@/utils/map";
 import LandmarkMap from "@/components/event-map";
-import Head from "next/head";
 import PinIcon from "@/images/map/pin.svg";
 import DownIcon from "@/images/map/caret-down.svg";
 import { classNames } from "@/utils/classNames";
 import { PrimaryButton } from "@/components/button";
 import Directions from "@/components/event-map/map-directions/directions";
+import { SEO } from "@/components/seo";
 
 type DropdownProps = {
   value: string | null;
@@ -92,10 +92,7 @@ const Map = () => {
 
   return (
     <>
-      <Head>
-        <title>Event Layout Map</title>
-        <meta name='description' content='Find your way around the event' />
-      </Head>
+      <SEO title='Event Layout Map' description='Find your way around the event' />
       <main className='map__page'>
         <div className='map__page__mobile-header-and-caption'>
           <h1 className='map__page__mobile-header-and-caption__header'>Map</h1>
