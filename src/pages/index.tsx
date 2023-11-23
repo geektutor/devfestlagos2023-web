@@ -25,6 +25,7 @@ import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import { HomepageScene } from "@/components/homepage/scene/scene";
 import appDownloadImage from "@/images/landing/sponsor.png";
 import { ticketsUrl } from "@/utils/urls";
+import { classNames } from "@/utils/classNames";
 
 const topics = [
   [
@@ -223,6 +224,75 @@ export default function Landing({
               alt='Download Our App'
             />
           </a>
+        </section>
+        <section className='landing-page__better' data-better-section>
+          <h3
+            className='landing-page__better__title'
+            data-animate-sentences
+            data-easing='SPONSOR_BETTER'
+          >
+            When we said better, we weren’t joking!
+          </h3>
+          <p
+            className='landing-page__better__subtext'
+            data-animate-y-full
+            data-add-span
+            data-easing='SPONSOR_BETTER'
+            data-delay='.167'
+          >
+            Here are our headline sponsors
+          </p>
+          <div className='landing-page__better__sponsors'>
+            {sponsors.map((sponsorRow, index) => {
+              const isBronzeRow = index === sponsors.length - 1;
+              const isSilverRow = index === sponsors.length - 2;
+
+              return (
+                <>
+                  {sponsorRow.map((Sponsor, subIndex) => {
+                    let content;
+                    const delay = 0.25 + 0.104 * index;
+                    const className = classNames(
+                      isBronzeRow && "landing-page__better__sponsors__bronze",
+                      isSilverRow && "landing-page__better__sponsors__silver",
+                    );
+
+                    if (Sponsor.image) {
+                      content = (
+                        <Image
+                          src={Sponsor.image}
+                          alt='Sponsor'
+                          className={className}
+                          data-animate-y-full
+                          data-delay={delay}
+                          data-easing='SPONSOR_BETTER'
+                        />
+                      );
+                    } else {
+                      content = (
+                        <Sponsor
+                          className={className}
+                          data-animate-y-full
+                          data-delay={delay}
+                          data-easing='SPONSOR_BETTER'
+                        />
+                      );
+                    }
+
+                    return (
+                      <span
+                        key={`${index}-${subIndex}`}
+                        className='landing-page__better__sponsors__img-wrapper'
+                      >
+                        {content}
+                      </span>
+                    );
+                  })}
+                  {!isBronzeRow && <span className='break-row'></span>}
+                </>
+              );
+            })}
+          </div>
         </section>
       </div>
     </>
