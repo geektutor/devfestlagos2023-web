@@ -1,15 +1,15 @@
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./speaker.module.scss";
-import CloseCircle from "@/images/close-circle.svg";
-import topImage from "@/images/speaker/top-image.png";
-import topImageMobile from "@/images/speaker/top-image-mobile.png";
-import ArrowRight from "@/images/arrow-right-bg-light.svg";
-import ArrowLeft from "@/images/arrow-left-dark.svg";
-import { PrimaryButton, SecondaryButton } from "@/components/button";
-import { createPortal } from "react-dom";
+// import CloseCircle from "@/images/close-circle.svg";
+// import topImage from "@/images/speaker/top-image.png";
+// import topImageMobile from "@/images/speaker/top-image-mobile.png";
+// import ArrowRight from "@/images/arrow-right-bg-light.svg";
+// import ArrowLeft from "@/images/arrow-left-dark.svg";
+// import { PrimaryButton, SecondaryButton } from "@/components/button";
+// import { createPortal } from "react-dom";
 import { classNames } from "@/utils/classNames";
-import CategoryPill from "@/components/category-pill/category-pill";
+// import CategoryPill from "@/components/category-pill/category-pill";
 import { Speaker } from "@/types/Speaker";
 import { Session } from "@/types/Session";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
@@ -26,7 +26,7 @@ interface SpeakerCardProps {
   className?: string;
 }
 
-const getDayText = (date: string) => (new Date(date).getDay() === 24 ? "Friday" : "Saturday");
+// const getDayText = (date: string) => (new Date(date).getDay() === 24 ? "Friday" : "Saturday");
 
 const backgroundColors = [
   "#F6EEEE",
@@ -45,87 +45,87 @@ export default function SpeakerCard({
   speaker,
   onClick,
   modalIsOpen,
-  onClose,
-  onClickButton,
-  hasNext,
-  hasPrevious,
-  session,
+  // onClose,
+  // onClickButton,
+  // hasNext,
+  // hasPrevious,
+  // session,
   className,
 }: SpeakerCardProps) {
-  const [portalWrapper, setPortalWrapper] = useState<Element | null>();
+  // const [portalWrapper, setPortalWrapper] = useState<Element | null>();
 
   //generate random color
   const backgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
 
   const { name, role, avatar } = speaker;
-  useEffect(() => {
-    setPortalWrapper(document.querySelector(".app-wrapper")!);
-  }, []);
+  // useEffect(() => {
+  //   setPortalWrapper(document.querySelector(".app-wrapper")!);
+  // }, []);
 
   useEffect(() => {
     if (modalIsOpen) disableBodyScroll(document.body);
     else enableBodyScroll(document.body);
   }, [modalIsOpen]);
 
-  const modalContent = (
-    <div className={classNames(styles.modal, modalIsOpen && styles.active)}>
-      <div className={styles.modalOverlay} onClick={onClose} />
-      <div className={styles.modalContent}>
-        <button className={styles.modalClose} onClick={onClose}>
-          <CloseCircle />
-        </button>
-        <figure className={styles.modalImage}>
-          <Image src={topImage} alt='Modal image' fill />
-        </figure>
-        <figure className={styles.modalMobileImage}>
-          <Image src={topImageMobile} alt='Modal image' fill />
-        </figure>
-        <div className={styles.modalDetails}>
-          <div className={styles.modalSpeakerImage}>
-            <Image src={avatar} alt={name} fill style={{ objectFit: "cover" }} />
-          </div>
-          <div>
-            <h3 className={styles.modalSpeakerName}>{name}</h3>
-            <p className={styles.modalSpeakerCredits}>{role}</p>
-            {/*<p className={styles.modalLinksHeader}>LINKS</p>*/}
-            {/*<div className={styles.modalLinks}>*/}
-            {/*  <a className={styles.modalLink}>*/}
-            {/*    <TwitterIcon />*/}
-            {/*  </a>*/}
-            {/*  <a className={styles.modalLink}>*/}
-            {/*    <LinkedinIcon />*/}
-            {/*  </a>*/}
-            {/*  <a className={styles.modalLink}>*/}
-            {/*    <WebsiteIcon />*/}
-            {/*  </a>*/}
-            {/*</div>*/}
-          </div>
-        </div>
-        <div className={styles.modalTags}>
-          {session && (
-            <CategoryPill isSmall isActive activeBgColor='#34a853' activeTextColor='#FFF'>
-              {getDayText(session.sessionDate)}, {session.scheduledAt || speaker.scheduledAt}
-            </CategoryPill>
-          )}
-        </div>
-        <h3 className={styles.modalTitle}>{session?.title}</h3>
-        <div className={styles.modalButtons}>
-          {hasPrevious && (
-            <SecondaryButton onClick={() => onClickButton("previous")}>
-              <ArrowLeft />
-              <span>Previous Speaker</span>
-            </SecondaryButton>
-          )}
-          {hasNext && (
-            <PrimaryButton className={styles.modalNextButton} onClick={() => onClickButton("next")}>
-              <span>Next Speaker</span>
-              <ArrowRight />
-            </PrimaryButton>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+  // const modalContent = (
+  //   <div className={classNames(styles.modal, modalIsOpen && styles.active)}>
+  //     <div className={styles.modalOverlay} onClick={onClose} />
+  //     <div className={styles.modalContent}>
+  //       <button className={styles.modalClose} onClick={onClose}>
+  //         <CloseCircle />
+  //       </button>
+  //       <figure className={styles.modalImage}>
+  //         <Image src={topImage} alt='Modal image' fill />
+  //       </figure>
+  //       <figure className={styles.modalMobileImage}>
+  //         <Image src={topImageMobile} alt='Modal image' fill />
+  //       </figure>
+  //       <div className={styles.modalDetails}>
+  //         <div className={styles.modalSpeakerImage}>
+  //           <Image src={avatar} alt={name} fill style={{ objectFit: "cover" }} />
+  //         </div>
+  //         <div>
+  //           <h3 className={styles.modalSpeakerName}>{name}</h3>
+  //           <p className={styles.modalSpeakerCredits}>{role}</p>
+  //           {/*<p className={styles.modalLinksHeader}>LINKS</p>*/}
+  //           {/*<div className={styles.modalLinks}>*/}
+  //           {/*  <a className={styles.modalLink}>*/}
+  //           {/*    <TwitterIcon />*/}
+  //           {/*  </a>*/}
+  //           {/*  <a className={styles.modalLink}>*/}
+  //           {/*    <LinkedinIcon />*/}
+  //           {/*  </a>*/}
+  //           {/*  <a className={styles.modalLink}>*/}
+  //           {/*    <WebsiteIcon />*/}
+  //           {/*  </a>*/}
+  //           {/*</div>*/}
+  //         </div>
+  //       </div>
+  //       <div className={styles.modalTags}>
+  //         {session && (
+  //           <CategoryPill isSmall isActive activeBgColor='#34a853' activeTextColor='#FFF'>
+  //             {getDayText(session.sessionDate)}, {session.scheduledAt || speaker.scheduledAt}
+  //           </CategoryPill>
+  //         )}
+  //       </div>
+  //       <h3 className={styles.modalTitle}>{session?.title}</h3>
+  //       <div className={styles.modalButtons}>
+  //         {hasPrevious && (
+  //           <SecondaryButton onClick={() => onClickButton("previous")}>
+  //             <ArrowLeft />
+  //             <span>Previous Speaker</span>
+  //           </SecondaryButton>
+  //         )}
+  //         {hasNext && (
+  //           <PrimaryButton className={styles.modalNextButton} onClick={() => onClickButton("next")}>
+  //             <span>Next Speaker</span>
+  //             <ArrowRight />
+  //           </PrimaryButton>
+  //         )}
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 
   return (
     <>
@@ -149,7 +149,7 @@ export default function SpeakerCard({
           <p className={styles.speakerCompany}>{role}</p>
         </div>
       </div>
-      {portalWrapper && createPortal(modalContent, portalWrapper)}
+      {/*{portalWrapper && createPortal(modalContent, portalWrapper)}*/}
     </>
   );
 }
