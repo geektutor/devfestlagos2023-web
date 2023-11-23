@@ -30,7 +30,7 @@ import repeatDoodle from "@/images/landing/doodles/repeat.png";
 import speakerMemojiLeft from "@/images/landing/doodles/speaker-memoji.png";
 import speakerMemojiRight from "@/images/landing/doodles/speaker-memoji-2.png";
 import SparkleIcon from "@/images/landing/doodles/sparkle.svg";
-// import { YoutubePlayer } from "@/components/youtube-player";
+import { YoutubePlayer } from "@/components/youtube-player";
 import LandingPage from "@/animations/components/Landing";
 import Menu from "@/components/menu/menu";
 import Footer from "@/components/footer";
@@ -422,7 +422,7 @@ export default function Landing({
             data-animate-y='+200'
             data-easing='RECAP_VIDEO'
           >
-            {/*<YoutubePlayer videoId='7kat5HlPtzU' />*/}
+            <YoutubePlayer videoId='7kat5HlPtzU' />
           </div>
         </section>
         <section className='landing-page__speakers' data-speakers-section>
