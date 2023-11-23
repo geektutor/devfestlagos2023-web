@@ -322,6 +322,14 @@
         }
       }
 
+      &__silver {
+        height: 7.2rem !important;
+
+        @include media("<=tablet") {
+          height: 5rem !important;
+        }
+      }
+
       &__bronze {
         height: 3.6rem !important;
 

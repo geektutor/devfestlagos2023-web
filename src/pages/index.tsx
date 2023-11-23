@@ -255,6 +255,7 @@ export default function Landing({
           <div className='landing-page__better__sponsors'>
             {sponsors.map((sponsorRow, index) => {
               const isBronzeRow = index === sponsors.length - 1;
+              const isSilverRow = index === sponsors.length - 2;
 
               return (
                 <>
@@ -263,6 +264,7 @@ export default function Landing({
                     const delay = 0.25 + 0.104 * index;
                     const className = classNames(
                       isBronzeRow && "landing-page__better__sponsors__bronze",
+                      isSilverRow && "landing-page__better__sponsors__silver",
                     );
 
                     if (Sponsor.image) {
