@@ -1,5 +1,5 @@
 import { SEO } from "@/components/seo";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PrimaryButton } from "@/components/button";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import { HomepageScene } from "@/components/homepage/scene/scene";
@@ -30,8 +30,6 @@ import repeatDoodle from "@/images/landing/doodles/repeat.png";
 import speakerMemojiLeft from "@/images/landing/doodles/speaker-memoji.png";
 import speakerMemojiRight from "@/images/landing/doodles/speaker-memoji-2.png";
 import SparkleIcon from "@/images/landing/doodles/sparkle.svg";
-import { YoutubePlayer } from "@/components/youtube-player";
-import LandingPage from "@/animations/components/Landing";
 import Menu from "@/components/menu/menu";
 import Footer from "@/components/footer";
 import { fetchCategories, fetchSessions, fetchSpeakers } from "@/requests/general";
@@ -141,7 +139,7 @@ export default function Landing({
   speakers,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
-  const isInitialized = useRef(false);
+  // const isInitialized = useRef(false);
 
   const handleChangeSpeaker = (index: number) => (direction: "next" | "previous") => {
     if (direction === "next") {
@@ -158,13 +156,13 @@ export default function Landing({
     else disableBodyScroll(document.body);
   }, [activeSpeaker]);
 
-  useEffect(() => {
-    if (!isInitialized.current) {
-      new LandingPage();
-
-      isInitialized.current = true;
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!isInitialized.current) {
+  //     new LandingPage();
+  //
+  //     isInitialized.current = true;
+  //   }
+  // }, []);
 
   return (
     <>
@@ -423,7 +421,7 @@ export default function Landing({
             data-animate-y='+200'
             data-easing='RECAP_VIDEO'
           >
-            <YoutubePlayer videoId='7kat5HlPtzU' />
+            {/*<YoutubePlayer videoId='7kat5HlPtzU' />*/}
           </div>
         </section>
         <section className='landing-page__speakers' data-speakers-section>
