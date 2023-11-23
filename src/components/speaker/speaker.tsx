@@ -8,12 +8,12 @@ import topImageMobile from "@/images/speaker/top-image-mobile.png";
 import ArrowRight from "@/images/arrow-right-bg-light.svg";
 import ArrowLeft from "@/images/arrow-left-dark.svg";
 // import { PrimaryButton, SecondaryButton } from "@/components/button";
-import { PrimaryButton, SecondaryButton } from "@/components/button";
+// import { PrimaryButton, SecondaryButton } from "@/components/button";
 import { classNames } from "@/utils/classNames";
 import CategoryPill from "@/components/category-pill/category-pill";
 import { Speaker } from "@/types/Speaker";
 import { Session } from "@/types/Session";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+// import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 interface SpeakerCardProps {
   modalIsOpen?: boolean;
@@ -107,16 +107,16 @@ export default function SpeakerCard({
         <h3 className={styles.modalTitle}>{session?.title}</h3>
         <div className={styles.modalButtons}>
           {hasPrevious && (
-            <button className='c-button c-button--secondary c-button--primary'>
+            <span className='c-button c-button--secondary c-button--primary'>
               <ArrowLeft />
               <span>Previous Speaker</span>
-            </button>
+            </span>
           )}
           {hasNext && (
-            <button className={classNames(styles.modalNextButton, "c-button c-button--primary")}>
+            <span className={"c-button c-button--primary"}>
               <span>Next Speaker</span>
               <ArrowRight />
-            </button>
+            </span>
           )}
         </div>
       </div>
