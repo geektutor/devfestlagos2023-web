@@ -105,20 +105,20 @@ export default function SpeakerCard({
           )}
         </div>
         <h3 className={styles.modalTitle}>{session?.title}</h3>
-        <div className={styles.modalButtons}>
-          {hasPrevious && (
-            <span className='c-button c-button--secondary c-button--primary'>
-              <ArrowLeft />
-              <span>Previous Speaker</span>
-            </span>
-          )}
-          {hasNext && (
-            <span className={"c-button c-button--primary"}>
-              <span>Next Speaker</span>
-              <ArrowRight />
-            </span>
-          )}
-        </div>
+        {/*<div className={styles.modalButtons}>*/}
+        {/*  {hasPrevious && (*/}
+        {/*    <span className='c-button c-button--secondary c-button--primary'>*/}
+        {/*      <ArrowLeft />*/}
+        {/*      <span>Previous Speaker</span>*/}
+        {/*    </span>*/}
+        {/*  )}*/}
+        {/*  {hasNext && (*/}
+        {/*    <span className={"c-button c-button--primary"}>*/}
+        {/*      <span>Next Speaker</span>*/}
+        {/*      <ArrowRight />*/}
+        {/*    </span>*/}
+        {/*  )}*/}
+        {/*</div>*/}
       </div>
     </div>
   );
