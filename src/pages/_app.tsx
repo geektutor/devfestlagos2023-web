@@ -91,14 +91,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           `,
         }}
       />
-
-      {Component.disableLayout ? (
-        <Component {...pageProps} />
-      ) : (
-        <GeneralLayout>
-          <Component {...pageProps} />
-        </GeneralLayout>
-      )}
       <QueryClientProvider client={queryClient}>
         <Head>
           <link rel='icon' href='/favicon.svg' type='image/svg+xml' />

@@ -1,5 +1,3 @@
-import Logo from "@/images/logo.svg";
-import { socialMediaLinks } from "@/utils/social-media";
 // import UploaderIcon from "@/images/dp-generator/bytesize_upload.png";
 import Image from "next/image";
 import * as React from "react";
@@ -52,9 +50,6 @@ export default function DpGenerator() {
         keywords='gdg lagos, devfest, devfest lagos, devfest lagos 2023'
         image='/og-images/home-page.png'
       />
-      <nav className='c-home__nav'>
-        <Logo className='c-home__nav__logo' />
-      </nav>
       <main className='dp_gen_page'>
         <header className='dp_gen_page__header'>
           <h2 className='dp_gen_page__header_title'>Pepper demmm!🥳</h2>
@@ -209,34 +204,6 @@ export default function DpGenerator() {
           />
         )}
       </main>
-
-      <footer className='c-home__footer'>
-        <ul className='c-home__footer__links'>
-          <li className='c-home__footer__links__link'>
-            <a href='https://gdg.community.dev/gdg-lagos/' target='_blank'>
-              Join the community
-            </a>
-          </li>
-          <li className='c-home__footer__links__link'>
-            <a href='https://policies.google.com/privacy' target='_blank'>
-              Privacy policy
-            </a>
-          </li>
-        </ul>
-        <Logo className='c-home__footer__logo' />
-        <div className='c-home__footer__social-media'>
-          <p className='c-home__footer__social-media__title'>Follow us on:</p>
-          <ul className='c-home__footer__social-media__links'>
-            {socialMediaLinks.map((link) => (
-              <li key={link.link}>
-                <a href={link.link} target='_blank' className='c-home__footer__social-media__link'>
-                  {link.icon}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </footer>
     </>
   );
 }
