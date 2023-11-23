@@ -36,6 +36,8 @@ import SparkleIcon from "@/images/landing/doodles/sparkle.svg";
 import speakerMemojiLeft from "@/images/landing/doodles/speaker-memoji.png";
 import speakerMemojiRight from "@/images/landing/doodles/speaker-memoji-2.png";
 import repeatDoodle from "@/images/landing/doodles/repeat.png";
+import SpeakerCard from "@/components/speaker/speaker";
+import { getSpeakerSession } from "@/utils/getSpeakerSession";
 
 const topics = [
   [
@@ -471,6 +473,24 @@ export default function Landing({
             <p data-animate-y-full data-add-span data-easing='GDG_OPACITY' data-delay='.167'>
               All ready to cut soap for you!
             </p>
+          </div>
+          <div className='landing-page__speakers__speakers'>
+            <div className='active inner' data-marquee-list>
+              {speakers.map((speaker, index) => (
+                <div key={index} data-marquee-item data-speaker-card>
+                  <SpeakerCard
+                    speaker={speaker}
+                    onClick={() => setActiveSpeaker(speaker)}
+                    onClose={() => setActiveSpeaker(null)}
+                    hasNext={index < speakers.length - 1}
+                    hasPrevious={index > 0}
+                    onClickButton={handleChangeSpeaker(index)}
+                    modalIsOpen={activeSpeaker === speaker}
+                    session={getSpeakerSession({ speaker, sessions })}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </div>
