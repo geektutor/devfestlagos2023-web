@@ -1,0 +1,51 @@
+@import "core/typography";
+@import "core/variables";
+
+.directions {
+  padding-top: 3.6rem;
+  padding-right: 7vw;
+  flex-grow: 1;
+}
+
+.directionsTitle {
+  @include title-2;
+  margin: 0.8rem 0 1.4rem;
+  color: $grey-10;
+}
+
+.backButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.directionsBox {
+  border-radius: 12rem;
+  border: 1px solid $grey-80;
+  background: $bg-shade-1;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  margin-bottom: 8px;
+  width: fit-content;
+}
+
+.directionItem {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+  border: 1px solid $grey-90;
+  background: $bg-shade-1;
+
+  & + & {
+    margin-top: 16px;
+  }
+}
+
+.directionItemText {
+  margin-left: 16px;
+  @include body-3;
+  color: $grey-0;
+}

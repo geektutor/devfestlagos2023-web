@@ -5,11 +5,11 @@
   display: flex;
   justify-content: flex-end;
 
-  &.isCentered{
+  &.isCentered {
     justify-content: center;
   }
 
-  &.hasMargin{
+  &.hasMargin {
     margin-bottom: 40px;
   }
 }
@@ -26,6 +26,4 @@
     color: $grey-0;
     border-bottom-color: $grey-0;
   }
-
 }
-

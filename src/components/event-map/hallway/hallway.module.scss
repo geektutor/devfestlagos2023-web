@@ -1,0 +1,30 @@
+@use "../../../styles/utils/breakpoints" as b;
+
+.container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: #e5ded1;
+  display: flex;
+  align-items: center;
+}
+
+.text1 {
+  font-size: 8px;
+  font-weight: 500;
+  margin: auto 0 auto 10%;
+}
+
+.text2 {
+  width: fit-content;
+  height: fit-content;
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  right: 0px;
+  transform: rotate(90deg) translateY(-100%);
+  z-index: 1;
+  @include b.media("<=desktop") {
+    font-size: 8px;
+  }
+}

@@ -1,0 +1,40 @@
+@use "../../../styles/utils/breakpoints" as b;
+@use "../event-map.module.scss" as e;
+
+.container {
+  background-color: #ffd9bf;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 18px;
+  padding: 18px;
+  text-align: center;
+  &::after {
+    position: absolute;
+    right: 0;
+    content: "";
+    display: block;
+    height: 80%;
+    width: 2px;
+    background-color: #808080;
+    top: 0;
+  }
+  @include b.media("<=desktop") {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+
+.exitIntoRoomOne {
+  @include e.event-map-room-animation;
+  .exitPath {
+    display: flex;
+    gap: 5px;
+    position: absolute;
+    top: 90%;
+    right: 5%;
+  }
+}

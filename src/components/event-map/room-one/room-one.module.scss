@@ -1,0 +1,66 @@
+@use "../../../styles/utils/breakpoints" as b;
+@use "../event-map.module.scss" as e;
+
+.container {
+  background-color: #e5ded1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 26px;
+  padding: 18px;
+  text-align: center;
+  font-weight: 500;
+  &::after {
+    position: absolute;
+    right: 0;
+    content: "";
+    display: block;
+    height: 80%;
+    width: 2px;
+    background-color: #808080;
+    top: 0;
+  }
+  &::before {
+    position: absolute;
+    content: "";
+    display: block;
+    background-color: #fff0e6;
+    bottom: 0;
+    aspect-ratio: 1 / 1;
+    width: 35%;
+    border-radius: 100%;
+    transform: translateY(50%);
+  }
+  @include b.media("<=desktop") {
+    font-size: 12px;
+  }
+}
+
+.doorText {
+  position: absolute;
+  display: block;
+  width: 35%;
+  font-size: 14px;
+  bottom: 0;
+  transform: rotate(90deg) translateX(100%);
+  text-align: left;
+
+  @include b.media("<=desktop") {
+    font-size: 12px;
+    transform: rotate(90deg) translateX(40%);
+  }
+}
+
+.entryFromExhibitionArea {
+  @include e.event-map-room-animation;
+  .path {
+    display: flex;
+    gap: 5px;
+    position: absolute;
+    top: 90%;
+    left: 0%;
+  }
+}

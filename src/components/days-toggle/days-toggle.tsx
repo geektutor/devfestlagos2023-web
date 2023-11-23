@@ -11,17 +11,18 @@ type Props = {
 
 const DaysToggle: FC<Props> = ({ isCentered, setSelectedDay, selectedDay, hasMargin }) => {
   return (
-    <div className={classNames(styles.days, isCentered && styles.isCentered, hasMargin &&  styles.hasMargin)}>
+    <div
+      className={classNames(
+        styles.days,
+        isCentered && styles.isCentered,
+        hasMargin && styles.hasMargin,
+      )}
+    >
       {[1, 2].map((number, index) => (
         <div
           onClick={() => setSelectedDay(number)}
           key={index}
-          className={
-          classNames(
-            styles.number,
-            selectedDay === number && styles.isActive
-          )
-          }
+          className={classNames(styles.number, selectedDay === number && styles.isActive)}
         >
           Day {number}
         </div>

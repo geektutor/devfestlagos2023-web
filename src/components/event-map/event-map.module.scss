@@ -1,0 +1,87 @@
+@use "../../styles/utils/breakpoints" as b;
+
+.container {
+  background-color: #fff0e6;
+  padding: 24px;
+  color: #4d4d4d;
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+  @include b.media("<=tablet-sm") {
+    font-size: 12px;
+  }
+}
+
+.blocks {
+  position: relative;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 30%;
+  padding: 0 36px 100px 54px;
+  @include b.media("<=desktop") {
+    padding: 0;
+    padding-bottom: 40px;
+  }
+}
+
+.emptyCell {
+  grid-column-end: 4;
+}
+
+.roomThreeAndFourWrapper {
+  display: flex;
+}
+
+.stairsAndSpeakers {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 48%;
+  gap: 20px;
+  & > div {
+    height: 100%;
+  }
+}
+
+.toiletsStarsAndHalls {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.toilets {
+  width: 40%;
+  height: fit-content;
+  position: absolute;
+  right: 2%;
+  & > div {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.hallwayWrapper {
+  height: 30%;
+  width: 58%;
+  position: absolute;
+  left: 0;
+}
+
+.pathStep {
+  height: 7px;
+  width: 7px;
+  background-color: white;
+  border-radius: 100%;
+  display: none;
+}
+
+@mixin event-map-room-animation {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+}
