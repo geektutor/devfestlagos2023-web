@@ -67,3 +67,18 @@
   position: absolute;
   left: 0;
 }
+
+.pathStep {
+  height: 7px;
+  width: 7px;
+  background-color: white;
+  border-radius: 100%;
+  display: none;
+}
+
+@mixin event-map-room-animation {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+}

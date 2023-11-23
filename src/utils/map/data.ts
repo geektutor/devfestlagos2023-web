@@ -17,6 +17,12 @@ export const LOCATIONS = Object.freeze({
 
 export type Room = keyof typeof LOCATIONS;
 
+export const mapAnimationDurations = {
+  [`${LOCATIONS.EXHIBITION}_${LOCATIONS.ROOM_1}` as const]: 0.3,
+};
+
+export type MapAnimationTypes = keyof typeof mapAnimationDurations;
+
 export const MAP: Partial<Record<Room, Array<Room>>> = {
   [LOCATIONS.EXHIBITION]: [LOCATIONS.ROOM_1],
   [LOCATIONS.ROOM_1]: [LOCATIONS.EXHIBITION, LOCATIONS.ROOM_2, LOCATIONS.ENTRANCE],

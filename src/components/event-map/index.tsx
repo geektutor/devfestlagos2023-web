@@ -10,6 +10,10 @@ import Stairs from "./stairs";
 import ToiletLeft from "./toilet-left";
 import ToiletRight from "./toilet-right";
 
+export const PathStep = () => {
+  return <div className={`${classes.pathStep}`} />;
+};
+
 const EventMap: React.FC = () => (
   <div className={classes.container}>
     <p className={classes.title}>LANDMARK EVENT CENTER LAYOUT</p>
