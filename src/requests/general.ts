@@ -97,7 +97,10 @@ function processAgenda(agenda: Schedule[]): Schedule[] {
     }
   });
 
-  return processedAgenda;
+  return processedAgenda.map((agenda) => ({
+    ...agenda,
+    venue: agenda.venue || null,
+  }));
 }
 
 function parseTime(timeString: string): Date {

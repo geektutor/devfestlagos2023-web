@@ -89,6 +89,8 @@ export const getStaticProps = (async () => {
     fetchSpeakers(),
   ]);
 
+  console.log(agenda[0][10].venue, "venue");
+
   return { props: { sessions, agenda, speakers } };
 }) satisfies GetStaticProps<{
   sessions: Session[];

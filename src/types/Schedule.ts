@@ -17,5 +17,5 @@ export type Schedule = {
   day: string;
   facilitator: string;
   order: number;
-  venue?: string;
+  venue?: string | null;
 };
