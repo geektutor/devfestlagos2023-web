@@ -35,6 +35,7 @@
 .logo {
   @include ratio(73, 323);
   width: 32.3rem;
+
   overflow: hidden;
 
   svg {

@@ -4,6 +4,7 @@ import FAQ from "@/components/faq/FAQ";
 import Memojis from "@/images/faqs/memojis.png";
 import MenuDoodle from "@/images/faqs/menu-doodle.png";
 import MoveDoodle from "@/images/faqs/move-doodle.png";
+
 import Accordion from "@/components/accordion/accordion";
 import { faqs, paidDevFestQuestions } from "@/data/faqs";
 import CloudDoodle from "@/images/landing/doodles/cloud.png";
@@ -15,11 +16,11 @@ import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
 
 export default function Faqs() {
   return (
-    <main className='faqs__page'>
+    <main className='faq__page'>
       <header className='fq__header'>
         <div className='container'>
           <h1 className='fq__header__title'>
-            {"Top questions about\nDevfest"}
+            Top questions about <br /> DevFest Lagos
             <Image
               alt='FAQs'
               quality={100}

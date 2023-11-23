@@ -1,7 +1,6 @@
 import React, { FC, PropsWithChildren } from "react";
 import Menu from "@/components/menu/menu";
 import Footer from "@/components/footer";
-
 import styles from "./general-layout.module.scss";
 
 export const GeneralLayout: FC<PropsWithChildren> = ({ children }) => {
@@ -11,7 +10,7 @@ export const GeneralLayout: FC<PropsWithChildren> = ({ children }) => {
         <Menu />
         {children}
       </div>
-      <Footer key='footer' />
+      <Footer />
     </>
   );
 };

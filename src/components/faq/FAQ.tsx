@@ -6,6 +6,7 @@ import styles from "./faq.module.scss";
 export interface FAQ {
   question: string;
   answer: React.ReactNode;
+
   index?: number;
 }
 
