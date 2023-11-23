@@ -9,6 +9,8 @@ import CloseCircle from "@/images/close-circle.svg";
 import Hamburger from "@/images/hamburger-menu.svg";
 import RightArrow from "@/images/arrow-right-bg-light.svg";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { useRouter } from "next/router";
+import { classNames } from "@/utils/classNames";
 
 type Props = {
   actionButton?: React.ReactNode;
@@ -65,7 +67,24 @@ const Menu: FC<Props> = ({ actionButton }) => {
   );
 };
 
+const navLinks = [
+  {
+    href: "/speakers",
+    label: "Speakers",
+  },
+  {
+    href: "/schedule",
+    label: "Schedule",
+  },
+  {
+    href: "/team",
+    label: "Team",
+  },
+];
+
 const NavItems = () => {
+  const { pathname } = useRouter();
+
   return (
     <ul
       className={styles.navItems}
@@ -73,21 +92,16 @@ const NavItems = () => {
       data-delay='.083'
       data-easing='MENU_ITEMS'
     >
-      <li className={styles.navItem}>
-        <Link href='/speakers' className={styles.link}>
-          Speakers
-        </Link>
-      </li>
-      <li className={styles.navItem}>
-        <Link href='/schedule' className={styles.link}>
-          Schedule
-        </Link>
-      </li>
-      <li className={styles.navItem}>
-        <Link href='/team' className={styles.link}>
-          Team
-        </Link>
-      </li>
+      {navLinks.map(({ href, label }) => (
+        <li className={styles.navItem} key={label}>
+          <Link
+            href={href}
+            className={classNames(styles.link, pathname.includes(href) && styles.isActive)}
+          >
+            {label}
+          </Link>
+        </li>
+      ))}
     </ul>
   );
 };

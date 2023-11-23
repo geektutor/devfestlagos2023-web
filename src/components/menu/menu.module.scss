@@ -90,10 +90,16 @@
   font-size: 1.8rem;
   font-weight: 700;
   text-decoration: none;
-  padding: 0.8rem;
+  padding: 0.8rem 0.8rem 0.6rem;
+  border-bottom: 2px solid transparent;
 
   @include b.media("<=desktop-sm") {
     font-size: 1.6rem;
+  }
+
+  &.isActive {
+    color: v.$grey-0;
+    border-color: v.$grey-0;
   }
 }
 
