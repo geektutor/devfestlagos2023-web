@@ -1,4 +1,4 @@
-import { MAP } from "@/utils/map/data";
+import { MAP, Room } from "@/utils/map/data";
 
 class EventCenter {
   graph: Map<string, string[]>;
@@ -64,5 +64,5 @@ Object.entries(MAP).forEach(([key, value]) => {
 });
 
 export const findPathAStar = (start: string, end: string) => {
-  return eventCenter.findShortestPath(start, end);
+  return eventCenter.findShortestPath(start, end) as Array<Room>;
 };
