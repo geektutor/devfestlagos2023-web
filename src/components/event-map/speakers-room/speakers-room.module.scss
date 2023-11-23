@@ -17,5 +17,7 @@
   @include b.media("<=desktop") {
     font-size: 8px;
     transform: none;
+    white-space: unset;
+    text-align: center;
   }
 }

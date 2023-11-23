@@ -15,10 +15,12 @@
   }
   &__map-wrapper {
     flex: 1 1 0;
-    @include media("<=desktop") {
-      min-width: 600px;
-    }
     @include media("<=desktop-sm") {
+      margin: 0 auto;
+      margin-top: 40px;
+      max-width: 600px;
+    }
+    @include media("<=tablet-sm") {
       width: 100vw;
       margin-left: -3.6rem;
     }
