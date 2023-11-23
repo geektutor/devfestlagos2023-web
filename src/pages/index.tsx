@@ -31,6 +31,17 @@ import scribbleImage from "@/images/landing/scribble.png";
 import SpotifyLyricIcon from "@/images/landing/spotify.svg";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 import CategoryPill from "@/components/category-pill/category-pill";
+import { YoutubePlayer } from "@/components/youtube-player";
+import SparkleIcon from "@/images/landing/doodles/sparkle.svg";
+import speakerMemojiLeft from "@/images/landing/doodles/speaker-memoji.png";
+import speakerMemojiRight from "@/images/landing/doodles/speaker-memoji-2.png";
+import repeatDoodle from "@/images/landing/doodles/repeat.png";
+import SpeakerCard from "@/components/speaker/speaker";
+import { getSpeakerSession } from "@/utils/getSpeakerSession";
+import { Talks } from "@/components/talks-section/talks";
+import FaqSection from "@/components/faq-section/faq-section";
+import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";
+import Footer from "@/components/footer";
 
 const topics = [
   [
@@ -387,6 +398,137 @@ export default function Landing({
             ))}
           </div>
         </section>
+        <section className='landing-page__recap' data-recap-section>
+          <div className='landing-page__recap__top'>
+            <h3
+              className='landing-page__recap__title'
+              data-animate-sentences
+              data-easing='LANDING_TITLE'
+            >
+              Last year&apos;s edition was like no other.
+            </h3>
+            <p
+              className='landing-page__recap__subtext'
+              data-animate-sentences
+              data-delay={0.167}
+              data-easing='LANDING_TITLE'
+            >
+              With your support, we&apos;re about to raise the bar even higher this year!
+            </p>
+          </div>
+          <div
+            className='landing-page__recap__video'
+            data-delay='.35'
+            data-fade-in
+            data-animate-y='+200'
+            data-easing='RECAP_VIDEO'
+          >
+            <YoutubePlayer videoId='7kat5HlPtzU' />
+          </div>
+        </section>
+        <section className='landing-page__speakers' data-speakers-section>
+          <div style={{ position: "relative" }}>
+            <SparkleIcon data-fade-in className='landing-page__speakers__sparkle' />
+            <p
+              className='landing-page__speakers__count'
+              data-animate-y-full
+              data-add-span
+              data-easing='SPEAKERS_TITLE'
+            >
+              {speakers.length}
+            </p>
+          </div>
+          <div className='landing-page__speakers__speakers-wrapper'>
+            <Image
+              src={speakerMemojiLeft}
+              alt='doodle'
+              className='landing-page__speakers__memoji-left'
+              data-speaker-memoji
+            />
+            <Image
+              src={speakerMemojiRight}
+              alt='doodle'
+              className='landing-page__speakers__memoji-right'
+              data-speaker-memoji
+            />
+            <p
+              className='landing-page__speakers__speakers-text'
+              data-animate-y-full
+              data-add-span
+              data-easing='SPEAKERS_TITLE'
+              data-delay='.83'
+            >
+              Speakers
+            </p>
+          </div>
+          <div className='landing-page__speakers__subtext'>
+            <Image
+              data-speaker-doodle
+              src={repeatDoodle}
+              alt='doodle'
+              className='landing-page__speakers__repeat'
+            />
+            <Image
+              data-speaker-doodle
+              src={cloudsDoodle}
+              alt='doodle'
+              className='landing-page__speakers__cloud'
+            />
+            <p data-animate-y-full data-add-span data-easing='GDG_OPACITY' data-delay='.167'>
+              All ready to cut soap for you!
+            </p>
+          </div>
+          <div className='landing-page__speakers__speakers'>
+            <div className='active inner' data-marquee-list>
+              {speakers.map((speaker, index) => (
+                <div key={index} data-marquee-item data-speaker-card>
+                  <SpeakerCard
+                    speaker={speaker}
+                    onClick={() => setActiveSpeaker(speaker)}
+                    onClose={() => setActiveSpeaker(null)}
+                    hasNext={index < speakers.length - 1}
+                    hasPrevious={index > 0}
+                    onClickButton={handleChangeSpeaker(index)}
+                    modalIsOpen={activeSpeaker === speaker}
+                    session={getSpeakerSession({ speaker, sessions })}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+          <PrimaryButton href='/speakers' data-animate-y='+240'>
+            <span>View All Speakers</span>
+            <ArrowRight />
+          </PrimaryButton>
+          <div className='landing-page__speakers__hype-banner'>
+            <div className='landing-page__speakers__hype-banner__item visible' data-speakers-banner>
+              {Array.from({ length: 5 }).map(() => (
+                <>
+                  <span>🔥</span>
+                  <span>REGISTER NOW</span>
+                  <span>LIMITED TICKETS AVAILABLE</span>
+                </>
+              ))}
+            </div>
+            <div
+              className='landing-page__speakers__hype-banner__item faded'
+              data-speakers-banner
+              data-delay='.83'
+            >
+              {Array.from({ length: 5 }).map(() => (
+                <>
+                  <span>🔥</span>
+                  <span>REGISTER NOW</span>
+                  <span>LIMITED TICKETS AVAILABLE</span>
+                </>
+              ))}
+            </div>
+          </div>
+        </section>
+        <Talks speakers={speakers} sessions={sessions} />
+        <FaqSection />
+        <NoMatterWhat />
+        <Footer />
       </div>
     </>
   );
