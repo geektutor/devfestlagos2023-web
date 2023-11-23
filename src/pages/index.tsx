@@ -11,7 +11,6 @@ import OktaIcon from "@/images/landing/sponsor/okta.svg";
 import PaystackIcon from "@/images/landing/sponsor/paystack.svg";
 import PostmanIcon from "@/images/landing/sponsor/postman.svg";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
-import LandingPage from "@/animations/components/Landing";
 import { fetchCategories, fetchSessions, fetchSpeakers } from "@/requests/general";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Session } from "@/types/Session";
@@ -133,13 +132,13 @@ export default function Landing({
     else disableBodyScroll(document.body);
   }, [activeSpeaker]);
 
-  useEffect(() => {
-    if (!isInitialized.current) {
-      new LandingPage();
-
-      isInitialized.current = true;
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!isInitialized.current) {
+  //     new LandingPage();
+  //
+  //     isInitialized.current = true;
+  //   }
+  // }, []);
 
   return (
     <>
