@@ -26,14 +26,16 @@ import peopleDoodle from "@/images/people-doodle.png";
 import Image from "next/image";
 import memoji1 from "@/images/beanie-memoji.png";
 import memoji2 from "@/images/wink-memoji.png";
+import UpArrowSvg from "@/images/up-arrow-contrast.svg";
 import { toast } from "react-toastify";
 import { ErrorAlert, SuccessAlert } from "@/components/alert/alert";
 import { EmptyRsvp } from "@/components/rsvp/empty-rsvp/empty-rsvp";
 import { Speaker } from "@/types/Speaker";
+import Controls from "@/components/rsvp/controls/controls";
 
 const pageSize = 6;
 
-const TABS = {
+export const RSVP_TABS = {
   GENERAL: "GENERAL",
   BOOKMARKS: "BOOKMARKS",
 };
@@ -46,8 +48,9 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
 
   const [hasCheckedInitialSession, setHasCheckedInitialSession] = React.useState<boolean>(false);
 
-  const [activeTab, setActiveTab] = React.useState<string>(TABS.GENERAL);
+  const [activeTab, setActiveTab] = React.useState<string>(RSVP_TABS.GENERAL);
   const [showRSVPPopup, setShowRSVPPopup] = React.useState<boolean>(false);
+  const [showRSVPPopupMobile, setShowRSVPPopupMobile] = React.useState<boolean>(false);
 
   const [hasPendingSaveBookmarks, setHasPendingSaveBookmarks] = React.useState<boolean>(false);
 
@@ -116,7 +119,7 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
     rangeText,
     totalTalks,
   } = useRSVPState({
-    sessions: activeTab === TABS.GENERAL ? sessions : getSessionsQuery.data?.sessions || [],
+    sessions: activeTab === RSVP_TABS.GENERAL ? sessions : getSessionsQuery.data?.sessions || [],
     scrollToTalks,
     pageSize,
   });
@@ -190,6 +193,7 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
   const onClickMenu = (tab: string) => () => {
     setActiveTab(tab);
     setShowRSVPPopup(false);
+    setShowRSVPPopupMobile(false);
   };
 
   const onClickMenuButton = () => {
@@ -198,11 +202,6 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
     } else {
       setShowLogin(true);
     }
-  };
-
-  const onClickSignOut = () => {
-    firebaseAuth.signOut();
-    setShowRSVPPopup(false);
   };
 
   const onRemoveSession = (sessionId: string) => () => {
@@ -227,17 +226,11 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
         <TertiaryButton onClick={onClickMenuButton}>
           {user ? "Hi, Omo Ologo" : "Login"}
         </TertiaryButton>
-        <div className={classNames("rsvp__menu__inner", showRSVPPopup && "is-active")}>
-          <button className='rsvp__menu__button' onClick={onClickMenu(TABS.GENERAL)}>
-            All Sessions
-          </button>
-          <button className='rsvp__menu__button' onClick={onClickMenu(TABS.BOOKMARKS)}>
-            Booked Sessions
-          </button>
-          <button className='rsvp__menu__button sign-out' onClick={onClickSignOut}>
-            Sign Out
-          </button>
-        </div>
+        <Controls
+          isMenuOpen={showRSVPPopup}
+          onClickMenu={onClickMenu}
+          onHide={() => setShowRSVPPopup(false)}
+        />
       </div>
     );
   };
@@ -277,7 +270,7 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
 
   const renderBody = () => {
     if (currentTalks.length === 0) {
-      return <EmptyRsvp onClick={() => setActiveTab(TABS.GENERAL)} />;
+      return <EmptyRsvp onClick={() => setActiveTab(RSVP_TABS.GENERAL)} />;
     }
 
     return (
@@ -316,13 +309,34 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
     );
   };
 
+  const renderMobileButton = () => {
+    if (!user) return null;
+
+    return (
+      <div className='rsvp__mobile-button-wrapper'>
+        <button
+          className='rsvp__mobile-button'
+          onClick={() => setShowRSVPPopupMobile((prev) => !prev)}
+        >
+          <UpArrowSvg />
+        </button>
+        <Controls
+          isFadeDown
+          onHide={() => setShowRSVPPopupMobile(false)}
+          isMenuOpen={showRSVPPopupMobile}
+          onClickMenu={onClickMenu}
+        />
+      </div>
+    );
+  };
+
   return (
     <>
       <Menu actionButton={renderMenuButton()} />
       <div className='rsvp'>
         <Image src={logicDoodle} alt='Logic Doodle' className='rsvp__logic' />
         <Image src={peopleDoodle} alt='People Doodle' className='rsvp__people' />
-        {activeTab === TABS.GENERAL && (
+        {activeTab === RSVP_TABS.GENERAL && (
           <>
             <Image src={dotsDoodle} alt='Dots Doodle' className='rsvp__dots' />
             <Image src={repeatDoodle} alt='Repeat Doodle' className='rsvp__repeat' />
@@ -331,10 +345,12 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
             <Image src={memoji2} alt='Memoji' className='rsvp__memoji-2' />
           </>
         )}
-        <h1 className={classNames("rsvp__title", activeTab === TABS.BOOKMARKS && "bookmarked")}>
-          {activeTab === TABS.GENERAL ? "RSVP" : "Your Booked Sessions"}
+        <h1
+          className={classNames("rsvp__title", activeTab === RSVP_TABS.BOOKMARKS && "bookmarked")}
+        >
+          {activeTab === RSVP_TABS.GENERAL ? "RSVP" : "Your Booked Sessions"}
         </h1>
-        {activeTab === TABS.GENERAL && (
+        {activeTab === RSVP_TABS.GENERAL && (
           <p className='rsvp__subtitle'>
             Rice and Soup very plenty 🤩 <br /> JK JK, Below you can select the sessions you’re
             interested in.
@@ -351,6 +367,7 @@ const RSVP = ({ sessions, speakers }: InferGetStaticPropsType<typeof getStaticPr
             </button>
           ))}
         </div>
+        {renderMobileButton()}
         {renderBody()}
         <FaqSection />
         <NoMatterWhat />

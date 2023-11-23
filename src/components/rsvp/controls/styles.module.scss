@@ -1,0 +1,46 @@
+@import "core/variables";
+@import "core/typography";
+
+.controls {
+  border-radius: 20px;
+  border-top: 1px solid #000;
+  border-right: 6px solid #000;
+  border-bottom: 6px solid #000;
+  border-left: 1px solid #000;
+  background: #fff;
+  display: grid;
+  row-gap: 12px;
+  padding: 32px 22px;
+  position: absolute;
+  top: calc(100% + 12px);
+  width: 100%;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: 300ms;
+  z-index: 2;
+
+  &.isFadeDown {
+    transform: translateY(-10px);
+    top: unset;
+    bottom: calc(100% + 16px);
+    width: min(380px, 90vw);
+    right: 0;
+  }
+
+  &.isActive {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.button {
+  @include body-3;
+  color: $grey-0;
+  background: transparent;
+  border: none;
+  text-align: left;
+
+  &.signOut {
+    color: $primary-red;
+  }
+}

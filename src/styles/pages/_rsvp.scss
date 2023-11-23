@@ -394,4 +394,32 @@
       }
     }
   }
+
+  &__mobile-button-wrapper {
+    position: fixed;
+    bottom: 10px;
+    right: 25px;
+    z-index: 10;
+
+    @include media(">=tablet") {
+      display: none;
+    }
+  }
+
+  &__mobile-button {
+    margin-left: auto;
+    border-radius: 48px;
+    background: $secondary-blue;
+    width: 66px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
 }
