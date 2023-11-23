@@ -7,6 +7,8 @@ import RightIcon from "@/images/map/right.svg";
 import ArrivedIcon from "@/images/map/arrived.svg";
 import StairsUpIcon from "@/images/map/stairs-up.svg";
 import TurnRightIcon from "@/images/map/turn-right.svg";
+import TurnLeftIcon from "@/images/map/turn-left.svg";
+import StairsDownIcon from "@/images/map/stairs-down.svg";
 import { FC } from "react";
 
 type Props = {
@@ -28,7 +30,7 @@ const Directions: FC<Props> = ({ onClickBack, directions, start, end }) => {
       }
 
       case "stairs-down": {
-        return <StairsUpIcon style={{ rotate: `180deg` }} />;
+        return <StairsDownIcon />;
       }
 
       case "stairs-up": {
@@ -36,7 +38,7 @@ const Directions: FC<Props> = ({ onClickBack, directions, start, end }) => {
       }
 
       case "left": {
-        return <TurnRightIcon style={{ rotate: `180deg` }} />;
+        return <TurnLeftIcon />;
       }
 
       case "right": {
