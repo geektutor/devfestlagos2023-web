@@ -5,11 +5,44 @@
   display: flex;
   flex-direction: row-reverse;
 
+  &__mobile-header-and-caption {
+    margin-top: 14px;
+    margin-bottom: 32px;
+    &__header {
+      font-size: 32px;
+      color: $grey-10;
+      @include media("<=tablet") {
+        font-size: 24px;
+      }
+    }
+    &__caption {
+      font-size: 18px;
+      color: $grey-30;
+      @include media("<=tablet") {
+        font-size: 14px;
+      }
+    }
+    @include media("<=tablet") {
+      margin-bottom: 16px;
+    }
+    @include media(">=desktop-sm") {
+      display: none;
+    }
+  }
+
   &__left {
     padding: 20px;
     flex: 1 1 0;
-    &____inner {
-      min-width: 443px;
+    @include media("<=desktop-sm") {
+      padding: 50px 0;
+      max-width: 600px;
+      margin: auto;
+    }
+    @include media("<=tablet") {
+      padding: 20px 0;
+      padding-bottom: 50px;
+    }
+    &__inner {
       width: 100%;
     }
   }
@@ -17,19 +50,25 @@
     flex: 1 1 0;
     @include media("<=desktop-sm") {
       margin: 0 auto;
-      margin-top: 40px;
       max-width: 600px;
     }
     @include media("<=tablet-sm") {
       width: 100vw;
       margin-left: -3.6rem;
     }
+    @include media("<=tablet-sm") {
+      margin-left: -2.4rem;
+    }
   }
 
   &__form {
-    padding-top: 3.6rem;
-    padding-right: 7vw;
     flex-grow: 1;
+
+    &__header-and-subtitle {
+      @include media("<=desktop-sm") {
+        display: none;
+      }
+    }
 
     &__header {
       @include heading-5;
@@ -53,6 +92,13 @@
     &__dropdown {
       position: relative;
       width: 100%;
+
+      &__label {
+        @include body-4;
+        color: #0b0a0a;
+        margin-bottom: 8px;
+        font-weight: 400;
+      }
 
       &__inner {
         padding: 16px;
@@ -153,5 +199,8 @@
   @include media("<=desktop-sm") {
     padding: 0 3.6rem;
     display: block;
+  }
+  @include media("<=tablet-sm") {
+    padding: 0 2.4rem;
   }
 }

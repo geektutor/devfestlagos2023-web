@@ -29,7 +29,7 @@ const EventMap: React.FC = () => (
       <div>
         <RoomOne />
       </div>
-      <div style={{ backgroundColor: "white" }}>
+      <div>
         <RoomTwo />
       </div>
       <div className={classes.toiletsStarsAndHalls}>

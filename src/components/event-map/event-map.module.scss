@@ -11,6 +11,9 @@
 .title {
   font-size: 14px;
   font-weight: 500;
+  @include b.media("<=tablet-sm") {
+    font-size: 12px;
+  }
 }
 
 .blocks {

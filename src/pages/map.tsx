@@ -20,11 +20,12 @@ type DropdownProps = {
   placeholder: string;
   otherValue: string | null;
   isStart?: boolean;
+  label?: string;
 };
 
 type StringToLocation = keyof typeof STRING_TO_LOCATION_MAP;
 
-const Dropdown = ({ value, onChange, placeholder, otherValue, isStart }: DropdownProps) => {
+const Dropdown = ({ value, onChange, placeholder, otherValue, isStart, label }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   //todo: if there's free time close on window click
@@ -49,6 +50,7 @@ const Dropdown = ({ value, onChange, placeholder, otherValue, isStart }: Dropdow
 
   return (
     <div className='map__page__form__dropdown'>
+      {label && <p className='map__page__form__dropdown__label'>{label}</p>}
       <button className='map__page__form__dropdown__inner' onClick={toggleOpen}>
         <PinIcon className='map__page__form__dropdown__pin-icon' />
         <span className={classNames("map__page__form__dropdown__text", !value && "is-placeholder")}>
@@ -95,6 +97,12 @@ const Map = () => {
         <meta name='description' content='Find your way around the event' />
       </Head>
       <main className='map__page'>
+        <div className='map__page__mobile-header-and-caption'>
+          <h1 className='map__page__mobile-header-and-caption__header'>Map</h1>
+          <p className='map__page__mobile-header-and-caption__caption'>
+            Let us help you find your way around Landmark Center
+          </p>
+        </div>
         <div className='map__page__map-wrapper'>
           <LandmarkMap />
         </div>
@@ -109,11 +117,15 @@ const Map = () => {
               />
             ) : (
               <div className='map__page__form'>
-                <h1 className='map__page__form__header'>Map</h1>
-                <p className='map__page__form__subtitle'>
-                  Let us help you find your way around Landmark Center
-                </p>
+                <div className='map__page__form__header-and-subtitle'>
+                  <h1 className='map__page__form__header'>Map</h1>
+                  <p className='map__page__form__subtitle'>
+                    Let us help you find your way around Landmark Center
+                  </p>
+                </div>
+
                 <Dropdown
+                  label='Where are you?'
                   isStart
                   value={currentLocation}
                   onChange={setCurrentLocation}
@@ -122,6 +134,7 @@ const Map = () => {
                 />
                 <span className='map__page__form__divider' />
                 <Dropdown
+                  label='Where are you going?'
                   value={destination}
                   onChange={setDestination}
                   placeholder='Your destination'
