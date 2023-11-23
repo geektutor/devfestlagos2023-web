@@ -419,7 +419,7 @@ export default function Landing({
             <YoutubePlayer videoId='7kat5HlPtzU' />
           </div>
         </section>
-        <section className='landing-page__speakers' data-speakers-section>
+        <section data-speakers-section className='landing-page__speakers'>
           <div style={{ position: "relative" }}>
             <SparkleIcon data-fade-in className='landing-page__speakers__sparkle' />
             <p
