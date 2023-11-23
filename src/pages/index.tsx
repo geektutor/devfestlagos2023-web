@@ -391,7 +391,7 @@ export default function Landing({
             ))}
           </div>
         </section>
-        <section className='landing-page__recap' data-recap-section>
+        <section data-recap-section className='landing-page__recap'>
           <div className='landing-page__recap__top'>
             <h3
               className='landing-page__recap__title'
