@@ -8,28 +8,36 @@ import RoomTwo from "./room-two";
 import Stairs from "./stairs";
 import ToiletLeft from "./toilet-left";
 import Doorway from "@/components/event-map/doorway/doorway";
+import { classNames } from "@/utils/classNames";
 
 export const PathStep = () => {
   return <div className={`${classes.pathStep}`} />;
 };
 
-const EventMap: React.FC = () => (
-  <div className={classes.container}>
-    <p className={classes.title}>LANDMARK EVENT CENTER LAYOUT</p>
-    <div className={classes.mapGrid}>
-      <svg className={classes.svg} width='400' height='400' viewBox='0 0 400 400' />
-      <ExhibitionArea />
-      <RoomOne />
-      <RoomTwo />
-      <Hallway />
-      <Stairs />
-      <ToiletLeft />
-      <RoomThree />
-      <RoomFour />
-      <Doorway variant='exit' />
-      <Doorway variant='entrance' />
+const EventMap: React.FC = () => {
+  return (
+    <div className={classes.container}>
+      <p className={classes.title}>LANDMARK EVENT CENTER LAYOUT</p>
+      <div className={classNames(classes.mapGrid, "event-map")}>
+        <svg
+          className={classNames(classes.svg, "event-map-svg")}
+          width='400'
+          height='400'
+          viewBox='0 0 400 400'
+        />
+        <ExhibitionArea />
+        <RoomOne />
+        <RoomTwo />
+        <Hallway />
+        <Stairs />
+        <ToiletLeft />
+        <RoomThree />
+        <RoomFour />
+        <Doorway variant='exit' />
+        <Doorway variant='entrance' />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default EventMap;

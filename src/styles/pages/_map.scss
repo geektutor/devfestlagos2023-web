@@ -223,3 +223,17 @@
     padding: 0 2.4rem;
   }
 }
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.map_path {
+  stroke-dasharray: 1000;
+  animation: draw 5s linear forwards;
+}

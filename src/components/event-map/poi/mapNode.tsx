@@ -11,7 +11,8 @@ type Props = {
     | "bottomLeft"
     | "middleLeft"
     | "topMiddle"
-    | "room2";
+    | "room2"
+    | "hallway";
 };
 
 const MapNode = ({ type, variant }: Props) => {
@@ -27,9 +28,10 @@ const MapNode = ({ type, variant }: Props) => {
     variant === "middleLeft" && styles.middleLeft,
     variant === "topMiddle" && styles.topMiddle,
     variant === "room2" && styles.room2,
+    variant === "hallway" && styles.hallway,
   );
 
-  return <span className={className} data-node={variant} />;
+  return <span className={className} data-node={type} />;
 };
 
 export default MapNode;

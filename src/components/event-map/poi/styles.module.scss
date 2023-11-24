@@ -57,5 +57,11 @@
       right: 0;
       top: 36%;
     }
+
+    &.hallway {
+      top: 0;
+      left: 75%;
+      transform: translateX(-50%);
+    }
   }
 }
