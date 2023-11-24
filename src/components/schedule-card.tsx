@@ -6,7 +6,6 @@ type Props = {
 };
 
 export const ScheduleCard: FC<Props> = ({ schedule }) => {
-  console.log(schedule);
   return (
     <div className='scc'>
       <div className='scc__first_level'>
