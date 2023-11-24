@@ -5,10 +5,9 @@ import RoomFour from "./room-four";
 import RoomOne from "./room-one";
 import RoomThree from "./room-three";
 import RoomTwo from "./room-two";
-import SpeakersRoom from "./speakers-room";
 import Stairs from "./stairs";
 import ToiletLeft from "./toilet-left";
-import ToiletRight from "./toilet-right";
+import Doorway from "@/components/event-map/doorway/doorway";
 
 export const PathStep = () => {
   return <div className={`${classes.pathStep}`} />;
@@ -26,6 +25,8 @@ const EventMap: React.FC = () => (
       <ToiletLeft />
       <RoomThree />
       <RoomFour />
+      <Doorway variant='exit' />
+      <Doorway variant='entrance' />
     </div>
   </div>
 );

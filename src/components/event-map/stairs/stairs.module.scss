@@ -10,6 +10,7 @@
   justify-content: center;
   font-weight: 500;
   grid-area: STAIRS;
+  position: relative;
 
   @include b.media("<=desktop") {
     font-size: 8px;
