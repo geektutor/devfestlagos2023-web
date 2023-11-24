@@ -18,4 +18,5 @@ export type Schedule = {
   facilitator: string;
   order: number;
   venue?: string | null;
+  Room?: string | null;
 };
