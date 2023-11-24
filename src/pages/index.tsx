@@ -41,6 +41,7 @@ import { Category } from "@/types/Category";
 import { Speaker } from "@/types/Speaker";
 import { getSpeakerSession } from "@/utils/getSpeakerSession";
 import { classNames } from "@/utils/classNames";
+import { ticketsUrl } from "@/utils/urls";
 
 const topics = [
   [
@@ -223,7 +224,7 @@ export default function Landing({
             {/*</div>*/}
           </p>
           <PrimaryButton
-            // href={ticketsUrl}
+            href={ticketsUrl}
             isExternal
             data-animate-button
             className='landing-page__intro__button'
@@ -352,7 +353,7 @@ export default function Landing({
               We are back to do so much more and we look forward to showing you what we have in
               store.
             </p>
-            <PrimaryButton data-animate-button data-delay='1.2' isExternal>
+            <PrimaryButton href={ticketsUrl} data-animate-button data-delay='1.2' isExternal>
               <span>Get Your Ticket</span> <ArrowRightDark />
             </PrimaryButton>
           </div>
@@ -375,7 +376,7 @@ export default function Landing({
               talking groceries 🌚
             </p>
             <div className='landing-page__hype__categories__button-wrapper'>
-              <PrimaryButton data-animate-button data-delay='1.7' isExternal>
+              <PrimaryButton href={ticketsUrl} data-animate-button data-delay='1.7' isExternal>
                 <span>Register Now</span>
                 <ArrowRight />
               </PrimaryButton>
