@@ -17,6 +17,7 @@ const EventMap: React.FC = () => (
   <div className={classes.container}>
     <p className={classes.title}>LANDMARK EVENT CENTER LAYOUT</p>
     <div className={classes.mapGrid}>
+      <svg className={classes.svg} width='400' height='400' viewBox='0 0 400 400' />
       <ExhibitionArea />
       <RoomOne />
       <RoomTwo />
