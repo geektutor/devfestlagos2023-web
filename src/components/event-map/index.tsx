@@ -17,40 +17,15 @@ export const PathStep = () => {
 const EventMap: React.FC = () => (
   <div className={classes.container}>
     <p className={classes.title}>LANDMARK EVENT CENTER LAYOUT</p>
-    <div className={classes.blocks}>
-      <div className={classes.emptyCell}></div>
-      <div className={classes.roomThreeAndFourWrapper}>
-        <RoomThree />
-        <RoomFour />
-      </div>
-      <div>
-        <ExhibitionArea />
-      </div>
-      <div>
-        <RoomOne />
-      </div>
-      <div>
-        <RoomTwo />
-      </div>
-      <div className={classes.toiletsStarsAndHalls}>
-        <div className={classes.toilets}>
-          <ToiletLeft />
-          <ToiletRight />
-        </div>
-
-        <div className={classes.hallwayWrapper}>
-          <Hallway />
-        </div>
-
-        <div className={classes.stairsAndSpeakers}>
-          <div className={classes.stairs}>
-            <Stairs />
-          </div>
-          <div className={classes.speakers}>
-            <SpeakersRoom />
-          </div>
-        </div>
-      </div>
+    <div className={classes.mapGrid}>
+      <ExhibitionArea />
+      <RoomOne />
+      <RoomTwo />
+      <Hallway />
+      <Stairs />
+      <ToiletLeft />
+      <RoomThree />
+      <RoomFour />
     </div>
   </div>
 );
