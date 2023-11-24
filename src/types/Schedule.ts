@@ -19,4 +19,5 @@ export type Schedule = {
   order: number;
   venue?: string | null;
   Room?: string | null;
+  room?: string | null;
 };
