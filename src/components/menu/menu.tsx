@@ -55,7 +55,7 @@ const Menu: FC<Props> = ({ actionButton }) => {
             </button>
           </div>
           <nav className={styles.mobileItems}>
-            <NavItems />
+            <NavItems closeMenu={toggleMenu} />
             <Button variant='primary' className={styles.cta} href='/rsvp'>
               RSVP
               <RightArrow />
@@ -82,7 +82,7 @@ const navLinks = [
   },
 ];
 
-const NavItems = () => {
+const NavItems = ({ closeMenu }: { closeMenu?: () => void }) => {
   const { pathname } = useRouter();
 
   return (
@@ -97,6 +97,7 @@ const NavItems = () => {
           <Link
             href={href}
             className={classNames(styles.link, pathname.includes(href) && styles.isActive)}
+            onClick={closeMenu}
           >
             {label}
           </Link>
