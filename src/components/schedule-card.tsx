@@ -14,7 +14,7 @@ export const ScheduleCard: FC<Props> = ({ schedule }) => {
 
       <div className='scc__footer'>
         <div className='scc__footer__time'>{schedule.time}</div>
-        {schedule.venue && (
+        {(schedule.Room || schedule.room) && (
           <div className='scc__footer__venue'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -25,7 +25,7 @@ export const ScheduleCard: FC<Props> = ({ schedule }) => {
             >
               <circle cx='4' cy='4' r='4' fill='black' />
             </svg>
-            {schedule.venue}
+            {schedule.Room || schedule.room}
           </div>
         )}
       </div>
