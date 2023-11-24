@@ -667,6 +667,7 @@
       flex-wrap: wrap;
       gap: 20px;
       max-width: 1200px;
+      padding-bottom: 20px;
 
       @include media("<=phone") {
         justify-content: center;
