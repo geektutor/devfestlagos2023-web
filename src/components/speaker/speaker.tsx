@@ -12,7 +12,7 @@ import { classNames } from "@/utils/classNames";
 // import CategoryPill from "@/components/category-pill/category-pill";
 import { Speaker } from "@/types/Speaker";
 import { Session } from "@/types/Session";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock-upgrade";
 
 interface SpeakerCardProps {
   modalIsOpen?: boolean;

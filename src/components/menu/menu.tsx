@@ -8,7 +8,7 @@ import Button from "@/components/button";
 import CloseCircle from "@/images/close-circle.svg";
 import Hamburger from "@/images/hamburger-menu.svg";
 import RightArrow from "@/images/arrow-right-bg-light.svg";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock-upgrade";
 import { useRouter } from "next/router";
 import { classNames } from "@/utils/classNames";
 
