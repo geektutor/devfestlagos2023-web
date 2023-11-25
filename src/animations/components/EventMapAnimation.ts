@@ -31,12 +31,11 @@ function calculateDistanceBetweenElements(a: Element, b: Element) {
   return calculateDistance(aPoint.x, aPoint.y, bPoint.x, bPoint.y);
 }
 
-async function placeFeet(path: SVGPathElement, svg: SVGElement) {
+async function placeFeet(path: SVGPathElement, svg: SVGElement, numFeetPairs: number) {
   const feet = document.getElementById("feet");
   if (!feet) return;
 
   const pathLength = path.getTotalLength();
-  const numFeetPairs = 20; // Number of feet pairs you want
   const spacing = pathLength / numFeetPairs;
 
   const randomNumber = Math.random();
@@ -136,18 +135,21 @@ export default class EventMapAnimation extends Component {
             Element,
             Element,
           ];
-          const nextRoom = path[index + 1];
-          const nextRoomElement = this.element?.querySelector(`[data-room="${nextRoom}"]`);
-          const nextRoomPoint = nextRoomElement!.querySelector("[data-node='destination']")!;
+          const targetRoom = path[index + 1] || path[index - 1];
 
-          const doorDistancesToNextRoomPOI = doors.map((door) => {
-            return calculateDistanceBetweenElements(door, nextRoomPoint);
-          });
+          if (targetRoom) {
+            const nextRoomElement = this.element?.querySelector(`[data-room="${targetRoom}"]`);
+            const nextRoomPoint = nextRoomElement!.querySelector("[data-node='destination']")!;
 
-          if (doorDistancesToNextRoomPOI[0] < doorDistancesToNextRoomPOI[1]) {
-            door = doors[0];
-          } else {
-            door = doors[1];
+            const doorDistancesToNextRoomPOI = doors.map((door) => {
+              return calculateDistanceBetweenElements(door, nextRoomPoint);
+            });
+
+            if (doorDistancesToNextRoomPOI[0] < doorDistancesToNextRoomPOI[1]) {
+              door = doors[0];
+            } else {
+              door = doors[1];
+            }
           }
         } else {
           door = element.querySelector("[data-node='door']");
@@ -165,7 +167,7 @@ export default class EventMapAnimation extends Component {
         }
 
         // If it's just two rooms we just go from one point of interest to another point of interest
-        if (door && index + 1 < path.length) {
+        if (door) {
           const rect = door.getBoundingClientRect();
           doorPoints = {
             x: rect.left,
@@ -191,7 +193,13 @@ export default class EventMapAnimation extends Component {
           if (destDistance > doorDistance) {
             points.push(doorPoints, destinationPoints);
           } else {
-            points.push(destinationPoints, doorPoints);
+            if (index + 1 < path.length) {
+              points.push(destinationPoints, doorPoints);
+            } else {
+              // Explain: If we're on the last element and the destination of the room is closer than the door
+              // then only add the destination as a point
+              points.push(destinationPoints);
+            }
           }
 
           previousEndNode = { ...doorPoints };
@@ -234,14 +242,15 @@ export default class EventMapAnimation extends Component {
     const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
     pathElement.setAttribute("d", pathData);
     pathElement.setAttribute("fill", "none");
-    // pathElement.setAttribute("stroke", "transparent");
-    pathElement.setAttribute("stroke", "black");
+    pathElement.setAttribute("stroke", "transparent");
     pathElement.id = pathId;
 
     // Add the path to the SVG
     svg.appendChild(pathElement);
 
-    await placeFeet(pathElement, svg);
+    const feetCount = pathElement.getTotalLength() > 160 ? 20 : 10;
+
+    await placeFeet(pathElement, svg, feetCount);
 
     const title = document.querySelector(".event-map-title") as HTMLParagraphElement;
 

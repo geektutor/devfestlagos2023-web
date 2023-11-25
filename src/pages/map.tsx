@@ -26,7 +26,7 @@ type DropdownProps = {
 
 type StringToLocation = keyof typeof STRING_TO_LOCATION_MAP;
 
-const Dropdown = ({ value, onChange, placeholder, otherValue, isStart, label }: DropdownProps) => {
+const Dropdown = ({ value, onChange, placeholder, isStart, label }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   //todo: if there's free time close on window click
@@ -43,11 +43,9 @@ const Dropdown = ({ value, onChange, placeholder, otherValue, isStart, label }: 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     return Object.entries(LOCATION_TO_STRING_MAP).filter(([_, value]) => {
       // Explain: You can't start from the exit
-      if (isStart && value === "EXIT") return false;
-
-      return value !== otherValue;
+      return !(isStart && value === "EXIT");
     });
-  }, [isStart, otherValue]);
+  }, [isStart]);
 
   return (
     <div className='map__page__form__dropdown'>
