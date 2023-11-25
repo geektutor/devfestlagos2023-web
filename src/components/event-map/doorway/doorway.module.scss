@@ -1,0 +1,25 @@
+.doorway {
+  display: block;
+  text-align: left;
+  z-index: 2;
+  position: relative;
+
+  .text {
+    font-size: 14px;
+    transform: rotate(90deg) translateX(0px);
+    width: fit-content;
+    height: fit-content;
+    display: block;
+    transform-origin: top left;
+    left: calc(50% + 10px);
+    position: relative;
+  }
+
+  &.entrance {
+    grid-area: ENTRANCE;
+  }
+
+  &.exit {
+    grid-area: EXIT;
+  }
+}

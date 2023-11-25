@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   DirectionText,
   findPath,
@@ -13,6 +13,7 @@ import { classNames } from "@/utils/classNames";
 import { PrimaryButton } from "@/components/button";
 import Directions from "@/components/event-map/map-directions/directions";
 import { SEO } from "@/components/seo";
+import EventMapAnimation from "@/animations/components/EventMapAnimation";
 
 type DropdownProps = {
   value: string | null;
@@ -77,6 +78,7 @@ const Map = () => {
   const [currentLocation, setCurrentLocation] = useState<StringToLocation | null>(null);
   const [destination, setDestination] = useState<StringToLocation | null>(null);
   const [directions, setDirections] = useState<Array<DirectionText>>([]);
+  const [map, setMap] = useState<InstanceType<typeof EventMapAnimation> | undefined>(undefined);
 
   const onClickDirectMe = () => {
     if (!currentLocation || !destination) return;
@@ -87,8 +89,15 @@ const Map = () => {
     const path = findPath(currentLocationKey, destinationKey);
 
     setDirections(generateDirectionText(path));
-    console.log(generateDirectionText(path));
+
+    if (map) {
+      map.animatePath([...path]);
+    }
   };
+
+  useEffect(() => {
+    setMap(new EventMapAnimation());
+  }, []);
 
   return (
     <>

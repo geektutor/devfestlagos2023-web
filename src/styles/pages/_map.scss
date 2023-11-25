@@ -1,7 +1,7 @@
 @import "utils/mixins";
 
 .map__page {
-  padding: 4.8rem 0 0.6rem 8.6%;
+  padding: 0rem 0 0.6rem 8.6%;
   display: flex;
 
   flex-direction: row-reverse;
@@ -222,4 +222,22 @@
   @include media("<=tablet-sm") {
     padding: 0 2.4rem;
   }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.map_path {
+  stroke-dasharray: 1000;
+  animation: draw 5s linear forwards;
+}
+
+.new-elements {
+  transition: 200ms;
 }

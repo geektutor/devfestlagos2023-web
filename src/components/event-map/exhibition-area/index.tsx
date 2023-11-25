@@ -1,24 +1,12 @@
-import { PathStep } from "..";
 import classes from "./exhibition-area.module.scss";
-
-const ExitIntoRoomOne = () => {
-  return (
-    <div className={classes.exitIntoRoomOne}>
-      <div className={classes.exitPath}>
-        {(() => {
-          return Array(3)
-            .fill(" ")
-            .map((_, index) => <PathStep key={index} />);
-        })()}
-      </div>
-    </div>
-  );
-};
+import MapNode from "@/components/event-map/poi/mapNode";
+import { LOCATIONS } from "@/utils/map";
 
 const ExhibitionArea: React.FC = () => (
-  <div className={classes.container}>
+  <div className={classes.container} data-room={LOCATIONS.EXHIBITION}>
     <p>EXHIBITION AREA</p>
-    <ExitIntoRoomOne />
+    <MapNode type='door' variant='bottomRight' />
+    <MapNode type='destination' variant='bottomMiddle' />
   </div>
 );
 

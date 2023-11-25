@@ -1,25 +1,12 @@
-import { PathStep } from "..";
 import classes from "./room-one.module.scss";
-
-const EntryFromExibitionArea = () => {
-  return (
-    <div className={classes.entryFromExhibitionArea}>
-      <div className={classes.path}>
-        {(() => {
-          return Array(3)
-            .fill(" ")
-            .map((_, index) => <PathStep key={index} />);
-        })()}
-      </div>
-    </div>
-  );
-};
+import MapNode from "@/components/event-map/poi/mapNode";
+import { LOCATIONS } from "@/utils/map";
 
 const RoomOne: React.FC = () => (
-  <div className={classes.container}>
+  <div className={classes.container} data-room={LOCATIONS.ROOM_1}>
     <p>ROOM 1</p>
-    <p className={classes.doorText}>ENTRANCE</p>
-    <EntryFromExibitionArea />
+    <MapNode type='door' variant='bottomRight' />
+    <MapNode type='destination' variant='bottomMiddle' />
   </div>
 );
 

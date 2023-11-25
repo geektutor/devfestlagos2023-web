@@ -1,0 +1,63 @@
+.poi {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  display: block;
+
+  --spacing: 8%;
+
+  &.destination {
+    &.bottomMiddle {
+      bottom: var(--spacing);
+      left: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.middle {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &.door {
+    &.bottomRight {
+      bottom: var(--spacing);
+      right: 0;
+    }
+
+    &.bottomLeft {
+      bottom: var(--spacing);
+      left: 0;
+    }
+
+    &.middleLeft {
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+
+    &.topMiddle {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.bottomMiddle {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.room2 {
+      right: 0;
+      top: 36%;
+    }
+
+    &.hallway {
+      top: 0;
+      left: 75%;
+      transform: translateX(-50%);
+    }
+  }
+}
