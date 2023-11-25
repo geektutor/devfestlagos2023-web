@@ -23,7 +23,7 @@ export default function Schedule({
   agenda,
   speakers,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const [selectedDay, setSelectedDay] = useState<number>(1);
+  const [selectedDay, setSelectedDay] = useState<number>(2);
 
   const schedule = agenda[selectedDay - 1];
 

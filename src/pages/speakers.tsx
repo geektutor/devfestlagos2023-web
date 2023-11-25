@@ -29,7 +29,7 @@ export default function Speakers({
   speakers,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
-  const [selectedDay, setSelectedDay] = useState<number>(1);
+  const [selectedDay, setSelectedDay] = useState<number>(2);
 
   const handleChangeSpeaker = (index: number) => (direction: "next" | "previous") => {
     if (direction === "next") {
