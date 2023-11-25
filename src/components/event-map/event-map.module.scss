@@ -91,7 +91,7 @@
 
 .mapGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1.3fr) repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1.3fr)) repeat(3, minmax(0, 1fr));
   grid-template-rows: repeat(3, 1fr) 20px repeat(5, 1fr);
   flex-grow: 1;
   grid-template-areas:
