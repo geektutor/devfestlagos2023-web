@@ -46,6 +46,7 @@ const DirectionedMap: DM = {
 };
 
 const roomToStairsText = "Take the exit out of [ROOM] to the Stairs";
+const entrance = "Go straight through the entrance into Room 1";
 
 const DirectionalGuides: Record<Direction, { text: string; angle: number }> = {
   N: {
@@ -135,10 +136,15 @@ export const generateDirectionText = (path: Room[]) => {
       }
     } else {
       const locationIsStairs = location === "STAIRS";
+      const locationIsEntrance = location === "ENTRANCE";
       // @ts-ignore Explain: Man I'm tired I'll fix this later (...He proceeds to never fix it) todo:
       let locationString = LOCATION_TO_STRING_MAP[location];
       if (!locationIsStairs) {
         locationString += ` exit`;
+      }
+
+      if (locationIsEntrance) {
+        locationString = entrance;
       }
 
       const destinationString = LOCATION_TO_STRING_MAP[destination];
@@ -150,6 +156,13 @@ export const generateDirectionText = (path: Room[]) => {
 
       if (destination === "STAIRS") {
         const guideText = roomToStairsText.replace("[ROOM]", locationString);
+        strings.push({
+          angle: guide.angle,
+          text: guideText,
+          icon: "arrow",
+        });
+      } else if (locationIsEntrance) {
+        const guideText = locationString;
         strings.push({
           angle: guide.angle,
           text: guideText,
