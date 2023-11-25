@@ -20,7 +20,7 @@ import scribbleImage from "@/images/landing/scribble.png";
 import ArrowRightDark from "@/images/arrow-right-dark-bg.svg";
 import SpeakerCard from "@/components/speaker/speaker";
 import { Talks } from "@/components/talks-section/talks";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock-upgrade";
 import CategoryPill from "@/components/category-pill/category-pill";
 import FaqSection from "@/components/faq-section/faq-section";
 import { NoMatterWhat } from "@/components/no-matter-what/no-matter-what";

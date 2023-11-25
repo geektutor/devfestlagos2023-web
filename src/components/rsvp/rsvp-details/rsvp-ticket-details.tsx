@@ -11,7 +11,7 @@ import { classNames } from "@/utils/classNames";
 import { Session } from "@/types/Session";
 import React, { useEffect } from "react";
 import RsvpButton from "@/components/rsvp/rsvp-button/rsvp-button";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock-upgrade";
 
 type RSVPTicketDetailsProps = {
   modalIsOpen?: boolean;
