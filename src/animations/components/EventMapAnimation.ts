@@ -155,18 +155,28 @@ export default class EventMapAnimation extends Component {
 
     const rest = 200;
 
-    const currentText = title.innerText;
-    title.style.color = "transparent";
-    await sleep(rest);
-    title.style.color = "inherit";
-    title.innerText = "MISCHIEF MANAGED";
-    await sleep(rest);
-    title.style.color = "transparent";
-    await sleep(rest);
-    title.style.color = "inherit";
-    title.innerText = "MISCHIEF MANAGED";
-    await sleep(rest);
-    title.innerText = currentText;
+    if (Math.random() > 0.5) {
+      const currentText = title.innerText;
+      title.style.color = "transparent";
+      await sleep(rest);
+      title.style.color = "inherit";
+      title.innerText = "MISCHIEF MANAGED";
+      await sleep(rest);
+      title.style.color = "transparent";
+      await sleep(rest);
+      title.style.color = "inherit";
+      title.innerText = "MISCHIEF MANAGED";
+      await sleep(rest);
+      title.innerText = currentText;
+    } else {
+      const currentText = title.innerText;
+      title.style.color = "transparent";
+      await sleep(rest);
+      title.style.color = "inherit";
+      title.innerText = "Find me at N1femi on twitter 😉";
+      await sleep(2000);
+      title.innerText = currentText;
+    }
 
     return nodes;
   }
