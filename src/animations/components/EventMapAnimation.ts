@@ -25,6 +25,12 @@ function calculateDistance(x1: number, y1: number, x2: number, y2: number) {
   return Math.sqrt(a * a + b * b);
 }
 
+function calculateDistanceBetweenElements(a: Element, b: Element) {
+  const aPoint = a.getBoundingClientRect();
+  const bPoint = b.getBoundingClientRect();
+  return calculateDistance(aPoint.x, aPoint.y, bPoint.x, bPoint.y);
+}
+
 async function placeFeet(path: SVGPathElement, svg: SVGElement) {
   const feet = document.getElementById("feet");
   if (!feet) return;
@@ -110,7 +116,6 @@ export default class EventMapAnimation extends Component {
     const nodes: Array<Element> = [];
     const points: Array<Point> = [];
 
-    const isTwoRooms = path.length === 2;
     type Point = { x: number; y: number };
 
     let previousEndNode: Point | null = null;
@@ -120,7 +125,33 @@ export default class EventMapAnimation extends Component {
 
       if (element) {
         const destination = element.querySelector("[data-node='destination']");
-        const door = element.querySelector("[data-node='door']");
+
+        let door: Element | null;
+
+        // @ts-ignore
+        if (element.dataset.twoDoors) {
+          door = element.querySelector("[data-node='door']");
+
+          const doors = Array.from(element.querySelectorAll("[data-node='door']")) as [
+            Element,
+            Element,
+          ];
+          const nextRoom = path[index + 1];
+          const nextRoomElement = this.element?.querySelector(`[data-room="${nextRoom}"]`);
+          const nextRoomPoint = nextRoomElement!.querySelector("[data-node='destination']")!;
+
+          const doorDistancesToNextRoomPOI = doors.map((door) => {
+            return calculateDistanceBetweenElements(door, nextRoomPoint);
+          });
+
+          if (doorDistancesToNextRoomPOI[0] < doorDistancesToNextRoomPOI[1]) {
+            door = doors[0];
+          } else {
+            door = doors[1];
+          }
+        } else {
+          door = element.querySelector("[data-node='door']");
+        }
 
         let destinationPoints: Point | null = null;
         let doorPoints: Point | null = null;
@@ -134,14 +165,12 @@ export default class EventMapAnimation extends Component {
         }
 
         // If it's just two rooms we just go from one point of interest to another point of interest
-        if (!isTwoRooms) {
-          if (door && index + 1 < path.length) {
-            const rect = door.getBoundingClientRect();
-            doorPoints = {
-              x: rect.left,
-              y: rect.top,
-            };
-          }
+        if (door && index + 1 < path.length) {
+          const rect = door.getBoundingClientRect();
+          doorPoints = {
+            x: rect.left,
+            y: rect.top,
+          };
         }
 
         if (destinationPoints && doorPoints && previousEndNode) {

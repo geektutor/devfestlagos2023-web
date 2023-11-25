@@ -3,7 +3,7 @@ import { findPathBFS } from "@/utils/map/bfs";
 import { findPathAStar } from "@/utils/map/aStar";
 
 export const findPath = (start: Room, end: Room) => {
-  const flipCoin = Math.random() > 0.5;
+  const flipCoin = false;
 
   if (flipCoin) {
     console.log("Used BFS");

@@ -7,6 +7,7 @@ type DM = Partial<Record<Room, Partial<Record<Room, Direction>>>>;
 const DirectionedMap: DM = {
   [LOCATIONS.EXHIBITION]: {
     [LOCATIONS.ROOM_1]: "SE",
+    [LOCATIONS.ROOM_3]: "N",
   },
   [LOCATIONS.ROOM_1]: {
     [LOCATIONS.EXHIBITION]: "SW",
@@ -15,17 +16,18 @@ const DirectionedMap: DM = {
   },
   [LOCATIONS.ROOM_2]: {
     [LOCATIONS.ROOM_1]: "W",
+    [LOCATIONS.ROOM_3]: "N",
     [LOCATIONS.EXIT]: "S",
     [LOCATIONS.HALLWAY]: "E",
   },
   [LOCATIONS.ROOM_3]: {
-    [LOCATIONS.STAIRS]: "E",
+    [LOCATIONS.EXHIBITION]: "SW",
+    [LOCATIONS.ROOM_2]: "SE",
   },
   [LOCATIONS.ROOM_4]: {
     [LOCATIONS.STAIRS]: "W",
   },
   [LOCATIONS.STAIRS]: {
-    [LOCATIONS.ROOM_3]: "W",
     [LOCATIONS.ROOM_4]: "E",
   },
   [LOCATIONS.HALLWAY]: {

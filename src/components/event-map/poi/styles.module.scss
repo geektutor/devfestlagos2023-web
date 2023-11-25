@@ -59,5 +59,15 @@
       left: 75%;
       transform: translateX(-50%);
     }
+
+    &.room3Left {
+      bottom: 0;
+      left: 15%;
+    }
+
+    &.room3Right {
+      bottom: 0;
+      left: 82%;
+    }
   }
 }

@@ -95,10 +95,10 @@
   grid-template-rows: repeat(3, 1fr) 20px repeat(5, 1fr);
   flex-grow: 1;
   grid-template-areas:
-    "R3 . . . . R4"
-    "R3 . . . STAIRS R4"
-    "R3 . . . STAIRS R4"
-    "R3 . . . STAIRS ."
+    "R3 R3 R3 . . R4"
+    "R3 R3 R3 . STAIRS R4"
+    "R3 R3 R3 . STAIRS R4"
+    "R3 R3 R3 . STAIRS ."
     "EA R1 R2 . STAIRS ."
     "EA R1 R2 HALLWAY HALLWAY ."
     "EA R1 R2 . TOILET ."
