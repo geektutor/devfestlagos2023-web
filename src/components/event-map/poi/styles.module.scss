@@ -7,8 +7,6 @@
   --spacing: 8%;
 
   &.destination {
-    background: red;
-
     &.bottomMiddle {
       bottom: var(--spacing);
       left: 50%;
@@ -23,8 +21,6 @@
   }
 
   &.door {
-    background: black;
-
     &.bottomRight {
       bottom: var(--spacing);
       right: 0;
