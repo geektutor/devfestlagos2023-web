@@ -17,7 +17,7 @@ export const PathStep = () => {
 const EventMap: React.FC = () => {
   return (
     <div className={classes.container}>
-      <p className={classes.title}>LANDMARK EVENT CENTER LAYOUT</p>
+      <p className={classNames(classes.title, "event-map-title")}>LANDMARK EVENT CENTER LAYOUT</p>
       <div className={classNames(classes.mapGrid, "event-map")}>
         <svg
           className={classNames(classes.svg, "event-map-svg")}

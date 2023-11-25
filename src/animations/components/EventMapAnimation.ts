@@ -26,6 +26,20 @@ async function placeFeet(path: SVGPathElement, svg: SVGElement) {
   const numFeetPairs = 20; // Number of feet pairs you want
   const spacing = pathLength / numFeetPairs;
 
+  const randomNumber = Math.random();
+
+  let ease = easeInQuad;
+
+  if (randomNumber > 0.3 && randomNumber < 0.6) {
+    ease = easeOutQuad;
+    console.log("Used ease out quad");
+  } else if (randomNumber > 0.6) {
+    ease = easeOutCubic;
+    console.log("Used ease out cubic");
+  } else {
+    console.log("Used ease in quad");
+  }
+
   for (let i = 0; i <= numFeetPairs; i++) {
     const lengthAtPoint = i * spacing;
     const point = path.getPointAtLength(lengthAtPoint);
@@ -43,22 +57,8 @@ async function placeFeet(path: SVGPathElement, svg: SVGElement) {
 
     const progress = i / numFeetPairs;
 
-    const randomNumber = Math.random();
-
-    let ease = easeInQuad;
-
-    if (randomNumber > 0.3 && randomNumber < 0.6) {
-      ease = easeOutQuad;
-      console.log("Used ease out quad");
-    } else if (randomNumber > 0.6) {
-      ease = easeOutCubic;
-      console.log("Used ease out cubic");
-    } else {
-      console.log("Used ease in quad");
-    }
-
     const easedProgress = ease(progress);
-    const delay = 100 + (1 - easedProgress) * 200; // Adjust numbers as needed
+    const delay = 100 + (1 - easedProgress) * 150; // Adjust numbers as needed
 
     await sleep(delay);
 
@@ -89,11 +89,12 @@ export default class EventMapAnimation extends Component {
       elements: {
         room: "[data-room]",
         svg: ".event-map-svg",
+        title: ".event-map-title",
       },
     });
   }
 
-  animatePath(path: Array<Room>) {
+  async animatePath(path: Array<Room>) {
     document.getElementById(pathId)?.remove();
     //@ts-ignore
     [...document.getElementsByClassName(feetClass)].forEach((element) => {
@@ -148,7 +149,24 @@ export default class EventMapAnimation extends Component {
     // Add the path to the SVG
     svg.appendChild(pathElement);
 
-    placeFeet(pathElement, svg);
+    await placeFeet(pathElement, svg);
+
+    const title = document.querySelector(".event-map-title") as HTMLParagraphElement;
+
+    const rest = 200;
+
+    const currentText = title.innerText;
+    title.style.color = "transparent";
+    await sleep(rest);
+    title.style.color = "inherit";
+    title.innerText = "MISCHIEF MANAGED";
+    await sleep(rest);
+    title.style.color = "transparent";
+    await sleep(rest);
+    title.style.color = "inherit";
+    title.innerText = "MISCHIEF MANAGED";
+    await sleep(rest);
+    title.innerText = currentText;
 
     return nodes;
   }
