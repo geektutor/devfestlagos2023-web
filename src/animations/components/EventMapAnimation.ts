@@ -166,7 +166,7 @@ export default class EventMapAnimation extends Component {
       await sleep(rest);
       title.style.color = "inherit";
       title.innerText = "MISCHIEF MANAGED";
-      await sleep(rest);
+      await sleep(rest * 3);
       title.innerText = currentText;
     } else {
       const currentText = title.innerText;
