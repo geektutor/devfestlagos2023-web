@@ -1,4 +1,5 @@
 @use "../../../styles/utils/breakpoints" as b;
+@import "core/_typography.scss";
 
 .container {
   height: 100%;
@@ -11,9 +12,8 @@
 }
 
 .text1 {
-  font-size: 8px;
-  font-weight: 500;
   margin: auto 0 auto 10%;
+  @include body-2;
 }
 
 .text2 {
