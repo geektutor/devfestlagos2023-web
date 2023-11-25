@@ -18,6 +18,13 @@ function easeOutCubic(t: number) {
   return --t * t * t + 1;
 }
 
+// Use pythagoras to calculate distance between two points
+function calculateDistance(x1: number, y1: number, x2: number, y2: number) {
+  const a = x2 - x1;
+  const b = y2 - y1;
+  return Math.sqrt(a * a + b * b);
+}
+
 async function placeFeet(path: SVGPathElement, svg: SVGElement) {
   const feet = document.getElementById("feet");
   if (!feet) return;
@@ -40,7 +47,7 @@ async function placeFeet(path: SVGPathElement, svg: SVGElement) {
     console.log("Used ease in quad");
   }
 
-  for (let i = 0; i <= numFeetPairs; i++) {
+  for (let i = 0; i <= numFeetPairs - 1; i++) {
     const lengthAtPoint = i * spacing;
     const point = path.getPointAtLength(lengthAtPoint);
 
@@ -51,7 +58,7 @@ async function placeFeet(path: SVGPathElement, svg: SVGElement) {
     const newFeet = feet.cloneNode(true) as SVGPathElement;
     newFeet.style.color = "#12C2E9";
     newFeet.classList.add(feetClass);
-    newFeet.setAttribute("transform", `translate(${point.x - 10}, ${point.y}) rotate(${angle})`);
+    newFeet.setAttribute("transform", `translate(${point.x}, ${point.y}) rotate(${angle})`);
 
     svg.appendChild(newFeet);
 
@@ -62,7 +69,7 @@ async function placeFeet(path: SVGPathElement, svg: SVGElement) {
 
     await sleep(delay);
 
-    if (i < numFeetPairs) {
+    if (i < numFeetPairs - 1) {
       //@ts-ignore
       newFeet.style.opacity = 0.5;
     }
@@ -101,6 +108,12 @@ export default class EventMapAnimation extends Component {
       element.remove();
     });
     const nodes: Array<Element> = [];
+    const points: Array<Point> = [];
+
+    const isTwoRooms = path.length === 2;
+    type Point = { x: number; y: number };
+
+    let previousEndNode: Point | null = null;
 
     path.forEach((room, index) => {
       const element = this.element?.querySelector(`[data-room="${room}"]`);
@@ -109,12 +122,64 @@ export default class EventMapAnimation extends Component {
         const destination = element.querySelector("[data-node='destination']");
         const door = element.querySelector("[data-node='door']");
 
+        let destinationPoints: Point | null = null;
+        let doorPoints: Point | null = null;
+
         if (destination) {
-          nodes.push(destination);
+          const rect = destination.getBoundingClientRect();
+          destinationPoints = {
+            x: rect.left,
+            y: rect.top,
+          };
         }
 
-        if (door && index + 1 < path.length) {
-          nodes.push(door);
+        // If it's just two rooms we just go from one point of interest to another point of interest
+        if (!isTwoRooms) {
+          if (door && index + 1 < path.length) {
+            const rect = door.getBoundingClientRect();
+            doorPoints = {
+              x: rect.left,
+              y: rect.top,
+            };
+          }
+        }
+
+        if (destinationPoints && doorPoints && previousEndNode) {
+          //Find the closest node to the previous node and draw to that
+          const destDistance = calculateDistance(
+            previousEndNode.x,
+            previousEndNode.y,
+            destinationPoints.x,
+            destinationPoints.y,
+          );
+          const doorDistance = calculateDistance(
+            previousEndNode.x,
+            previousEndNode.y,
+            doorPoints.x,
+            doorPoints.y,
+          );
+
+          if (destDistance > doorDistance) {
+            points.push(doorPoints, destinationPoints);
+          } else {
+            points.push(destinationPoints, doorPoints);
+          }
+
+          previousEndNode = { ...doorPoints };
+        } else {
+          if (destinationPoints) {
+            points.push(destinationPoints);
+          }
+
+          if (doorPoints) {
+            points.push(doorPoints);
+          }
+
+          if (door) {
+            previousEndNode = door.getBoundingClientRect();
+          } else if (destination) {
+            previousEndNode = destination.getBoundingClientRect();
+          }
         }
       }
     });
@@ -124,12 +189,9 @@ export default class EventMapAnimation extends Component {
     // Start the path data string
     let pathData = "";
 
-    nodes.forEach((node, index) => {
-      // Get the position of the dot relative to the viewport
-      const { left, top } = node.getBoundingClientRect();
-
+    points.forEach(({ x, y }, index) => {
       // Adjust the coordinates for the SVG's coordinate system
-      const svgPoint = getSVGPoint(svg, left, top);
+      const svgPoint = getSVGPoint(svg, x, y);
 
       // If it's the first dot, move to it, otherwise draw a line to it
       if (index === 0) {
@@ -143,7 +205,8 @@ export default class EventMapAnimation extends Component {
     const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
     pathElement.setAttribute("d", pathData);
     pathElement.setAttribute("fill", "none");
-    pathElement.setAttribute("stroke", "transparent");
+    // pathElement.setAttribute("stroke", "transparent");
+    pathElement.setAttribute("stroke", "black");
     pathElement.id = pathId;
 
     // Add the path to the SVG
