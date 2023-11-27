@@ -14,6 +14,7 @@ import KatwigIcon from "@/images/landing/sponsor/katwig.png";
 import OktaIcon from "@/images/landing/sponsor/okta.svg";
 import PaystackIcon from "@/images/landing/sponsor/paystack.svg";
 import PostmanIcon from "@/images/landing/sponsor/postman.svg";
+import InterSwitchIcon from "@/images/landing/sponsor/interswitch.png";
 import songCoverImage from "@/images/landing/song-cover.png";
 import SpotifyLyricIcon from "@/images/landing/spotify.svg";
 import scribbleImage from "@/images/landing/scribble.png";
@@ -120,6 +121,9 @@ const sponsors = [
   [
     {
       image: GeegpayIcon,
+    },
+    {
+      image: InterSwitchIcon,
     },
   ],
   [
